@@ -1,0 +1,39 @@
+/* * {
+    font-family: 'Quicksand', sans-serif;
+    padding: 0px ;
+    margin: 0px;
+} */
+
+a.nav-link {
+  color: black;
+  white-space: nowrap;
+}
+
+.form_info {
+  background-color: #f3f3f3;
+}
+
+
+input#exampleInputEmail1 {
+  padding: 20px;
+  background-color: lightgray;
+}
+
+
+input#exampleInputPassword1 {
+  padding: 20px;
+  background-color: lightgray;
+}
+
+
+.slide {
+  padding-top: 100px;
+}
+
+.d-flex.justify-content-around {
+  background-color: white;
+}
+
+header.row.navbar.fixed-top {
+  padding-top: 0px !important;
+}
