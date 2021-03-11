@@ -6,6 +6,10 @@
 .content {
   padding-top: 150px;
 }
+
+footer {
+  padding-top: 100px;
+}
 a.nav-link {
   color: black;
   white-space: nowrap;
