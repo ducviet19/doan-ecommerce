@@ -3,7 +3,18 @@ import React, { Component } from 'react';
 function ProductDetail () {
 
     return (
-    <h1>Detail</h1>
+
+        <div>
+              <h1>Product Detai</h1>
+              <p>dsadasdasdsadsa</p>
+
+              <h1>Product Detai</h1>
+              <p>dsadasdasdsadsa</p>
+              <h1>Product Detai</h1>
+              <p>dsadasdasdsadsa</p>
+        </div>
+
+  
     )
 
 };

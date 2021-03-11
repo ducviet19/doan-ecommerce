@@ -3,7 +3,9 @@
     padding: 0px ;
     margin: 0px;
 } */
-
+.content {
+  padding-top: 150px;
+}
 a.nav-link {
   color: black;
   white-space: nowrap;
@@ -26,9 +28,7 @@ input#exampleInputPassword1 {
 }
 
 
-.slide {
-  padding-top: 100px;
-}
+
 
 .d-flex.justify-content-around {
   background-color: white;
@@ -37,3 +37,5 @@ input#exampleInputPassword1 {
 header.row.navbar.fixed-top {
   padding-top: 0px !important;
 }
+
+

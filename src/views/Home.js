@@ -21,13 +21,13 @@ function Home() {
                         <h2 className="text-center m-3"><a href>Sản Phẩm Mới</a> </h2>
                     </div>
                     <div className="row">
-                        <div className="card col-lg col-12">
+                        <Link to="/product" className="card col-lg col-12">
                             <img src="//product.hstatic.net/1000341789/product/mausac_black_10f20shl031__1__c825731865054f5dafb26c6bcd8a3525_1024x1024.jpg" alt="Card image" />
                             <div className="card-body">
                                 <p className="card-text text-center">Áo Sơ Mi Nam</p>
                                 <p className="text-center"><strong>450.000</strong></p>
                             </div>
-                        </div>
+                        </Link>
                         <div className="card col-lg col-12">
                             <img src="//product.hstatic.net/1000341789/product/mausac_black_10f20shl031__1__c825731865054f5dafb26c6bcd8a3525_1024x1024.jpg" alt="Card image" />
                             <div className="card-body">
@@ -82,8 +82,6 @@ function Home() {
                 </div>
             </main>
         </>
-
-
     )
 
 };
