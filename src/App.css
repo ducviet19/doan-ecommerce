@@ -3,6 +3,11 @@
     padding: 0px ;
     margin: 0px;
 } */
+
+a {
+  text-decoration: none;
+  color:  black;
+}
 .content {
   padding-top: 150px;
 }
