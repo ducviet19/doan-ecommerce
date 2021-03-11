@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 
-function ProductDetail() {
+function ProductDetail({ match }) {
+
+    console.log(match)
 
     return (
 

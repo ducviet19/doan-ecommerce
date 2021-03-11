@@ -33,7 +33,7 @@ function App() {
               </Route>
               <Route path="/login" component={Login}>
               </Route>
-              <Route path="/product" component={ProductDetail}>
+              <Route path="/product/:id" component={ProductDetail}>
               </Route>
             </div>
 

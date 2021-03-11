@@ -32,7 +32,7 @@ function Home() {
                         {
                             data.products.map((product) => {
                                 return (
-                                    <Link to="/product" className="card p-0  col-lg col-12 mr-3 text-decoration-none">
+                                    <Link to={`/product/${product.id}`} className="card p-0  col-lg col-12 mr-3 text-decoration-none">
                                     <img src={product.image} alt="Card image" />
                                     <div className="card-body">
                                         <p className="card-text text-center">{product.name}</p>
@@ -53,38 +53,7 @@ function Home() {
                         }
 
                       
-                        {/* <Link to="/product" className="card p-0 col-lg col-12 mr-3">
-                            <img src="//product.hstatic.net/1000341789/product/mausac_black_10f20shl031__1__c825731865054f5dafb26c6bcd8a3525_1024x1024.jpg" alt="Card image" />
-                            <div className="card-body">
-                                <p className="card-text text-center">Áo Sơ Mi Nam</p>
-                                <p className="text-center"><strong>450.000</strong></p>
-                            </div>
-                            <div className="rating text-center">
-                                <span>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                </span>
-                            </div>
-                        </Link>
-                        <Link to="/product" className="card p-0 col-lg col-12 mr-3">
-                            <img src="//product.hstatic.net/1000341789/product/mausac_black_10f20shl031__1__c825731865054f5dafb26c6bcd8a3525_1024x1024.jpg" alt="Card image" />
-                            <div className="card-body">
-                                <p className="card-text text-center">Áo Sơ Mi Nam</p>
-                                <p className="text-center"><strong>450.000</strong></p>
-                            </div>
-                            <div className="rating text-center">
-                                <span>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                </span>
-                            </div>
-                        </Link> */}
+                      
                     </div>
                 </div>
                 <div className="best-seller m-5">
