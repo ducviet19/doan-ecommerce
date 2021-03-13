@@ -1,11 +1,13 @@
 
 import './App.css';
+import { auth , handleUserProfile } from "./firebase/ultils";
 
 import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
+  Link,
+  Redirect
 } from "react-router-dom";
 import Header from './views/Header';
 import Slide from './views/Slide';
@@ -16,13 +18,45 @@ import Login from './views/Login/Login';
 import MainLayout from './views/MainLayout/MainLayout';
 import Home from './views/Home';
 import ProductDetail from './views/ProductDetail/ProductDetail';
+import { useEffect, useState } from 'react';
 
 function App() {
+
+
+  let authListener;
+
+  const [user, setUser] = useState(null);
+
+
+  useEffect(() => {
+    
+    authListener = auth.onAuthStateChanged(async (user) => {
+
+      if(user) {
+        const useRef = await handleUserProfile(user);
+        useRef.onSnapshot(snapshot => {
+          setUser({
+            id: snapshot.id,
+            ...snapshot.data()
+          })
+        })
+      }
+      setUser(null)
+
+      
+    })
+  }, []);
+
+  console.log(authListener)
+
+
+
+
   return (
     <div className="App">
       <div class="container-fluid">
         <Router>
-          <Header>
+          <Header user={user} >
 
           </Header>
           <Switch>
@@ -31,7 +65,7 @@ function App() {
               <Route exact path="/" >
                 <HomeLayout />
               </Route>
-              <Route path="/login" component={Login}>
+              <Route path="/login" render={() => user ? <Redirect to="/" /> : (<Login></Login>) }>
               </Route>
               <Route path="/product/:id" component={ProductDetail}>
               </Route>

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import { auth } from './../firebase/ultils'
+
 
 import {
     BrowserRouter as Router,
@@ -8,7 +10,13 @@ import {
     Route,
     Link
   } from "react-router-dom";
-function Header () {
+function Header (props) {
+
+  const {user} = props;
+
+  console.log(user)
+  
+
     
     return(
         <header className="row navbar fixed-top">
@@ -17,14 +25,15 @@ function Header () {
             <div>
             </div>
             <div>
-              <Link to="/"><img width="200px" src="//theme.hstatic.net/1000341789/1000533258/14/logo.png?v=709" alt="" /> </Link>
-              
+              <Link to="/"><img width="200px" src="//theme.hstatic.net/1000341789/1000533258/14/logo.png?v=709" alt="" /> </Link> 
             </div>
             <div>
-               <Link to="/login">Đăng nhập</Link>
+            { user !== null ? <a>{user.displayName} </a> :  <Link to="/login">Đăng nhập</Link> }
+              
              
               <i className="fas fa-search" />
               <i className="fas fa-shopping-cart" />
+              {  user ? <a onClick={() => auth.signOut()} >LogOut</a> : ''}
             </div>
           </div>
           <nav className="navbar  navbar-expand-lg navbar-light bg-light ">
