@@ -1,5 +1,6 @@
 import './style.css';
 
+<<<<<<< HEAD
 import { auth, signInWithGoogle } from "./../../firebase/ultils";
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
@@ -21,6 +22,14 @@ function Login() {
         } catch (error) {
             
         }
+=======
+import { signInWithGoogle } from "./../../firebase/ultils";
+
+function Login() {
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+>>>>>>> 2d2d3e6222b9d982c3220db834fc9a96f6ba85f8
     }
 
     return (
@@ -29,7 +38,11 @@ function Login() {
                 <h1 className="text-center">Đăng nhập</h1>
             </div>
             <div className="col-lg m-5">
+<<<<<<< HEAD
                 <form className="login" onSubmit={handleSubmit}>
+=======
+                <form onSubmit={handleSubmit} className="login">
+>>>>>>> 2d2d3e6222b9d982c3220db834fc9a96f6ba85f8
                     <div className="form-group">
                         <input type="email" value={email} onChange={(e) => { setEmail(e.target.value) }} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email" />
                         <div className="form-group mt-4">
@@ -40,6 +53,9 @@ function Login() {
                         </button>
                         <div>
                             <Link to="/register" className="text-secondary" href>Đăng Kí</Link>
+                        </div>
+                        <div>
+                            <button onClick={signInWithGoogle} className="text-secondary" href>Login With Google</button>
                         </div>
                         <div>
                             <button onClick={signInWithGoogle} className="text-secondary" href>Login With Google</button>

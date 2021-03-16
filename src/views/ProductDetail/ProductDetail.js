@@ -2,6 +2,12 @@ import React, { Component } from 'react';
 import { useEffect, useState } from "react";
 function ProductDetail({ match }) {
 
+<<<<<<< HEAD
+=======
+function ProductDetail({ match }) {
+
+    console.log(match)
+>>>>>>> 2d2d3e6222b9d982c3220db834fc9a96f6ba85f8
 
     useEffect(() => {
 
@@ -28,7 +34,11 @@ function ProductDetail({ match }) {
                         <div className="row w-50 p-2">
                             <p className="col">Số lượng</p>
                             <div className="col">
+<<<<<<< HEAD
                                 <select class="custom-select w-75">
+=======
+                                <select class="custom-select w-50">
+>>>>>>> 2d2d3e6222b9d982c3220db834fc9a96f6ba85f8
 
                                     <option selected value="1">1</option>
                                     <option value="2">2</option>
@@ -46,7 +56,11 @@ function ProductDetail({ match }) {
                         <div>
                             <strong>Mô tả</strong>
                             <div>
+<<<<<<< HEAD
                                 <p className="text-left">
+=======
+                                <p className="text-left"> 
+>>>>>>> 2d2d3e6222b9d982c3220db834fc9a96f6ba85f8
                                     Chất liệu: 100% polyester.
 
                                     Đặc tính: Chống nhăn, cản gió tốt, độ bền màu cao.
