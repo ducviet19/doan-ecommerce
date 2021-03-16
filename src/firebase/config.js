@@ -1,9 +1,9 @@
 export const firebaseConfig = {
-    apiKey: "AIzaSyDp4GpUKEbFA_yxfJSpYpWLnsnAOpGN2-k",
-    authDomain: "ecommerce-5f0d1.firebaseapp.com",
-    projectId: "ecommerce-5f0d1",
-    storageBucket: "ecommerce-5f0d1.appspot.com",
-    messagingSenderId: "96237967558",
-    appId: "1:96237967558:web:00d9edfe2246afef695fc7",
-    measurementId: "G-RQJGDCRH14"
-  };
+  apiKey: "AIzaSyAkQgdenG_SxVeSApHPzn7RHYXx4DI6sEY",
+  authDomain: "shop-ecommerce-e4cc5.firebaseapp.com",
+  projectId: "shop-ecommerce-e4cc5",
+  storageBucket: "shop-ecommerce-e4cc5.appspot.com",
+  messagingSenderId: "281413688960",
+  appId: "1:281413688960:web:3b7217b9cbe985f83c1065",
+  measurementId: "G-T4SPHLLHNK"
+};
