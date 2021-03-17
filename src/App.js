@@ -7,6 +7,7 @@ import {
   Route,
   Redirect
 } from "react-router-dom";
+
 import Header from './views/Header';
 
 import Footer from './views/Footer';
@@ -17,7 +18,6 @@ import ProductDetail from './views/ProductDetail/ProductDetail';
 import { useEffect, useState } from 'react';
 
 function App() {
-
 
 
   const [user, setUser] = useState(null);
@@ -57,7 +57,7 @@ function App() {
               </Route>
               <Route path="/login" render={() => user ? <Redirect to="/" /> : (<Login></Login>) }>
               </Route>
-              <Route path="/register" component={Register} >
+              <Route path="/register" render={() => user ? <Redirect to="/" /> : (<Register></Register>) }    >
               </Route>
               <Route path="/product/:id" component={ProductDetail}>
               </Route>

@@ -35,7 +35,17 @@ function ProductDetail({ match }) {
                                     <option value="3">3</option>
                                 </select>
                             </div>
+                        </div>
+                        <div className="row w-50 p-2">
+                            <p className="col">Size</p>
+                            <div className="col">
+                                <select class="custom-select w-75">
 
+                                    <option selected value="1">S</option>
+                                    <option value="2">M</option>
+                                    <option value="3">L</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
                     <div>

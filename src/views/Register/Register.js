@@ -40,7 +40,6 @@ function Register() {
 
         try {
             const {user} = await auth.createUserWithEmailAndPassword(email,password);
-
             handleUserProfile(user, {
                 displayName
             });

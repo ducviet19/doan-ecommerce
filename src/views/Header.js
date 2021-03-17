@@ -10,11 +10,11 @@ import {
     Route,
     Link
   } from "react-router-dom";
+import { connect } from 'react-redux';
 function Header (props) {
 
   const {user} = props;
 
-  console.log(user)
   
 
     
@@ -77,4 +77,8 @@ function Header (props) {
 
 };
 
-export default Header;
+const mapStateToProps = ({ user }) => ({
+  user: user.currentUser
+})
+
+export default connect(mapStateToProps , null) (Header) ;
