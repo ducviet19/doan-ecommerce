@@ -16,8 +16,12 @@ import Login from './views/Login/Login';
 import Register from './views/Register/Register';
 import ProductDetail from './views/ProductDetail/ProductDetail';
 import { useEffect, useState } from 'react';
+import { setCurrentUser } from './redux/User/user.action';
+import { connect } from 'react-redux';
 
 function App() {
+
+  console.log(setCurrentUser())
 
 
   const [user, setUser] = useState(null);
@@ -31,14 +35,17 @@ function App() {
         const useRef = await handleUserProfile(user);
      
         useRef.onSnapshot(snapshot => {
-          console.log(snapshot)
+          setCurrentUser({
+            id: snapshot.id,
+            ...snapshot.data()
+          })
           // setUser({
           //   id: snapshot.id,
           //   ...snapshot.data()
           // })
         })
       }
-      setUser(null)
+      setUser(user)
     })
   }, []);
 
@@ -73,4 +80,13 @@ function App() {
   );
 }
 
-export default App;
+const mapStateToProps = ({user}) => ({
+  currentUser : user.currentUser
+})
+
+
+const mapDispatchToProps = dispatch => ({
+  setCurrentUser: user => dispatch(setCurrentUser(user))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps) (App) ;
