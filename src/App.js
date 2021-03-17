@@ -31,10 +31,11 @@ function App() {
         const useRef = await handleUserProfile(user);
      
         useRef.onSnapshot(snapshot => {
-          setUser({
-            id: snapshot.id,
-            ...snapshot.data()
-          })
+          console.log(snapshot)
+          // setUser({
+          //   id: snapshot.id,
+          //   ...snapshot.data()
+          // })
         })
       }
       setUser(null)
