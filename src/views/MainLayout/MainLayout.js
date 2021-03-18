@@ -7,16 +7,18 @@ import Slide from '../Slide';
 
 
 
-function MainLayout() {
+function MainLayout(props) {
 
     return (
 
 
-        <>
-            <Header />
-            <Slide />
+        <div className="content">
+            <Header {...props} />
+            <div>
+                {props.children}
+            </div>
             <Footer />
-        </>
+        </div>
     )
 
 };

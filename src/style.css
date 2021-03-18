@@ -1,4 +1,8 @@
-/* 
+/* * {
+    font-family: 'Quicksand', sans-serif;
+    padding: 0px ;
+    margin: 0px;
+} */
 
 a {
   text-decoration: none;
@@ -42,4 +46,4 @@ header.row.navbar.fixed-top {
   padding-top: 0px !important;
 }
 
- */
+

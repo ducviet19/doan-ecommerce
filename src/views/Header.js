@@ -15,13 +15,15 @@ function Header (props) {
 
   const {user} = props;
 
+  console.log(user)
+
   
 
     
     return(
         <header className="row navbar fixed-top">
         <div className="col-12">
-          <div className="d-flex justify-content-around row ">
+          <div className="d-flex justify-content-around row">
             <div className="col">
             </div>
             <div className="col">
@@ -81,4 +83,4 @@ const mapStateToProps = ({ user }) => ({
   user: user.currentUser
 })
 
-export default connect(mapStateToProps , null)  (Header) ;
+export default connect(mapStateToProps, null)  (Header) ;
