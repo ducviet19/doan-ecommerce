@@ -21,6 +21,7 @@ import { connect } from 'react-redux';
 import Dashboard from './Admin/Dashboard/Dashboard';
 import MainLayout from './views/MainLayout/MainLayout';
 import AdminLayout from './Admin/AdminLayout/AdminLayout';
+import FormProduct from './Admin/FormProductDetail/FormProduct';
 
 function App(props) {
 
@@ -81,6 +82,11 @@ function App(props) {
                   <Dashboard>
                   </Dashboard>
                 </AdminLayout>
+              </Route>
+              <Route path="/admin/newproduct" >
+                <FormProduct>
+
+                </FormProduct>
               </Route>
             </div>
 
