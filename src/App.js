@@ -22,6 +22,7 @@ import Dashboard from './Admin/Dashboard/Dashboard';
 import MainLayout from './views/MainLayout/MainLayout';
 import AdminLayout from './Admin/AdminLayout/AdminLayout';
 import FormProduct from './Admin/FormProductDetail/FormProduct';
+import Order from './views/Orders/Order';
 
 function App(props) {
 
@@ -75,6 +76,9 @@ function App(props) {
                 <MainLayout>
                   <ProductDetail />
                 </MainLayout>
+              </Route>
+              <Route path="/order">
+                <Order />
               </Route>
 
               <Route path="/admin" >
