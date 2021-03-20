@@ -1,13 +1,34 @@
-import { useState } from 'react';
-import { auth, handleUserProfile } from '../../firebase/ultils';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { registerUser, resetAllAuthForm } from '../../redux/User/user.action';
 import './style.css';
 
 
 
+const mapState = ({user}) => ({
+    signUpError: user.signUpError,
+    signUpSuccess: user.signUpSuccess
+
+})
+
 function Register() {
 
+    const { signUpSuccess, signUpError } = useSelector(mapState);
+    const dispatch = useDispatch();
 
+    
+    useEffect( () => {
+        if(signUpSuccess) {
+            // reset();
+            dispatch(resetAllAuthForm())
+        }
+    } )
 
+    useEffect(() => {
+        if(signUpError) {
+
+        }
+    })
 
 
     const [displayName, setDisplayName] = useState("");
@@ -21,6 +42,9 @@ function Register() {
     const [error_email, setError_email] = useState("");
     const [error_password, setError_password] = useState("");
     const [error_confirmPassword, setError_confirmPassword] = useState("");
+
+
+
 
 
 
@@ -38,28 +62,20 @@ function Register() {
             return ;
         }
 
-        try {
-            const {user} = await auth.createUserWithEmailAndPassword(email,password);
-            handleUserProfile(user, {
-                displayName
-            });
-            
-        } catch (error) {
-            
-        }
+        dispatch(registerUser({
+            displayName,
+            email,
+            password,
+            confirmPassword
+        }))
 
+    }
+
+    const reset = () => {
         setEmail("");
         setPassword("");
         setDisplayName("");
         setConfirmPassword("")
-
-
-
-      
-
-            
-
-
 
     }
 

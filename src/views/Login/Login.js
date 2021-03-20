@@ -1,26 +1,38 @@
 import './style.css';
 
-import { auth, signInWithGoogle } from "./../../firebase/ultils";
+
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { emailSignInStart , signInWithGoogle } from '../../redux/User/user.action';
 
-function Login() {
 
+const mapState = (user) => ({
+    signInSuccess: user.signInSuccess,
+})
 
+function Login(props) {
+    
+    const { signInSuccess } = useSelector(mapState);
+    const dispatch = useDispatch();
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
-    const [error, setError] = useState(null);
+
+
+
+    useEffect( () => {
+        
+    },[signInSuccess ] )
 
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        try {
-            await auth.signInWithEmailAndPassword(email,password);
-            
-        } catch (error) {
-            
-        }
+        dispatch(emailSignInStart({email, password}))
+    }
+
+    const loginWithGoogle = () => {
+        dispatch(signInWithGoogle())
     }
 
     return (
@@ -42,7 +54,7 @@ function Login() {
                             <Link to="/register" className="text-secondary" href>Đăng Kí</Link>
                         </div>
                         <div>
-                            <button onClick={signInWithGoogle} className="text-secondary" href>Login With Google</button>
+                            <button onClick={loginWithGoogle} className="text-secondary" href>Login With Google</button>
                         </div>
                     </div></form>
             </div>
