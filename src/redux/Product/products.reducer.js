@@ -1,12 +1,18 @@
-import productsTypes from "./products.types"
+import productsTypes from './products.types'
 
 const INITIAL_STATE = {
-    products: [],
-    product: {}
-}
+    products: []
+};
 
-const productReducer = (state = INITIAL_STATE , action) => {
-    switch(action.type) {
-        
+const productsReducer = (state = INITIAL_STATE, action) => {
+    switch (action.type) {
+        case productsTypes.SET_PRODUCT:
+            return {
+                ...state,
+                products: action.payload
+            }
+        default:
+            return state;
     }
-}
+};
+export default productsReducer;

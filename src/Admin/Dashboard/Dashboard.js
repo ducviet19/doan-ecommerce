@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 function Dashboard(props) {
   return (
@@ -11,11 +12,11 @@ function Dashboard(props) {
           </div>
           <div>
             <ul className="list-group">
-              <li className="list-group-item">Tong Quan</li>
-              <li className="list-group-item">Don Hang</li>
-              <li className="list-group-item">San Pham</li>
-              <li className="list-group-item">Nguoi Dung</li>
-              <li className="list-group-item">Bao Cao</li>
+              <Link to='/'><li className="list-group-item">Tong Quan</li></Link>
+              <Link to=''><li className="list-group-item">Don Hang</li></Link>
+              <Link to='/admin/newproduct'><li className="list-group-item">San Pham</li></Link>
+              <Link><li className="list-group-item">Nguoi Dung</li></Link>
+              <Link><li className="list-group-item">Bao Cao</li></Link>
             </ul>
           </div>
         </aside>

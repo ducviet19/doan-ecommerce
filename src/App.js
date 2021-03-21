@@ -88,9 +88,7 @@ function App(props) {
                 </AdminLayout>
               </Route>
               <Route path="/admin/newproduct" >
-                <FormProduct>
-
-                </FormProduct>
+                <FormProduct />
               </Route>
             </div>
 

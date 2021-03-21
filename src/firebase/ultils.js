@@ -18,15 +18,15 @@ GoogleProvider.setCustomParameters({ prompt: 'select_account' });
 export const signInWithGoogle = () => auth.signInWithPopup(GoogleProvider);
 
 export const handleUserProfile = async (userAuth, additionalData) => {
-    if(!userAuth) return;
+    if (!userAuth) return;
     const { uid } = userAuth;
     console.log(userAuth);
     const useRef = firestore.doc(`users/${uid}`);
-   
+
     const snapshot = await useRef.get();
 
-    if(!snapshot.exists) {
-        const { displayName , email} = userAuth;
+    if (!snapshot.exists) {
+        const { displayName, email } = userAuth;
         const timestamp = new Date();
         const userRoles = ['user']
 
@@ -38,13 +38,22 @@ export const handleUserProfile = async (userAuth, additionalData) => {
                 userRoles,
                 ...additionalData
             })
-            
+
         } catch (error) {
-            
+
         }
     }
 
     return useRef;
+};
+
+export const getCurrentUser = () => {
+    return new Promise((resolve, reject) => {
+        const unsubscribe = auth.onAuthStateChanged(userAuth => {
+            unsubscribe();
+            resolve(userAuth);
+        }, reject);
+    })
 }
 
 
