@@ -7,7 +7,8 @@ import {
   Route,
   Link
 } from "react-router-dom";
-import { connect, useSelector } from 'react-redux';
+import { connect, useDispatch, useSelector } from 'react-redux';
+import { signOutUserStart, signOutUserSuccess } from '../redux/User/user.action';
 
 const mapState = ({ user }) => ({
   user: user.currentUser
@@ -15,7 +16,14 @@ const mapState = ({ user }) => ({
 
 function Header(props) {
 
+  const dispatch = useDispatch();
+
   const { user } = useSelector(mapState);
+
+
+  const signOut = () => {
+    dispatch(signOutUserStart())
+  }
 
   return (
     <header className="row navbar fixed-top">
@@ -32,7 +40,7 @@ function Header(props) {
 
             <i className="fas fa-search" />
             <i className="fas fa-shopping-cart" />
-            {user ? <a onClick={() => auth.signOut()} >LogOut</a> : ''}
+            {user ? <button onClick={() => signOut() } >LogOut</button> : ''}
           </div>
         </div>
         <nav className="navbar  navbar-expand-lg navbar-light bg-light ">

@@ -4,31 +4,34 @@ import './style.css';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { emailSignInStart , signInWithGoogle } from '../../redux/User/user.action';
+import { emailSignInStart , signInSuccess, signInWithGoogle } from '../../redux/User/user.action';
 
 
-const mapState = (user) => ({
-    signInSuccess: user.signInSuccess,
-})
+const mapState = ({ user }) => ({
+    currentUser: user.currentUser
+  });
 
 function Login(props) {
     
-    const { signInSuccess } = useSelector(mapState);
+    const { currentUser } = useSelector(mapState);
     const dispatch = useDispatch();
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
 
+    console.log(currentUser)
 
 
     useEffect( () => {
+        if(currentUser) {
+            
+        }
         
-    },[signInSuccess ] )
+    },[currentUser ] )
 
 
-    const handleSubmit = async (e) => {
+    const handleSubmit =  (e) => {
         e.preventDefault();
-
-        dispatch(emailSignInStart({email, password}))
+        dispatch(emailSignInStart({ email, password }));
     }
 
     const loginWithGoogle = () => {
@@ -47,7 +50,7 @@ function Login(props) {
                         <div className="form-group mt-4">
                             <input type="password" value={password} onChange={(e) => setPassword(e.target.value) } className="form-control" id="exampleInputPassword1" placeholder="Mật khẩu" />
                         </div>
-                        <button className="btn btn-secondary"  >
+                        <button className="btn btn-secondary" type='submit' >
                             Đăng Nhập
                         </button>
                         <div>

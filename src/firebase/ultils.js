@@ -47,6 +47,15 @@ export const handleUserProfile = async ({userAuth, additionalData}) => {
     return useRef;
 }
 
+export const getCurrentUser = () => {
+    return new Promise((resolve, reject) => {
+        const unsubscribe = auth.onAuthStateChanged(userAuth => {
+            unsubscribe();
+            resolve(userAuth);
+        },reject)
+    } )
+}
+
 
 
 

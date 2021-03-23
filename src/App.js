@@ -12,8 +12,8 @@ import Login from './views/Login/Login';
 import Register from './views/Register/Register';
 import ProductDetail from './views/ProductDetail/ProductDetail';
 import { useEffect } from 'react';
-import { setCurrentUser } from './redux/User/user.action';
-import { connect, useDispatch, useSelector } from 'react-redux';
+import { checkUserSession } from './redux/User/user.action';
+import { useDispatch, useSelector } from 'react-redux';
 import Dashboard from './Admin/Dashboard/Dashboard';
 import MainLayout from './views/MainLayout/MainLayout';
 import AdminLayout from './Admin/AdminLayout/AdminLayout';
@@ -28,24 +28,12 @@ function App(props) {
 
   const dispatch = useDispatch();
   const { user } = useSelector(mapState);
+  console.log(user)
 
-  // useEffect(() => {
+  useEffect(() => {
+    dispatch(checkUserSession());
 
-  //   auth.onAuthStateChanged(async (user) => {
-  //     if (user) {
-  //       const useRef = await handleUserProfile(user);
-
-  //       useRef.onSnapshot(snapshot => {
-  //         dispatch(setCurrentUser({
-  //           id: snapshot.id,
-  //           ...snapshot.data()
-  //         })) 
-        
-  //       })
-  //     }
-  //     dispatch(setCurrentUser(user))
-  //   })
-  // }, []);
+  }, []);
 
   return (
     <div className="App">
