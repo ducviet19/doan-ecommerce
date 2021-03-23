@@ -9,6 +9,7 @@ import {
 } from "react-router-dom";
 import { connect, useDispatch, useSelector } from 'react-redux';
 import { signOutUserStart, signOutUserSuccess } from '../redux/User/user.action';
+import { checkUserIsAdmin } from '../Utils';
 
 const mapState = ({ user }) => ({
   user: user.currentUser
@@ -19,6 +20,10 @@ function Header(props) {
   const dispatch = useDispatch();
 
   const { user } = useSelector(mapState);
+
+  const isAdmin = checkUserIsAdmin(user);
+
+  console.log(isAdmin)
 
 
   const signOut = () => {
@@ -40,6 +45,8 @@ function Header(props) {
 
             <i className="fas fa-search" />
             <i className="fas fa-shopping-cart" />
+            <i> {user !== null ? <a>{isAdmin ? <Link to="/admin">Admin </Link> : 'user'} </a> : <></>}  </i>
+            
             {user ? <button onClick={() => signOut() } >LogOut</button> : ''}
           </div>
         </div>

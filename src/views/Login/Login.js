@@ -4,7 +4,7 @@ import './style.css';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { emailSignInStart , signInSuccess, signInWithGoogle } from '../../redux/User/user.action';
+import { emailSignInStart , signInSuccess, signInWithGoogle ,googleSignInStart } from '../../redux/User/user.action';
 
 
 const mapState = ({ user }) => ({
@@ -35,7 +35,7 @@ function Login(props) {
     }
 
     const loginWithGoogle = () => {
-        dispatch(signInWithGoogle())
+        dispatch(googleSignInStart())
     }
 
     return (

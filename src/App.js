@@ -18,6 +18,8 @@ import Dashboard from './Admin/Dashboard/Dashboard';
 import MainLayout from './views/MainLayout/MainLayout';
 import AdminLayout from './Admin/AdminLayout/AdminLayout';
 import FormProduct from './Admin/FormProduct/FormProduct';
+import withAuth from './hoc/withAuth';
+import WithAdminAuth from './hoc/withAdminAuth';
 
 
 const mapState = ({user}) => ({
@@ -60,10 +62,12 @@ function App(props) {
               </Route>
 
               <Route path="/admin" >
+                <WithAdminAuth>
                 <AdminLayout>
-                  <Dashboard>
-                  </Dashboard>
+                  <Dashboard />
                 </AdminLayout>
+                </WithAdminAuth>
+                
               </Route>
               <Route path="/admin/newproduct" >
                 <FormProduct>

@@ -1,34 +1,33 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { registerUser, resetAllAuthForm } from '../../redux/User/user.action';
+import { registerUser, resetAllAuthForm, signUpUserStart } from '../../redux/User/user.action';
 import './style.css';
 
 
 
 const mapState = ({user}) => ({
-    signUpError: user.signUpError,
-    signUpSuccess: user.signUpSuccess
+    currentUser : user.currentUser,
+    useErr: user.userErr
 
 })
 
 function Register() {
 
-    const { signUpSuccess, signUpError } = useSelector(mapState);
+    const { currentUser, useErr } = useSelector(mapState);
     const dispatch = useDispatch();
 
     
     useEffect( () => {
-        if(signUpSuccess) {
-            // reset();
-            dispatch(resetAllAuthForm())
+        if(currentUser) {
+
         }
-    } )
+    } ,[currentUser])
 
     useEffect(() => {
-        if(signUpError) {
+        if(useErr) {
 
-        }
-    })
+        } 
+    },[useErr])
 
 
     const [displayName, setDisplayName] = useState("");
@@ -62,7 +61,7 @@ function Register() {
             return ;
         }
 
-        dispatch(registerUser({
+        dispatch(signUpUserStart({
             displayName,
             email,
             password,
