@@ -45,9 +45,9 @@ function Header(props) {
 
             <i className="fas fa-search" />
             <i className="fas fa-shopping-cart" />
-            <i> {user !== null ? <a>{isAdmin ? <Link to="/admin">Admin </Link> : 'user'} </a> : <></>}  </i>
+            <i> {user !== null ? <a>{isAdmin ? <Link to="/admin">Admin </Link> : ''} </a> : <></>}  </i>
             
-            {user ? <button onClick={() => signOut() } >LogOut</button> : ''}
+            {user ? <button className="btn btn-success" onClick={() => signOut() } >LogOut</button> : ''}
           </div>
         </div>
         <nav className="navbar  navbar-expand-lg navbar-light bg-light ">

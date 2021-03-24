@@ -17,12 +17,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import Dashboard from './Admin/Dashboard/Dashboard';
 import MainLayout from './views/MainLayout/MainLayout';
 import AdminLayout from './Admin/AdminLayout/AdminLayout';
-import FormProduct from './Admin/FormProduct/FormProduct';
 import withAuth from './hoc/withAuth';
 import WithAdminAuth from './hoc/withAdminAuth';
+import FormProduct from './Admin/FormProduct/FormProduct';
+import ListProduct from './Admin/Product/Listproduct/ListProduct';
+import Main from './Admin/Main/Main';
 
 
-const mapState = ({user}) => ({
+const mapState = ({ user }) => ({
   user: user.currentUser
 })
 
@@ -63,16 +65,24 @@ function App(props) {
 
               <Route path="/admin" >
                 <WithAdminAuth>
-                <AdminLayout>
-                  <Dashboard />
-                </AdminLayout>
+                  <Dashboard>
+                    <Main />
+                  </Dashboard>
                 </WithAdminAuth>
-                
-              </Route>
-              <Route path="/admin/newproduct" >
-                <FormProduct>
 
-                </FormProduct>
+              </Route>
+              <Route path="/newproduct" >
+                <Dashboard>
+                  <FormProduct />
+                </Dashboard>
+
+              </Route>
+              <Route path="/product" >
+                <Dashboard>
+                  <ListProduct />
+                </Dashboard>
+
+
               </Route>
             </div>
 
@@ -85,12 +95,5 @@ function App(props) {
   );
 }
 
-// const mapStateToProps = ({ user }) => ({
-//   user: user.currentUser
-// })
-
-// const mapDispatchToProps = dispatch => ({
-//   setCurrentUser: user => dispatch(setCurrentUser(user))
-// })
 
 export default App;
