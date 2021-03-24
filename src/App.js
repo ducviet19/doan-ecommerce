@@ -22,6 +22,7 @@ import WithAdminAuth from './hoc/withAdminAuth';
 import FormProduct from './Admin/FormProduct/FormProduct';
 import ListProduct from './Admin/Product/Listproduct/ListProduct';
 import Main from './Admin/Main/Main';
+import EditProduct from './Admin/Product/EditProduct.js/EditProduct';
 
 
 const mapState = ({ user }) => ({
@@ -77,12 +78,15 @@ function App(props) {
                 </Dashboard>
 
               </Route>
-              <Route path="/product" >
+              <Route path="/listproduct" >
                 <Dashboard>
                   <ListProduct />
                 </Dashboard>
-
-
+              </Route>
+              <Route path="/editproduct/:id" >
+                <Dashboard>
+                  <EditProduct />
+                </Dashboard>
               </Route>
             </div>
 
