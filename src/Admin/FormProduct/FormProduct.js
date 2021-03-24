@@ -57,6 +57,7 @@ function FormProduct(props) {
                 <div className="form-group">
                     <label for="category">Loại sản phẩm</label>
                     <select value={category} onChange={e => setCategory(e.target.value)} >
+                        <option></option>
                         <option>Kem chống nắng</option>
                         <option>Sữa rửa mặt</option>
                         <option>Mặt nạ</option>

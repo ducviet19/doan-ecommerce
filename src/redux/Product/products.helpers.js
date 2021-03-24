@@ -8,7 +8,6 @@ export const handleAddProduct = product => {
             .set(product)
             .then(() => {
                 resolve()
-
             })
             .catch(err => {
                 reject(err);
@@ -38,18 +37,16 @@ export const handleFetchProducts = () => {
 
 export const handleFetchDetailProduct = (documentID) => {
     return new Promise((resolve, reject) => {
-        firestore
-            .collection('products')
-            .doc()
-            .get(documentID)
+        firestore.collection('products').doc(documentID)
+            .get()
             .then(snapshot => {
-                const productsArray = snapshot.docs.map(doc => {
-                    return {
-                        ...doc.data(),
-                        documentID: doc.id
-                    }
-                });
-                resolve(productsArray);
+                if (snapshot.exists) {
+                    resolve({
+                      ...snapshot.data(),
+                      documentID: documentID
+                    });
+                  }
+
             })
             .catch(err => {
                 reject(err);

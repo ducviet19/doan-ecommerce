@@ -2,7 +2,7 @@ import { takeLatest, put, all, call } from 'redux-saga/effects';
 import { handleAddProduct, handleDeleteProduct, handleFetchDetailProduct, handleFetchProducts } from './products.helpers'
 import productsTypes from './products.types';
 import { auth } from './../../firebase/ultils'
-import { setProducts, fetchProducts } from './products.action'
+import { setProducts, fetchProducts, setProduct } from './products.action'
 
 
 
@@ -51,13 +51,16 @@ export function* onFetchProduct() {
 
 export function* fetchProductId({payload}) {
     try {
-        const productEdit = yield handleFetchDetailProduct()
+        const productEdit = yield handleFetchDetailProduct(payload);
+        yield put(
+            setProduct(productEdit)
+        );
     } catch (error) {
         
     }
 }
 export function* onFetchProductId() {
-    yield takeLatest(productsTypes.FETCH_PRODUCTS_ID,fetchProductId)
+    yield takeLatest(productsTypes.FETCH_PRODUCT_ID,fetchProductId)
 }
 
 export function* deleteProduct({payload}) {
@@ -79,6 +82,7 @@ export default function* productsSagas() {
     yield all([
         call(onAddProduct),
         call(onFetchProduct),
-        call(onDeleteProductct)
+        call(onDeleteProductct),
+        call(onFetchProductId)
     ])
 }
