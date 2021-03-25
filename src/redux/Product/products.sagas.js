@@ -86,11 +86,12 @@ export function* onDeleteProductct() {
 }
 
 
-export function* editProduct({payload}) {
+export function* editProduct({payload ,id}) {
     try {
 
         console.log('payload edit product', payload)
-        const product = yield  handleEditProduct(payload);
+        console.log('id edit product', id)
+        const product = yield handleEditProduct(payload,id);
 
         yield put(
             fetchProductStart(product)

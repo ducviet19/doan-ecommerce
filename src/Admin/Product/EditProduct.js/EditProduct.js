@@ -48,7 +48,7 @@ function EditProduct({ props }) {
             category,
             description,
             price
-        }))
+        },id))
         // const updateRef = firestore.collection('products').doc(id);
         // updateRef
         //     .set({
