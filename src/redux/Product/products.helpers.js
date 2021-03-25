@@ -69,11 +69,11 @@ export const handleDeleteProduct = documentID => {
 }
 
 
-export const handleEditProduct = product => {
+export const handleEditProduct = (product) => {
     return new Promise((resolve, reject) => {
         firestore
             .collection('products')
-            .doc()
+            .doc('7TQStODD0QtWmPep57bu')
             .set(product)
             .then(() => {
                 resolve()

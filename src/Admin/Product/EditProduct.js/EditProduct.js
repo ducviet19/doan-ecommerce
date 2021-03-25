@@ -3,92 +3,68 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
 import { firestore } from '../../../firebase/ultils';
-import { fetchProductStart, setProduct } from '../../../redux/Product/products.action';
+import { editProduct, fetchProductStart, setProduct } from '../../../redux/Product/products.action';
 
 const mapState = state => ({
     product: state.productsData.product
 });
 
-function EditProduct({props}) {
+function EditProduct({ props }) {
 
-
-    // useEffect(() => {
-    //     firestore.collection('products').doc(id)
-    //         .get()
-    //         .then(snapshot => {
-    //             const product = snapshot.data();
-    //             setName(product.name)
-    //             setCategory(product.category)
-    //             setDescription(product.description)
-    //             setPrice(product.price)
-    //         })
-    //         .catch(err => {
-
-    //         })
-
-    // }, []);
-
-
-    // const {
-    //     name,
-    //     category,
-    //     description,
-    //     thumbnail,
-    //     price
-    //   } = product;
     const dispatch = useDispatch();
-    const { product  } = useSelector(mapState)
+    const { product } = useSelector(mapState)
     const [name, setName] = useState('');
     const [category, setCategory] = useState('');
     const [description, setDescription] = useState('');
     const [thumbnail, setThumbnail] = useState('');
     const [price, setPrice] = useState('');
 
-   
+
 
     let { id } = useParams();
 
     useEffect(() => {
-
-
-        
         setName(product.name);
         setCategory(product.category);
         setDescription(product.description);
         setPrice(product.price);
-    },[product] ) 
+    }, [product])
 
-    useEffect( () => {
+    useEffect(() => {
         dispatch(fetchProductStart(id))
         return () => {
-       
             dispatch(
                 setProduct({})
             )
         }
+    }, [])
 
 
-    },[] )
-
-   
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const updateRef = firestore.collection('products').doc(id);
-        updateRef
-        .set({
+        dispatch(editProduct({
             name,
             category,
             description,
-                })
-            .then(() => {
-        })
-            .catch((error) => {
-                console.error("Error adding document: ", error);
-            });
+            price
+        }))
+        // const updateRef = firestore.collection('products').doc(id);
+        // updateRef
+        //     .set({
+        //         name,
+        //         category,
+        //         description,
+        //         price
+        //     })
+        //     .then(() => {
+        //     })
+        //     .catch((error) => {
+        //         console.error("Error adding document: ", error);
+        //     });
     }
     return (
-       
+
         <div>
             <div className="m-2">
                 <form onSubmit={handleSubmit}>
