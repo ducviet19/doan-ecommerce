@@ -38,7 +38,7 @@ function EditProduct({props}) {
     //   } = product;
     const dispatch = useDispatch();
     const { product  } = useSelector(mapState)
-    const [name, setName] = useState(product.name);
+    const [name, setName] = useState('');
     const [category, setCategory] = useState('');
     const [description, setDescription] = useState('');
     const [thumbnail, setThumbnail] = useState('');
@@ -50,16 +50,15 @@ function EditProduct({props}) {
 
     useEffect(() => {
 
+
+        
         setName(product.name);
         setCategory(product.category);
         setDescription(product.description);
         setPrice(product.price);
-    } ) 
+    },[product] ) 
 
     useEffect( () => {
-        
-
-        
         dispatch(fetchProductStart(id))
         return () => {
        
@@ -71,8 +70,6 @@ function EditProduct({props}) {
 
     },[] )
 
-    console.log(product)
-    console.log(product.name)
    
 
     const handleSubmit = (e) => {
@@ -83,7 +80,7 @@ function EditProduct({props}) {
             name,
             category,
             description,
-            price})
+                })
             .then(() => {
         })
             .catch((error) => {
