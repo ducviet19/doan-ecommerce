@@ -9,14 +9,15 @@ import './style.css'
 
 function Dashboard(props) {
   return (
-    <div className="container-fluid row">
+    <div className="container-fluid ">
 
-      <Aside  />
-        <div>
+      <div className="row">
+        <Aside />
+        <div className="col-10">
           {props.children}
         </div>
-      <FooterAdmin />
-      
+        <FooterAdmin />
+      </div>
     </div>
   )
 

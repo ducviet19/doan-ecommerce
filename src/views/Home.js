@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect } from 'react';
 
 import data from "../data"
 
@@ -9,16 +9,23 @@ import {
     Link
   } from "react-router-dom";
 import Login from './Login/Login';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchProducts } from '../redux/Product/products.action';
+
+const mapState = ({ productsData }) => ({
+    products: productsData.products
+})
 function Home() {
+    const dispatch = useDispatch();
+    const { products } = useSelector(mapState)
 
-
-
-
-
-
-    return (
-
-            
+    useEffect(() => {
+        dispatch(
+            fetchProducts()
+        )
+    }, [])
+    
+    return (  
         <>
             <main className="main">
 
@@ -30,13 +37,16 @@ function Home() {
                     <div className="row">
 
                         {
-                            data.products.map((product) => {
+                            products.map((product) => {
                                 return (
-                                    <Link to={`/product/${product.id}`} className="card p-0  col-lg col-12 mr-3 text-decoration-none">
-                                    <img src={product.image} alt="Card image" />
+                                    <Link to={`/product/${product.documentID}`} className="card p-0  col-lg col-12 mr-3 text-decoration-none">
+                                    <img className="img-fluid w-100 h-100" src={product.thumbnail} alt="Card image" />
                                     <div className="card-body">
                                         <p className="card-text text-center">{product.name}</p>
-                                        <p className="text-center"><strong>{product.price}</strong></p>
+                                        <p className="text-center"><strong>{product.price}đ</strong></p>
+                                    </div>
+                                    <div className="d-flex justify-content-center">
+                                        <button className="btn btn-primary ">Thêm vào giỏ hàng</button>
                                     </div>
                                     <div className="rating text-center">
                                         <span>
@@ -50,10 +60,7 @@ function Home() {
                                 </Link>
                                 )
                             })
-                        }
-
-                      
-                      
+                        }                     
                     </div>
                 </div>
                 <div className="best-seller m-5">

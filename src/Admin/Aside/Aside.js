@@ -12,6 +12,7 @@ function Aside(props) {
                 </div>
                 <div>
                     <ul className="list-group">
+                    <li className="list-group-item"><Link to="/">Website</Link> </li>
                         <li className="list-group-item"><Link to="/admin">Tong Quan</Link> </li>
                         <li className="list-group-item">Don Hang</li>
                         <li className="list-group-item"> <Link to="/listproduct">San pham</Link> </li>

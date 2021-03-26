@@ -64,7 +64,7 @@ function App(props) {
                 </MainLayout>
               </Route>
 
-              <Route path="/admin" >
+              <Route exact path="/admin/" >
                 <WithAdminAuth>
                   <Dashboard>
                     <Main />
@@ -72,7 +72,7 @@ function App(props) {
                 </WithAdminAuth>
 
               </Route>
-              <Route path="/newproduct" >
+              <Route exact path="/admin/newproduct" >
                 <Dashboard>
                   <FormProduct />
                 </Dashboard>
