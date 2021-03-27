@@ -23,6 +23,7 @@ import FormProduct from './Admin/FormProduct/FormProduct';
 import ListProduct from './Admin/Product/Listproduct/ListProduct';
 import Main from './Admin/Main/Main';
 import EditProduct from './Admin/Product/EditProduct.js/EditProduct';
+import Cart from './views/Cart/Cart';
 
 
 const mapState = ({ user }) => ({
@@ -61,6 +62,11 @@ function App(props) {
               <Route path="/product/:id">
                 <MainLayout>
                   <ProductDetail />
+                </MainLayout>
+              </Route>
+              <Route path="/cart">
+                <MainLayout>
+                  <Cart />
                 </MainLayout>
               </Route>
 

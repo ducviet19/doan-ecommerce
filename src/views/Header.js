@@ -46,7 +46,7 @@ function Header(props) {
 
 
             <i className="fas fa-search" />
-            <Link><i className="fas fa-shopping-cart" /> Cart {totalNumCartItems} </Link>
+            <Link to="/cart"><i className="fas fa-shopping-cart" /> Cart {totalNumCartItems} </Link>
             <Link> {user !== null ? <a>{isAdmin ? <Link to="/admin">Admin </Link> : ''} </a> : <></>}  </Link>
             
             {user ? <button className="btn btn-success" onClick={() => signOut() } >LogOut</button> : ''}
