@@ -11,6 +11,10 @@ const mapState = state => ({
 
 function EditProduct({ props }) {
 
+
+
+
+
     const dispatch = useDispatch();
     const { product } = useSelector(mapState)
     const [name, setName] = useState('');
@@ -20,6 +24,7 @@ function EditProduct({ props }) {
     const [price, setPrice] = useState('');
     const [imgDetail, SetImgDetail] = useState('');
     const [number, setNumber] = useState('');
+    const [sizes, setSize] = useState('');
 
 
 
@@ -32,7 +37,12 @@ function EditProduct({ props }) {
         setPrice(product.price);
         setThumbnail(product.thumbnail);
         setNumber(product.number);
-        SetImgDetail(product.imgDetail)
+        SetImgDetail(product.imgDetail);
+        setSize(product.sizes);
+
+
+
+
     }, [product])
 
     useEffect(() => {
@@ -55,8 +65,9 @@ function EditProduct({ props }) {
             price,
             thumbnail,
             imgDetail,
-            number
-        },id))
+            number,
+            sizes
+        }, id))
     }
     return (
 
@@ -95,6 +106,15 @@ function EditProduct({ props }) {
                     <div className="form-group">
                         <label for="price">Giá sản phẩm</label>
                         <input value={price} onChange={(e) => setPrice(e.target.value)} type="text" className="form-control" id="price" placeholder="Nhập tên sản phẩm" />
+                    </div>
+                    <div className="form-group">
+                        <label for="price">size sản phẩm</label>
+                        {/* <select value="banana">
+                            {newArr.map((option) => (
+                                <option value={option}>{option}</option>
+                            ))}
+                        </select> */}
+                       
                     </div>
                     <button classNameName="btn btn-primary" type="submit">
                         Cập nhật sản phẩm

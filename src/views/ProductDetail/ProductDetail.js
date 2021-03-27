@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
+import useScrollTop from '../../hook/useScrollTop';
+import { addToCart } from '../../redux/Cart/cart.action';
 import { fetchProductStart, setProduct } from '../../redux/Product/products.action';
 
 
@@ -11,11 +13,12 @@ const mapState = state => ({
 
 function ProductDetail({ match }) {
 
-
+    useScrollTop();
 
     const dispatch = useDispatch();
     const { product } = useSelector(mapState)
     let { id } = useParams();
+
 
     useEffect(() => {
         dispatch(fetchProductStart(id))
@@ -25,6 +28,12 @@ function ProductDetail({ match }) {
             )
         }
     }, [])
+
+    const handleAddToCart = (product) => {
+        if(!product) return;
+        dispatch(addToCart(product))
+
+    }
 
 
     console.log(id)
@@ -74,7 +83,7 @@ function ProductDetail({ match }) {
                         </div>
                     </div>
                     <div>
-                        <button className="btn btn-primary mr-3">Thêm vào giỏ hàng</button>
+                        <button className="btn btn-primary mr-3" onClick={() => {handleAddToCart(product)} }>Thêm vào giỏ hàng</button>
                         <button className="btn btn-danger">Mua Ngay</button>
                     </div>
                     <div className="desctiption mt-3 pt-3">

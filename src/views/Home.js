@@ -11,6 +11,7 @@ import {
 import Login from './Login/Login';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchProducts } from '../redux/Product/products.action';
+import ProductCart from './ProductCart';
 
 const mapState = ({ productsData }) => ({
     products: productsData.products
@@ -38,26 +39,15 @@ function Home() {
 
                         {
                             products.map((product) => {
+                               const { documentID ,  thumbnail , name , price} = product 
+
+                               const configProduct = {
+                                   ...product
+                               }
+
+                                
                                 return (
-                                    <Link to={`/product/${product.documentID}`} className="card p-0  col-lg col-12 mr-3 text-decoration-none">
-                                    <img className="img-fluid w-100 h-100" src={product.thumbnail} alt="Card image" />
-                                    <div className="card-body">
-                                        <p className="card-text text-center">{product.name}</p>
-                                        <p className="text-center"><strong>{product.price}đ</strong></p>
-                                    </div>
-                                    <div className="d-flex justify-content-center">
-                                        <button className="btn btn-primary ">Thêm vào giỏ hàng</button>
-                                    </div>
-                                    <div className="rating text-center">
-                                        <span>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        </span>
-                                    </div>
-                                </Link>
+                                   <ProductCart {...configProduct} />
                                 )
                             })
                         }                     
