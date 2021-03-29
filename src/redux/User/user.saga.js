@@ -1,5 +1,6 @@
 import { all, call, put, takeLatest } from "@redux-saga/core/effects";
 import { auth, getCurrentUser, GoogleProvider, handleUserProfile } from "../../firebase/ultils";
+import { clearCart, removeCart } from "../Cart/cart.action";
 import { signInSuccess, userError } from "./user.action";
 import { signOutUserSuccess } from "./user.action";
 
@@ -64,6 +65,9 @@ export function* signOutUser() {
     yield auth.signOut();
     yield put(
       signOutUserSuccess()
+    )
+    yield put(
+      clearCart()
     )
 
   } catch (err) {

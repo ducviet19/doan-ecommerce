@@ -10,6 +10,30 @@ export const existingCartItem = ({
     )
 }
 
+export const handleUpdateToCart = ({
+    prevCartItems,
+    nextCartItem
+}) => {
+    const quantityIncrement = 1;
+
+    const cartItemExits = existingCartItem({ prevCartItems, nextCartItem });
+
+    if (cartItemExits) {
+        return prevCartItems.map(cartItem =>
+            cartItem.documentID == nextCartItem.documentID ? { ...cartItem, quantity: cartItem.quantity - quantityIncrement } : cartItem
+        )
+    }
+
+    // return [
+    //     ...prevCartItems,
+    //     {
+    //         ...nextCartItem,
+    //         quantity: quantityIncrement
+    //     }
+    // ]
+
+}
+
 export const handleAddToCart = ({
     prevCartItems,
     nextCartItem

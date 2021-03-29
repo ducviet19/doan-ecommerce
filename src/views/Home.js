@@ -1,22 +1,20 @@
 import React, { Component, useEffect } from 'react';
-
-import data from "../data"
+import LazyLoad from 'react-lazyload';
 
 import {
     BrowserRouter as Router,
-    Switch,
-    Route,
     Link
-  } from "react-router-dom";
-import Login from './Login/Login';
+} from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchProducts } from '../redux/Product/products.action';
 import ProductCart from './ProductCart';
+import useScrollTop from '../hook/useScrollTop';
 
 const mapState = ({ productsData }) => ({
     products: productsData.products
 })
 function Home() {
+    useScrollTop();
     const dispatch = useDispatch();
     const { products } = useSelector(mapState)
 
@@ -25,12 +23,12 @@ function Home() {
             fetchProducts()
         )
     }, [])
-    
-    return (  
+
+    return (
         <>
             <main className="main">
 
-                
+
                 <div className="new-product m-5 ">
                     <div>
                         <h2 className="text-center m-5"><a href>SẢN PHẨM MỚI</a> </h2>
@@ -39,18 +37,15 @@ function Home() {
 
                         {
                             products.map((product) => {
-                               const { documentID ,  thumbnail , name , price} = product 
-
-                               const configProduct = {
-                                   ...product
-                               }
-
-                                
-                                return (
-                                   <ProductCart {...configProduct} />
+                                const { documentID, thumbnail, name, price } = product
+                                const configProduct = {
+                                    ...product
+                                }
+                                return (                                 
+                                        <ProductCart {...configProduct} />                                  
                                 )
                             })
-                        }                     
+                        }
                     </div>
                 </div>
                 <div className="best-seller m-5">
@@ -66,11 +61,11 @@ function Home() {
                             </div>
                             <div className="rating text-center">
                                 <span>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
                                 </span>
                             </div>
                         </Link>
@@ -82,11 +77,11 @@ function Home() {
                             </div>
                             <div className="rating text-center">
                                 <span>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
                                 </span>
                             </div>
                         </Link>
@@ -98,11 +93,11 @@ function Home() {
                             </div>
                             <div className="rating text-center">
                                 <span>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
                                 </span>
                             </div>
                         </Link>

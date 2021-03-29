@@ -5,10 +5,7 @@ import Header from '../Header';
 
 
 function MainLayout(props) {
-
     return (
-
-
         <div className="content">
             <Header {...props} />
             <div>

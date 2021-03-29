@@ -8,16 +8,10 @@ import Slide from '../Slide';
 
 
 function HomeLayout() {
-
     return (
-
-
         <>
-          
             <Slide />
             <Home />
-           
-           
         </>
     )
 

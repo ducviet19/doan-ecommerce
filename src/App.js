@@ -24,6 +24,8 @@ import ListProduct from './Admin/Product/Listproduct/ListProduct';
 import Main from './Admin/Main/Main';
 import EditProduct from './Admin/Product/EditProduct.js/EditProduct';
 import Cart from './views/Cart/Cart';
+import Payment from './views/Payment/Payment';
+import CheckOut from './views/CheckOut/CheckOut';
 
 
 const mapState = ({ user }) => ({
@@ -66,7 +68,12 @@ function App(props) {
               </Route>
               <Route path="/cart">
                 <MainLayout>
-                  <Cart />
+                  <CheckOut />
+                </MainLayout>
+              </Route>
+              <Route path="/payment">
+                <MainLayout>
+                  <Payment />
                 </MainLayout>
               </Route>
 
