@@ -1,20 +1,22 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
 import { firestore } from '../../firebase/ultils';
-import { selectCartItems } from '../../redux/Cart/cart.selectors';
+import { selectCartItems, selectCartTotal } from '../../redux/Cart/cart.selectors';
 import ButtonCheckOut from '../CheckOut/ButtonCheckOut';
 import Item from '../CheckOut/Item';
 
 
 const mapState = createStructuredSelector({
-    cartItems: selectCartItems
+    cartItems: selectCartItems,
+    total: selectCartTotal
 });
 
 function Cart(props) {
-    const { cartItems } = useSelector(mapState);
+    const { cartItems ,total } = useSelector(mapState);
     console.log(cartItems)
+
 
 
 
@@ -50,12 +52,21 @@ function Cart(props) {
                             <th scope="col"></th>
                         </tr>
                     </thead>
-                    <tbody>
+                    {cartItems.length > 0 ? <tbody>
                         {cartItems.map((item) => ( 
                            <Item {...item} />
                         ))}
 
-                    </tbody>
+                    </tbody> : <p>Bạn không có sản phẩm nào trong giỏ hàng</p> }
+                    
+                </table>
+
+                <table>
+                    <tr>
+                        <td>
+                            <h3>Tổng Tiền : {total} </h3>
+                        </td>
+                    </tr>
                 </table>
             </div>
             

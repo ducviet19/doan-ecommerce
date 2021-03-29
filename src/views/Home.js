@@ -3,7 +3,8 @@ import LazyLoad from 'react-lazyload';
 
 import {
     BrowserRouter as Router,
-    Link
+    Link,
+    useHistory
 } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchProducts } from '../redux/Product/products.action';
@@ -16,6 +17,7 @@ const mapState = ({ productsData }) => ({
 function Home() {
     useScrollTop();
     const dispatch = useDispatch();
+    const history = useHistory()
     const { products } = useSelector(mapState)
 
     useEffect(() => {

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
 import { addToCart, removeCart } from '../redux/Cart/cart.action';
 import { selectCartItems } from '../redux/Cart/cart.selectors';
@@ -12,6 +12,7 @@ const mapState = createStructuredSelector({
 function ProductCart(product) {
     const { cartItems } = useSelector(mapState)
     const dispatch = useDispatch()
+    const history = useHistory()
 
     const { documentID, thumbnail, name, price ,number } = product;
 
@@ -20,7 +21,9 @@ function ProductCart(product) {
 
     const handleAddToCart = (product) => {
         if (!product) return;
-        dispatch(addToCart(product))
+        dispatch(addToCart(product));
+
+        // history.push('/cart')
 
     }
     return (

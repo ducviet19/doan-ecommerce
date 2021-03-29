@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router';
+import { useHistory, useParams } from 'react-router';
 import useScrollTop from '../../hook/useScrollTop';
 import { addToCart } from '../../redux/Cart/cart.action';
 import { fetchProductStart, setProduct } from '../../redux/Product/products.action';
@@ -15,6 +15,7 @@ const mapState = state => ({
 
 function ProductDetail({ match }) {
     useScrollTop();
+    const history = useHistory()
     const dispatch = useDispatch();
     const { product } = useSelector(mapState)
     let { id } = useParams();
@@ -31,7 +32,9 @@ function ProductDetail({ match }) {
 
     const handleAddToCart = (product) => {
         if (!product) return;
-        dispatch(addToCart(product))
+        dispatch(addToCart(product));
+
+        // history.push('/cart')
 
     }
     return (
