@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { emailSignInStart , signInSuccess, signInWithGoogle ,googleSignInStart } from '../../redux/User/user.action';
+import useScrollTop from '../../hook/useScrollTop';
 
 
 const mapState = ({ user }) => ({
@@ -12,6 +13,7 @@ const mapState = ({ user }) => ({
   });
 
 function Login(props) {
+    useScrollTop();
     
     const { currentUser } = useSelector(mapState);
     const dispatch = useDispatch();

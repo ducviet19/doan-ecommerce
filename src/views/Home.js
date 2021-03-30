@@ -1,23 +1,32 @@
-import React, { Component } from 'react';
-
-import data from "../data"
+import React, { Component, useEffect } from 'react';
+import LazyLoad from 'react-lazyload';
 
 import {
     BrowserRouter as Router,
-    Switch,
-    Route,
-    Link
+    Link,
+    useHistory
 } from "react-router-dom";
-import Login from './Login/Login';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchProducts } from '../redux/Product/products.action';
+import ProductCart from './ProductCart';
+import useScrollTop from '../hook/useScrollTop';
+
+const mapState = ({ productsData }) => ({
+    products: productsData.products
+})
 function Home() {
+    useScrollTop();
+    const dispatch = useDispatch();
+    const history = useHistory()
+    const { products } = useSelector(mapState)
 
-
-
-
+    useEffect(() => {
+        dispatch(
+            fetchProducts()
+        )
+    }, [])
 
     return (
-
-
         <>
             <main className="main">
 
@@ -29,30 +38,16 @@ function Home() {
                     <div className="row">
 
                         {
-                            data.products.map((product) => {
+                            products.map((product) => {
+                                const { documentID, thumbnail, name, price } = product
+                                const configProduct = {
+                                    ...product
+                                }
                                 return (
-                                    <Link to={`/product/${product.id}`} className="card p-0  col-lg col-12 mr-3 text-decoration-none">
-                                        <img src={product.image} alt="Card image" />
-                                        <div className="card-body">
-                                            <p className="card-text text-center">{product.name}</p>
-                                            <p className="text-center"><strong>{product.price}</strong></p>
-                                        </div>
-                                        <div className="rating text-center">
-                                            <span>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                            </span>
-                                        </div>
-                                    </Link>
+                                    <ProductCart {...configProduct} />
                                 )
                             })
                         }
-
-
-
                     </div>
                 </div>
                 <div className="best-seller m-5">

@@ -26,6 +26,10 @@ import EditProduct from './Admin/Product/EditProduct.js/EditProduct';
 import Shop from './views/Shop/Shop'
 import Contact from './views/Contact/contact';
 import ListUser from './Admin/Users/ListUser';
+import Cart from './views/Cart/Cart';
+import Payment from './views/Payment/Payment';
+import CheckOut from './views/CheckOut/CheckOut';
+
 
 const mapState = ({ user }) => ({
   user: user.currentUser
@@ -79,8 +83,18 @@ function App(props) {
                   <ProductDetail />
                 </MainLayout>
               </Route>
+              <Route path="/cart">
+                <MainLayout>
+                  <CheckOut />
+                </MainLayout>
+              </Route>
+              <Route path="/payment">
+                <MainLayout>
+                  <Payment />
+                </MainLayout>
+              </Route>
 
-              <Route path="/admin" >
+              <Route exact path="/admin/" >
                 <WithAdminAuth>
                   <Dashboard>
                     <Main />
@@ -88,7 +102,7 @@ function App(props) {
                 </WithAdminAuth>
 
               </Route>
-              <Route path="/newproduct" >
+              <Route exact path="/admin/newproduct" >
                 <Dashboard>
                   <FormProduct />
                 </Dashboard>

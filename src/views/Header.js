@@ -10,16 +10,18 @@ import {
 import { connect, useDispatch, useSelector } from 'react-redux';
 import { signOutUserStart, signOutUserSuccess } from '../redux/User/user.action';
 import { checkUserIsAdmin } from '../Utils';
+import { selectCartItemsCount } from '../redux/Cart/cart.selectors';
 
-const mapState = ({ user }) => ({
-  user: user.currentUser
+const mapState = (state) => ({
+  user: state.user.currentUser,
+  totalNumCartItems: selectCartItemsCount(state)
 })
 
 function Header(props) {
 
   const dispatch = useDispatch();
 
-  const { user } = useSelector(mapState);
+  const { user, totalNumCartItems } = useSelector(mapState);
 
   const isAdmin = checkUserIsAdmin(user);
 
@@ -44,8 +46,8 @@ function Header(props) {
 
 
             <i className="fas fa-search" />
-            <i className="fas fa-shopping-cart" />
-            <i> {user !== null ? <a>{isAdmin ? <Link to="/admin">Admin </Link> : ''} </a> : <></>}  </i>
+            <Link to="/cart"><i className="fas fa-shopping-cart" /> Cart {totalNumCartItems} </Link>
+            <Link> {user !== null ? <a>{isAdmin ? <Link to="/admin">Admin </Link> : ''} </a> : <></>}  </Link>
 
             {user ? <button className="btn btn-success" onClick={() => signOut()} >LogOut</button> : ''}
           </div>
