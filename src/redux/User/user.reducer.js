@@ -2,7 +2,8 @@ import userTypes from "./user.type";
 
 const INITIAL_STATE = {
     currentUser: null,
-    userErr : []
+    userErr: [],
+    users: []
     // signInSuccess: false,
     // signUpError: [],
     // signUpSuccess: []
@@ -12,7 +13,7 @@ const userReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
 
         case userTypes.SIGN_IN_SUCCESS:
-            return{
+            return {
                 ...state,
                 currentUser: action.payload,
                 userErr: []
@@ -28,6 +29,11 @@ const userReducer = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 userErr: action.payload
+            }
+        case userTypes.SET_USERS:
+            return {
+                ...state,
+                users: action.payload
             }
         // case userTypes.EMAIL_SIGN_IN_START:
         //         return{
@@ -63,7 +69,7 @@ const userReducer = (state = INITIAL_STATE, action) => {
         //         signUpSuccess: false
         //     }
 
-       
+
 
         default:
             return state;

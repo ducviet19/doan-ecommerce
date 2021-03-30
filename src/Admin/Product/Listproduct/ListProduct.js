@@ -17,9 +17,6 @@ function ListProduct(props) {
             fetchProducts()
         )
     }, [])
-
-    console.log(products)
-
     return (
         <div>
             <Link to="/newproduct"><button className="btn btn-succes">Thêm mới sản phẩm</button> </Link>
@@ -37,21 +34,21 @@ function ListProduct(props) {
                 </thead>
                 <tbody>
                     {
-                        products.map((product,index) => {
-                            const { name, description , category , thumbnail , price , documentID} = product
+                        products.map((product, index) => {
+                            const { name, description, category, thumbnail, price, documentID } = product
                             return (
                                 <tr key={index}>
-                                <th scope="row">{documentID}</th>
-                                <td><Link to={`/editproduct/${documentID}`} >{name}</Link> </td>
-                                <td>{thumbnail}</td>
-                                <td>{category}</td>
-                                <td>{price}</td>
-                                <td ><button onClick={() => dispatch(deleteProduct(documentID)) }>X</button></td>
-                            </tr>
+                                    <th scope="row">{documentID}</th>
+                                    <td><Link to={`/editproduct/${documentID}`} >{name}</Link> </td>
+                                    <td>{thumbnail}</td>
+                                    <td>{category}</td>
+                                    <td>{price}</td>
+                                    <td ><button onClick={() => dispatch(deleteProduct(documentID))}>X</button></td>
+                                </tr>
                             )
                         })
                     }
-                    
+
 
                 </tbody>
             </table>

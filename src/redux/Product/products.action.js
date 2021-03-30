@@ -5,14 +5,15 @@ export const addProduct = productData => ({
     type: productsTypes.ADD_NEW_PRODUCT,
     payload: productData
 });
-export const fetchProducts = () => ({
-    type: productsTypes.FETCH_PRODUCTS
+export const fetchProducts = (filters) => ({
+    type: productsTypes.FETCH_PRODUCTS,
+    payload: filters
 });
 
 export const fetchProductStart = productID => ({
     type: productsTypes.FETCH_PRODUCT_ID,
     payload: productID
-  });
+});
 export const setProducts = products => ({
     type: productsTypes.SET_PRODUCTS,
     payload: products
@@ -22,7 +23,7 @@ export const setProducts = products => ({
 export const setProduct = product => ({
     type: productsTypes.SET_PRODUCT,
     payload: product
-  });
+});
 
 
 export const deleteProduct = productId => ({
@@ -31,9 +32,9 @@ export const deleteProduct = productId => ({
 })
 
 
-export const editProduct = (productData ,id ) => ({
+export const editProduct = (productData, id) => ({
     type: productsTypes.EDIT_PRODUCT,
-    payload:productData,
+    payload: productData,
     id: id
 
 })

@@ -46,8 +46,8 @@ function Header(props) {
             <i className="fas fa-search" />
             <i className="fas fa-shopping-cart" />
             <i> {user !== null ? <a>{isAdmin ? <Link to="/admin">Admin </Link> : ''} </a> : <></>}  </i>
-            
-            {user ? <button className="btn btn-success" onClick={() => signOut() } >LogOut</button> : ''}
+
+            {user ? <button className="btn btn-success" onClick={() => signOut()} >LogOut</button> : ''}
           </div>
         </div>
         <nav className="navbar  navbar-expand-lg navbar-light bg-light ">
@@ -71,10 +71,10 @@ function Header(props) {
                 </div>
               </li>
               <li className="nav-item col-lg col-12 ">
-                <a className="nav-link " href="#!">Hệ thống cửa hàng</a>
+                <Link className="nav-link " to="/shop">Sản Phẩm</Link>
               </li>
               <li className="nav-item col-lg col-12">
-                <a className="nav-link " href="#!">Chính sách khách hàng</a>
+                <Link className="nav-link " to="/contact">Liên Hệ</Link>
               </li>
               <li className="nav-item col-lg col-12">
                 <a className="nav-link " href="#!">Hướng Dẫn Chọn Size</a>

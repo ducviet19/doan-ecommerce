@@ -2,14 +2,14 @@ import { takeLatest, put, all, call } from 'redux-saga/effects';
 import { handleAddProduct, handleDeleteProduct, handleEditProduct, handleFetchDetailProduct, handleFetchProducts } from './products.helpers'
 import productsTypes from './products.types';
 import { auth } from './../../firebase/ultils'
-import { setProducts, fetchProducts, setProduct ,fetchProductStart } from './products.action'
+import { setProducts, fetchProducts, setProduct, fetchProductStart } from './products.action'
 
 // add product
 
 export function* addProduct({ payload }) {
 
     try {
-        console.log('payload add product' , payload)
+        console.log('payload add product', payload)
         const timestamp = new Date();
         yield handleAddProduct({
             ...payload,
@@ -52,61 +52,61 @@ export function* onFetchProduct() {
 }
 
 
-// fetch product
-export function* fetchProductId({payload}) {
+// fetch product id
+export function* fetchProductId({ payload }) {
     try {
         const productEdit = yield handleFetchDetailProduct(payload);
         yield put(
             setProduct(productEdit)
         );
     } catch (error) {
-        
+
     }
 }
 export function* onFetchProductId() {
-    yield takeLatest(productsTypes.FETCH_PRODUCT_ID,fetchProductId)
+    yield takeLatest(productsTypes.FETCH_PRODUCT_ID, fetchProductId)
 }
 
 
 // delete product
-export function* deleteProduct({payload}) {
+export function* deleteProduct({ payload }) {
     try {
         yield handleDeleteProduct(payload);
         yield put(
             fetchProducts()
         )
-        
+
     } catch (error) {
-        
+
     }
 }
 
-export function* onDeleteProductct() {
+export function* onDeleteProduct() {
     yield takeLatest(productsTypes.DELETE_PRODUCT, deleteProduct)
 }
 
 
-export function* editProduct({payload ,id}) {
+export function* editProduct({ payload, id }) {
     try {
 
         console.log('payload edit product', payload)
         console.log('id edit product', id)
-        const product = yield handleEditProduct(payload,id);
+        const product = yield handleEditProduct(payload, id);
 
         yield put(
             fetchProductStart(product)
         )
     }
-    catch(err) {
+    catch (err) {
 
     }
-    
+
 }
 
 
 export function* onEditProduct() {
-    yield takeLatest(productsTypes.EDIT_PRODUCT , editProduct)
-    
+    yield takeLatest(productsTypes.EDIT_PRODUCT, editProduct)
+
 }
 
 
@@ -117,7 +117,7 @@ export default function* productsSagas() {
     yield all([
         call(onAddProduct),
         call(onFetchProduct),
-        call(onDeleteProductct),
+        call(onDeleteProduct),
         call(onFetchProductId),
         call(onEditProduct)
     ])

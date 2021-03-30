@@ -20,7 +20,7 @@ export const signOutUserSuccess = () => ({
 
 export const signUpUserStart = userCredentials => ({
     type: userTypes.SIGN_UP_USER_START,
-    payload : userCredentials
+    payload: userCredentials
 })
 export const userError = err => ({
     type: userTypes.USER_ERROR,
@@ -42,6 +42,14 @@ export const signInSuccess = user => ({
 
 export const checkUserSession = () => ({
     type: userTypes.CHECK_USER_SESSION
+})
+export const fetchUser = () => ({
+    type: userTypes.FETCH_USER,
+
+});
+export const setUsers = users => ({
+    type: userTypes.SET_USERS,
+    payload: users
 })
 
 

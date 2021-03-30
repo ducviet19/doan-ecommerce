@@ -23,7 +23,9 @@ import FormProduct from './Admin/FormProduct/FormProduct';
 import ListProduct from './Admin/Product/Listproduct/ListProduct';
 import Main from './Admin/Main/Main';
 import EditProduct from './Admin/Product/EditProduct.js/EditProduct';
-
+import Shop from './views/Shop/Shop'
+import Contact from './views/Contact/contact';
+import ListUser from './Admin/Users/ListUser';
 
 const mapState = ({ user }) => ({
   user: user.currentUser
@@ -52,7 +54,21 @@ function App(props) {
                 <MainLayout>
                   <HomeLayout />
                 </MainLayout>
-
+              </Route>
+              <Route exact path='/shop' >
+                <MainLayout>
+                  <Shop />
+                </MainLayout>
+              </Route>
+              <Route path='/shop/:filterType' >
+                <MainLayout>
+                  <Shop />
+                </MainLayout>
+              </Route>
+              <Route path='/contact' >
+                <MainLayout>
+                  <Contact />
+                </MainLayout>
               </Route>
               <Route path="/login" render={() => user ? <Redirect to="/" /> : (<MainLayout><Login></Login> </MainLayout>)}>
               </Route>
@@ -86,6 +102,11 @@ function App(props) {
               <Route path="/editproduct/:id" >
                 <Dashboard>
                   <EditProduct />
+                </Dashboard>
+              </Route>
+              <Route exact path="/listuser" >
+                <Dashboard>
+                  <ListUser />
                 </Dashboard>
               </Route>
             </div>

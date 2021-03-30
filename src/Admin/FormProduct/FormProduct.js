@@ -73,7 +73,7 @@ function FormProduct(props) {
                 </div>
                 <div className="form-group">
                     <label for="image">Hình ảnh sản phẩm</label>
-                    <input value={thumbnail} onChange={e => setThumbnail(e.target.value)} type="file" className="form-control" id="image" placeholder="Nhập tên sản phẩm" />
+                    <input value={thumbnail} onChange={e => setThumbnail(e.target.value)} type="url" className="form-control" id="image" placeholder="Link ảnh" />
                 </div>
 
                 <button classNameName="btn btn-primary" type="submit">
@@ -84,7 +84,7 @@ function FormProduct(props) {
         </div>
 
 
-     
+
     );
 }
 

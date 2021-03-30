@@ -7,7 +7,7 @@ import {
     Switch,
     Route,
     Link
-  } from "react-router-dom";
+} from "react-router-dom";
 import Login from './Login/Login';
 function Home() {
 
@@ -15,14 +15,13 @@ function Home() {
 
 
 
-
     return (
 
-            
+
         <>
             <main className="main">
 
-                
+
                 <div className="new-product m-5 ">
                     <div>
                         <h2 className="text-center m-5"><a href>SẢN PHẨM MỚI</a> </h2>
@@ -33,27 +32,27 @@ function Home() {
                             data.products.map((product) => {
                                 return (
                                     <Link to={`/product/${product.id}`} className="card p-0  col-lg col-12 mr-3 text-decoration-none">
-                                    <img src={product.image} alt="Card image" />
-                                    <div className="card-body">
-                                        <p className="card-text text-center">{product.name}</p>
-                                        <p className="text-center"><strong>{product.price}</strong></p>
-                                    </div>
-                                    <div className="rating text-center">
-                                        <span>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        </span>
-                                    </div>
-                                </Link>
+                                        <img src={product.image} alt="Card image" />
+                                        <div className="card-body">
+                                            <p className="card-text text-center">{product.name}</p>
+                                            <p className="text-center"><strong>{product.price}</strong></p>
+                                        </div>
+                                        <div className="rating text-center">
+                                            <span>
+                                                <i class="fa fa-star" aria-hidden="true"></i>
+                                                <i class="fa fa-star" aria-hidden="true"></i>
+                                                <i class="fa fa-star" aria-hidden="true"></i>
+                                                <i class="fa fa-star" aria-hidden="true"></i>
+                                                <i class="fa fa-star" aria-hidden="true"></i>
+                                            </span>
+                                        </div>
+                                    </Link>
                                 )
                             })
                         }
 
-                      
-                      
+
+
                     </div>
                 </div>
                 <div className="best-seller m-5">
@@ -69,11 +68,11 @@ function Home() {
                             </div>
                             <div className="rating text-center">
                                 <span>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
                                 </span>
                             </div>
                         </Link>
@@ -85,11 +84,11 @@ function Home() {
                             </div>
                             <div className="rating text-center">
                                 <span>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
                                 </span>
                             </div>
                         </Link>
@@ -101,11 +100,11 @@ function Home() {
                             </div>
                             <div className="rating text-center">
                                 <span>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
                                 </span>
                             </div>
                         </Link>

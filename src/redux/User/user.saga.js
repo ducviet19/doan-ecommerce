@@ -2,7 +2,8 @@ import { all, call, put, takeLatest } from "@redux-saga/core/effects";
 import { auth, getCurrentUser, GoogleProvider, handleUserProfile } from "../../firebase/ultils";
 import { signInSuccess, userError } from "./user.action";
 import { signOutUserSuccess } from "./user.action";
-
+import { fetchUser, setUsers } from './user.action'
+import { handleFetchUser } from "./user.helpers";
 import userTypes from "./user.type";
 
 
@@ -88,7 +89,7 @@ export function* signUpUser({ payload: {
     yield put(
       userError(err)
     )
-    return ;
+    return;
   }
   try {
     const { user } = yield auth.createUserWithEmailAndPassword(email, password);
@@ -108,18 +109,34 @@ export function* onSignUpUserStart() {
 export function* googleSignIn() {
 
   try {
-     const {user} = yield auth.signInWithPopup(GoogleProvider);
-     yield getSnapshotFromUserAuth(user);
-       
-} catch (error) { 
+    const { user } = yield auth.signInWithPopup(GoogleProvider);
+    yield getSnapshotFromUserAuth(user);
 
-}
+  } catch (error) {
+
+  }
 
 }
 
 
 export function* googleSignStart() {
-  yield takeLatest(userTypes.GOOGLE_SIGN_IN_START , googleSignIn)
+  yield takeLatest(userTypes.GOOGLE_SIGN_IN_START, googleSignIn)
+}
+
+export function* fetchUserSaga() {
+  try {
+    const user = yield handleFetchUser();
+    yield put(
+      setUsers(user)
+    );
+
+  } catch (err) {
+    // console.log(err);
+  }
+}
+
+export function* onFetchUser() {
+  yield takeLatest(userTypes.FETCH_USER, fetchUserSaga);
 }
 
 export default function* userSagas() {
@@ -128,7 +145,8 @@ export default function* userSagas() {
     call(onCheckUserSession),
     call(onSignOutUserStart),
     call(onSignUpUserStart),
-    call(googleSignStart)
+    call(googleSignStart),
+    call(onFetchUser)
 
   ])
 }
