@@ -17,13 +17,16 @@ import { useDispatch, useSelector } from 'react-redux';
 import Dashboard from './Admin/Dashboard/Dashboard';
 import MainLayout from './views/MainLayout/MainLayout';
 import AdminLayout from './Admin/AdminLayout/AdminLayout';
-import withAuth from './hoc/withAuth';
+import WithAuth from './hoc/withAuth';
 import WithAdminAuth from './hoc/withAdminAuth';
 import FormProduct from './Admin/FormProduct/FormProduct';
 import ListProduct from './Admin/Product/Listproduct/ListProduct';
 import Main from './Admin/Main/Main';
 import EditProduct from './Admin/Product/EditProduct.js/EditProduct';
 import Cart from './views/Cart/Cart';
+import Payment from './views/Payment/Payment';
+import CheckOut from './views/CheckOut/CheckOut';
+import ListUser from './Admin/User/ListUser.js/ListUser';
 
 
 const mapState = ({ user }) => ({
@@ -66,34 +69,60 @@ function App(props) {
               </Route>
               <Route path="/cart">
                 <MainLayout>
-                  <Cart />
+                  <CheckOut />
                 </MainLayout>
               </Route>
+              <Route path="/payment" render={() => (
+                <WithAuth>
+                  <MainLayout>
+                    <Payment />
+                  </MainLayout>
+                </WithAuth>
+              )} />
 
-              <Route exact path="/admin/" >
+
+
+
+              <Route exact path="/admin/" render={() => (
                 <WithAdminAuth>
                   <Dashboard>
                     <Main />
                   </Dashboard>
                 </WithAdminAuth>
-
-              </Route>
-              <Route exact path="/admin/newproduct" >
-                <Dashboard>
+              )} />
+              <Route exact path="/admin/newproduct" render={() => (
+                <WithAdminAuth><Dashboard>
                   <FormProduct />
-                </Dashboard>
+                </Dashboard></WithAdminAuth>
 
-              </Route>
-              <Route path="/listproduct" >
-                <Dashboard>
-                  <ListProduct />
-                </Dashboard>
-              </Route>
-              <Route path="/editproduct/:id" >
-                <Dashboard>
-                  <EditProduct />
-                </Dashboard>
-              </Route>
+              )} />
+
+
+              <Route exact path="/admin/listproduct" render={() => (
+                <WithAdminAuth>
+                  <Dashboard>
+                    <ListProduct />
+                  </Dashboard>
+                </WithAdminAuth>
+              )} />
+
+              <Route exact path="/admin/editproduct/:id" render={() => (
+                <WithAdminAuth>
+                  <Dashboard>
+                    <EditProduct />
+                  </Dashboard>
+                </WithAdminAuth>
+              )} />
+
+
+
+              <Route exact path="/admin/listuser" render={() => (
+                <WithAdminAuth>
+                  <Dashboard>
+                    <ListUser />
+                  </Dashboard>
+                </WithAdminAuth>
+              )} />
             </div>
 
           </Switch>

@@ -1,7 +1,9 @@
 import { all, call, put, takeLatest } from "@redux-saga/core/effects";
 import { auth, getCurrentUser, GoogleProvider, handleUserProfile } from "../../firebase/ultils";
-import { signInSuccess, userError } from "./user.action";
+import { clearCart, removeCart } from "../Cart/cart.action";
+import { setUsers, signInSuccess, userError } from "./user.action";
 import { signOutUserSuccess } from "./user.action";
+import { handleFetchUsers } from "./user.helper";
 
 import userTypes from "./user.type";
 
@@ -65,6 +67,9 @@ export function* signOutUser() {
     yield put(
       signOutUserSuccess()
     )
+    yield put(
+      clearCart()
+    )
 
   } catch (err) {
     // console.log(err);
@@ -122,13 +127,33 @@ export function* googleSignStart() {
   yield takeLatest(userTypes.GOOGLE_SIGN_IN_START , googleSignIn)
 }
 
+
+
+
+export function* fetchUsers({payload}) {
+  try {
+    const users = yield handleFetchUsers(payload)
+    console.log('users',users)
+    yield put(
+      setUsers(users)
+    )
+  } catch (error) {
+    
+  }
+}
+
+export function* onFetchUsers() {
+  yield takeLatest(userTypes.FETCH_USERS , fetchUsers)
+}
+ 
 export default function* userSagas() {
   yield all([
     call(onEmailSignInStart),
     call(onCheckUserSession),
     call(onSignOutUserStart),
     call(onSignUpUserStart),
-    call(googleSignStart)
+    call(googleSignStart),
+    call(onFetchUsers)
 
   ])
 }

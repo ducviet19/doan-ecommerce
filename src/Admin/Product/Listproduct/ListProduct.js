@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import useScrollTop from '../../../hook/useScrollTop';
 import { deleteProduct, fetchProducts } from '../../../redux/Product/products.action';
 
 
@@ -8,6 +9,7 @@ const mapState = ({ productsData }) => ({
     products: productsData.products
 })
 function ListProduct(props) {
+    useScrollTop();
     const { products } = useSelector(mapState)
     const dispatch = useDispatch()
 
@@ -42,7 +44,7 @@ function ListProduct(props) {
                             return (
                                 <tr key={index}>
                                 <th scope="row">{documentID}</th>
-                                <td><Link to={`/editproduct/${documentID}`} >{name}</Link> </td>
+                                <td><Link to={`/admin/editproduct/${documentID}`} >{name}</Link> </td>
                                 <td> <img className="img-thumbnail w-25" src={thumbnail}  /> </td>
                                 <td>{category}</td>
                                 <td>{price}</td>

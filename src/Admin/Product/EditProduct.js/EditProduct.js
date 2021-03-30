@@ -45,6 +45,8 @@ function EditProduct({ props }) {
 
     }, [product])
 
+    console.log(name)
+
     useEffect(() => {
         dispatch(fetchProductStart(id))
         return () => {
@@ -65,8 +67,7 @@ function EditProduct({ props }) {
             price,
             thumbnail,
             imgDetail,
-            number,
-            sizes
+            number
         }, id))
     }
     return (

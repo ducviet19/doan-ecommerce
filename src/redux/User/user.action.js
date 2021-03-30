@@ -47,6 +47,18 @@ export const checkUserSession = () => ({
 
 
 
+export const fetchUsers = () => ({
+    type: userTypes.FETCH_USERS
+}
+)
+export const setUsers = users => ({
+    type: userTypes.SET_USER,
+    payload: users
+})
+
+
+
+
 
 
 

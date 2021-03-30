@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import useScrollTop from '../../hook/useScrollTop';
 import { registerUser, resetAllAuthForm, signUpUserStart } from '../../redux/User/user.action';
 import './style.css';
 
@@ -13,6 +14,7 @@ const mapState = ({user}) => ({
 
 function Register() {
 
+    useScrollTop();
     const { currentUser, useErr } = useSelector(mapState);
     const dispatch = useDispatch();
 

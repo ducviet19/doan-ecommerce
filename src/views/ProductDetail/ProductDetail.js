@@ -1,20 +1,21 @@
 import React, { Component } from 'react';
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router';
+import { useHistory, useParams } from 'react-router';
 import useScrollTop from '../../hook/useScrollTop';
 import { addToCart } from '../../redux/Cart/cart.action';
 import { fetchProductStart, setProduct } from '../../redux/Product/products.action';
-
+import LazyLoad from 'react-lazyload';
 
 const mapState = state => ({
     product: state.productsData.product
 });
 
+
+
 function ProductDetail({ match }) {
-
     useScrollTop();
-
+    const history = useHistory()
     const dispatch = useDispatch();
     const { product } = useSelector(mapState)
     let { id } = useParams();
@@ -30,23 +31,18 @@ function ProductDetail({ match }) {
     }, [])
 
     const handleAddToCart = (product) => {
-        if(!product) return;
-        dispatch(addToCart(product))
+        if (!product) return;
+        dispatch(addToCart(product));
+
+        // history.push('/cart')
 
     }
-
-
-    console.log(id)
-    console.log(product)
-
-   
-
     return (
 
         <>
             <div className="row">
                 <div className="col-7 d-flex justify-content-center">
-                    <img className="w-75 h-75" src={product.thumbnail} alt="Card image" />
+                    <img className="w-75 h-75" src={product.thumbnail}  />
                 </div>
                 <div className="col-5">
                     <div className="title ">
@@ -83,7 +79,7 @@ function ProductDetail({ match }) {
                         </div>
                     </div>
                     <div>
-                        <button className="btn btn-primary mr-3" onClick={() => {handleAddToCart(product)} }>Thêm vào giỏ hàng</button>
+                        <button className="btn btn-primary mr-3" onClick={() => { handleAddToCart(product) }}>Thêm vào giỏ hàng</button>
                         <button className="btn btn-danger">Mua Ngay</button>
                     </div>
                     <div className="desctiption mt-3 pt-3">
@@ -100,12 +96,9 @@ function ProductDetail({ match }) {
             </div>
 
             <div className="row">
-
                 <h2>
                     Hình ảnh chi tiết
                 </h2>
-
-
                 <div>
                     <div>
                         <img className="w-100  h-100" src={product.imgDetail} alt="Card image" />
@@ -120,6 +113,9 @@ function ProductDetail({ match }) {
 
 
             </div>
+
+
+
         </>
 
     )

@@ -11,6 +11,13 @@ const userTypes = {
     USER_ERROR: 'USER_ERROR',
 
 
+    FETCH_USERS: 'FETCH_USERS',
+    SET_USER: 'SET_USER',
+    DELETE_USER: 'DELETE_USER',
+    EDIT_USER: 'EDIT_USER'
+    
+
+
 
 };
 

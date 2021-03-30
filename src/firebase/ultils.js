@@ -47,6 +47,37 @@ export const handleUserProfile = async ({userAuth, additionalData}) => {
     return useRef;
 }
 
+
+export const handleCart = async ({userAuth, additionalData}) => {
+    if(!userAuth) return;
+    const { uid } = userAuth;
+    console.log(userAuth);
+    const useRef = firestore.doc(`users/${uid}`);
+   
+    const snapshot = await useRef.get();
+
+    if(!snapshot.exists) {
+        const { displayName , email} = userAuth;
+        const timestamp = new Date();
+        const userRoles = ['user']
+
+        try {
+            await useRef.set({
+                displayName,
+                email,
+                createDate: timestamp,
+                userRoles,
+                ...additionalData
+            })
+            
+        } catch (error) {
+            
+        }
+    }
+
+    return useRef;
+}
+
 export const getCurrentUser = () => {
     return new Promise((resolve, reject) => {
         const unsubscribe = auth.onAuthStateChanged(userAuth => {
