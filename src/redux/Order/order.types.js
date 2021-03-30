@@ -1,5 +1,5 @@
-const cartTypes = {
-    ADD_TO_CART : 'ADD_TO_CART'
+const orderTypes = {
+    ADD_TO_ORDER: 'ADD_TO_ORDER'
 }
 
-export default cartTypes;
+export default orderTypes;

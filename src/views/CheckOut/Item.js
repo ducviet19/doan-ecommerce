@@ -32,9 +32,9 @@ function Item(props) {
                 <th scope="row"><img className="img-thumbnail w-25" src={thumbnail} /></th>
                 <td>{name}</td>
                 <td>Size</td>
-                <td> <div className="d-flex "> <button onClick={ () => addProduct(props) }>+</button> <p className="m-2">{quantity}</p> <button onClick={ () => reduceCart(props) } >-</button> </div> </td>
+                <td> <div className="d-flex "> <button className="btn btn-primary" onClick={ () => reduceCart(props) } >-</button>  <p className="m-2">{quantity}</p>  <button className="btn btn-primary" onClick={ () => addProduct(props) }>+</button> </div> </td>
                 <td>{price}</td>
-                <td > <button onClick={ () => removeCart(props.documentID)  }>X</button> </td>
+                <td > <button className="btn btn-danger" onClick={ () => removeCart(props.documentID)  }>X</button> </td>
             </tr> 
 
             

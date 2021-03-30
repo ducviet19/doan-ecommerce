@@ -25,13 +25,13 @@ export const handleUpdateToCart = ({
         )
     }
 
-    // return [
-    //     ...prevCartItems,
-    //     {
-    //         ...nextCartItem,
-    //         quantity: quantityIncrement
-    //     }
-    // ]
+    return [
+        ...prevCartItems,
+        {
+            ...nextCartItem,
+            quantity: quantityIncrement
+        }
+    ]
 
 }
 
@@ -58,16 +58,6 @@ export const handleAddToCart = ({
     ]
 
 }
-
-
-export const handleRemoveCartItem = ({
-    prevCartItems,
-    CartItemToRemove
-}) => {
-    return prevCartItems.filter(item => item.documentID !== CartItemToRemove.documentID);
-}
-
-
 export const handleReduceCartItem = ({
     prevCartItems,
     cartItemToReduce
@@ -83,4 +73,12 @@ export const handleReduceCartItem = ({
     return prevCartItems.map(cartItem =>
         cartItem.documentID === existingCartItem.documentID ? { ...cartItem, quantity: cartItem.quantity - 1 }
             : cartItem)
+}
+
+
+export const handleRemoveCartItem = ({
+    prevCartItems,
+    CartItemToRemove
+}) => {
+    return prevCartItems.filter(item => item.documentID !== CartItemToRemove.documentID);
 }

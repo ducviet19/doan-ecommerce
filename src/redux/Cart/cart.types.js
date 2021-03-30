@@ -3,6 +3,7 @@ const cartTypes = {
     REDUCE_CART_ITEM: 'REDUCE_CART_ITEM',
     REMOVE_CART_ITEM: 'REMOVE_CART_ITEM',
     REMOVE_CART: 'REMOVE_CART',
+    CLEAR_CART: 'CLEAR_CART'
 }
 
 export default cartTypes;

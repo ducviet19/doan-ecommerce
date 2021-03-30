@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import useScrollTop from '../../../hook/useScrollTop';
 import { deleteProduct, fetchProducts } from '../../../redux/Product/products.action';
 
 
@@ -8,6 +9,7 @@ const mapState = ({ productsData }) => ({
     products: productsData.products
 })
 function ListProduct(props) {
+    useScrollTop();
     const { products } = useSelector(mapState)
     const dispatch = useDispatch()
 

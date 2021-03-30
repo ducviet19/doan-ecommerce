@@ -20,20 +20,20 @@ function Cart(props) {
 
 
 
-    useEffect( () => {
-        return new Promise((resolve, reject) => {
-            firestore
-                .collection('cart')
-                .doc()
-                .set({cartItems})
-                .then(() => {
-                    resolve()
-                })
-                .catch(err => {
-                    reject(err);
-                })
-        });
-    },[cartItems] )
+    // useEffect( () => {
+    //     return new Promise((resolve, reject) => {
+    //         firestore
+    //             .collection('cart')
+    //             .doc()
+    //             .set({cartItems})
+    //             .then(() => {
+    //                 resolve()
+    //             })
+    //             .catch(err => {
+    //                 reject(err);
+    //             })
+    //     });
+    // },[cartItems] )
 
 
    
