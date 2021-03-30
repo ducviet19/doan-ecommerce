@@ -8,9 +8,8 @@ const mapState = ({ productsData }) => ({
     products: productsData.products
 })
 function ListProduct(props) {
-    const { products } = useSelector(mapState)
     const dispatch = useDispatch()
-
+    const { products } = useSelector(mapState)
 
     useEffect(() => {
         dispatch(
@@ -43,7 +42,7 @@ function ListProduct(props) {
                                     <td>{thumbnail}</td>
                                     <td>{category}</td>
                                     <td>{price}</td>
-                                    <td ><button onClick={() => dispatch(deleteProduct(documentID))}>X</button></td>
+                                    <td ><button className='btn btn-danger' onClick={() => dispatch(deleteProduct(documentID))}>X</button></td>
                                 </tr>
                             )
                         })

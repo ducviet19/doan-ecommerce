@@ -51,6 +51,10 @@ export const setUsers = users => ({
     type: userTypes.SET_USERS,
     payload: users
 })
+export const deleteUser = userId => ({
+    type: userTypes.DELETE_USER,
+    payload: userId
+})
 
 
 

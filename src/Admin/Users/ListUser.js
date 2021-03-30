@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { fetchUser } from '../../redux/User/user.action'
+import { deleteUser, fetchUser } from '../../redux/User/user.action'
 
 
 const mapState = ({ user }) => ({
@@ -40,7 +40,7 @@ function ListUser(props) {
                                     <td><Link to={`/editproduct/${documentID}`} >{displayName}</Link> </td>
                                     <td>{email}</td>
                                     <td>{userRoles}</td>
-                                    {/* <td ><button onClick={() => dispatch(deleteProduct(documentID))}>X</button></td> */}
+                                    <td ><button className='btn btn-danger' onClick={() => dispatch(deleteUser(documentID))}>X</button></td>
                                 </tr>
                             )
                         })

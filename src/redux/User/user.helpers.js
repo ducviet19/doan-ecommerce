@@ -19,3 +19,15 @@ export const handleFetchUser = () => {
             })
     })
 }
+
+export const handleDeleteUser = documentID => {
+    return new Promise((resolve, reject) => {
+        firestore.collection('users').doc(documentID).delete()
+            .then(() => {
+                resolve();
+            })
+            .catch(err => {
+                reject(err);
+            })
+    })
+}

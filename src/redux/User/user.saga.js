@@ -3,7 +3,7 @@ import { auth, getCurrentUser, GoogleProvider, handleUserProfile } from "../../f
 import { signInSuccess, userError } from "./user.action";
 import { signOutUserSuccess } from "./user.action";
 import { fetchUser, setUsers } from './user.action'
-import { handleFetchUser } from "./user.helpers";
+import { handleDeleteUser, handleFetchUser } from "./user.helpers";
 import userTypes from "./user.type";
 
 
@@ -139,6 +139,22 @@ export function* onFetchUser() {
   yield takeLatest(userTypes.FETCH_USER, fetchUserSaga);
 }
 
+export function* deleteUser({ payload }) {
+  try {
+    yield handleDeleteUser(payload);
+    yield put(
+      fetchUser()
+    )
+
+  } catch (error) {
+
+  }
+}
+
+export function* onDeleteUser() {
+  yield takeLatest(userTypes.DELETE_USER, deleteUser)
+}
+
 export default function* userSagas() {
   yield all([
     call(onEmailSignInStart),
@@ -146,7 +162,8 @@ export default function* userSagas() {
     call(onSignOutUserStart),
     call(onSignUpUserStart),
     call(googleSignStart),
-    call(onFetchUser)
+    call(onFetchUser),
+    call(onDeleteUser)
 
   ])
 }
