@@ -4,7 +4,8 @@ const INITIAL_STATE = {
     orders: {
         
     },
-    orderHistory: []
+    orderHistory: [],
+    orderDetail : {}
 
     
 };
@@ -23,6 +24,11 @@ const orderReducer = (state = INITIAL_STATE, action) => {
                 ...state,
                 orderHistory: action.payload
                 
+            }
+        case orderTypes.SET_ORDER_DETAIL:
+            return {
+                ...state,
+                orderDetail: action.payload
             }
             default:
                 return state

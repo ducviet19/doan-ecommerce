@@ -1,7 +1,7 @@
 import { takeLatest, put, all, call } from 'redux-saga/effects';
 import { clearCart } from '../Cart/cart.action';
-import { setUserOrderHistory } from './order.action';
-import { handleAddOrder, handleGetUserOrderHistory } from './order.helper';
+import { setOrderDetail, setUserOrderHistory } from './order.action';
+import { handleAddOrder, handleGerOrder, handleGetUserOrderHistory } from './order.helper';
 import orderTypes from './order.types';
 
 // add order
@@ -9,8 +9,9 @@ import orderTypes from './order.types';
 export function* addOrder( {payload} ) {
 
     try {
+        console.log(payload)
         yield handleAddOrder(
-            {payload}
+            payload
         );
         
     } catch (err) {
@@ -44,12 +45,29 @@ export function* onGetUserOrderHistory() {
     yield takeLatest(orderTypes.GET_USER_ORDER_HISTORY, getUserOrderHistory)
 }
 
+export function* getOrderDetail({payload}) {
+    try {
+        const order = yield handleGerOrder(payload)
+        yield put(
+            setOrderDetail(order)
+        )
+        
+    } catch (error) {
+        
+    }
+}
+
+
+export function* onGetOrderDetail() {
+    yield takeLatest(orderTypes.GET_ORDER_DETAIL, getOrderDetail )
+}
 
 
 
 export default function* orderSagas() {
     yield all([
         call(onAddOrder),
-        call(onGetUserOrderHistory)
+        call(onGetUserOrderHistory),
+        call(onGetOrderDetail)
     ])
 }

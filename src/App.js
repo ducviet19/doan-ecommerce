@@ -27,6 +27,7 @@ import Cart from './views/Cart/Cart';
 import Payment from './views/Payment/Payment';
 import CheckOut from './views/CheckOut/CheckOut';
 import ListUser from './Admin/User/ListUser.js/ListUser';
+import Order from './views/Order.js/Order';
 
 
 const mapState = ({ user }) => ({
@@ -87,6 +88,18 @@ function App(props) {
                   </Dashboard>
                 </WithAdminAuth>
               )} />
+
+              <Route exact path="/admin/order/:orderID" render={() => (
+                <WithAdminAuth>
+                  <Dashboard>
+                    <Order />
+                  </Dashboard>
+                </WithAdminAuth>
+              )} />
+
+
+
+
               <Route exact path="/admin/newproduct" render={() => (
                 <WithAdminAuth><Dashboard>
                   <FormProduct />
@@ -102,6 +115,7 @@ function App(props) {
                   </Dashboard>
                 </WithAdminAuth>
               )} />
+
 
               <Route exact path="/admin/editproduct/:id" render={() => (
                 <WithAdminAuth>

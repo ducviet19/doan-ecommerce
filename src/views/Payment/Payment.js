@@ -58,7 +58,7 @@ function Payment(props) {
     const { user } = useSelector(mapUser)
     console.log(user)
 
-    const { cartItems } = useSelector(mapState)
+    const { cartItems ,total } = useSelector(mapState)
     const { products } = useSelector(mapProduct)
 
     const dispatch = useDispatch()
@@ -82,7 +82,8 @@ function Payment(props) {
                 shipping: values,
                 datePlaced: timestamp,
                 userID: user.id,
-                finish: false
+                finish: false,
+                total : total
             }
             dispatch(
                 addToOrder(data)
