@@ -9,7 +9,6 @@ import orderTypes from './order.types';
 export function* addOrder( {payload} ) {
 
     try {
-        console.log('payload add product' , payload.payload)
         yield handleAddOrder(
             {payload}
         );

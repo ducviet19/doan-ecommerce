@@ -80,9 +80,6 @@ function App(props) {
                 </WithAuth>
               )} />
 
-
-
-
               <Route exact path="/admin/" render={() => (
                 <WithAdminAuth>
                   <Dashboard>

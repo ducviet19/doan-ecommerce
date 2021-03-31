@@ -110,6 +110,21 @@ export function* onEditProduct() {
 }
 
 
+export function* updateNumber({product , cartItem}) {
+    try {
+        console.log('product' , product);
+        console.log('cartItem',cartItem)
+    } catch (error) {
+        
+    }
+}
+
+
+export function* onUpdateNumber() {
+    yield takeLatest(productsTypes.UPDATE_NUMBER, updateNumber )
+}
+
+
 
 
 
@@ -119,6 +134,7 @@ export default function* productsSagas() {
         call(onFetchProduct),
         call(onDeleteProductct),
         call(onFetchProductId),
-        call(onEditProduct)
+        call(onEditProduct),
+        call(onUpdateNumber)
     ])
 }

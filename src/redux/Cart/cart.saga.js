@@ -5,21 +5,7 @@ import cartTypes from './cart.types';
 
 
 export function* addToCart({payload}) {
-    try {
-
-        // console.log('payload edit product', payload)
-        // const cart = yield handleAddCart(payload);
-
-        // console.log(cart)
-
-        // yield put(
-        //     fetchProductStart(product)
-        // )
-    }
-    catch(err) {
-
-    }
-
+   
 }
 
 export function* onAddToCart() {

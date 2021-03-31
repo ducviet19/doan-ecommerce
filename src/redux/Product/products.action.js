@@ -38,3 +38,9 @@ export const editProduct = (productData ,id ) => ({
 
 })
 
+
+export const updateNumber = (product , cartItem) =>({
+    type: productsTypes.UPDATE_NUMBER,
+    product,
+    cartItem
+})

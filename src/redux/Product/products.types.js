@@ -7,7 +7,10 @@ const productsTypes = {
     SET_PRODUCTS: 'SET_PRODUCTS',
     SET_PRODUCT: 'SET_PRODUCT',
     DELETE_PRODUCT: 'DELETE_PRODUCT',
-    EDIT_PRODUCT: 'EDIT_PRODUCT'
+    EDIT_PRODUCT: 'EDIT_PRODUCT',
+
+
+    UPDATE_NUMBER: 'UPDATE_NUMBER'
 }
 
 export default productsTypes;

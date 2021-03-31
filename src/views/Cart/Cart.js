@@ -38,7 +38,7 @@ function Cart(props) {
 
    
     return (
-        <div>
+        <>
              <div className="col-12">
                 <h2>Giỏ Hàng</h2>
                 <table class="table">
@@ -70,7 +70,7 @@ function Cart(props) {
                 </table>
             </div>
             
-        </div>
+        </>
     );
 }
 

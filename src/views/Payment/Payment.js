@@ -8,9 +8,12 @@ import { firestore } from '../../firebase/ultils';
 import { createStructuredSelector } from 'reselect';
 import { selectCartItems, selectCartTotal } from '../../redux/Cart/cart.selectors';
 import { clearCart } from '../../redux/Cart/cart.action';
+import useScrollTop from '../../hook/useScrollTop';
+import { updateNumber } from '../../redux/Product/products.action';
 
 
 const validate = values => {
+
     const errors = {};
 
     if (!values.name) {
@@ -41,20 +44,26 @@ const validate = values => {
 const mapState = createStructuredSelector({
     cartItems: selectCartItems,
     total: selectCartTotal,
-
 });
 
+const mapProduct = ({ productsData }) => ({
+    products: productsData.products
+})
 
 const mapUser = ({ user }) => ({
     user: user.currentUser
   })
 function Payment(props) {
+    useScrollTop();
     const { user } = useSelector(mapUser)
     console.log(user)
 
     const { cartItems } = useSelector(mapState)
+    const { products } = useSelector(mapProduct)
 
     const dispatch = useDispatch()
+
+    cartItems.map((e) => { console.log(e.documentID)  } )
 
 
 
