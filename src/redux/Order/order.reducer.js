@@ -5,7 +5,8 @@ const INITIAL_STATE = {
         
     },
     orderHistory: [],
-    orderDetail : {}
+    orderDetail : {},
+    listOrder: []
 
     
 };
@@ -18,6 +19,12 @@ const orderReducer = (state = INITIAL_STATE, action) => {
                 ...state,
                 orders: action.payload
             }
+        case orderTypes.SET_ORDERS:
+            return {
+                ...state,
+                listOrder : action.payload
+            }
+
 
         case orderTypes.SET_USER_ORDER_HISTORY:
             return {

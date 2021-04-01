@@ -3,24 +3,19 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import useScrollTop from '../../hook/useScrollTop';
 import { getUserOrderHistory } from '../../redux/Order/order.action';
-import Footer from '../../views/Footer';
-import Header from '../../views/Header';
-import OrderHistory from '../../views/OrderHistory/OrderHistory';
 import Aside from '../Aside/Aside';
 import FooterAdmin from '../FooterAdmin/FooterAdmin';
-import Main from '../Main/Main';
 import './style.css'
 
 
 
 const mapState = ({user , orderData }) => ({
   user : user.currentUser,
-  orderHistory: orderData.orderHistory.data
 })
 function Dashboard(props) {
   useScrollTop();
   const dispatch = useDispatch();
-  const { user ,orderHistory} = useSelector(mapState)
+  const { user } = useSelector(mapState)
   console.log(user)
 
   useEffect(( ) => {
@@ -30,14 +25,11 @@ function Dashboard(props) {
   },[] )
   return (
     <div className="container-fluid ">
-
       <div className="row">
         <Aside />
         <div className="col-10">
           {props.children}
-          <OrderHistory orders={orderHistory} />
-        </div>
-        
+        </div>    
         <FooterAdmin />
       </div>
     </div>

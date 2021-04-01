@@ -27,7 +27,8 @@ import Cart from './views/Cart/Cart';
 import Payment from './views/Payment/Payment';
 import CheckOut from './views/CheckOut/CheckOut';
 import ListUser from './Admin/User/ListUser.js/ListUser';
-import Order from './views/Order.js/Order';
+import ListOrder from './Admin/Order/ListOrdersjs/ListOrder';
+import Order from './Admin/Order/OrderDetail/Order';
 
 
 const mapState = ({ user }) => ({
@@ -85,6 +86,13 @@ function App(props) {
                 <WithAdminAuth>
                   <Dashboard>
                     <Main />
+                  </Dashboard>
+                </WithAdminAuth>
+              )} />
+              <Route exact path="/admin/order" render={() => (
+                <WithAdminAuth>
+                  <Dashboard>
+                    <ListOrder />
                   </Dashboard>
                 </WithAdminAuth>
               )} />

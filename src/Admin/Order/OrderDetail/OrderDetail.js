@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { setOrderDetail } from '../../redux/Order/order.action';
+
 
 function OrderDetail(props) {
 
@@ -17,7 +16,6 @@ function OrderDetail(props) {
                             <th scope="col"></th>
                             <th scope="col">Giá</th>
                             <th scope="col">Số lượng</th>
-                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -30,7 +28,6 @@ function OrderDetail(props) {
                                         <td> <img className="img-thumbnail w-25" src={thumbnail} /> </td>
                                         <td>{price}</td>
                                         <td>{quantity}</td>
-                                        <td ><button className="btn btn-danger" >X</button></td>
                                     </tr>
                                 )
                             })

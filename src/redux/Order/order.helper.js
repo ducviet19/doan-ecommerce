@@ -16,6 +16,29 @@ export const handleAddOrder = data => {
 }
 
 
+export const handleFetchOrders = () => {
+    return new Promise((resolve,reject) => {
+        firestore
+        .collection('order')
+        .get()
+        .then(snapshot => {
+            const listOrder = snapshot.docs.map(doc => {
+                return {
+                    ...doc.data(),
+                    documentID: doc.id
+                }
+            });
+            resolve(listOrder)
+        })
+        .catch(err => {
+            reject(err)
+        })
+    })
+}
+
+
+
+
 export const handleGetUserOrderHistory = uid => {
     return new Promise((resolve, reject) => {
 
@@ -43,7 +66,7 @@ export const handleGetUserOrderHistory = uid => {
     });
 }
 
-export const handleGerOrder = orderID => {
+export const handleGetOrder = orderID => {
     return new Promise((resolve, reject) => {
         firestore
             .collection('order')
@@ -61,4 +84,29 @@ export const handleGerOrder = orderID => {
                 reject(err);
             })
     });
+}
+
+export const handleEditOrder = (product, id) => {
+    return new Promise((resolve,reject) => {
+        firestore.collection('order').doc(id).set(product)
+        .then(() => {
+            resolve()
+        })
+        .catch(err => {
+            reject(err)
+        })
+        
+    })
+}
+
+export const handleDeleteOrder = id => {
+    return new Promise((resolve,reject) => {
+        firestore.collection('order').doc(id).delete()
+        .then(() => {
+            resolve()
+        })
+        .catch(err => {
+            reject(err)
+        })
+    } )
 }

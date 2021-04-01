@@ -14,7 +14,7 @@ function Aside(props) {
                     <ul className="list-group">
                     <li className="list-group-item"><Link to="/">Website</Link> </li>
                         <li className="list-group-item"><Link to="/admin">Tong Quan</Link> </li>
-                        <li className="list-group-item">Don Hang</li>
+                        <li className="list-group-item"><Link to="/admin/order">Đơn Hàng</Link> </li>
                         <li className="list-group-item"> <Link to="/admin/listproduct">San pham</Link> </li>
                         <li className="list-group-item"> <Link to="/admin/listuser">Nguoi Dung</Link> </li>
                         <li className="list-group-item">Bao Cao</li>

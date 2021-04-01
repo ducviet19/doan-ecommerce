@@ -34,19 +34,21 @@ function ListProduct(props) {
                         <th scope="col">Tên sản phẩm</th>
                         <th scope="col">Hình ảnh</th>
                         <th scope="col">Loại sản phẩm</th>
+                        <th scope="col">Số lượng</th>
                         <th scope="col">Giá sản phẩm</th>
                     </tr>
                 </thead>
                 <tbody>
                     {
                         products.map((product,index) => {
-                            const { name, description , category , thumbnail , price , documentID} = product
+                            const { name, description , category , thumbnail , price , documentID ,number} = product
                             return (
                                 <tr key={index}>
                                 <th scope="row">{documentID}</th>
                                 <td><Link to={`/admin/editproduct/${documentID}`} >{name}</Link> </td>
                                 <td> <img className="img-thumbnail w-25" src={thumbnail}  /> </td>
                                 <td>{category}</td>
+                                <td>{number}</td>
                                 <td>{price}</td>
                                 <td ><button className="btn btn-danger" onClick={() => dispatch(deleteProduct(documentID)) }>X</button></td>
                             </tr>

@@ -1,7 +1,7 @@
 import { takeLatest, put, all, call } from 'redux-saga/effects';
 import { clearCart } from '../Cart/cart.action';
-import { setOrderDetail, setUserOrderHistory } from './order.action';
-import { handleAddOrder, handleGerOrder, handleGetUserOrderHistory } from './order.helper';
+import { setOrderDetail, setUserOrderHistory ,getOrderDetail, getUserOrderHistory, setOrders } from './order.action';
+import { handleAddOrder, handleDeleteOrder, handleEditOrder, handleFetchOrders, handleGetOrder, handleGetUserOrderHistory } from './order.helper';
 import orderTypes from './order.types';
 
 // add order
@@ -25,9 +25,32 @@ export function* onAddOrder() {
 }
 
 
-export function* getUserOrderHistory({payload}) {
+
+
+
+
+export function* fetchOrders({payload}) {
     try {
-        console.log("get order")
+        const order = yield handleFetchOrders(payload);
+        yield put(
+            setOrders(order)
+        )
+        
+    } catch (error) {
+        
+    }
+}
+
+export function* onFetchOrder() {
+    yield takeLatest(orderTypes.FETCH_ORDERS, fetchOrders)
+}
+
+
+
+
+export function* getUserOrder({payload}) {
+    try {
+        console.log("get order" , payload)
         console.log(payload)
         const history = yield handleGetUserOrderHistory(payload);
         console.log(history)
@@ -42,12 +65,12 @@ export function* getUserOrderHistory({payload}) {
 
 
 export function* onGetUserOrderHistory() {
-    yield takeLatest(orderTypes.GET_USER_ORDER_HISTORY, getUserOrderHistory)
+    yield takeLatest(orderTypes.GET_USER_ORDER_HISTORY, getUserOrder)
 }
 
-export function* getOrderDetail({payload}) {
+export function* getOrder({payload}) {
     try {
-        const order = yield handleGerOrder(payload)
+        const order = yield handleGetOrder(payload)
         yield put(
             setOrderDetail(order)
         )
@@ -59,15 +82,53 @@ export function* getOrderDetail({payload}) {
 
 
 export function* onGetOrderDetail() {
-    yield takeLatest(orderTypes.GET_ORDER_DETAIL, getOrderDetail )
+    yield takeLatest(orderTypes.GET_ORDER_DETAIL, getOrder )
 }
 
+
+
+
+export function* editOrder({payload, id}) {
+    try {
+        const order = yield handleEditOrder(payload, id)
+        
+        yield put(
+            getOrderDetail()
+        )
+    } catch (error) {
+        
+    }
+}
+
+export function* onEditOrder() {
+    yield takeLatest(orderTypes.EDIT_ORDER, editOrder)
+}
+
+
+export function* deleteOrder({payload}) {
+    try {
+        yield handleDeleteOrder(payload);
+
+        yield put(
+            getUserOrderHistory()
+        )
+    } catch (error) {
+        
+    }
+}
+
+export function* onDeleteOrder() {
+    yield takeLatest(orderTypes.DELETE_ORDER,deleteOrder)
+}
 
 
 export default function* orderSagas() {
     yield all([
         call(onAddOrder),
         call(onGetUserOrderHistory),
-        call(onGetOrderDetail)
+        call(onGetOrderDetail),
+        call(onEditOrder),
+        call(onDeleteOrder),
+        call(onFetchOrder)
     ])
 }
