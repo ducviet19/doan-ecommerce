@@ -1,10 +1,10 @@
 import { all, call, put, takeLatest } from "@redux-saga/core/effects";
 import { auth, getCurrentUser, GoogleProvider, handleUserProfile } from "../../firebase/ultils";
 import { clearCart, removeCart } from "../Cart/cart.action";
-import { signInSuccess, userError } from "./user.action";
+import { setUser, signInSuccess, userError } from "./user.action";
 import { signOutUserSuccess } from "./user.action";
 import { fetchUser, setUsers } from './user.action'
-import { handleDeleteUser, handleFetchUser } from "./user.helpers";
+import { handleAddUser, handleDeleteUser, handleEditUser, handleFetchDetailUser, handleFetchUser } from "./user.helpers";
 import userTypes from "./user.type";
 
 
@@ -159,6 +159,67 @@ export function* onDeleteUser() {
   yield takeLatest(userTypes.DELETE_USER, deleteUser)
 }
 
+export function* fetchUserId({ payload }) {
+  try {
+    const userEdit = yield handleFetchDetailUser(payload);
+    yield put(
+      setUser(userEdit)
+    );
+  } catch (error) {
+
+  }
+}
+export function* onFetchUserId() {
+  yield takeLatest(userTypes.FETCH_USER_ID, fetchUserId)
+}
+
+export function* editUser({ payload, id }) {
+  try {
+
+    console.log('payload edit user', payload)
+    console.log('id edit user', id)
+    const user = yield handleEditUser(payload, id);
+
+    yield put(
+      fetchUserId(user)
+    )
+  }
+  catch (err) {
+
+  }
+
+}
+
+
+export function* onEditUser() {
+  yield takeLatest(userTypes.EDIT_USER, editUser)
+
+}
+
+export function* addUser({ payload }) {
+
+  try {
+    console.log('payload add user', payload)
+    const timestamp = new Date();
+    yield handleAddUser({
+      ...payload,
+      AdminUserUID: auth.currentUser.uid,
+      createdDate: timestamp
+    });
+    yield put(
+      fetchUser()
+    );
+
+
+  } catch (err) {
+    // console.log(err);
+  }
+
+}
+export function* onAddUser() {
+  yield takeLatest(userTypes.ADD_NEW_USER, addUser);
+}
+
 export default function* userSagas() {
   yield all([
     call(onEmailSignInStart),
@@ -167,7 +228,10 @@ export default function* userSagas() {
     call(onSignUpUserStart),
     call(googleSignStart),
     call(onFetchUser),
-    call(onDeleteUser)
+    call(onDeleteUser),
+    call(onFetchUserId),
+    call(onEditUser),
+    call(onAddUser)
 
   ])
 }

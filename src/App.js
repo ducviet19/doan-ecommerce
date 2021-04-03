@@ -25,7 +25,7 @@ import Main from './Admin/Main/Main';
 import EditProduct from './Admin/Product/EditProduct.js/EditProduct';
 import Shop from './views/Shop/Shop'
 import Contact from './views/Contact/contact';
-import ListUser from './Admin/Users/ListUser';
+import ListUser from './Admin/Users/ListUser/ListUser';
 import Cart from './views/Cart/Cart';
 import Payment from './views/Payment/Payment';
 import CheckOut from './views/CheckOut/CheckOut';
@@ -124,7 +124,6 @@ function App(props) {
                 </Dashboard>
               </Route>
             </div>
-
           </Switch>
         </Router>
 

@@ -15,6 +15,7 @@ const ProductResults = ({ }) => {
     const { filterType } = useParams();
     const { products } = useSelector(mapState);
 
+    console.log(products)
 
     useEffect(() => {
         dispatch(
@@ -30,6 +31,14 @@ const ProductResults = ({ }) => {
     if (products.length < 1) {
         return (
             <div className='products'>
+                <div className="col-md-3 order-md-0 mt-2 mt-md-0 mb-3">
+                    <select className="form-control form-control-sm" value={filterType} onChange={handleFilter}>
+                        <option value="">Tất cả</option>
+                        <option value="Sữa rửa mặt">Sữa rửa mặt</option>
+                        <option value="Kem chống nắng">Kem chống nắng</option>
+                        <option value="Mặt nạ">Mặt nạ</option>
+                    </select>
+                </div>
                 <p>
                     Không có sản phẩm
                 </p>
@@ -38,7 +47,7 @@ const ProductResults = ({ }) => {
     }
     return (
         <div className='products'>
-            <h1>
+            <h1 className='text-center'>
                 Sản Phẩm
             </h1>
             <div className="col-md-3 order-md-0 mt-2 mt-md-0 mb-3">

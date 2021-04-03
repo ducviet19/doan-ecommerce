@@ -31,3 +31,53 @@ export const handleDeleteUser = documentID => {
             })
     })
 }
+
+export const handleAddUser = user => {
+    return new Promise((resolve, reject) => {
+        firestore
+            .collection('users')
+            .doc()
+            .set(user)
+            .then(() => {
+                resolve()
+            })
+            .catch(err => {
+                reject(err);
+            })
+    });
+}
+
+export const handleFetchDetailUser = (documentID) => {
+    return new Promise((resolve, reject) => {
+        firestore.collection('users').doc(documentID)
+            .get()
+            .then(snapshot => {
+                if (snapshot.exists) {
+                    resolve({
+                        ...snapshot.data(),
+                        documentID: documentID
+                    });
+                }
+
+            })
+            .catch(err => {
+                reject(err);
+            })
+    })
+}
+
+export const handleEditUser = (user, id) => {
+    return new Promise((resolve, reject) => {
+        firestore
+            .collection('products')
+            .doc(id)
+            .set(user)
+            .then(() => {
+                resolve()
+
+            })
+            .catch(err => {
+                reject(err);
+            })
+    });
+}

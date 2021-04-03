@@ -22,7 +22,7 @@ function FormProduct(props) {
 
     useEffect(() => {
         dispatch(
-            fetchProducts()
+            fetchProducts({})
         );
     }, []);
 

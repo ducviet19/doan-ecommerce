@@ -20,9 +20,12 @@ function Home() {
     const history = useHistory()
     const { products } = useSelector(mapState)
 
+
+    console.log(products)
+
     useEffect(() => {
         dispatch(
-            fetchProducts()
+            fetchProducts({})
         )
     }, [])
 
@@ -36,7 +39,6 @@ function Home() {
                         <h2 className="text-center m-5"><a href>SẢN PHẨM MỚI</a> </h2>
                     </div>
                     <div className="row">
-
                         {
                             products.map((product) => {
                                 const { documentID, thumbnail, name, price } = product

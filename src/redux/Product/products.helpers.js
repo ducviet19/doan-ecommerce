@@ -75,6 +75,7 @@ export const handleDeleteProduct = documentID => {
 
 export const handleEditProduct = (product, id) => {
     return new Promise((resolve, reject) => {
+        console.log('helper', product)
         firestore
             .collection('products')
             .doc(id)

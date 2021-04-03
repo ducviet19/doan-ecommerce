@@ -15,7 +15,7 @@ function ListProduct(props) {
 
     useEffect(() => {
         dispatch(
-            fetchProducts()
+            fetchProducts({})
         )
     }, [])
     return (

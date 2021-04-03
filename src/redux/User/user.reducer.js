@@ -3,10 +3,8 @@ import userTypes from "./user.type";
 const INITIAL_STATE = {
     currentUser: null,
     userErr: [],
-    users: []
-    // signInSuccess: false,
-    // signUpError: [],
-    // signUpSuccess: []
+    users: [],
+    user: {}
 };
 
 const userReducer = (state = INITIAL_STATE, action) => {
@@ -35,39 +33,11 @@ const userReducer = (state = INITIAL_STATE, action) => {
                 ...state,
                 users: action.payload
             }
-        // case userTypes.EMAIL_SIGN_IN_START:
-        //         return{
-        //             ...state,
-        //             currentUser: action.payload
-        //         }
-        // case userTypes.SET_CURRENT_USER:
-        //     return {
-        //         ...state,
-        //         currentUser: action.payload
-        //     }
-
-        // case userTypes.SIGN_IN_SUCCESS:
-        //     return {
-        //         ...state,
-        //         signInSuccess: action.payload
-        //     }
-        // case userTypes.SIGN_UP_ERROR:
-        //     return {
-        //         ...state,
-        //         signUpError: action.payload
-        //     }
-        // case userTypes.SIGN_UP_SUCCESS:
-        //     return {
-        //         ...state,
-        //         signUpSuccess: action.payload
-        //     }
-        // case userTypes.RESET_AUTH_FORM:
-        //     return {
-        //         ...state,
-        //         signInSuccess: false,
-        //         signUpError: [],
-        //         signUpSuccess: false
-        //     }
+        case userTypes.SET_USER:
+            return {
+                ...state,
+                user: action.payload
+            }
 
 
 

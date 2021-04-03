@@ -73,7 +73,7 @@ export function* deleteProduct({ payload }) {
     try {
         yield handleDeleteProduct(payload);
         yield put(
-            fetchProducts()
+            fetchProducts({})
         )
 
     } catch (error) {
@@ -92,7 +92,6 @@ export function* editProduct({ payload, id }) {
         console.log('payload edit product', payload)
         console.log('id edit product', id)
         const product = yield handleEditProduct(payload, id);
-
         yield put(
             fetchProductStart(product)
         )

@@ -6,8 +6,8 @@ import './style.css';
 
 
 
-const mapState = ({user}) => ({
-    currentUser : user.currentUser,
+const mapState = ({ user }) => ({
+    currentUser: user.currentUser,
     useErr: user.userErr
 
 })
@@ -18,18 +18,18 @@ function Register() {
     const { currentUser, useErr } = useSelector(mapState);
     const dispatch = useDispatch();
 
-    
-    useEffect( () => {
-        if(currentUser) {
-
-        }
-    } ,[currentUser])
 
     useEffect(() => {
-        if(useErr) {
+        if (currentUser) {
 
-        } 
-    },[useErr])
+        }
+    }, [currentUser])
+
+    useEffect(() => {
+        if (useErr) {
+
+        }
+    }, [useErr])
 
 
     const [displayName, setDisplayName] = useState("");
@@ -51,16 +51,16 @@ function Register() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-    
 
-        
-        displayName === "" ? setError_fullName("Vui lòng điền tên của bạn")  : setError_fullName("")
+
+
+        displayName === "" ? setError_fullName("Vui lòng điền tên của bạn") : setError_fullName("")
         email === "" ? setError_email("Vui lòng điền email của bạn") : setError_email("")
         password === "" ? setError_password("Vui lòng mật khẩu  của bạn") : setError_password("")
         confirmPassword === "" ? setError_confirmPassword("Vui lòng nhập lại mật khẩu  của bạn") : setError_confirmPassword("")
         if (confirmPassword !== password) {
             setError_confirmPassword("Mật khẩu không trùng khớp ! hãy nhập lại")
-            return ;
+            return;
         }
 
         dispatch(signUpUserStart({
@@ -69,7 +69,7 @@ function Register() {
             password,
             confirmPassword
         }))
-
+        reset()
     }
 
     const reset = () => {
@@ -108,7 +108,7 @@ function Register() {
                         <div value={error_confirmPassword} className="error_confirmPassword">{error_confirmPassword}</div>
                     </div>
 
-                    <input className="btn btn-success"  type="submit" value="Đăng ký" />
+                    <input className="btn btn-success" type="submit" value="Đăng ký" />
                 </form>
             </div>
         </div>

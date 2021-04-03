@@ -12,6 +12,11 @@ const userTypes = {
     FETCH_USER: 'FETCH_USER',
     SET_USERS: 'SET_USERS',
     DELETE_USER: 'DELETE_USER',
+    FETCH_USER_ID: 'FETCH_USER_ID',
+    SET_USER: 'SET_USER',
+    EDIT_USER: 'EDIT_USER',
+    ADD_NEW_USER: 'ADD_NEW_USER',
+
 
 
 

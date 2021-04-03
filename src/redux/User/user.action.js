@@ -21,16 +21,16 @@ export const signOutUserSuccess = () => ({
 export const signUpUserStart = userCredentials => ({
     type: userTypes.SIGN_UP_USER_START,
     payload: userCredentials
-})
+});
 export const userError = err => ({
     type: userTypes.USER_ERROR,
     payload: err
-})
+});
 
 
 export const googleSignInStart = () => ({
     type: userTypes.GOOGLE_SIGN_IN_START
-})
+});
 
 
 
@@ -38,11 +38,11 @@ export const googleSignInStart = () => ({
 export const signInSuccess = user => ({
     type: userTypes.SIGN_IN_SUCCESS,
     payload: user
-})
+});
 
 export const checkUserSession = () => ({
     type: userTypes.CHECK_USER_SESSION
-})
+});
 export const fetchUser = () => ({
     type: userTypes.FETCH_USER,
 
@@ -50,11 +50,30 @@ export const fetchUser = () => ({
 export const setUsers = users => ({
     type: userTypes.SET_USERS,
     payload: users
-})
+});
 export const deleteUser = userId => ({
     type: userTypes.DELETE_USER,
     payload: userId
-})
+});
+export const setUser = user => ({
+    type: userTypes.SET_USER,
+    payload: user
+});
+export const fetchUserId = userID => ({
+    type: userTypes.FETCH_USER_ID,
+    payload: userID,
+});
+export const editUser = (userData, id) => ({
+    type: userTypes.EDIT_USER,
+    payload: userData,
+    id: id
+
+});
+export const addUser = userData => ({
+    type: userTypes.ADD_NEW_USER,
+    payload: userData
+});
+
 
 
 
