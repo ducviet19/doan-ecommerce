@@ -1,16 +1,17 @@
 import firebase from 'firebase';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router';
+import { useHistory, useParams } from 'react-router';
 import { firestore } from '../../../firebase/ultils';
 import { editProduct, fetchProductStart, setProduct } from '../../../redux/Product/products.action';
-
+import swal from 'sweetalert';
 const mapState = state => ({
     product: state.productsData.product
 });
 
 function EditProduct({ props }) {
 
+    const history = useHistory()
 
 
 
@@ -49,11 +50,11 @@ function EditProduct({ props }) {
 
     useEffect(() => {
         dispatch(fetchProductStart(id))
-        return () => {
-            dispatch(
-                setProduct({})
-            )
-        }
+        // return () => {
+        //     dispatch(
+        //         setProduct({})
+        //     )
+        // }
     }, [])
 
 
@@ -69,6 +70,9 @@ function EditProduct({ props }) {
             imgDetail,
             number
         }, id))
+
+        swal("Cập nhật thành công!","", "success");
+        history.push('/admin/listproduct')
     }
     return (
 

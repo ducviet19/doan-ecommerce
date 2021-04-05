@@ -7,7 +7,7 @@ export const handleAddProduct = product => {
             .doc()
             .set(product)
             .then(() => {
-                resolve()
+                resolve() 
             })
             .catch(err => {
                 reject(err);

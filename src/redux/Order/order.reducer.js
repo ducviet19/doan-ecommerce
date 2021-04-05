@@ -9,7 +9,7 @@ const INITIAL_STATE = {
     listOrder: []
 
     
-};
+}; 
 
 const orderReducer = (state = INITIAL_STATE, action) => {
 

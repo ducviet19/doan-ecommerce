@@ -21,7 +21,7 @@ function Header(props) {
 
   const dispatch = useDispatch();
 
-  const { user ,totalNumCartItems } = useSelector(mapState);
+  const { user, totalNumCartItems } = useSelector(mapState);
 
   const isAdmin = checkUserIsAdmin(user);
 
@@ -33,7 +33,7 @@ function Header(props) {
   }
 
   return (
-    <header className="row navbar fixed-top">
+    <header className="row navbar fixed-top p-0 ">
       <div className="col-12">
         <div className="d-flex justify-content-around row">
           <div className="col">
@@ -41,22 +41,33 @@ function Header(props) {
           <div className="col">
             <Link to="/"><img width="200px" src="//theme.hstatic.net/1000341789/1000533258/14/logo.png?v=709" alt="" /> </Link>
           </div>
-          <div className="col">
-            {user !== null ? <a>{user.displayName} </a> : <Link to="/login">Đăng nhập</Link>}
+          <div className="col d-flex justify-content-around">
+            <div class="dropdown">
+              <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {user !== null ? <a className="m-2"> <i class="fas fa-user"></i> {user.displayName} </a> : <Link to="/login">Đăng nhập</Link>}
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <div><Link className="m-2" to="/order"> <i class="fas fa-shipping-fast"></i> Don Hang  </Link></div>
+                <div><Link className="m-2" to="/order"> <i class="fas fa-shipping-fast"></i> Tài khoản  </Link></div>
+                <Link> {user !== null ? <a>{isAdmin ? <Link to="/admin"><i class="fas fa-users-cog"></i>
 
+Admin</Link> : ''} </a> : <></>}  </Link>
+              </div>
+            </div>
+            <div>
+              <Link to="/cart"><i className="fas fa-shopping-cart">{totalNumCartItems == 0 ? "" : totalNumCartItems}</i>  </Link>
+            </div>
+            <div>
+              {user ? <button className="btn " onClick={() => signOut()} >Đăng Xuất</button> : ''}
+            </div>
 
-            <i className="fas fa-search" />
-            <Link to="/cart"><i className="fas fa-shopping-cart" /> Cart {totalNumCartItems} </Link>
-            <Link> {user !== null ? <a>{isAdmin ? <Link to="/admin">Admin </Link> : ''} </a> : <></>}  </Link>
-            
-            {user ? <button className="btn btn-success" onClick={() => signOut() } >LogOut</button> : ''}
           </div>
         </div>
         <nav className="navbar  navbar-expand-lg navbar-light bg-light ">
           <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon" />
           </button>
-          <div className="collapse navbar-collapse justify-content-center" id="navbarTogglerDemo02">
+          <div className="collapse navbar-collapse justify-content-center m-3" id="navbarTogglerDemo02 ">
             <ul className="nav nav-pills row ">
               <li className="nav-item dropdown col-lg col-12">
                 <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Thời Trang Nam</a>
@@ -65,13 +76,7 @@ function Header(props) {
                   <a className="dropdown-item" href="#!">Quần Nam</a>
                 </div>
               </li>
-              <li className="nav-item dropdown col-lg col-12">
-                <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Thời Trang Nữ</a>
-                <div className="dropdown-menu">
-                  <a className="dropdown-item" href="#!">Áo Nữ</a>
-                  <a className="dropdown-item" href="#!">Quần Nữ</a>
-                </div>
-              </li>
+
               <li className="nav-item col-lg col-12 ">
                 <a className="nav-link " href="#!">Hệ thống cửa hàng</a>
               </li>

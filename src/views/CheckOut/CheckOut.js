@@ -19,7 +19,8 @@ function CheckOut(props) {
     return (
         <div className="row">
             <Cart />
-            <ButtonCheckOut />
+            { cartItems.length > 0 ? <ButtonCheckOut /> : ""  }
+            
         </div>
     );
 }

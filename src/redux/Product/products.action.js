@@ -5,7 +5,7 @@ export const addProduct = productData => ({
     type: productsTypes.ADD_NEW_PRODUCT,
     payload: productData
 });
-
+ 
 
 // products []
 export const fetchProducts = () => ({

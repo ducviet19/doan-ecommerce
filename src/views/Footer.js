@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 function Footer() {
 
   return (
-    <footer className="row">
+    <footer className="row bg-light">
       <div className="col">
         <h4>Công Ty</h4>
         <ul className="list-unstyled">
@@ -37,10 +37,7 @@ function Footer() {
           <h5>Cửa Hàng Thứ 29:</h5>
           <p>Địa chỉ: Số 25 đường Ba Tháng Hai, Phường 1, TP. Đà Lạt </p>
         </div>
-        <div>
-          <h5>Cửa Hàng Thứ 29:</h5>
-          <p>Địa chỉ: Số 25 đường Ba Tháng Hai, Phường 1, TP. Đà Lạt </p>
-        </div>
+      
       </div>
     </footer>
   )

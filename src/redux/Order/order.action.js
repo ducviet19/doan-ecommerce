@@ -8,7 +8,7 @@ export const addToOrder = (info) => ({
 })
 
 
-// orders []
+// orders [] 
 export const fetchOrders = () => ({
     type : orderTypes.FETCH_ORDERS
 })

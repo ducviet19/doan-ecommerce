@@ -6,7 +6,7 @@ const INITIAL_STATE = {
 };
 
 const productsReducer = (state = INITIAL_STATE, action) => {
-    switch (action.type) {
+    switch (action.type) { 
         case productsTypes.SET_PRODUCTS:
             return {
                 ...state,

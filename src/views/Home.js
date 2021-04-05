@@ -1,4 +1,4 @@
-import React, { Component, useEffect } from 'react';
+import React, { Component, useEffect , Suspense  } from 'react';
 import LazyLoad from 'react-lazyload';
 
 import {
@@ -8,12 +8,14 @@ import {
 } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchProducts } from '../redux/Product/products.action';
-import ProductCart from './ProductCart';
+import ProductCart from './ProductCart/ProductCart';
 import useScrollTop from '../hook/useScrollTop';
 
 const mapState = ({ productsData }) => ({
     products: productsData.products
 })
+
+const Load = React.lazy(() => import('../views/ProductCart/ProductCart'));
 function Home() {
     useScrollTop();
     const dispatch = useDispatch();
@@ -43,8 +45,12 @@ function Home() {
                                 const configProduct = {
                                     ...product
                                 }
-                                return (                                 
-                                        <ProductCart {...configProduct} />                                  
+                                return (   
+                                    <Suspense fallback={<div>Loading...</div>}>
+                                      
+                                         <Load {...configProduct} />      
+                                    </Suspense>                              
+                                                                   
                                 )
                             })
                         }

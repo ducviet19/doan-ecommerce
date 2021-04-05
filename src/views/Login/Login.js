@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { emailSignInStart , signInSuccess, signInWithGoogle ,googleSignInStart } from '../../redux/User/user.action';
 import useScrollTop from '../../hook/useScrollTop';
+import swal from 'sweetalert';
 
 
 const mapState = ({ user }) => ({
@@ -33,11 +34,31 @@ function Login(props) {
 
     const handleSubmit =  (e) => {
         e.preventDefault();
-        dispatch(emailSignInStart({ email, password }));
+       
+        swal({
+            text: 'Search for a movie. e.g. "La La Land".',
+
+            button: "Aww yiss!",
+          })
+          .then(() => {
+            dispatch(emailSignInStart({ email, password }));
+            swal("Đăng nhập thành công!", "", "success");
+          })
+          
+          .catch(err => {
+            if (err) {
+              swal("Oh noes!", "The AJAX request failed!", "error");
+            } else {
+              swal.stopLoading();
+              swal.close();
+            }
+          });
     }
 
     const loginWithGoogle = () => {
         dispatch(googleSignInStart())
+        swal("Đăng nhập thành công!", "", "success");
+
     }
 
     return (

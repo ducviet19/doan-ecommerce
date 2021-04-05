@@ -32,7 +32,7 @@ export const handleFetchOrders = () => {
         })
         .catch(err => {
             reject(err)
-        })
+        }) 
     })
 }
 

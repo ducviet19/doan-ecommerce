@@ -9,8 +9,8 @@ import { createStructuredSelector } from 'reselect';
 import { selectCartItems, selectCartTotal } from '../../redux/Cart/cart.selectors';
 import { clearCart } from '../../redux/Cart/cart.action';
 import useScrollTop from '../../hook/useScrollTop';
-import { updateNumber } from '../../redux/Product/products.action';
-
+import swal from 'sweetalert';
+import { useHistory } from 'react-router';
 
 const validate = values => {
 
@@ -52,18 +52,22 @@ const mapProduct = ({ productsData }) => ({
 
 const mapUser = ({ user }) => ({
     user: user.currentUser
-  })
+})
 function Payment(props) {
     useScrollTop();
     const { user } = useSelector(mapUser)
+    const history = useHistory()
     console.log(user)
 
-    const { cartItems ,total } = useSelector(mapState)
+    const { cartItems, total } = useSelector(mapState)
     const { products } = useSelector(mapProduct)
 
     const dispatch = useDispatch()
+    const [isOpen, setIsOpen] = useState(false);
 
-    cartItems.map((e) => { console.log(e.documentID)  } )
+  
+
+    cartItems.map((e) => { console.log(e.documentID) })
 
 
 
@@ -76,23 +80,25 @@ function Payment(props) {
         },
         validate,
         onSubmit: values => {
-            const timestamp = new Date();
+            const timestamp = new Date().toISOString();
             const data = {
                 item: cartItems,
                 shipping: values,
                 datePlaced: timestamp,
                 userID: user.id,
-                finish: false,
-                total : total
+                finish: "false",
+                total: total
             }
             dispatch(
                 addToOrder(data)
             )
             dispatch(
-                    clearCart()
+                clearCart()
             )
             formik.resetForm();
-        
+            swal("Đặt Hàng Thành Công");
+            history.push('/');
+
         },
     });
 
@@ -154,6 +160,7 @@ function Payment(props) {
                             <div>{formik.errors.address}</div>) : null}
                     </div>
                     <button type="submit" className="btn btn-primary">Hoàn Tất Đơn Hàng</button>
+
                 </form>
             </div>
             <div className="col-6">

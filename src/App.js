@@ -29,11 +29,17 @@ import CheckOut from './views/CheckOut/CheckOut';
 import ListUser from './Admin/User/ListUser.js/ListUser';
 import ListOrder from './Admin/Order/ListOrdersjs/ListOrder';
 import Order from './Admin/Order/OrderDetail/Order';
+import OrderUser from './views/Order/OrderUser';
+import OrderDetailUser from './views/OrderDetailUser/OrderDetailUser';
+import Popup from './popup/Popup';
+import swal from 'sweetalert';
 
 
 const mapState = ({ user }) => ({
   user: user.currentUser
 })
+
+
 
 function App(props) {
 
@@ -45,7 +51,6 @@ function App(props) {
     dispatch(checkUserSession());
 
   }, []);
-
   return (
     <div className="App">
       <div class="container-fluid">
@@ -69,11 +74,29 @@ function App(props) {
                   <ProductDetail />
                 </MainLayout>
               </Route>
+              <Route path="/popup">
+                <MainLayout>
+                  <Popup />
+                </MainLayout>
+              </Route>
               <Route path="/cart">
                 <MainLayout>
                   <CheckOut />
                 </MainLayout>
               </Route>
+              <Route exact path="/order">
+                <WithAuth>
+                  <MainLayout>
+                    <OrderUser />
+                  </MainLayout>
+                </WithAuth>
+              </Route>
+            
+              <Route exact path="/order/:id" render={() => (
+               <MainLayout>
+                 <OrderDetailUser />
+               </MainLayout>
+              )} />
               <Route path="/payment" render={() => (
                 <WithAuth>
                   <MainLayout>

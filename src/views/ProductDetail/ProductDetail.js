@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Suspense } from 'react';
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router';
@@ -6,11 +6,10 @@ import useScrollTop from '../../hook/useScrollTop';
 import { addToCart } from '../../redux/Cart/cart.action';
 import { fetchProductStart, setProduct } from '../../redux/Product/products.action';
 import LazyLoad from 'react-lazyload';
-
+import swal from 'sweetalert';
 const mapState = state => ({
     product: state.productsData.product
 });
-
 
 
 function ProductDetail({ match }) {
@@ -33,6 +32,7 @@ function ProductDetail({ match }) {
     const handleAddToCart = (product) => {
         if (!product) return;
         dispatch(addToCart(product));
+        swal("Thêm thành công!", "Sản phẩm đã được thêm vào giỏ hàng", "success");
 
         // history.push('/cart')
 
@@ -40,7 +40,8 @@ function ProductDetail({ match }) {
     return (
 
         <>
-            <div className="row">
+        <Suspense fallback={<div>Loading...</div>}>
+        <div className="row">
                 <div className="col-7 d-flex justify-content-center">
                     <img className="w-75 h-75" src={product.thumbnail}  />
                 </div>
@@ -113,6 +114,8 @@ function ProductDetail({ match }) {
 
 
             </div>
+        </Suspense>
+           
 
 
 

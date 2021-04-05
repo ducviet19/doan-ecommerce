@@ -1,6 +1,6 @@
 import { takeLatest, put, all, call } from 'redux-saga/effects';
 import { clearCart } from '../Cart/cart.action';
-import { setOrderDetail, setUserOrderHistory ,getOrderDetail, getUserOrderHistory, setOrders } from './order.action';
+import { setOrderDetail, setUserOrderHistory ,getOrderDetail, getUserOrderHistory, setOrders, fetchOrders } from './order.action';
 import { handleAddOrder, handleDeleteOrder, handleEditOrder, handleFetchOrders, handleGetOrder, handleGetUserOrderHistory } from './order.helper';
 import orderTypes from './order.types';
 
@@ -29,7 +29,7 @@ export function* onAddOrder() {
 
 
 
-export function* fetchOrders({payload}) {
+export function* fetchListOrder({payload}) {
     try {
         const order = yield handleFetchOrders(payload);
         yield put(
@@ -42,7 +42,7 @@ export function* fetchOrders({payload}) {
 }
 
 export function* onFetchOrder() {
-    yield takeLatest(orderTypes.FETCH_ORDERS, fetchOrders)
+    yield takeLatest(orderTypes.FETCH_ORDERS, fetchListOrder)
 }
 
 
@@ -93,7 +93,7 @@ export function* editOrder({payload, id}) {
         const order = yield handleEditOrder(payload, id)
         
         yield put(
-            getOrderDetail()
+            getOrderDetail(order)
         )
     } catch (error) {
         
@@ -110,7 +110,7 @@ export function* deleteOrder({payload}) {
         yield handleDeleteOrder(payload);
 
         yield put(
-            getUserOrderHistory()
+            fetchOrders()
         )
     } catch (error) {
         

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addQtyItem, addToCart, reduceCartItem, removeCart, removeCartItem } from '../../redux/Cart/cart.action';
 import { selectCartTotal } from '../../redux/Cart/cart.selectors';
+import swal from 'sweetalert';
 
 
 const mapState = ({ productsData }) => ({
@@ -20,7 +21,18 @@ function Item(props) {
     }
     
     const removeCart = (documentID) => {
-        dispatch(removeCartItem({documentID}))
+        
+        swal({
+            title: "Xóa sản phẩm khỏi giỏ hàng?",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+          })
+          .then((willDelete) => {
+            if (willDelete) {
+                dispatch(removeCartItem({documentID}))
+            }
+          });
     }
 
     const { thumbnail , name , size ,quantity , price } = props

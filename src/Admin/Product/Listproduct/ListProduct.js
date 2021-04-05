@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import useScrollTop from '../../../hook/useScrollTop';
 import { deleteProduct, fetchProducts } from '../../../redux/Product/products.action';
-
+import swal from 'sweetalert';
 
 const mapState = ({ productsData }) => ({
     products: productsData.products
@@ -40,22 +40,34 @@ function ListProduct(props) {
                 </thead>
                 <tbody>
                     {
-                        products.map((product,index) => {
-                            const { name, description , category , thumbnail , price , documentID ,number} = product
+                        products.map((product, index) => {
+                            const { name, description, category, thumbnail, price, documentID, number } = product
                             return (
                                 <tr key={index}>
-                                <th scope="row">{documentID}</th>
-                                <td><Link to={`/admin/editproduct/${documentID}`} >{name}</Link> </td>
-                                <td> <img className="img-thumbnail w-25" src={thumbnail}  /> </td>
-                                <td>{category}</td>
-                                <td>{number}</td>
-                                <td>{price}</td>
-                                <td ><button className="btn btn-danger" onClick={() => dispatch(deleteProduct(documentID)) }>X</button></td>
-                            </tr>
+                                    <th scope="row">{documentID}</th>
+                                    <td><Link to={`/admin/editproduct/${documentID}`} >{name}</Link> </td>
+                                    <td> <img className="img-thumbnail w-25" src={thumbnail} /> </td>
+                                    <td>{category}</td>
+                                    <td>{number}</td>
+                                    <td>{price}</td>
+                                    <td ><button className="btn btn-danger" onClick={() => {
+                                        swal({
+                                            title: "Xóa sản phẩm?",
+                                            icon: "warning",
+                                            buttons: true,
+                                            dangerMode: true,
+                                        })
+                                        .then((willDelete) => {
+                                            if (willDelete) {
+                                                dispatch(deleteProduct(documentID))
+                                            }
+                                        });
+                                    }}>X</button></td>
+                                </tr>
                             )
                         })
                     }
-                    
+
 
                 </tbody>
             </table>
