@@ -40,82 +40,72 @@ function ProductDetail({ match }) {
     return (
 
         <>
-        <Suspense fallback={<div>Loading...</div>}>
-        <div className="row">
-                <div className="col-7 d-flex justify-content-center">
-                    <img className="w-75 h-75" src={product.thumbnail}  />
-                </div>
-                <div className="col-5">
-                    <div className="title ">
-                        <h2>{product.name}</h2>
+            <Suspense fallback={<div>Loading...</div>}>
+                <div className="row pt-5">
+                    <div className="col-12 col-lg-7 d-flex justify-content-center">
+                        <img className="w-75 h-75" src={product.thumbnail} />
                     </div>
-                    <div className="status-product mt-2">
-                        <p>Trạng Thái  : Còn Hàng</p>
-                    </div>
-                    <div className="price-product border w-50 p-2">
-                        <strong>{product.price}đ</strong>
-                    </div>
-                    <div className="mt-3 mb-3">
-                        <div className="row w-50 p-2">
-                            <p className="col">Số lượng</p>
-                            <div className="col">
-                                <select class="custom-select w-75">
+                    <div className="col-12 col-lg-5">
+                        <div className="title ">
+                            <h2>{product.name}</h2>
+                        </div>
+                        <div className="status-product mt-2">
+                            <p>Trạng Thái  : Còn Hàng</p>
+                        </div>
+                        <div className="price-product w-50 p-2">
+                            <strong>{product.price}đ</strong>
+                        </div>
+                        <div className="mt-3 mb-3">
 
-                                    <option selected value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                </select>
+                            <div className="row w-50 p-2">
+                                <div> <p className="col">Dung Tích</p></div>
+                                <div className="col h-75">
+                                    <select class="custom-select w-75">
+                                        <option selected value="1">S</option>
+                                        <option value="2">M</option>
+                                        <option value="3">L</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
-                        <div className="row w-50 p-2">
-                            <p className="col">Dung Tích</p>
-                            <div className="col">
-                                <select class="custom-select w-75">
-
-                                    <option selected value="1">S</option>
-                                    <option value="2">M</option>
-                                    <option value="3">L</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <button className="btn btn-primary mr-3" onClick={() => { handleAddToCart(product) }}>Thêm vào giỏ hàng</button>
-                        <button className="btn btn-danger">Mua Ngay</button>
-                    </div>
-                    <div className="desctiption mt-3 pt-3">
                         <div>
-                            <strong>Mô tả</strong>
+                            <button className="btn btn-secondary mr-3" onClick={() => { handleAddToCart(product) }}><i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng</button>
+                        </div>
+                        <div className="desctiption mt-3 pt-3">
                             <div>
-                                <p className="text-left">
-                                    {product.description}
-                                </p>
+                                <strong>Mô tả</strong>
+                                <div>
+                                    <p className="text-left">
+                                        {product.description}
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div className="row">
-                <h2>
-                    Hình ảnh chi tiết
-                </h2>
-                <div>
+                <div className="row">
+                    <div className="text-center d-flex justify-align-center">
+                        <h2 >
+                            Hình ảnh chi tiết
+                </h2> </div>
+
                     <div>
-                        <img className="w-100  h-100" src={product.imgDetail} alt="Card image" />
+                        <div>
+                            <img className="w-75  h-75" src={product.imgDetail} alt="Card image" />
+                        </div>
+                        <div>
+                            <img className="w-75  h-75" src={product.imgDetail} alt="Card image" />
+                        </div>
+                        <div>
+                            <img className="w-75  h-75" src={product.imgDetail} alt="Card image" />
+                        </div>
                     </div>
-                    <div>
-                        <img className="w-100  h-100" src="//product.hstatic.net/1000341789/product/mausac_mindigo_10f20dja003__1__2fbe278d8d664cda9378f63e1dc5dcb4_master.jpg" alt="Card image" />
-                    </div>
-                    <div>
-                        <img className="w-100  h-100" src="//product.hstatic.net/1000341789/product/mausac_mindigo_10f20dja003__1__2fbe278d8d664cda9378f63e1dc5dcb4_master.jpg" alt="Card image" />
-                    </div>
+
+
                 </div>
+            </Suspense>
 
-
-            </div>
-        </Suspense>
-           
 
 
 

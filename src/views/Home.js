@@ -56,7 +56,7 @@ function Home() {
                         }
                     </div>
                 </div>
-                <div className="best-seller m-5">
+                {/* <div className="best-seller m-5">
                     <div>
                         <h2 className="text-center m-5"> <a href>SẢN PHẨM BÁN CHẠY</a> </h2>
                     </div>
@@ -110,10 +110,10 @@ function Home() {
                             </div>
                         </Link>
                     </div>
-                </div>
+                </div> */}
                 <div className="form_info m-3 p-5 border">
                     <div className="input-group w-75 m-auto">
-                        <input type="text" className="form-control p-2x" placeholder="Đăng kí thông tin để nhận sản phẩm" aria-label aria-describedby="basic-addon1" />
+                        <input type="text" className="form-control p-2x" placeholder="Đăng kí để nhận thông tin khuyến mãi" aria-label aria-describedby="basic-addon1" />
                         <div className="input-group-append">
                             <button className="btn btn-secondary" type="button">Đăng kí</button>
                         </div>

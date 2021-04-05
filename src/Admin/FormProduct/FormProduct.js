@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 
 import { addProduct, fetchProducts } from './../../redux/Product/products.action'
-
+import swal from 'sweetalert';
+import { useHistory } from 'react-router-dom';
 const mapState = ({ productsData }) => ({
     products: productsData.products
 })
@@ -10,6 +11,7 @@ const mapState = ({ productsData }) => ({
 function FormProduct(props) {
     const { products } = useSelector(mapState);
     const dispatch = useDispatch();
+    const history = useHistory()
     const [name, setName] = useState('');
     const [category, setCategory] = useState('');
     const [description, setDescription] = useState('');
@@ -51,6 +53,8 @@ function FormProduct(props) {
             })
 
         );
+        swal("Thêm sản phẩm thành công!","", "success");
+        history.push('/admin/listproduct')
         resetForm();
     }
 
@@ -68,6 +72,7 @@ function FormProduct(props) {
                         <option>Kem chống nắng</option>
                         <option>Sữa rửa mặt</option>
                         <option>Mặt nạ</option>
+                        <option>Nước Hoa</option>
                     </select>
                 </div>
                 <div className="form-group">
