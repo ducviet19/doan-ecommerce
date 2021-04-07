@@ -7,6 +7,7 @@ import { addToCart } from '../../redux/Cart/cart.action';
 import { fetchProductStart, setProduct } from '../../redux/Product/products.action';
 import LazyLoad from 'react-lazyload';
 import swal from 'sweetalert';
+import Review from '../Review/Review';
 const mapState = state => ({
     product: state.productsData.product
 });
@@ -106,7 +107,7 @@ function ProductDetail({ match }) {
                 </div>
             </Suspense>
 
-
+            <Review product={product}  />
 
 
         </>
