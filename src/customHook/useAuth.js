@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-
+import swal from 'sweetalert';
 const mapState = ({ user }) => ({
   currentUser: user.currentUser
 });
@@ -12,7 +12,12 @@ const useAuth = props => {
 
   useEffect(() => {
     if (!currentUser) {
-      history.push('/login');
+      history.push('/login')
+      swal({
+        button: false,
+        text: "Đăng nhập để thực hiện",
+        timer: 1000
+      });
     }
 
   }, [currentUser]);

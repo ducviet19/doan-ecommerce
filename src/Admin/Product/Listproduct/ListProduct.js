@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import useScrollTop from '../../../hook/useScrollTop';
 import { deleteProduct, fetchProducts } from '../../../redux/Product/products.action';
 import swal from 'sweetalert';
+import ListReview from '../../ReviewAdmin/ListReview';
 
 const mapState = ({ productsData }) => ({
     products: productsData.products
@@ -71,6 +72,8 @@ function ListProduct(props) {
 
                 </tbody>
             </table>
+
+
 
         </div>
     );

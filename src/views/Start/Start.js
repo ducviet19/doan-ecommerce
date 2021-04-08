@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { fetchReviews } from '../../redux/Review/Review.action';
 const mapState = state => ({
     listReview: state.reviewData.listReview
 });
@@ -7,6 +8,11 @@ function Start(props) {
 
     const { listReview } = useSelector(mapState)
     const dispatch = useDispatch()
+    useEffect(() => {
+        dispatch(
+            dispatch(fetchReviews(props.id))
+        )
+    } ,[])
 
 
     const producStart = () => {

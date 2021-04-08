@@ -39,9 +39,27 @@ export function* fetchListReview({payload}) {
 export function* onFetchReview() {
     yield takeLatest(reviewTypes.FETCH_REVIEW, fetchListReview)
 }
+
+
+export function* deleteReviewUser({payload}) {
+    try {
+        console.log(payload)
+        
+    } catch (error) {
+        
+    }
+}
+
+export function* onDeleteReview() {
+    yield takeLatest(reviewTypes.DELETE_REVIEW, deleteReviewUser)
+}
+
+
+
 export default function* reviewSagas() {
     yield all([
         call(onAddReview),
-        call(onFetchReview)
+        call(onFetchReview),
+        call(onDeleteReview)
     ])
 }

@@ -16,3 +16,12 @@ export const setReviews = review => ({
     type: reviewTypes.SET_REVIEW,
     payload: review
 })
+
+// action 
+
+export const deleteReview = id => ({
+    type: reviewTypes.DELETE_REVIEW,
+    payload: id
+})
+
+

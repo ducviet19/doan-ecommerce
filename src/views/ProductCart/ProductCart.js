@@ -39,8 +39,8 @@ function ProductCart(product) {
     }
     return (
         <>
-            <div to={`/product/${documentID}`} className="card p-0  col-lg-3 col-12 text-decoration-none">
-            <img className="img-fluid w-75 h-100" src={thumbnail} alt="Card image" />
+            <div to={`/product/${documentID}`} className="card p-1 mr-5 mt-5    col-lg-3 col-12 text-decoration-none">
+            <img className="img-fluid m-auto w-75" src={thumbnail} alt="Card image" />
             <Link to={`/product/${documentID}`} className=""> 
             <div className="detail">
                     <p className="card-text text-center bold  ">{name}</p>         
@@ -52,7 +52,7 @@ function ProductCart(product) {
                 </div>
                 <div className="rating text-center p-3">
                     <span>
-                    <Start />
+                    {/* <Start id={documentID} /> */}
                         {/* <i class="fa fa-star" aria-hidden="true"></i>
                         <i class="fa fa-star" aria-hidden="true"></i>
                         <i class="fa fa-star" aria-hidden="true"></i>

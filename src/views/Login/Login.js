@@ -1,7 +1,7 @@
 import './style.css';
 
 
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { emailSignInStart , signInSuccess, signInWithGoogle ,googleSignInStart } from '../../redux/User/user.action';
@@ -16,6 +16,7 @@ const mapState = ({ user }) => ({
 function Login(props) {
     useScrollTop();
     
+    const history = useHistory()
     const { currentUser } = useSelector(mapState);
     const dispatch = useDispatch();
     const [email, setEmail] = useState();
@@ -36,6 +37,7 @@ function Login(props) {
         e.preventDefault();
         dispatch(emailSignInStart({ email, password }));
         swal("Đăng nhập thành công!", "", "success");
+        history.goBack();
        
     }
 
@@ -46,8 +48,8 @@ function Login(props) {
     }
 
     return (
-        <div className="login row m-5">
-            <div className="col-lg m-5">
+        <div className="login row">
+            <div className="col-lg">
                 <h1 className="text-center">Đăng nhập</h1>
             </div>
             <div className="col-lg m-5">

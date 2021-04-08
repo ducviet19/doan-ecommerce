@@ -37,7 +37,7 @@ function Home() {
                     <div>
                         <h2 className="text-center m-5"><a href>SẢN PHẨM MỚI</a> </h2>
                     </div>
-                    <div className="row">
+                    <div className="row d-flex justify-content-center">
 
                         {
                             products.map((product) => {

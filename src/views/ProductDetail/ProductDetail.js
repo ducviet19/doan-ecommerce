@@ -22,6 +22,10 @@ function ProductDetail({ match }) {
     const dispatch = useDispatch();
     const { product } = useSelector(mapState)
     let { id } = useParams();
+    console.log(product)
+
+
+
 
 
     useEffect(() => {
@@ -98,7 +102,7 @@ function ProductDetail({ match }) {
                         <h5>{product.name}</h5>
                         <p className="mb-2 text-muted text-uppercase small">{product.category}</p>
                                  
-                        <Start />    
+                        <Start id={id} />    
                         <p><span className="mr-1"><strong>{product.price} vnđ</strong></span></p>
                         <strong>Mô tả</strong>
                         <p className="pt-1">{product.description}</p>
@@ -178,7 +182,7 @@ function ProductDetail({ match }) {
                 </div> */}
             </Suspense>
             <Review product={product} />
-            <Rate product={product} />
+            <Rate id={id} />
 
 
         </>

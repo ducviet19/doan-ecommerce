@@ -1,15 +1,19 @@
-import React, { useEffect } from 'react';
+import firebase from 'firebase/app';
+import 'firebase/firestore';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchReviews } from '../../redux/Review/Review.action';
-import './style.css';
+import { addReview, deleteReview, fetchReviews } from '../../redux/Review/Review.action';
+import { deleteReviewUser } from '../../redux/Review/Review.saga';
+import ReplyComment from './ReplyComment';
 const mapState = state => ({
     listReview: state.reviewData.listReview
 });
 
-function Rate(props) {
+function ListReview(props) {
 
     const { listReview } = useSelector(mapState)
     const dispatch = useDispatch()
+    const [reply , setReply] = useState(false)
 
     useEffect(() => {
         dispatch(
@@ -18,8 +22,15 @@ function Rate(props) {
 
     } , [])
 
+
     console.log(props.id)
     console.log(listReview)
+
+    const handleDelete = (index) => {
+        dispatch(
+            deleteReviewUser(index)
+        )
+    }
 
 
     const reviewProduct = () => {
@@ -27,7 +38,7 @@ function Rate(props) {
             <div>
                 {listReview.review.length == 0 ? "Sản phẩm chưa có đánh giá" : <>
                     {
-                        listReview.review.map((e) => {
+                        listReview.review.map((e,index) => {
                             console.log(e.timeDate.split("T")[0])
                             console.log(e.user.imageUser)
                             return (
@@ -51,28 +62,23 @@ function Rate(props) {
                                                         <span className="float-right"><i className="text-warning fa fa-star" /></span> */}
                                                     </p>
                                                     <div className="clearfix" />
-                                                    <p>{e.comment}</p>
-
+                                                    <p>{e.comment}</p>  
                                                 </div>
                                             </div>
-                                            {/* <div class="card card-inner">
-                                                <div class="card-body">
-                                                    <div class="row">
-                                                        <div class="col-md-2">
-                                                            <img src="https://image.ibb.co/jw55Ex/def_face.jpg" class="img img-rounded img-fluid" />
-                                                            <p class="text-secondary text-center">15 Minutes Ago</p>
-                                                        </div>
-                                                        <div class="col-md-10">
-                                                            <p><a href="https://maniruzzaman-akash.blogspot.com/p/contact.html"><strong>Maniruzzaman Akash</strong></a></p>
-                                                            <p>Lorem Ipsum is simply dummy text of the pr make  but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-                                                            <p>
-                                                                <a class="float-right btn btn-outline-primary ml-2">  <i class="fa fa-reply"></i> Reply</a>
-                                                                <a class="float-right btn text-white btn-danger"> <i class="fa fa-heart"></i> Like</a>
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div> */}
+                                            <div>
+                                                <button onClick={ () => {
+                                                    setReply(true)
+                                                } }>Trả lời</button>
+                                                <button onClick={ () => {
+                                                    dispatch(
+                                                        addReview({
+                                                            review: firebase.firestore.FieldValue.arrayRemove(e)
+                                                        }, props.id)
+                                                    )
+                                                } } >Xoá</button>
+                                             </div>
+                                             {reply == true ?  <ReplyComment index={index} id={props.id} reply={reply} /> : "" }
+                                            
 
                                         </div>
                                     </div>
@@ -88,9 +94,6 @@ function Rate(props) {
     }
 
 
-    useEffect(() => {
-        dispatch(fetchReviews(props.id))
-    }, [])
 
     return (
         <>
@@ -102,4 +105,4 @@ function Rate(props) {
     );
 }
 
-export default Rate;
+export default ListReview;
