@@ -34,25 +34,9 @@ function Login(props) {
 
     const handleSubmit =  (e) => {
         e.preventDefault();
+        dispatch(emailSignInStart({ email, password }));
+        swal("Đăng nhập thành công!", "", "success");
        
-        swal({
-            text: 'Search for a movie. e.g. "La La Land".',
-
-            button: "Aww yiss!",
-          })
-          .then(() => {
-            dispatch(emailSignInStart({ email, password }));
-            swal("Đăng nhập thành công!", "", "success");
-          })
-          
-          .catch(err => {
-            if (err) {
-              swal("Oh noes!", "The AJAX request failed!", "error");
-            } else {
-              swal.stopLoading();
-              swal.close();
-            }
-          });
     }
 
     const loginWithGoogle = () => {

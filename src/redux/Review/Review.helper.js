@@ -14,3 +14,22 @@ export const handleAddReview = (review,id) => {
             })
     });
 }
+
+export const handleFetchReviews = (documentID) => {
+    return new Promise((resolve, reject) => {
+        firestore.collection('products').doc(documentID)
+            .get()
+            .then(snapshot => {
+                if (snapshot.exists) {
+                    resolve({
+                      ...snapshot.data(),
+                      documentID: documentID
+                    });
+                  }
+
+            })
+            .catch(err => {
+                reject(err);
+            })
+    })
+}

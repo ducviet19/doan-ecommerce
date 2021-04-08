@@ -8,8 +8,9 @@ export const addReview = (review,id) => ({
  
 
 // reviews []
-export const fetchReviews = () => ({
-    type: reviewTypes.FETCH_REVIEW
+export const fetchReviews = (id) => ({
+    type: reviewTypes.FETCH_REVIEW,
+    payload: id
 });
 export const setReviews = review => ({
     type: reviewTypes.SET_REVIEW,

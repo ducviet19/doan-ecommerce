@@ -6,6 +6,7 @@ import { addToCart, removeCart } from '../../redux/Cart/cart.action';
 import { selectCartItems } from '../../redux/Cart/cart.selectors';
 import './style.css';
 import swal from 'sweetalert';
+import Start from '../Start/Start';
 const mapState = createStructuredSelector({
     cartItems: selectCartItems
 });
@@ -23,7 +24,16 @@ function ProductCart(product) {
     const handleAddToCart = (product) => {
         if (!product) return;
         dispatch(addToCart(product));
-        swal("Thêm thành công!", "Sản phẩm đã được thêm vào giỏ hàng", "success");
+        // swal("Thêm thành công!", "Sản phẩm đã được thêm vào giỏ hàng", "success" ,{
+        //     icon: "success",
+        //     timer: 1000
+        // });
+        swal({
+            button: false,
+            text: "Sản phẩm đã được thêm vào giỏ hàng",
+            icon: "success",
+            timer: 1000
+          });
         // history.push('/cart')
 
     }
@@ -42,11 +52,12 @@ function ProductCart(product) {
                 </div>
                 <div className="rating text-center p-3">
                     <span>
+                    <Start />
+                        {/* <i class="fa fa-star" aria-hidden="true"></i>
                         <i class="fa fa-star" aria-hidden="true"></i>
                         <i class="fa fa-star" aria-hidden="true"></i>
                         <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i> */}
                     </span>
                 </div>
             </div>

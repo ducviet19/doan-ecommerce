@@ -53,7 +53,7 @@ function Header(props) {
                 </div></div>
 
               <div className="col-3 p-2">
-                <Link to="/cart"><i className="fas fa-shopping-cart"></i> <span className="numberCart">{totalNumCartItems == 0 ? "" : totalNumCartItems}  </span>  </Link>
+                <Link to="/cart"><i className="fas fa-shopping-cart"></i> {totalNumCartItems == 0 ? "" : <><span className="numberCart">{totalNumCartItems == 0 ? "" : totalNumCartItems}  </span> </>}     </Link>
               </div>
             </div>
             <div className="ml-2">
