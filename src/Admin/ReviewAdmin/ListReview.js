@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addReview, deleteReview, fetchReviews } from '../../redux/Review/Review.action';
 import { deleteReviewUser } from '../../redux/Review/Review.saga';
+import ButtonComment from './ButtonComment';
 import ReplyComment from './ReplyComment';
 const mapState = state => ({
     listReview: state.reviewData.listReview
@@ -13,22 +14,24 @@ function ListReview(props) {
 
     const { listReview } = useSelector(mapState)
     const dispatch = useDispatch()
-    const [reply , setReply] = useState(false)
+    const [reply, setReply] = useState(false)
 
     useEffect(() => {
         dispatch(
             fetchReviews(props.id)
         )
 
-    } , [])
+    }, [])
 
 
     console.log(props.id)
     console.log(listReview)
 
-    const handleDelete = (index) => {
+    const handleDelete = (review) => {
         dispatch(
-            deleteReviewUser(index)
+            addReview({
+                review: firebase.firestore.FieldValue.arrayRemove(review)
+            }, props.id)
         )
     }
 
@@ -38,7 +41,7 @@ function ListReview(props) {
             <div>
                 {listReview.review.length == 0 ? "Sản phẩm chưa có đánh giá" : <>
                     {
-                        listReview.review.map((e,index) => {
+                        listReview.review.map((e, index) => {
                             console.log(e.timeDate.split("T")[0])
                             console.log(e.user.imageUser)
                             return (
@@ -49,7 +52,7 @@ function ListReview(props) {
                                                 <div className="col-md-2">
                                                     <img src={e.user.imageUser} className="img img-rounded img-fluid rounded-circle w-50" />
                                                     <div>
-                                                    <p className="text-secondary">{e.timeDate.split("T")[0]}</p>
+                                                        <p className="text-secondary">{e.timeDate.split("T")[0]}</p>
                                                     </div>
                                                 </div>
                                                 <div className="col-md-10">
@@ -62,23 +65,25 @@ function ListReview(props) {
                                                         <span className="float-right"><i className="text-warning fa fa-star" /></span> */}
                                                     </p>
                                                     <div className="clearfix" />
-                                                    <p>{e.comment}</p>  
+                                                    <p>{e.comment}</p>
                                                 </div>
                                             </div>
                                             <div>
-                                                <button onClick={ () => {
-                                                    setReply(true)
-                                                } }>Trả lời</button>
-                                                <button onClick={ () => {
+                                                <button onClick={() => {
+                                                    // handleDelete(e)
                                                     dispatch(
                                                         addReview({
                                                             review: firebase.firestore.FieldValue.arrayRemove(e)
                                                         }, props.id)
                                                     )
-                                                } } >Xoá</button>
-                                             </div>
-                                             {reply == true ?  <ReplyComment index={index} id={props.id} reply={reply} /> : "" }
-                                            
+                                                }} >Xoá</button>
+
+
+                                               <ButtonComment />
+
+                                            </div>
+                                           
+
 
                                         </div>
                                     </div>

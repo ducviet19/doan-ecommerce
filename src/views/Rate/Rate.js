@@ -32,7 +32,7 @@ function Rate(props) {
                             console.log(e.user.imageUser)
                             return (
                                 <>
-                                    <div className="card m-5">
+                                    <div className="card m-2">
                                         <div className="card-body">
                                             <div className="row">
                                                 <div className="col-md-2">

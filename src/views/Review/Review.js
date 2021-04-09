@@ -112,7 +112,6 @@ function Review(props) {
         },
         validate,
         onSubmit: values => {
-
             if (user) {
                 const data = {
                     timeDate: new Date().toISOString(),
@@ -137,12 +136,7 @@ function Review(props) {
                     timer: 1000
                 });
             }
-
-
-
-            
             // history.push('/');
-
         },
     });
 

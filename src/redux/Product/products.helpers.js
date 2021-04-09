@@ -74,7 +74,7 @@ export const handleEditProduct = (product ,id ) => {
         firestore
             .collection('products')
             .doc(id)
-            .set(product)
+            .update(product)
             .then(() => {
                 resolve()
 

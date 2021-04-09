@@ -97,7 +97,7 @@ function Payment(props) {
             )
             formik.resetForm();
             swal("Đặt Hàng Thành Công");
-            history.push('/');
+            // history.push('/');
 
         },
     });

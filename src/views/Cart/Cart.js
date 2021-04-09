@@ -22,7 +22,7 @@ function Cart(props) {
         <>
         {
             cartItems.length > 0 ?  
-            <div className="col-12">
+            <div className="col-12 ">
             <h2>Giỏ Hàng</h2>
             <table class="table">
                 <thead>
@@ -53,8 +53,10 @@ function Cart(props) {
             </table>
         </div> 
        
-        : <div className="text-center">
+        : <div className="text-center mt-4">
              <h3 >Bạn chưa có sản phẩm nào trong giỏ hàng</h3>
+             <Link to="/"><button className="btn btn-primary">Tiếp tục mua hàng</button></Link>
+             
         </div>
         }
             
