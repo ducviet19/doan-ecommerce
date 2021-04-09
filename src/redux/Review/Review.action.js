@@ -5,6 +5,8 @@ export const addReview = (review,id) => ({
     payload: review,
     id
 });
+
+
  
 
 // reviews []
@@ -24,4 +26,23 @@ export const deleteReview = id => ({
     payload: id
 })
 
+
+
+
+
+// REPLY
+export const addReply = (review,id) => ({
+    type: reviewTypes.ADD_REPLY,
+    payload: review,
+    id: id
+});
+
+export const fetchReply = (id) => ({
+    type: reviewTypes.FETCH_REPLY,
+    payload: id
+});
+export const setReply = review => ({
+    type: reviewTypes.SET_REPLY,
+    payload: review
+})
 

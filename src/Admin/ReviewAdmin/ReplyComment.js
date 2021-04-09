@@ -1,7 +1,7 @@
 import { replace } from 'formik';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addReview } from '../../redux/Review/Review.action';
+import { addReply, addReview } from '../../redux/Review/Review.action';
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 const mapState = (state) => ({
@@ -14,19 +14,28 @@ function ReplyComment(props) {
     const [reply, setReply] = useState("");
     const dispatch = useDispatch();
 
+    // console.log(props.id)
+    // listReview.review[0].reply = [
+    //     { user: "abc" , reply : "hay lam ban" ,
+    
+    //     user: "sa" , reply : "hay lam ban"}
+    // ]
+    console.log(props)
 
     const handleSubmit = (e) => {
         e.preventDefault();
         const data = {
+            user: user,
             timeDate: new Date().toISOString(),
             reply: reply
-        }
+        } 
         
         dispatch(
-            addReview({
+            addReply({
                 reply: firebase.firestore.FieldValue.arrayUnion(data)
-            },props.id)
+            },props.id )
         )
+        setReply('')
 
     }
 

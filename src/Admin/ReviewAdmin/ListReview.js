@@ -24,13 +24,18 @@ function ListReview(props) {
     }, [])
 
 
-    console.log(props.id)
-    console.log(listReview)
+    // console.log(props.id)
+    // listReview.review[0].reply = [
+    //     { user: "abc" , reply : "hay lam ban" ,
+    
+    //     user: "sa" , reply : "hay lam ban"}
+    // ]
+    // console.log(listReview.review[0])
 
     const handleDelete = (review) => {
         dispatch(
             addReview({
-                review: firebase.firestore.FieldValue.arrayRemove(review)
+                review: firebase.firestore.FieldValue.arrayUnion(review)
             }, props.id)
         )
     }
@@ -43,7 +48,7 @@ function ListReview(props) {
                     {
                         listReview.review.map((e, index) => {
                             console.log(e.timeDate.split("T")[0])
-                            console.log(e.user.imageUser)
+                            console.log(e)
                             return (
                                 <>
                                     <div className="card m-5">
@@ -74,12 +79,12 @@ function ListReview(props) {
                                                     dispatch(
                                                         addReview({
                                                             review: firebase.firestore.FieldValue.arrayRemove(e)
-                                                        }, props.id)
+                                                        }, props.id) 
                                                     )
                                                 }} >Xoá</button>
 
 
-                                               <ButtonComment />
+                                               <ButtonComment review={e} index={index} id={props.id} />
 
                                             </div>
                                            
