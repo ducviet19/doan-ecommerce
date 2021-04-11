@@ -11,6 +11,7 @@ import { connect, useDispatch, useSelector } from 'react-redux';
 import { signOutUserStart, signOutUserSuccess } from '../redux/User/user.action';
 import { checkUserIsAdmin } from '../Utils';
 import { selectCartItemsCount } from '../redux/Cart/cart.selectors';
+import Search from '../Search/Search';
 
 const mapState = (state) => ({
   user: state.user.currentUser,
@@ -41,28 +42,32 @@ function Header(props) {
           <div className="col">
             <Link to="/"><img width="200px" src="//theme.hstatic.net/1000341789/1000533258/14/logo.png?v=709" alt="" /> </Link>
           </div>
+          <div className="col">
+            <Search />
+          </div>
           <div className="col d-flex">
-            
+
             <div class="dropdown row">
-            {user !== null ?  <div className="col-9">  <p class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              {user !== null ? <div className="col-9">  <p class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <a className="m-2"> <i class="fas fa-user"></i> {user.displayName} </a>
               </p>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <div><Link className="m-2" to="/order"> <i class="fas fa-shipping-fast"></i> Don Hang  </Link></div>
-                  <div><Link className="m-2" to="/order"> <i class="far fa-user"></i> Tài khoản  </Link></div>
-                  <div><Link className="m-2"> {user !== null ? <a>{isAdmin ? <Link to="/admin"><i class="fas fa-users-cog"></i>Admin</Link> : ''} </a> : <></>}  </Link></div>
+                  <div className="p-2"><Link style={{ textDecoration: 'none' }} className="m-2" to="/order"> <i class="fa fa-shopping-bag" aria-hidden="true"></i> <span>Đơn Hàng</span>  </Link></div>
+                  <div className="p-2"><Link style={{ textDecoration: 'none' }} className="m-2" to="/order"> <i class="far fa-user"></i>  <span>Tài khoản</span>  </Link></div>
+                  <div className="p-2"><Link style={{ textDecoration: 'none' }} className="m-2"> {user !== null ? <a>{isAdmin ? <Link to="/admin"><i class="fas fa-users-cog"></i> <span>Quản trị</span> </Link> : ''} </a> : <></>}  </Link></div>
+                  <div className="ml-2 p-2">
+                    {user ? <button className="btn btn-danger" onClick={() => signOut()} >Đăng Xuất</button> : ''}
+                  </div>
                 </div>
 
-              </div> : <a><Link to="/login">Đăng nhập</Link> </a>}
-             
+              </div> : <a><Link style={{ textDecoration: 'none' }} to="/login">Đăng nhập</Link> </a>}
+
 
               <div className="col-3 p-2">
-                <Link to="/cart"><i className="fas fa-shopping-cart"></i> {totalNumCartItems == 0 ? "" : <><span className="numberCart">{totalNumCartItems == 0 ? "" : totalNumCartItems}  </span> </>}     </Link>
+                <Link to="/cart"><i class="fa fa-shopping-bag" aria-hidden="true"></i> {totalNumCartItems == 0 ? "" : <><span className="numberCart">{totalNumCartItems == 0 ? "" : totalNumCartItems}  </span> </>}     </Link>
               </div>
             </div>
-            <div className="ml-2">
-              {user ? <button className="btn" onClick={() => signOut()} >Đăng Xuất</button> : ''}
-            </div>
+
 
           </div>
         </div>
