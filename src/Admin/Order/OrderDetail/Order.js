@@ -50,10 +50,7 @@ function Order(props) {
                 <li>SĐT : {orderDetail.shipping.phone}</li>
             </ul>
             <form onSubmit={handleSubmit}>
-                {/* <div className="form-group">
-                        <label for="number">Số lượng tả sản phẩm</label>
-                        <input value={status} onChange={(e) => setStatus(e.target.value)} type="text" className="form-control" id="number" placeholder="Nhập tên sản phẩm" />
-                    </div> */}
+              
 
                 <div className="form-group">
                     <label for="category">Loại sản phẩm</label>

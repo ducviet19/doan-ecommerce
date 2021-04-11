@@ -10,12 +10,23 @@ export const addProduct = productData => ({
 // products []
 export const fetchProducts = (filters) => ({
     type: productsTypes.FETCH_PRODUCTS,
-    payload: filters,
+    payload: filters || undefined,
 });
 export const setProducts = products => ({
     type: productsTypes.SET_PRODUCTS,
     payload: products
 })
+
+
+// products []
+export const fetchProductsHome = () => ({
+    type: productsTypes.FETCH_PRODUCTS_HOME,
+});
+export const setProductsHome = products => ({
+    type: productsTypes.SET_PRODUCTS_HOME,
+    payload: products
+})
+
 
 
 

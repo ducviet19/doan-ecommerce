@@ -7,11 +7,13 @@ import {
     useHistory
 } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchProducts } from '../redux/Product/products.action';
+import { fetchProducts, fetchProductsHome } from '../redux/Product/products.action';
 import ProductCart from './ProductCart/ProductCart';
 import useScrollTop from '../hook/useScrollTop';
+import LoadMore from '../component/LoadMore/LoadMore';
 
 const mapState = ({ productsData }) => ({
+    productsHome: productsData.productsHome,
     products: productsData.products
 })
 
@@ -21,13 +23,27 @@ function Home() {
     const dispatch = useDispatch();
     const history = useHistory()
     const { products } = useSelector(mapState)
-    const { data } = products
-
+    const { data, queryDoc, isLastPage } = products;
+    console.log(products)
     useEffect(() => {
         dispatch(
+            // fetchProductsHome({})
             fetchProducts({})
         )
     }, [])
+
+    const handleLoadMore = () => {
+        dispatch(
+            fetchProducts({
+                startAfterDoc: queryDoc,
+                persistProducts: data
+            })
+        );
+    };
+
+    const configLoadMore = {
+        onLoadMoreEvt: handleLoadMore,
+    };
 
     return (
         <>
@@ -41,7 +57,7 @@ function Home() {
                     <div className="row d-flex justify-content-center">
 
                         {
-                            data.map((product) => {
+                            (Array.isArray(data) && data.length > 0) && data.map((product, index) => {
                                 const { documentID, thumbnail, name, price } = product
                                 const configProduct = {
                                     ...product
@@ -55,6 +71,14 @@ function Home() {
                                 )
                             })
                         }
+                    </div>
+                    <div className='d-flex'>
+                        <div className='m-auto'>
+                            {!isLastPage && (
+                                <LoadMore {...configLoadMore} />
+                            )}
+                        </div>
+
                     </div>
                 </div>
                 {/* <div className="best-seller m-5">
