@@ -23,14 +23,14 @@ function OrderUser(props) {
     console.log(orderHistory)
     return (
         <div>
-            <div className="">
+            <div className="mt-5">
                 <h2>Danh sách đơn hàng </h2>
                 <table class="table table-light">
                     <thead>
                         <tr>
-                            <th scope="col">ID</th>
+                            <th scope="col">Đơn hàng</th>
                             <th scope="col">Thời gian</th>
-                            <th scope="col">Trạng thái</th>
+                            <th scope="col">Tình trạng</th>
                             <th scope="col"></th>
                         </tr>
                     </thead>
@@ -38,12 +38,13 @@ function OrderUser(props) {
                         {
                             orderHistory.map((order, index) => {
                                 const { name, price, thumbnail, quantity, userID, documentID, datePlaced, finish } = order
-                                console.log(datePlaced)
+                                console.log(datePlaced.split("T")[0])
                                 return (
                                     <tr key={index}>
                                         <td> <Link to={`/order/${documentID}`}> {documentID}</Link>   </td>
-                                        <td>{datePlaced}</td>
+                                        <td>{datePlaced.split("T")[0]}</td>
                                         <td>{finish == "true" ? <p>Hoàn thành</p> : <p> Đang Xử lý </p>}</td>
+                                        <td > <Link  to={`/order/${documentID}`}> <button className="btn btn-success">Xem</button></Link>   </td>
                                     </tr>
                                 )
                             })

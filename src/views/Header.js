@@ -34,44 +34,48 @@ function Header(props) {
   }
 
   return (
-    <header className="row navbar fixed-top p-0 ">
+    <header className="row navbar fixed-top p-0 mb-3 ">
       <div className="col-12">
-        <div className="d-flex justify-content-around row pt-3">
+        <div className="d-flex justify-content-around row pt-3 pb-3">
           <div className="col">
+            <Search />
           </div>
           <div className="col">
             <Link to="/"><img width="200px" src="//theme.hstatic.net/1000341789/1000533258/14/logo.png?v=709" alt="" /> </Link>
           </div>
-          <div className="col">
-            <Search />
-          </div>
-          <div className="col d-flex">
 
+          <div className="col d-flex">
+      
             <div class="dropdown row">
-              {user !== null ? <div className="col-9">  <p class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              {user !== null ? <div className="col-8">  <p class="btn" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <a className="m-2"> <i class="fas fa-user"></i> {user.displayName} </a>
               </p>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <div class="" aria-labelledby="dropdownMenuButton">
+                  <div className="show_menu">
                   <div className="p-2"><Link style={{ textDecoration: 'none' }} className="m-2" to="/order"> <i class="fa fa-shopping-bag" aria-hidden="true"></i> <span>Đơn Hàng</span>  </Link></div>
                   <div className="p-2"><Link style={{ textDecoration: 'none' }} className="m-2" to="/order"> <i class="far fa-user"></i>  <span>Tài khoản</span>  </Link></div>
                   <div className="p-2"><Link style={{ textDecoration: 'none' }} className="m-2"> {user !== null ? <a>{isAdmin ? <Link to="/admin"><i class="fas fa-users-cog"></i> <span>Quản trị</span> </Link> : ''} </a> : <></>}  </Link></div>
                   <div className="ml-2 p-2">
-                    {user ? <button className="btn btn-danger" onClick={() => signOut()} >Đăng Xuất</button> : ''}
+                    {user ? <button className="btn btn-danger" onClick={() => signOut()} ><i class="fas fa-sign-out-alt"></i> Đăng Xuất</button> : ''}
                   </div>
-                </div>
+                  </div>
 
+                
+                </div>
+           
               </div> : <a><Link style={{ textDecoration: 'none' }} to="/login">Đăng nhập</Link> </a>}
 
 
-              <div className="col-3 p-2">
+              <div className="col-4 p-2">
                 <Link to="/cart"><i class="fa fa-shopping-bag" aria-hidden="true"></i> {totalNumCartItems == 0 ? "" : <><span className="numberCart">{totalNumCartItems == 0 ? "" : totalNumCartItems}  </span> </>}     </Link>
               </div>
+             
             </div>
-
+          
 
           </div>
         </div>
-        <nav className="navbar  navbar-expand-lg navbar-light bg-light ">
+        <nav className="navbar  navbar-expand-lg navbar-light bg-light mb-5 ">
           <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon" />
           </button>

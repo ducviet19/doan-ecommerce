@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
+import { formatter } from '../../App';
 import { firestore } from '../../firebase/ultils';
 import { selectCartItems, selectCartTotal } from '../../redux/Cart/cart.selectors';
 import ButtonCheckOut from '../CheckOut/ButtonCheckOut';
@@ -47,7 +48,7 @@ function Cart(props) {
             <table>
                 <tr>
                     <td>
-                        <h3>Tổng Tiền : {total} </h3>
+                        <h3>Tổng Tiền : {formatter.format(total) } </h3>
                     </td>
                 </tr>
             </table>

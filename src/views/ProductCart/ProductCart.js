@@ -11,7 +11,14 @@ const mapState = createStructuredSelector({
     cartItems: selectCartItems
 });
 
+
+
+
 function ProductCart(product) {
+    const formatter = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'vnd'
+      })
     const { cartItems } = useSelector(mapState)
     const dispatch = useDispatch()
     const history = useHistory()
@@ -46,7 +53,7 @@ function ProductCart(product) {
                     <p className="card-text text-center bold  ">{name}</p>         
             </div>
             </Link> 
-                <p className="text-center"><strong>{price}đ</strong></p>
+                <p className="text-center"><strong> {formatter.format(price)}</strong></p>
                 <div className="d-flex justify-content-center">
                     { number == 0 ?  <button className="btn btn-primary" disabled >Sold Out</button> :  <button  className="btn btn-secondary"  onClick={() => { handleAddToCart(product) }}><i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng</button> }
                 </div>

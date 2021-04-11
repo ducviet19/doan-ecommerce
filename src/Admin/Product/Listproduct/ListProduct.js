@@ -5,6 +5,8 @@ import useScrollTop from '../../../hook/useScrollTop';
 import { deleteProduct, fetchProducts } from '../../../redux/Product/products.action';
 import swal from 'sweetalert';
 import ListReview from '../../ReviewAdmin/ListReview';
+import { formatter } from '../../../App';
+import Search from '../../../Search/Search';
 
 const mapState = ({ productsData }) => ({
     products: productsData.products
@@ -50,7 +52,7 @@ function ListProduct(props) {
                                     <td> <img className="img-thumbnail w-25" src={thumbnail} /> </td>
                                     <td>{category}</td>
                                     <td>{number}</td>
-                                    <td>{price}</td>
+                                    <td>{formatter.format(price)}</td>
                                     <td ><button className="btn btn-danger" onClick={() => {
                                         swal({
                                             title: "Xóa sản phẩm?",

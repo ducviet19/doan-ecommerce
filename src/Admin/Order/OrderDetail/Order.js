@@ -4,6 +4,7 @@ import { useHistory, useParams } from 'react-router-dom';
 import { editOrder, getOrderDetail } from '../../../redux/Order/order.action';
 import OrderDetail from './OrderDetail';
 import swal from 'sweetalert';
+import { formatter } from '../../../App';
 
 const mapState = ({ orderData }) => ({
     orderDetail: orderData.orderDetail
@@ -41,7 +42,7 @@ function Order(props) {
         <div>
             <h2>Sản phẩm</h2>
             <OrderDetail item={orderDetail.item} />
-            <h1> TỔNG TIỀN: {orderDetail.total} đ</h1>
+            <h1> TỔNG TIỀN: {formatter.format(orderDetail.total) } đ</h1>
             <h2>Thông tin đơn hàng</h2>
             <ul>
                 <li>Địa Chỉ :  {orderDetail.shipping.address}</li>
@@ -50,11 +51,6 @@ function Order(props) {
                 <li>SĐT : {orderDetail.shipping.phone}</li>
             </ul>
             <form onSubmit={handleSubmit}>
-                {/* <div className="form-group">
-                        <label for="number">Số lượng tả sản phẩm</label>
-                        <input value={status} onChange={(e) => setStatus(e.target.value)} type="text" className="form-control" id="number" placeholder="Nhập tên sản phẩm" />
-                    </div> */}
-
                 <div className="form-group">
                     <label for="category">Loại sản phẩm</label>
                     <select value={status} onChange={(e) => setStatus(e.target.value)}  >

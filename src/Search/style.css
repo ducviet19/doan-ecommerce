@@ -1,6 +1,6 @@
 .name {
   white-space: nowrap;
-  width: 70%;
+  width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
   display: flex;
@@ -8,13 +8,31 @@
   align-items: flex-start;
 }
 
-input[type=text] {
-    width: 130px;
-    -webkit-transition: width 0.4s ease-in-out;
-    transition: width 0.4s ease-in-out;
-  }
-  
-  /* When the input field gets focus, change its width to 100% */
-  input[type=text]:focus {
-    width: 100%;
-  }
+input[type="text"] {
+  width: 60%;
+  -webkit-transition: width 0.4s ease-in-out;
+  transition: width 0.4s ease-in-out;
+}
+
+.box {
+  position: absolute;
+  top: 100%;
+  left: 5%;
+  z-index: 1000;
+  float: left;
+  min-width: 100%;
+  padding: 0.5rem 0;
+  box-sizing: border-box;
+  font-size: 1rem;
+  text-align: left;
+  background-color: #fff;
+  border-radius: 0.25rem;
+  padding: 0.5rem 0;
+  margin: 0.125rem 0 0;
+}
+
+/* When the input field gets focus, change its width to 100% */
+/* input[type="text"]:hover {
+  width: 30%;
+  opacity: 1;
+} */

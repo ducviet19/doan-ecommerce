@@ -41,69 +41,6 @@ function Review(props) {
     const { user } = useSelector(mapState);
     const history = useHistory()
 
-    const [start, setStart] = useState('');
-    const [comment, setComment] = useState('')
-
-    console.log(props.product)
-
-    // const handleSubmit = (e) => {
-    //     e.preventDefault();
-
-
-    //     if (user) {
-    //         const data = {
-    //             timeDate: new Date().toISOString(),
-    //             user: user,
-    //             start: start,
-    //             comment: comment
-    //         }
-    //         dispatch(
-    //             addReview({
-    //                 review: firebase.firestore.FieldValue.arrayUnion(data)
-    //             }, props.product.documentID)
-    //         )
-    //         resetForm()
-
-    //     }
-    //     else {
-    //         history.push('/login')
-    //         swal({
-    //             button: false,
-    //             text: "Đăng nhập để đánh giá sản phẩm",
-    //             timer: 1000
-    //         });
-    //     }
-
-
-
-    // }
-
-    // const resetForm = () => {
-    //     setComment('')
-    //     setStart('')
-    // }
-
-
-    // const formik = useFormik({
-    //     initialValues: {
-    //         start: '',
-    //         comment: ''
-    //     },
-    //     alidationSchema :{DisplayingErrorMessagesSchema},
-    //     onSubmit: values => {
-    //         const data = {
-    //             timeDate: new Date().toISOString(),
-    //             user: user,
-    //             values
-    //         }
-    //         dispatch(
-    //             addReview({
-    //                 review: firebase.firestore.FieldValue.arrayUnion(data)
-    //             }, props.product.documentID)
-    //         )
-
-    //     },
-    // });
 
     const formik = useFormik({
         initialValues: {
