@@ -30,20 +30,26 @@ const ProductResults = ({ }) => {
     if (!Array.isArray(data)) return null;
     if (data.length < 1) {
         return (
-            <div className='products'>
-                <div className="col-md-3 order-md-0 mt-2 mt-md-0 mb-3">
-                    <select className="form-control form-control-sm" value={filterType} onChange={handleFilter}>
-                        <option value="">Tất cả</option>
-                        <option value="Sữa rửa mặt">Sữa rửa mặt</option>
-                        <option value="Kem chống nắng">Kem chống nắng</option>
-                        <option value="Mặt nạ">Mặt nạ</option>
-                        <option value="Nước Hoa">Nước Hoa</option>
-                    </select>
-                </div>
-                <p>
-                    Không có sản phẩm
+            <>
+                <h1 className='text-center mt-5'>
+                    Sản Phẩm
+            </h1>
+                <div className='products'>
+                    <div className="col-md-3 order-md-0 mt-2 mt-md-0 mb-3">
+                        <select className="form-control form-control-sm" value={filterType} onChange={handleFilter}>
+                            <option value="">Tất cả</option>
+                            <option value="Sữa rửa mặt">Sữa rửa mặt</option>
+                            <option value="Kem chống nắng">Kem chống nắng</option>
+                            <option value="Mặt nạ">Mặt nạ</option>
+                            <option value="Nước Hoa">Nước Hoa</option>
+                        </select>
+                    </div>
+
+                    <p>
+                        Không có sản phẩm
                 </p>
-            </div>
+                </div>
+            </>
         )
     }
     const handleLoadMore = () => {

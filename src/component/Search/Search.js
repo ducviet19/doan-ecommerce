@@ -23,6 +23,8 @@ function Search(props) {
         )
     },[])
 
+    console.log(products)
+
     const [searchItem, setSearchItem] = useState("")
     return (
         <>
@@ -35,7 +37,7 @@ function Search(props) {
                 </span>
             </div>
             <div className="box">
-                {products.filter((item) => {
+                {products?.filter((item) => {
                     if (searchItem == "") {
                         return;
                     }
