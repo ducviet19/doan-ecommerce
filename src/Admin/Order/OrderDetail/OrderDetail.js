@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { formatter } from '../../../App';
 
 
 function OrderDetail(props) {
@@ -20,13 +21,13 @@ function OrderDetail(props) {
                     </thead>
                     <tbody>
                         {
-                            props.item.map((product, index) => {
+                            props.item?.map((product, index) => {
                                 const { name, price , quantity ,thumbnail } = product
                                 return (
                                     <tr key={index}>
                                         <td>{name}</td>
                                         <td> <img className="img-thumbnail w-25" src={thumbnail} /> </td>
-                                        <td>{price}</td>
+                                        <td>{formatter.format(price)}</td>
                                         <td>{quantity}</td>
                                     </tr>
                                 )

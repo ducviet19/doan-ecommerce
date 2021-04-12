@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { formatter } from '../../../App';
 import useScrollTop from '../../../hook/useScrollTop';
 import { deleteProduct, fetchProducts } from '../../../redux/Product/products.action';
 import LoadMore from './../../../component/LoadMore/LoadMore'
@@ -56,7 +57,7 @@ function ListProduct(props) {
                                     <td><Link to={`/editproduct/${documentID}`} >{name}</Link> </td>
                                     <td> <img className="img-thumbnail w-25" src={thumbnail} /> </td>
                                     <td>{category}</td>
-                                    <td>{price}</td>
+                                    <td>{formatter.format(price)}</td>
                                     <td ><button className="btn btn-danger" onClick={() => dispatch(deleteProduct(documentID))}>X</button></td>
                                 </tr>
                             )

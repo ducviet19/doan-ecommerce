@@ -7,6 +7,7 @@ import { selectCartItems } from '../../redux/Cart/cart.selectors';
 import './style.css';
 import swal from 'sweetalert';
 import Start from '../Start/Start';
+import { formatter } from '../../App';
 const mapState = createStructuredSelector({
     cartItems: selectCartItems
 });
@@ -46,7 +47,7 @@ function ProductCart(product) {
                         <p className="card-text text-center bold  ">{name}</p>
                     </div>
                 </Link>
-                <p className="text-center"><strong>{price}đ</strong></p>
+                <p className="text-center"><strong> {formatter.format(price)}</strong></p>
                 <div className="d-flex justify-content-center">
                     {number == 0 ? <button className="btn btn-primary" disabled >Sold Out</button> : <button className="btn btn-secondary" onClick={() => { handleAddToCart(product) }}><i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng</button>}
                 </div>

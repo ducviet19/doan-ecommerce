@@ -6,7 +6,7 @@
 
 a {
   text-decoration: none;
-  color:  black;
+  color: black;
 }
 .content {
   padding-top: 150px;
@@ -24,12 +24,10 @@ a.nav-link {
   background-color: #f3f3f3;
 }
 
-
 input#exampleInputEmail1 {
   padding: 20px;
   background-color: lightgray;
 }
-
 
 input#exampleInputPassword1 {
   padding: 20px;
@@ -50,3 +48,28 @@ header.row.navbar.fixed-top {
   border-radius: 50%;
 }
 
+.dropdown:hover .show_menu {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  z-index: 1000;
+  float: left;
+  min-width: 10rem;
+  padding: 0.5rem 0;
+  box-sizing: border-box;
+  font-size: 1rem;
+  color: #212529;
+  text-align: left;
+  list-style: none;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 0.25rem;
+  padding: 0.5rem 0;
+  margin: 0.125rem 0 0;
+}
+
+.show_menu {
+  display: none;
+}

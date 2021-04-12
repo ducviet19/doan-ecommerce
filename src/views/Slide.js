@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 function Slide () {
 
     return (
-        <div className="slide">
+        <div className="slide mt-2 pt-2">
           <div id="carouselExampleIndicators" className="carousel slide" data-ride="carousel">
             <ol className="carousel-indicators">
               <li data-target="#carouselExampleIndicators" data-slide-to={0} className="active" />

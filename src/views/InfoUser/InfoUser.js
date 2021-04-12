@@ -49,7 +49,7 @@ function InfoUser(props) {
         initialValues: {
             displayName: user.displayName,
             email: user.email,
-            photoUrl: user.photoUrl,
+            imageUser: user.imageUser,
             userRoles: user.userRoles
         },
         validationSchema,
@@ -92,7 +92,7 @@ function InfoUser(props) {
                         <div>{formik.errors.email}</div>) : null}
                 </div>
                 <div className="form-group">
-                    <label htmlFor="avata">Avata:  <img className="img-thumbnail avata" src={formik.values.photoUrl} alt='Không có ảnh' /></label>
+                    <label htmlFor="avata">Avata:  <img className="img-thumbnail avata" src={formik.values.imageUser} alt='Không có ảnh' /></label>
 
                     <input className="form-control"
                         id='photoUrl'

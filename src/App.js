@@ -43,6 +43,10 @@ const mapState = ({ user }) => ({
   user: user.currentUser
 })
 
+export const formatter = new Intl.NumberFormat('en-US', {
+  style: 'currency',
+  currency: 'vnd'
+})
 
 
 function App(props) {
