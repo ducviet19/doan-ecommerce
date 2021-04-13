@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
-import Footer from '../Footer';
-import Header from '../Header';
-
+import Footer from '../Footer/Footer';
+import Header from '../Header/Header'
+import Slide from '../Slide';
 
 
 function MainLayout(props) {
     return (
         <div className="content">
             <Header {...props} />
-            <div>
+            {/* <Slide /> */}
+            <body>
                 {props.children}
-            </div>
+            </body>
             <Footer />
         </div>
     )

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-
+import './style.css';
 function Footer() {
 
   return (
-    <footer className="row bg-light">
+    <footer className="row">
       <div className="col">
         <h4>Công Ty</h4>
         <ul className="list-unstyled">
