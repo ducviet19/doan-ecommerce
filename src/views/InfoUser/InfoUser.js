@@ -7,7 +7,7 @@ import { editUser, fetchUserId, setUser } from '../../redux/User/user.action';
 import * as Yup from 'yup';
 import useScrollTop from '../../hook/useScrollTop';
 import { useFormik } from "formik";
-
+import swal from 'sweetalert';
 const mapState = state => ({
     user: state.user.currentUser
 });
@@ -31,12 +31,8 @@ function InfoUser(props) {
     const dispatch = useDispatch();
     const { user } = useSelector(mapState);
     useEffect(() => {
-        dispatch(fetchUserId(user.documentID))
-        return () => {
-            dispatch(
-                setUser({})
-            )
-        }
+        dispatch(fetchUserId(user.id))
+       
     }, [])
 
 
@@ -50,16 +46,19 @@ function InfoUser(props) {
             displayName: user.displayName,
             email: user.email,
             imageUser: user.imageUser,
-            userRoles: user.userRoles
+            userRoles: user.userRoles,
+            photoUrl: user.photoUrl
         },
         validationSchema,
         onSubmit: values => {
-            dispatch(editUser(values, user.documentID));
+            dispatch(editUser(values, user.id));
             formik.resetForm();
-            dispatch(fetchUserId(user.documentID))
-            dispatch(
-                setUser({})
-            )
+            // dispatch(fetchUserId(user.id))
+            // dispatch(
+            //     setUser({})
+            // )
+
+            swal("Cập nhật thành công!", "", "success");
         },
     });
 

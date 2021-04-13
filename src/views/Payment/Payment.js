@@ -11,6 +11,7 @@ import { clearCart } from '../../redux/Cart/cart.action';
 import useScrollTop from '../../hook/useScrollTop';
 import swal from 'sweetalert';
 import { useHistory } from 'react-router';
+import { fetchUserId } from '../../redux/User/user.saga';
 
 const validate = values => {
 
@@ -35,6 +36,10 @@ const validate = values => {
         errors.email = 'Vui lòng nhập địa chỉ Email';
     } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
         errors.email = 'Địa chỉ email không hợp lệ';
+    }
+
+    if (!values.payment) {
+        errors.payment = 'Vui lòng chọn phương thức giao hàng';
     }
 
     return errors;
@@ -76,7 +81,8 @@ function Payment(props) {
             name: '',
             email: '',
             address: '',
-            phone: ''
+            phone: '',
+            payment: ''
         },
         validate,
         onSubmit: values => {
@@ -159,6 +165,37 @@ function Payment(props) {
                         {formik.touched.address && formik.errors.address ? (
                             <div>{formik.errors.address}</div>) : null}
                     </div>
+
+                    <div className="form-group ">
+                    <label htmlFor="start">Chọn hình thức thanh toán</label>
+                    <select
+                        className="form-control w-25"
+                        name="payment"
+                        value={formik.values.payment}
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        style={{ display: 'block' }}
+                    >
+                        <option>Chọn</option>
+                        <option value="cod" >Thanh toán khi nhận hàng</option>
+                        <option value="bank">Chuyển khoản</option>
+                      
+                    </select>
+                    {formik.touched.payment && formik.errors.payment ? (
+                        <div>{formik.errors.payment}</div>) : null}
+
+                    <div>
+                        {
+                            formik.values.payment == "bank" ? 
+                            <div>
+                                <h2>Vui lòng chuyển khoản vào Stk : 1234512312</h2>
+                                <p> Tên TK : Võ Ngọc Huân </p>
+                                <p>Ngân hàng TechCombank chi nhánh liên Chiểu Đà nẵng</p>
+                            </div> : ""
+                        }
+                        
+                    </div>
+                </div>
                     <button type="submit" className="btn btn-primary">Hoàn Tất Đơn Hàng</button>
 
                 </form>

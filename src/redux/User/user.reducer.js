@@ -37,7 +37,7 @@ const userReducer = (state = INITIAL_STATE, action) => {
             console.log("🚀 ~ file: user.reducer.js ~ line 42 ~ userReducer ~ user", action.payload)
             return {
                 ...state,
-                user: action.payload
+                user : action.payload
             }
         default:
             return state;
