@@ -36,6 +36,7 @@ export const handleUserProfile = async ({userAuth, additionalData}) => {
                 email,
                 createDate: timestamp,
                 userRoles,
+                id: uid,
                 ...additionalData
             })
             

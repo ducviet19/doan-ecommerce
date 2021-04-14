@@ -109,10 +109,11 @@ export function* editProduct({ payload, id }) {
 
         console.log('payload edit product', payload)
         console.log('id edit product', id)
-        const product = yield handleEditProduct(payload, id);
+        yield handleEditProduct(payload, id);
 
         yield put(
-            fetchProductStart(product)
+            fetchProductStart(id)
+            // setProduct(product)
         )
     }
     catch (err) {

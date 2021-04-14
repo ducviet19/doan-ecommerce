@@ -32,32 +32,24 @@ function EditProduct({ props }) {
 
 
     let { id } = useParams();
+    useEffect(() => {
+        dispatch(fetchProductStart(id))
+    }, [])
 
     useEffect(() => {
-        setName(product.name);
-        setCategory(product.category);
-        setDescription(product.description);
-        setPrice(product.price);
-        setThumbnail(product.thumbnail);
-        setNumber(product.number);
-        SetImgDetail(product.imgDetail);
-        setSize(product.sizes);
-
-
-
-
+        setName(product?.name);
+        setCategory(product?.category);
+        setDescription(product?.description);
+        setPrice(product?.price);
+        setThumbnail(product?.thumbnail);
+        setNumber(product?.number);
+        SetImgDetail(product?.imgDetail);
+        setSize(product?.sizes);
     }, [product])
 
     console.log(name)
 
-    useEffect(() => {
-        dispatch(fetchProductStart(id))
-        // return () => {
-        //     dispatch(
-        //         setProduct({})
-        //     )
-        // }
-    }, [])
+
 
 
 
@@ -74,7 +66,8 @@ function EditProduct({ props }) {
         }, id))
 
         swal("Cập nhật thành công!","", "success");
-        history.push('/admin/listproduct')
+        // history.push('/admin/listproduct')
+        history.goBack()
     }
     return (
 

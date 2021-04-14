@@ -2,7 +2,7 @@ import { all, call, put, takeLatest } from "@redux-saga/core/effects";
 import { useHistory } from "react-router";
 import { auth, getCurrentUser, GoogleProvider, handleUserProfile, } from "../../firebase/ultils";
 import { clearCart, removeCart } from "../Cart/cart.action";
-import { setUser, signInSuccess, userError } from "./user.action";
+import { fetchUserId, setUser, signInSuccess, userError } from "./user.action";
 import { signOutUserSuccess } from "./user.action";
 import { fetchUser, setUsers } from './user.action'
 import { handleDeleteUser, handleEditUser, handleFetchDetailUser, handleFetchUser, handleAddUser } from "./user.helpers";
@@ -161,7 +161,7 @@ export function* onDeleteUser() {
   yield takeLatest(userTypes.DELETE_USER, deleteUser)
 }
 
-export function* fetchUserId({ payload }) {
+export function* fetchUserDetail({ payload }) {
   console.log("🚀 ~ file: user.saga.js ~ line 163 ~ function*fetchUserId ~ payload", payload)
   try {
     const userEdit = yield handleFetchDetailUser(payload);
@@ -173,19 +173,17 @@ export function* fetchUserId({ payload }) {
   }
 }
 export function* onFetchUserId() {
-  yield takeLatest(userTypes.FETCH_USER_ID, fetchUserId)
+  yield takeLatest(userTypes.FETCH_USER_ID, fetchUserDetail)
 }
 
 export function* editUser({ payload, id }) {
 
   try {
-
-
     console.log('payload edit user', payload)
     console.log('id edit user', id)
-    const user = yield handleEditUser(payload, id);
+     yield handleEditUser(payload, id);
     yield put(
-      fetchUserId(user)
+      fetchUserId(id)
     )
 
 

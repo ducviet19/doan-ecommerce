@@ -32,13 +32,10 @@ function InfoUser(props) {
     const { user } = useSelector(mapState);
     useEffect(() => {
         dispatch(fetchUserId(user.id))
-       
     }, [])
 
-
-
     console.log('user', user)
-
+    console.log('user', user.id)
 
     const formik = useFormik({
         enableReinitialize: true,
@@ -53,12 +50,8 @@ function InfoUser(props) {
         onSubmit: values => {
             dispatch(editUser(values, user.id));
             formik.resetForm();
-            // dispatch(fetchUserId(user.id))
-            // dispatch(
-            //     setUser({})
-            // )
-
-            swal("Cập nhật thành công!", "", "success");
+            // swal("Cập nhật thành công!", "", "success");
+            // history.push("/")
         },
     });
 

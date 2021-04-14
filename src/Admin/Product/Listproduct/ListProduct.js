@@ -54,7 +54,7 @@ function ListProduct(props) {
                             return (
                                 <tr key={index}>
                                     <th scope="row">{documentID}</th>
-                                    <td><Link to={`/editproduct/${documentID}`} >{name}</Link> </td>
+                                    <td><Link to={`/admin/editproduct/${documentID}`} >{name}</Link> </td>
                                     <td> <img className="img-thumbnail w-25" src={thumbnail} /> </td>
                                     <td>{category}</td>
                                     <td>{formatter.format(price)}</td>
