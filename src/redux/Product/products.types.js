@@ -12,7 +12,12 @@ const productsTypes = {
     EDIT_PRODUCT: 'EDIT_PRODUCT',
 
 
-    UPDATE_NUMBER: 'UPDATE_NUMBER'
+    UPDATE_NUMBER: 'UPDATE_NUMBER',
+
+
+
+    PRODUCT_LIST_SUCCESS: 'PRODUCT_LIST_SUCCESS',
+    PRODUCT_LIST_FAIL: 'PRODUCT_LIST_FAIL'
 }
 
 export default productsTypes;

@@ -67,8 +67,6 @@ export const editUser = (userData, id) => ({
     type: userTypes.EDIT_USER,
     payload: userData,
     id: id
-
-
 });
 export const addUser = userData => ({
     type: userTypes.ADD_NEW_USER,
@@ -77,6 +75,22 @@ export const addUser = userData => ({
 
 
 
+
+
+
+export const setUserAdmin = user => ({
+    type: userTypes.SET_USER_ADMIN,
+    payload: user
+});
+export const fetchUserAdmin = userID => ({
+    type: userTypes.FETCH_USER_ADMIN,
+    payload: userID,
+});
+export const editUserAdmin = (userData, id) => ({
+    type: userTypes.EDIT_USER_ADMIN,
+    payload: userData,
+    id: id
+});
 
 
 

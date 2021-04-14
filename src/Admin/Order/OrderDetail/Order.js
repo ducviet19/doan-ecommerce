@@ -39,22 +39,23 @@ function Order(props) {
         history.push('/admin/order')
     }
     return (
-        <div>
+        <div className="text-center">
             <h2>Sản phẩm</h2>
             <OrderDetail item={orderDetail.item} />
             <h1> TỔNG TIỀN: {formatter.format(orderDetail.total) } đ</h1>
             <h2>Thông tin đơn hàng</h2>
-            <ul>
+            <ul className="list-unstyled">
                 <li>Địa Chỉ :  {orderDetail.shipping?.address}</li>
                 <li>Email :  {orderDetail.shipping?.email}</li>
                 <li>Tên :  {orderDetail.shipping?.name}</li>
                 <li>SĐT : {orderDetail.shipping?.phone}</li>
+                <li>Hình thức thanh toán :  {orderDetail.shipping?.payment == "cod" ? "Thanh toán khi nhận hàng" : "Chuyển khoản" }</li>
             </ul>
             <form onSubmit={handleSubmit}>
               
 
                 <div className="form-group">
-                    <label for="category">Loại sản phẩm</label>
+                    <label for="status">Trạng thái</label>
                     <select value={status} onChange={(e) => setStatus(e.target.value)}  >
 
                         <option value="false">Dang xu ly</option>

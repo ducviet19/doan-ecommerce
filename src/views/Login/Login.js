@@ -36,7 +36,7 @@ function Login(props) {
     const handleSubmit =  (e) => {
         e.preventDefault();
         dispatch(emailSignInStart({ email, password }));
-        swal("Đăng nhập thành công!", "", "success");
+        // swal("Đăng nhập thành công!", "", "success");
         history.goBack();
        
     }

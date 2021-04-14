@@ -14,6 +14,7 @@ function OrderDetailUser(props) {
     const { id } = useParams()
     const dispatch = useDispatch()
     console.log(id)
+
     useEffect(() => {
         dispatch(
             getOrderDetail(id)
@@ -24,8 +25,8 @@ function OrderDetailUser(props) {
 
         <div className="mt-5">
         <h2 className="text-center">Chi Tiết đơn hàng</h2>
-        <h2 className="text-center">Đơn hàng được đặt lúc :{orderDetail.datePlaced.split("T")[0]} </h2>
-        <p className="text-center">Hình thức thanh toán : Thang toán khi nhận hàng</p>
+        <h2 className="text-center">Đơn hàng được đặt lúc :{orderDetail?.datePlaced?.split("T")[0]} </h2>
+        <p className="text-center">Hình thức thanh toán : {orderDetail.shipping?.payment == "cod"  ? "Thanh toán khi nhận hàng" : "Chuyển khoản"} </p>
             <div className="mt-5 row">
 
                 <div className="col">

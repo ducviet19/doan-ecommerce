@@ -17,7 +17,7 @@ function CheckOut(props) {
     const { cartItems } = useSelector(mapState);
     useScrollTop();
     return (
-        <div className="row">
+        <div className="row mt-3 mb-3">
             <Cart />
             { cartItems.length > 0 ? <ButtonCheckOut /> : ""  }
             

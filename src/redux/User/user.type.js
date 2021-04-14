@@ -18,6 +18,13 @@ const userTypes = {
     ADD_NEW_USER: 'ADD_NEW_USER'
 
 
+    ,EDIT_USER_ADMIN: 'EDIT_USER_ADMIN',
+    SET_USER_ADMIN : 'SET_USER_ADMIN',
+    FETCH_USER_ADMIN: 'FETCH_USER_ADMIN'
+
+
+
+
 
 
 

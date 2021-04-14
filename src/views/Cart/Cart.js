@@ -4,18 +4,25 @@ import { Link, useHistory } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
 import { formatter } from '../../App';
 import { firestore } from '../../firebase/ultils';
-import { selectCartItems, selectCartTotal } from '../../redux/Cart/cart.selectors';
+import { selectCartItems, selectCartItemsCount, selectCartTotal } from '../../redux/Cart/cart.selectors';
 import ButtonCheckOut from '../CheckOut/ButtonCheckOut';
 import Item from '../CheckOut/Item';
 
 
 const mapState = createStructuredSelector({
     cartItems: selectCartItems,
-    total: selectCartTotal
+    total: selectCartTotal,
 });
+
+const mapCart = (state) => ({
+    user: state.user.currentUser,
+    totalNumCartItems: selectCartItemsCount(state),
+    products: state.products
+  })
 
 function Cart(props) {
     const { cartItems, total } = useSelector(mapState);
+    const { totalNumCartItems} = useSelector(mapCart);
     console.log(cartItems)
     console.log('tong gia', total)
 
@@ -25,7 +32,7 @@ function Cart(props) {
             {
                 cartItems.length > 0 ?
                     <div className="col-12 ">
-                        <h2>Giỏ Hàng</h2>
+                        <h3 className="bold">Giỏ Hàng của bạn </h3> <span>({totalNumCartItems} sản phẩm ) </span>
                         <table class="table">
                             <thead>
                                 <tr>

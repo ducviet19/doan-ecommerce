@@ -13,11 +13,6 @@ const useAuth = props => {
   useEffect(() => {
     if (!currentUser) {
       history.push('/login')
-      swal({
-        button: false,
-        text: "Đăng nhập để thực hiện",
-        timer: 1000
-      });
     }
 
   }, [currentUser]);

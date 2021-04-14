@@ -68,8 +68,6 @@ export const handleFetchDetailUser = (documentID) => {
 }
 
 export const handleEditUser = (payload, id) => {
-    console.log(id)
-    console.log(payload)
     return new Promise((resolve, reject) => {
         firestore
             .collection('users')

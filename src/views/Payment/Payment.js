@@ -111,7 +111,7 @@ function Payment(props) {
 
     return (
 
-        <div className="row">
+        <div className="row m-5">
             <div className="col-6">
                 <h2 className="text-center">Thông tin giao hàng</h2>
                 <form onSubmit={formik.handleSubmit}>
@@ -127,8 +127,8 @@ function Payment(props) {
                         {formik.touched.name && formik.errors.name ? (
                             <div>{formik.errors.name}</div>) : null}
                     </div>
-                    <div className="form-row">
-                        <div className="form-group col-md-6">
+               
+                        <div className="form-group">
                             <label htmlFor="email">Email</label>
                             <input class="form-control" id="email"
                                 name="email"
@@ -140,7 +140,7 @@ function Payment(props) {
                             {formik.touched.email && formik.errors.email ? (
                                 <div>{formik.errors.email}</div>) : null}
                         </div>
-                        <div className="form-group col-md-6">
+                        <div className="form-group">
                             <label htmlFor="phone">Số điện thoại</label>
                             <input class="form-control" id="phone"
                                 name="phone"
@@ -152,7 +152,7 @@ function Payment(props) {
                             {formik.touched.phone && formik.errors.phone ? (
                                 <div>{formik.errors.phone}</div>) : null}
                         </div>
-                    </div>
+                  
                     <div className="form-group">
                         <label htmlFor="address">Địa Chỉ</label>
                         <input class="form-control" id="address"
@@ -187,10 +187,10 @@ function Payment(props) {
                     <div>
                         {
                             formik.values.payment == "bank" ? 
-                            <div>
-                                <h2>Vui lòng chuyển khoản vào Stk : 1234512312</h2>
-                                <p> Tên TK : Võ Ngọc Huân </p>
-                                <p>Ngân hàng TechCombank chi nhánh liên Chiểu Đà nẵng</p>
+                            <div className="border p-5">
+                                <h2>Chủ Tài khoản : Võ Ngọc Huân</h2>
+                                <p> STK  : 1234566732 </p>
+                                <p>Ngân hàng Vietcombank - Chi nhánh Liên Chiểu Đà Nẵng</p>
                             </div> : ""
                         }
                         

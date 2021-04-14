@@ -90,10 +90,10 @@ export function* onGetOrderDetail() {
 
 export function* editOrder({payload, id}) {
     try {
-        const order = yield handleEditOrder(payload, id)
+        yield handleEditOrder(payload, id)
         
         yield put(
-            getOrderDetail(order)
+            getOrderDetail(id)
         )
     } catch (error) {
         

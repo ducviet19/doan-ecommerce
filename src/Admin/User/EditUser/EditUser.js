@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router';
 import { useHistory } from 'react-router-dom';
 import { storage } from '../../../firebase/ultils'
-import { editUser, fetchUserId, setUser } from '../../../redux/User/user.action';
+import { editUser, editUserAdmin, fetchUserAdmin, fetchUserId, setUser } from '../../../redux/User/user.action';
 import * as Yup from 'yup';
 import useScrollTop from '../../../hook/useScrollTop';
 import { useFormik } from "formik";
@@ -34,12 +34,12 @@ function EditUser(props) {
     const { userEdit } = useSelector(mapState);
     let { id } = useParams();
     useEffect(() => {
-        dispatch(fetchUserId(id))
-        return () => {
-            dispatch(
-                setUser({})
-            )
-        }
+        dispatch(fetchUserAdmin(id))
+        // return () => {
+        //     dispatch(
+        //         setUser({})
+        //     )
+        // }
     }, [])
 
 
@@ -53,11 +53,11 @@ function EditUser(props) {
             displayName: userEdit.displayName,
             email: userEdit.email,
             photoUrl: userEdit.photoUrl,
-            userRoles: ''
+            userRoles: userEdit.userRoles
         },
         validationSchema,
         onSubmit: values => {
-            dispatch(editUser(values, id));
+            dispatch(editUserAdmin(values, id));
             formik.resetForm();
             history.goBack();
 
@@ -110,7 +110,6 @@ function EditUser(props) {
                         name='userRoles'
                         value={formik.values.userRoles}
                         onChange={formik.handleChange} >
-                        <option value=''>Chọn vai trò</option>
                         <option value='admin'>admin</option>
                         <option value='user'>user</option>
                     </select>

@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { deleteUser, fetchUser } from '../../../redux/User/user.action'
 import EditUser from '../EditUser/EditUser';
 import AddUser from '../AddUser/AddUser'
+import swal from 'sweetalert';
 
 const mapState = ({ user }) => ({
     users: user.users
@@ -22,6 +23,11 @@ function ListUser(props) {
             fetchUser()
         )
     }, [])
+
+    const handleDelete = (documentID) => {
+        dispatch(deleteUser(documentID))
+        swal("Xoá user thành công!","", "success");
+    }
     return (
         <div>
 
@@ -49,7 +55,7 @@ function ListUser(props) {
                                     <td ><Link to={`/admin/edituser/${documentID}`} >{displayName}</Link> </td>
                                     <td className='text-center'>{email}</td>
                                     <td className='text-center'>{userRoles}</td>
-                                    <td ><button className='btn btn-danger' onClick={() => dispatch(deleteUser(documentID))}>X</button></td>
+                                    <td ><button className='btn btn-danger' onClick={() => handleDelete(documentID)}>X</button></td>
                                     <td ><button className='btn btn-success' ><Link className='' to={`/admin/edituser/${documentID}`} >Edit</Link> </button></td>
                                 </tr>
                             )

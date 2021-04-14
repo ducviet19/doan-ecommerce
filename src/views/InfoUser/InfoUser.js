@@ -9,7 +9,8 @@ import useScrollTop from '../../hook/useScrollTop';
 import { useFormik } from "formik";
 import swal from 'sweetalert';
 const mapState = state => ({
-    user: state.user.currentUser
+    user: state.user.currentUser,
+    infoUser: state.user.user
 });
 const validationSchema = Yup.object({
     displayName: Yup
@@ -29,29 +30,31 @@ function InfoUser(props) {
     const history = useHistory();
     useScrollTop();
     const dispatch = useDispatch();
-    const { user } = useSelector(mapState);
+    const { user , infoUser } = useSelector(mapState);
     useEffect(() => {
         dispatch(fetchUserId(user.id))
     }, [])
 
     console.log('user', user)
     console.log('user', user.id)
+    console.log('infoUser', infoUser)
 
     const formik = useFormik({
         enableReinitialize: true,
         initialValues: {
             displayName: user.displayName,
             email: user.email,
-            imageUser: user.imageUser,
+            // imageUser: user.imageUser,
             userRoles: user.userRoles,
-            photoUrl: user.photoUrl
+            photoUrl: user.photoUrl,
+            id: user.id
         },
         validationSchema,
         onSubmit: values => {
             dispatch(editUser(values, user.id));
             formik.resetForm();
-            // swal("Cập nhật thành công!", "", "success");
-            // history.push("/")
+            swal("Cập nhật thành công!", "", "success");
+            history.goBack()
         },
     });
 
@@ -84,7 +87,7 @@ function InfoUser(props) {
                         <div>{formik.errors.email}</div>) : null}
                 </div>
                 <div className="form-group">
-                    <label htmlFor="avata">Avata:  <img className="img-thumbnail avata" src={formik.values.imageUser} alt='Không có ảnh' /></label>
+                    <label htmlFor="avata">Avata:  <img className="img-thumbnail avata" src={formik.values.photoUrl} alt='Không có ảnh' /></label>
 
                     <input className="form-control"
                         id='photoUrl'

@@ -1,4 +1,4 @@
-import React, { Component, useEffect, Suspense } from 'react';
+import React, { Component, useEffect, Suspense, useState } from 'react';
 import LazyLoad from 'react-lazyload';
 import './style.css';
 import {
@@ -24,11 +24,13 @@ function Home() {
     const history = useHistory()
     const { products } = useSelector(mapState)
     const { data, queryDoc, isLastPage } = products;
+    const [loading,setLoading] = useState(false)
     console.log(products)
     useEffect(() => {
+        setLoading(true);
         dispatch(
-            // fetchProductsHome({})
             fetchProducts({})
+           
         )
     }, [])
 
@@ -45,8 +47,11 @@ function Home() {
         onLoadMoreEvt: handleLoadMore,
     };
 
+    console.log(loading)
+    
     return (
-        <>
+        <>{
+        }
             <main className="main">
 
 
@@ -63,11 +68,7 @@ function Home() {
                                     ...product
                                 }
                                 return (
-                                    <Suspense fallback={<div>Loading...</div>}>
-
-                                        <Load {...configProduct} />
-                                    </Suspense>
-
+                                        <ProductCart {...configProduct} />
                                 )
                             })
                         }

@@ -36,7 +36,7 @@ function OrderUser(props) {
                     </thead>
                     <tbody>
                         {
-                            orderHistory.map((order, index) => {
+                            orderHistory?.map((order, index) => {
                                 const { name, price, thumbnail, quantity, userID, documentID, datePlaced, finish } = order
                                 console.log(datePlaced.split("T")[0])
                                 return (

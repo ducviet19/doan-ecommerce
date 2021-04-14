@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect } from 'react';
 import './style.css';
 import PropTypes from 'prop-types';
 import { auth } from '../../firebase/ultils'
@@ -11,13 +11,14 @@ import {
   useParams
 } from "react-router-dom";
 import { connect, useDispatch, useSelector } from 'react-redux';
-import { signOutUserStart, signOutUserSuccess } from '../../redux/User/user.action';
+import { fetchUser, fetchUserId, signOutUserStart, signOutUserSuccess } from '../../redux/User/user.action';
 import { checkUserIsAdmin } from '../../Utils';
 import { selectCartItemsCount } from '../../redux/Cart/cart.selectors';
 import Search from '../../component/Search/Search';
 
 const mapState = (state) => ({
-  user: state.user.currentUser,
+  currentUser: state.user.currentUser,
+  user: state.user.user,
   totalNumCartItems: selectCartItemsCount(state),
   products: state.products
 })
@@ -27,11 +28,18 @@ function Header(props) {
   const dispatch = useDispatch();
   const history = useHistory();
   const { filterType } = useParams();
-  const { user, totalNumCartItems, products } = useSelector(mapState);
-  console.log(user)
+  const { currentUser, totalNumCartItems, products } = useSelector(mapState);
+  console.log(currentUser)
 
-  const isAdmin = checkUserIsAdmin(user);
+  const isAdmin = checkUserIsAdmin(currentUser);
 
+  useEffect(() => {
+    dispatch(
+      fetchUserId(currentUser?.id)
+    )
+  },[] )
+
+  console.log(currentUser)
   console.log(isAdmin)
 
   const signOut = () => {
@@ -56,18 +64,18 @@ function Header(props) {
           <div className="col-lg-3 col-6 mt-3 d-flex justify-content-center">
 
             <div class="dropdown row">
-              {user !== null ?
+              {currentUser !== null ?
                 <div className="col-lg-8 col-6">
                   <p class="text-nowrap" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <Link > <i class="fas fa-user"></i> {user.displayName} </Link>
+                    <Link > <i class="fas fa-user"></i> {currentUser.displayName} </Link>
                   </p>
                   <div class="" aria-labelledby="dropdownMenuButton">
                     <div className="show_menu">
                       <div className="p-2"><Link to="/order" style={{ textDecoration: 'none' }} className="m-2" > <i class="fa fa-shopping-bag" aria-hidden="true"></i> <span>Đơn Hàng</span>  </Link></div>
                       <div className="p-2"><Link to="/infouser" style={{ textDecoration: 'none' }} className="m-2"> <i class="far fa-user"></i>  <span>Tài khoản</span>  </Link></div>
-                      <div className="p-2"><Link style={{ textDecoration: 'none' }} className="m-2"> {user !== null ? <a>{isAdmin ? <Link to="/admin"><i class="fas fa-users-cog"></i> <span>Quản trị</span> </Link> : ''} </a> : <></>}  </Link></div>
+                      <div className="p-2"><Link style={{ textDecoration: 'none' }} className="m-2"> {currentUser !== null ? <a>{isAdmin ? <Link to="/admin"><i class="fas fa-users-cog"></i> <span>Quản trị</span> </Link> : ''} </a> : <></>}  </Link></div>
                       <div className="ml-2 p-2">
-                        {user ? <button className="btn btn-danger" onClick={() => signOut()} ><i class="fas fa-sign-out-alt"></i> Đăng Xuất</button> : ''}
+                        {currentUser ? <button className="btn btn-danger" onClick={() => signOut()} ><i class="fas fa-sign-out-alt"></i> Đăng Xuất</button> : ''}
                       </div>
                     </div>
                   </div>

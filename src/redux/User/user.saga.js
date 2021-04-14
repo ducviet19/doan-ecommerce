@@ -2,7 +2,7 @@ import { all, call, put, takeLatest } from "@redux-saga/core/effects";
 import { useHistory } from "react-router";
 import { auth, getCurrentUser, GoogleProvider, handleUserProfile, } from "../../firebase/ultils";
 import { clearCart, removeCart } from "../Cart/cart.action";
-import { fetchUserId, setUser, signInSuccess, userError } from "./user.action";
+import { fetchUserAdmin, fetchUserId, setUser, setUserAdmin, signInSuccess, userError } from "./user.action";
 import { signOutUserSuccess } from "./user.action";
 import { fetchUser, setUsers } from './user.action'
 import { handleDeleteUser, handleEditUser, handleFetchDetailUser, handleFetchUser, handleAddUser } from "./user.helpers";
@@ -169,7 +169,7 @@ export function* fetchUserDetail({ payload }) {
       setUser(userEdit)
     );
   } catch (error) {
-
+  
   }
 }
 export function* onFetchUserId() {
@@ -179,14 +179,10 @@ export function* onFetchUserId() {
 export function* editUser({ payload, id }) {
 
   try {
-    console.log('payload edit user', payload)
-    console.log('id edit user', id)
-     yield handleEditUser(payload, id);
+    yield handleEditUser(payload, id);
     yield put(
       fetchUserId(id)
     )
-
-
   }
   catch (err) {
 
@@ -254,14 +250,51 @@ export function* AddUser({ payload: {
 
   }
 }
-// export function* getSnapshotFromUser(user, additionalData = {}, role = []) {
-//   try {
-//     yield call(handleAddUser, { userAuth: user, additionalData, role });
 
-//   } catch (err) {
-//     // console.log(err);
-//   }
-// }
+
+
+
+
+
+
+
+export function* fetchUserDetailAdmin({ payload }) {
+  console.log("🚀 ~ file: user.saga.js ~ line 163 ~ function*fetchUserId ~ payload", payload)
+  try {
+    const userEdit = yield handleFetchDetailUser(payload);
+    yield put(
+      setUserAdmin(userEdit)
+    );
+  } catch (error) {
+  
+  }
+}
+export function* onFetchUserAdmin() {
+  yield takeLatest(userTypes.FETCH_USER_ADMIN, fetchUserDetailAdmin)
+}
+
+export function* editUserAdmin({ payload, id }) {
+
+  try {
+    console.log('payload')
+    yield handleEditUser(payload, id);
+    yield put(
+      fetchUserAdmin(id)
+    )
+  }
+  catch (err) {
+
+  }
+
+}
+
+
+export function* onEditUserAdmin() {
+  yield takeLatest(userTypes.EDIT_USER_ADMIN, editUserAdmin)
+
+}
+
+
 
 export default function* userSagas() {
   yield all([
@@ -274,7 +307,9 @@ export default function* userSagas() {
     call(onDeleteUser),
     call(onFetchUserId),
     call(onEditUser),
-    call(onAddUser)
+    call(onAddUser),
+    call(onEditUserAdmin),
+    call(onFetchUserAdmin)
 
   ])
 }

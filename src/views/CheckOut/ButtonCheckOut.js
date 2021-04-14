@@ -5,8 +5,8 @@ function ButtonCheckOut(props) {
     return (
         <>
             <div className="col-12 d-flex justify-content-between">
-                <Link to="/"> <button className="btn btn-primary">Tiếp tục mua sắm</button> </Link>
-                <Link to="/payment" ><button className="btn btn-primary">Tiến hành thanh toán</button></Link>
+                <Link to="/"> <button className="btn btn-info">Tiếp tục mua sắm</button> </Link>
+                <Link to="/payment" ><button className="btn btn-secondary">Tiến hành thanh toán</button></Link>
             </div>
 
         </>

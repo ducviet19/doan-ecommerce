@@ -37,9 +37,15 @@ const userReducer = (state = INITIAL_STATE, action) => {
             console.log("🚀 ~ file: user.reducer.js ~ line 42 ~ userReducer ~ user", action.payload)
             return {
                 ...state,
-                user: action.payload,
+                // user: action.payload,
                 currentUser: action.payload
             }
+            case userTypes.SET_USER_ADMIN:
+                console.log("🚀 ~ file: user.reducer.js ~ line 42 ~ userReducer ~ user", action.payload)
+                return {
+                    ...state,
+                    user: action.payload
+                }
         default:
             return state;
     }
