@@ -7,6 +7,7 @@ import { signOutUserSuccess } from "./user.action";
 import { fetchUser, setUsers } from './user.action'
 import { handleDeleteUser, handleEditUser, handleFetchDetailUser, handleFetchUser, handleAddUser } from "./user.helpers";
 import userTypes from "./user.type";
+import swal from 'sweetalert';
 
 
 
@@ -31,11 +32,14 @@ export function* getSnapshotFromUserAuth(user, additionalData = {}) {
 export function* emailSignIn({ payload: { email, password } }) {
   try {
     console.log("emailSignIn")
-    const { user } = yield auth.signInWithEmailAndPassword(email, password);
+    const { user } = yield auth.signInWithEmailAndPassword(email, password)
+    .then(() => {
+
+    }).catch((err) => swal("Mật khẩu không hợp lệ hãy nhập lại!","", "error"));
     yield getSnapshotFromUserAuth(user);
 
   } catch (err) {
-    // console.log(err);
+    console.log(err);
   }
 }
 export function* onEmailSignInStart() {

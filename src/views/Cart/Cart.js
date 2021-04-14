@@ -18,11 +18,11 @@ const mapCart = (state) => ({
     user: state.user.currentUser,
     totalNumCartItems: selectCartItemsCount(state),
     products: state.products
-  })
+})
 
 function Cart(props) {
     const { cartItems, total } = useSelector(mapState);
-    const { totalNumCartItems} = useSelector(mapCart);
+    const { totalNumCartItems } = useSelector(mapCart);
     console.log(cartItems)
     console.log('tong gia', total)
 
@@ -33,7 +33,7 @@ function Cart(props) {
                 cartItems.length > 0 ?
                     <div className="col-12 ">
                         <h3 className="bold">Giỏ Hàng của bạn </h3> <span>({totalNumCartItems} sản phẩm ) </span>
-                        <table class="table">
+                        <table class="table table-responsive">
                             <thead>
                                 <tr>
                                     <th scope="col">hình ảnh</th>
@@ -52,11 +52,15 @@ function Cart(props) {
                             </tbody> : <p>Bạn không có sản phẩm nào trong giỏ hàng</p>}
 
                         </table>
+                        <table className="table table-sm-responsive"></table>
+                        <table className="table table-md-responsive"></table>
+                        <table className="table table-lg-responsive"></table>
+                        <table className="table table-xl-responsive"></table>
 
                         <table>
                             <tr>
                                 <td>
-                                <h3>Tổng Tiền : {formatter.format(total) } </h3>
+                                    <h3>Tổng Tiền : {formatter.format(total)} </h3>
                                 </td>
                             </tr>
                         </table>

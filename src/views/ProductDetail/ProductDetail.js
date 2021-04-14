@@ -104,7 +104,7 @@ function ProductDetail({ match }) {
                         <p className="mb-2 text-muted text-uppercase small">{product.category}</p>
 
                         <Start id={id} />
-                        <p><span className="mr-1"><strong>   {formatter.format(product.price)}</strong></span></p>
+                        <p><span className="mr-1 "><strong>   {formatter.format(product.price)}</strong></span></p>
                         <strong>Mô tả</strong>
                         <p className="pt-1">{product.description}</p>
 

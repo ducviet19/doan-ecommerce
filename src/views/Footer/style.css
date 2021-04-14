@@ -4,12 +4,12 @@ footer {
 footer {
     padding-top: 50px;
   }
-/* 
 
-footer h4 {
-    font-weight: bold !important;
+
+ul.list-unstyled li a {
+    color: white ;
 }
 
-footer ul li {
-    font-size: 80% !important;
+/* footer h4,h5,p {
+    color: white;
 } */

@@ -1,21 +1,36 @@
 import './style.css';
-
-
+import { useFormik } from "formik";
+import * as Yup from 'yup';
 import { Link, useHistory } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { emailSignInStart , signInSuccess, signInWithGoogle ,googleSignInStart } from '../../redux/User/user.action';
+import { emailSignInStart, signInSuccess, signInWithGoogle, googleSignInStart } from '../../redux/User/user.action';
 import useScrollTop from '../../hook/useScrollTop';
 import swal from 'sweetalert';
 
 
 const mapState = ({ user }) => ({
     currentUser: user.currentUser
-  });
+});
 
+
+const validationSchema = Yup.object({
+    email: Yup
+        .string()
+        .required('Vui lòng nhập tên'),
+    email: Yup
+        .string()
+        .email('Định dạng email không hợp lệ')
+        .required('Vui lòng nhập email'),
+    password: Yup
+        .string()
+        .required('Vui lòng nhập mật khẩu'),
+
+
+})
 function Login(props) {
     useScrollTop();
-    
+
     const history = useHistory()
     const { currentUser } = useSelector(mapState);
     const dispatch = useDispatch();
@@ -25,27 +40,41 @@ function Login(props) {
     console.log(currentUser)
 
 
-    useEffect( () => {
-        if(currentUser) {
-            
+    useEffect(() => {
+        if (currentUser) {
+
         }
-        
-    },[currentUser ] )
+
+    }, [currentUser])
 
 
-    const handleSubmit =  (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
         dispatch(emailSignInStart({ email, password }));
-        // swal("Đăng nhập thành công!", "", "success");
         history.goBack();
-       
+
     }
 
     const loginWithGoogle = () => {
         dispatch(googleSignInStart())
-        swal("Đăng nhập thành công!", "", "success");
-
     }
+
+    const formik = useFormik({
+        enableReinitialize: true,
+        initialValues: {
+            email: '',
+            password: ''
+
+        },
+        validationSchema,
+        onSubmit: values => {
+            // values.preventDefault();
+            dispatch(emailSignInStart(values));
+            formik.resetForm();
+            // history.goBack()
+        },
+    });
+
 
     return (
         <div className="login row">
@@ -53,11 +82,32 @@ function Login(props) {
                 <h1 className="text-center">Đăng nhập</h1>
             </div>
             <div className="col-lg m-5">
-                <form className="login" onSubmit={handleSubmit}>
-                    <div className="form-group">
-                        <input type="email" value={email} onChange={(e) => { setEmail(e.target.value) }} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email" />
-                        <div className="form-group mt-4">
-                            <input type="password" value={password} onChange={(e) => setPassword(e.target.value) } className="form-control" id="exampleInputPassword1" placeholder="Mật khẩu" />
+                <form className='login' onSubmit={formik.handleSubmit}>
+                  
+                        {/* <input type="email" value={email} onChange={(e) => { setEmail(e.target.value) }} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email" /> */}
+                        <div className="form-group">
+                            <input className="form-control"
+                                id='email'
+                                type='text'
+                                placeholder="Nhập  Email"
+                                value={formik.values.email}
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur} />
+                            {formik.touched.email && formik.errors.email ? (
+                                <div>{formik.errors.email}</div>) : null}
+                        </div>
+
+                        <div className="form-group">
+                            <input className="form-control"
+                                id='password'
+                                type='password'
+                                placeholder="Nhập  password"
+                                value={formik.values.password}
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur} />
+                            {formik.touched.password && formik.errors.password ? (
+                                <div>{formik.errors.password}</div>) : null}
+                            {/* <input type="password" value={password} onChange={(e) => setPassword(e.target.value) } className="form-control" id="exampleInputPassword1" placeholder="Mật khẩu" /> */}
                         </div>
                         <button className="btn btn-secondary" type='submit' >
                             Đăng Nhập
@@ -68,7 +118,8 @@ function Login(props) {
                         <div>
                             <button onClick={loginWithGoogle} className="text-secondary" href>Login With Google</button>
                         </div>
-                    </div></form>
+                   
+                </form>
             </div>
         </div>
     )

@@ -59,7 +59,7 @@ function InfoUser(props) {
     });
 
     return (
-        <div className="m-2">
+        <div className="m-2 mt-5">
             <h1 className='text-center'>Thông tin tài khoản</h1>
             <form className='from_info_user' onSubmit={formik.handleSubmit}>
                 <div className="form-group">

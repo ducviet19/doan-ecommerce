@@ -40,7 +40,7 @@ function ProductCart(product) {
     }
     return (
         <>
-            <div to={`/product/${documentID}`} className="card p-1 mr-5 mt-5    col-lg-3 col-12 text-decoration-none">
+            <div to={`/product/${documentID}`} className="card p-1 m-2 mt-5    col-lg-3 col-12 text-decoration-none">
                 <img className="img-fluid m-auto w-75" src={thumbnail} alt="Card image" />
                 <Link to={`/product/${documentID}`} className="">
                     <div className="detail">

@@ -111,8 +111,8 @@ function Payment(props) {
 
     return (
 
-        <div className="row m-5">
-            <div className="col-6">
+        <div className="row mt-5">
+            <div className="col-lg-6 col-12">
                 <h2 className="text-center">Thông tin giao hàng</h2>
                 <form onSubmit={formik.handleSubmit}>
                     <div className="form-group">
@@ -200,7 +200,7 @@ function Payment(props) {
 
                 </form>
             </div>
-            <div className="col-6">
+            <div className="col-lg-6 col-12">
                 <Cart />
             </div>
         </div>

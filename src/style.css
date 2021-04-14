@@ -1,17 +1,27 @@
 
-a {
+ /* a {
   text-decoration: none;
   color: black;
-}
+} */
+/* main.main a {
+  text-decoration: none;
+  color: black;
+} */
+
+/* main.main a {
+  text-decoration: none;
+  color: black;
+} */
+
 .content {
   padding-top: 150px;
 }
 
 
-a.nav-link {
+/* a.nav-link {
   color: black;
   white-space: nowrap;
-}
+} */
 
 .form_info {
   background-color: #f3f3f3;
@@ -27,7 +37,4 @@ input#exampleInputPassword1 {
   background-color: lightgray;
 }
 
-footer ul li a {
-  color: white;
-}
 

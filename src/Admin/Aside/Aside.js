@@ -1,28 +1,41 @@
 import React from 'react';
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-
+const mapState = (state) => ({
+    currentUser: state.user.currentUser
+})
 
 function Aside(props) {
-    return (
-       
-            <aside className="col-2 bg-light">
-                <div className="avatar">
-                    <img src="https://img.icons8.com/wired/50/000000/admin-settings-male.png" />
 
-                </div>
+    const { currentUser } = useSelector(mapState)
+
+    useEffect(() => {
+
+    })
+
+    return (
+
+        <aside className=" bg-dark">
+            <div className="avatar d-flex flex-column align-items-center">
+                <img className="img-thumbnail w-50 rounded-circle " src={currentUser.photoUrl} alt="Thumbnail image" />
                 <div>
-                    <ul className="list-group">
-                    <li className="list-group-item"><Link to="/">Website</Link> </li>
-                        <li className="list-group-item"><Link to="/admin">Tong Quan</Link> </li>
-                        <li className="list-group-item"><Link to="/admin/order">Đơn Hàng</Link> </li>
-                        <li className="list-group-item"> <Link to="/admin/listproduct">San pham</Link> </li>
-                        <li className="list-group-item"> <Link to="/admin/listuser">Nguoi Dung</Link> </li>
-                        <li className="list-group-item">Bao Cao</li>
-                    </ul>
+                    <p className="text-white">{currentUser.displayName}</p>
                 </div>
-            </aside>
-           
-       
+
+            </div>
+            <div>
+                <div></div>
+                <ul className="list-unstyled">
+                    <li className="m-2"><Link style={{ textDecoration: 'none' }} className="text-white" to="/"><i class="fas fa-home"></i> Website</Link> </li>
+                    <li className="m-2"><Link style={{ textDecoration: 'none' }} className="text-white" to="/admin"><i class="fas fa-tablet-alt"></i> Tổng Quan</Link> </li>
+                    <li className="m-2"><Link style={{ textDecoration: 'none' }} className="text-white" to="/admin/order"><i class="fas fa-truck"></i> Quản Lý Đơn Hàng</Link> </li>
+                    <li className="m-2"> <Link style={{ textDecoration: 'none' }} className="text-white" to="/admin/listproduct"><i class="fas fa-bookmark"></i> Quản lý sản phẩm</Link> </li>
+                    <li className="m-2"> <Link style={{ textDecoration: 'none' }} className="text-white" to="/admin/listuser"><i class="fas fa-users-cog"></i> Quản lý người dùng</Link> </li>
+                </ul>
+            </div>
+        </aside>
+
     );
 }
 

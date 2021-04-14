@@ -24,9 +24,12 @@ function Dashboard(props) {
     )
   },[] )
   return (
-    <div className="container-fluid ">
+    <div className="container-fluid">
       <div className="row">
+        <div className="col-2">
         <Aside />
+        </div>
+       
         <div className="col-10">
           {props.children}
         </div>    
