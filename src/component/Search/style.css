@@ -4,12 +4,12 @@
     overflow: hidden;
     text-overflow: ellipsis;
   }
-  
-  input[type="text"] {
+  input.search_bar.form-control input[type="text"]  {
     width: 60%;
     -webkit-transition: width 0.4s ease-in-out;
     transition: width 0.4s ease-in-out;
   }
+
   
   .box {
     position: absolute;
@@ -28,8 +28,9 @@
     margin: 0.125rem 0 0;
   }
   
-  /* When the input field gets focus, change its width to 100% */
-  /* input[type="text"]:hover {
-    width: 30%;
-    opacity: 1;
-  } */
+  .search div {
+    color : black
+  }
+  .search-main div:hover {
+    color : blue
+  }

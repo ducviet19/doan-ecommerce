@@ -50,7 +50,7 @@ function Search(props) {
                         <div className="search_bar  border-top-0 border">
                             <Link style={{ textDecoration: 'none' }} to={`/product/${product.documentID}`}>
                                 <div className="search row p-2  d-flex">
-                                    <div className="text-nowrap col-8">
+                                    <div className="search-main text-nowrap col-8">
                                         <div className="name font-weight-bold text-center "> {product.name}    </div>
                                         <div className="text-center "> {product.category}    </div>
                                         <div className="text-center ">{formatter.format(product.price)}</div>

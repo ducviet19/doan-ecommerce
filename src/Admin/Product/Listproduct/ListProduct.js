@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { formatter } from '../../../App';
+import Search from '../../../component/Search/Search';
 import useScrollTop from '../../../hook/useScrollTop';
 import { deleteProduct, fetchProducts } from '../../../redux/Product/products.action';
 import LoadMore from './../../../component/LoadMore/LoadMore'
@@ -35,6 +36,7 @@ function ListProduct(props) {
     return (
         <div className="list_products">
             <Link to="/admin/newproduct"><button className="btn btn-primary">Thêm mới sản phẩm</button> </Link>
+            <Search />
             <h2>Danh sách sản phẩm</h2>
 
             <table class="table table-light">

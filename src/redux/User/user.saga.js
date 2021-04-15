@@ -33,13 +33,10 @@ export function* emailSignIn({ payload: { email, password } }) {
   try {
     console.log("emailSignIn")
     const { user } = yield auth.signInWithEmailAndPassword(email, password)
-    .then(() => {
-
-    }).catch((err) => swal("Mật khẩu không hợp lệ hãy nhập lại!","", "error"));
     yield getSnapshotFromUserAuth(user);
 
   } catch (err) {
-    console.log(err);
+    swal( `${err}`,"", "error")
   }
 }
 export function* onEmailSignInStart() {

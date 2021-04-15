@@ -38,10 +38,10 @@ function OrderDetailUser(props) {
                     <h3>Trạng thái đơn hàng: {orderDetail.finish == "true" ? "Hoàn thành" : "Đang xử lý"}</h3>
                     <strong>Địa chỉ và thông tin nhận hàng : </strong>
                     <ul className="list-unstyled">
-                        <li>Địa Chỉ nhận hàng :  {orderDetail.shipping.address}</li>
-                        <li>Email :  {orderDetail.shipping.email}</li>
-                        <li>Tên :  {orderDetail.shipping.name}</li>
-                        <li>SĐT : {orderDetail.shipping.phone}</li>
+                        <li>Địa Chỉ nhận hàng :  {orderDetail.shipping?.address}</li>
+                        <li>Email :  {orderDetail.shipping?.email}</li>
+                        <li>Tên :  {orderDetail.shipping?.name}</li>
+                        <li>SĐT : {orderDetail.shipping?.phone}</li>
                     </ul>
                 </div>
 
