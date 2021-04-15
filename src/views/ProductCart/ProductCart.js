@@ -42,7 +42,7 @@ function ProductCart(product) {
         <>
             <div className="justyfy-content-center card p-1 m-5 col-lg-2 col-md-3 col-sm-3 col-12 text-decoration-none">
                 <img className="img-fluid m-auto" src={thumbnail} alt="Card image" />
-                <Link to={`/product/${documentID}`} className="">
+                <Link style={{ textDecoration: 'none' }} to={`/product/${documentID}`} className="">
                     <div className="detail">
                         <p className="card-text text-center bold  ">{name}</p>
                     </div>

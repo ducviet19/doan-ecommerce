@@ -29,6 +29,8 @@ export const handleUserProfile = async ({userAuth, additionalData}) => {
         const { displayName , email} = userAuth;
         const timestamp = new Date();
         const userRoles = ['user']
+        const photoUrl = 'https://lh3.googleusercontent.com/proxy/_mkYtZNz8IK6ZsGPhtZbQruVTFUBA872tvj77zdWTgO2_GqgIX3v38dgCJxFR2ttoCFac2Y6pHL_p_YfXiNQyVi5VSg5wAuEpiF6l5rEKkkk0_SXbnxuqFtRBnWSUWJXHSv5AYSxOcV98Eaz'
+
 
         try {
             await useRef.set({
@@ -37,7 +39,8 @@ export const handleUserProfile = async ({userAuth, additionalData}) => {
                 createDate: timestamp,
                 userRoles,
                 id: uid,
-                ...additionalData
+                ...additionalData,
+                photoUrl
             })
             
         } catch (error) {
@@ -49,35 +52,6 @@ export const handleUserProfile = async ({userAuth, additionalData}) => {
 }
 
 
-export const handleCart = async ({userAuth, additionalData}) => {
-    if(!userAuth) return;
-    const { uid } = userAuth;
-    console.log(userAuth);
-    const useRef = firestore.doc(`users/${uid}`);
-   
-    const snapshot = await useRef.get();
-
-    if(!snapshot.exists) {
-        const { displayName , email} = userAuth;
-        const timestamp = new Date();
-        const userRoles = ['user']
-
-        try {
-            await useRef.set({
-                displayName,
-                email,
-                createDate: timestamp,
-                userRoles,
-                ...additionalData
-            })
-            
-        } catch (error) {
-            
-        }
-    }
-
-    return useRef;
-}
 
 export const getCurrentUser = () => {
     return new Promise((resolve, reject) => {

@@ -65,7 +65,7 @@ function Cart(props) {
                         </table>
                     </div>
 
-                    : <div className="text-center mt-4">
+                    : <div className="text-center mt-4 col-lg-12 col-12">
                         <h3 >Bạn chưa có sản phẩm nào trong giỏ hàng</h3>
                         <Link to="/"><button className="btn btn-primary">Tiếp tục mua hàng</button></Link>
 

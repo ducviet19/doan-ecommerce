@@ -57,7 +57,7 @@ function Home() {
 
                 <div className="new-product m-5 ">
                     <div>
-                        <h2 className="text-center m-5"><a href>SẢN PHẨM MỚI</a> </h2>
+                        <h3 className="text-center text-nowrap m-5"><a href>SẢN PHẨM MỚI</a> </h3>
                     </div>
                     <div className="row d-flex justify-content-center">
 

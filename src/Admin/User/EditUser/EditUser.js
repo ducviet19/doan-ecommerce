@@ -8,6 +8,7 @@ import { editUser, editUserAdmin, fetchUserAdmin, fetchUserId, setUser } from '.
 import * as Yup from 'yup';
 import useScrollTop from '../../../hook/useScrollTop';
 import { useFormik } from "formik";
+import swal from 'sweetalert';
 
 const mapState = state => ({
     userEdit: state.user.user
@@ -60,6 +61,8 @@ function EditUser(props) {
             dispatch(editUserAdmin(values, id));
             formik.resetForm();
             history.goBack();
+       
+            swal("Cập nhật thành công!", "", "success");
 
         },
     });
