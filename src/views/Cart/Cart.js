@@ -55,10 +55,6 @@ function Cart(props) {
                         </table>
                         </div>
                         
-                        {/* <table className="table table-sm-responsive"></table>
-                        <table className="table table-md-responsive"></table>
-                        <table className="table table-lg-responsive"></table>
-                        <table className="table table-xl-responsive"></table> */}
 
                         <table>
                             <tr>

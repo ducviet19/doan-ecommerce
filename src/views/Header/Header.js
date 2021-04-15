@@ -96,10 +96,10 @@ function Header(props) {
                 <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Sản phẩm</a>
                 <div className="dropdown-menu">
 
-                  <li><Link className="text-dark"  to='/shop/Sữa rửa mặt'>Sữa rửa mặt</Link></li>
-                  <li><Link className="text-dark"  to='/shop/Kem chống nắng'>Kem chống nắng</Link></li>
-                  <li><Link className="text-dark"   to='/shop/Mặt nạ'>Mặt nạ</Link></li>
-                  <li><Link className="text-dark"  to='/shop/Nước Hoa'>Nước Hoa</Link></li>
+                  <li><Link className="text-dark" style={{ textDecoration: 'none' }}  to='/shop/Sữa rửa mặt'>Sữa rửa mặt</Link></li>
+                  <li><Link className="text-dark" style={{ textDecoration: 'none' }} to='/shop/Kem chống nắng'>Kem chống nắng</Link></li>
+                  <li><Link className="text-dark" style={{ textDecoration: 'none' }}  to='/shop/Mặt nạ'>Mặt nạ</Link></li>
+                  <li><Link className="text-dark"  style={{ textDecoration: 'none' }} to='/shop/Nước Hoa'>Nước Hoa</Link></li>
                 </div>
               </li>
               <li className="nav-item col-lg col-12 ">

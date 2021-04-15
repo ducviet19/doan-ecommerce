@@ -12,6 +12,7 @@ import useScrollTop from '../../hook/useScrollTop';
 import swal from 'sweetalert';
 import { useHistory } from 'react-router';
 import { fetchUserId } from '../../redux/User/user.saga';
+import { Link } from 'react-router-dom';
 
 const validate = values => {
 
@@ -111,7 +112,9 @@ function Payment(props) {
 
     return (
 
-        <div className="row mt-5">
+        <> 
+           {
+            cartItems.length > 0 ?      <div className="row mt-5">
             <div className="col-lg-6 col-12">
                 <h2 className="text-center">Thông tin giao hàng</h2>
                 <form onSubmit={formik.handleSubmit}>
@@ -203,7 +206,16 @@ function Payment(props) {
             <div className="col-lg-6 col-12">
                 <Cart />
             </div>
-        </div>
+        </div>  : <div className="text-center m-5">
+                        <h3 >Bạn chưa có sản phẩm nào trong giỏ hàng</h3>
+                        <Link to="/"><button className="btn btn-primary">Tiếp tục mua hàng</button></Link>
+
+                    </div>
+        }
+        </>
+     
+
+   
 
     );
 }

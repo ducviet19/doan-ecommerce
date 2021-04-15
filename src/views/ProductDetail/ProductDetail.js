@@ -55,7 +55,7 @@ function ProductDetail({ match }) {
 
         <>
             <Suspense fallback={<div>Loading...</div>}>
-                <div className="row pt-5">
+                <div className="row pt-5 mt-5">
                     <div className="col-md-6 mb-4 mb-md-0">
                         <div id="mdb-lightbox-ui" />
                         <div className="mdb-lightbox">
