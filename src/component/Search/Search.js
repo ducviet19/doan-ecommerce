@@ -31,9 +31,7 @@ function Search(props) {
             <div className="search_box p-2 input-group">
                 <input className="search_bar form-control" type="text" placeholder="Tìm kiếm sản phẩm" value={searchItem} onChange={(e) => { setSearchItem(e.target.value) }} />
                 <span class="input-group-append">
-                    <button class="btn btn-outline-secondary bg-white border-start-0 border rounded-pill ms-n3" type="button">
-                        <i class="fa fa-search"></i>
-                    </button>
+                 
                 </span>
             </div>
             <div className="box">

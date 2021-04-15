@@ -32,6 +32,7 @@ function Aside(props) {
                     <li className="m-3"><Link style={{ textDecoration: 'none' }} className="text-white" to="/admin/order"><i class="fas fa-truck"></i> Quản Lý Đơn Hàng</Link> </li>
                     <li className="m-3"> <Link style={{ textDecoration: 'none' }} className="text-white" to="/admin/listproduct"><i class="fas fa-bookmark"></i> Quản lý sản phẩm</Link> </li>
                     <li className="m-3"> <Link style={{ textDecoration: 'none' }} className="text-white" to="/admin/listuser"><i class="fas fa-users-cog"></i> Quản lý người dùng</Link> </li>
+                    <li className="m-3"> <Link style={{ textDecoration: 'none' }} className="text-white" to="/admin/category"><i class="fas fa-users-cog"></i> Quản lý Danh mục</Link> </li>
                 </ul>
             </div>
         </aside>

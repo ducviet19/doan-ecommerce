@@ -7,6 +7,7 @@ import storage from 'redux-persist/lib/storage'
 import { persistReducer } from 'redux-persist'
 import orderReducer from "./Order/order.reducer";
 import reviewReducer from "./Review/Review.reducer";
+import categoryReducer from "./Category/category.reducer";
 
 
 export const rootReducer = combineReducers({
@@ -15,7 +16,8 @@ export const rootReducer = combineReducers({
     cartData: cartReducer,
     orderData: orderReducer,
     reviewData: reviewReducer,
-    message: contactReducer
+    message: contactReducer,
+    category: categoryReducer
 })
 
 const configStorage = {

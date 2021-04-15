@@ -5,6 +5,7 @@ import orderSagas from './Order/order.saga'
 import cartSagas from './Cart/cart.saga'
 import userSagas from './User/user.saga'
 import reviewSagas from './Review/Review.saga'
+import categoriesSagas from './Category/category.sagas'
 
 
 export default function* rootSaga() {
@@ -14,6 +15,7 @@ export default function* rootSaga() {
     call(cartSagas),
     call(orderSagas),
     call(reviewSagas),
-    call(contactSagas)
+    call(contactSagas),
+    call(categoriesSagas)
   ])
 }

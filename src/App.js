@@ -37,6 +37,8 @@ import Contact from './views/Contact/contact';
 import EditUser from './Admin/User/EditUser/EditUser';
 import InfoUser from './views/InfoUser/InfoUser'
 import Shop from './views/Shop/Shop';
+import AddCategory from './Admin/Category/AddCategory/AddCategory';
+import ListCategory from './Admin/Category/ListCategory/ListCategory';
 
 
 const mapState = ({ user }) => ({
@@ -162,6 +164,8 @@ function App(props) {
 
 
 
+
+
               <Route exact path="/admin/newproduct" render={() => (
                 <WithAdminAuth><Dashboard>
                   <FormProduct />
@@ -186,6 +190,33 @@ function App(props) {
                   </Dashboard>
                 </WithAdminAuth>
               )} />
+
+
+
+              <Route exact path="/admin/addcategory" render={() => (
+                <WithAdminAuth><Dashboard>
+                  <AddCategory />
+                </Dashboard></WithAdminAuth>
+
+              )} />
+
+
+              <Route exact path="/admin/category" render={() => (
+                <WithAdminAuth>
+                  <Dashboard>
+                    <ListCategory />
+                  </Dashboard>
+                </WithAdminAuth>
+              )} />
+
+
+              {/* <Route exact path="/admin/editcategory/:id" render={() => (
+                <WithAdminAuth>
+                  <Dashboard>
+                    <EditProduct />
+                  </Dashboard>
+                </WithAdminAuth>
+              )} /> */}
 
 
 
