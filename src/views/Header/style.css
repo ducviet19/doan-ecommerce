@@ -36,7 +36,7 @@ a:hover {
     border-radius: 50%;
   }
   
-  .dropdown:hover .show_menu {
+  .dropdown-show:hover .show_menu {
     display: block;
     position: absolute;
     top: 50%;

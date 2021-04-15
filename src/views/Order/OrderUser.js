@@ -25,13 +25,14 @@ function OrderUser(props) {
         <div>
             <div className="mt-5">
                 <h2>Danh sách đơn hàng </h2>
-                <table class="table table-light">
+                <div className="table-responsive">
+                <table class="table ">
                     <thead>
                         <tr>
-                            <th scope="col">Đơn hàng</th>
-                            <th scope="col">Thời gian</th>
-                            <th scope="col">Tình trạng</th>
-                            <th scope="col"></th>
+                            <th scope="col-lg">Đơn hàng</th>
+                            <th scope="col-lg">Thời gian</th>
+                            <th scope="col-lg">Tình trạng</th>
+                            <th scope="col-lg"></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -44,13 +45,14 @@ function OrderUser(props) {
                                         <td> <Link to={`/order/${documentID}`}> {documentID}</Link>   </td>
                                         <td>{datePlaced.split("T")[0]}</td>
                                         <td>{finish == "true" ? <p>Hoàn thành</p> : <p> Đang Xử lý </p>}</td>
-                                        <td > <Link  to={`/order/${documentID}`}> <button className="btn btn-success">Xem</button></Link>   </td>
+                                        <td > <Link to={`/order/${documentID}`}> <button className="btn btn-success">Xem</button></Link>   </td>
                                     </tr>
                                 )
                             })
                         }
                     </tbody>
                 </table>
+                </div>
 
             </div>
         </div>

@@ -33,7 +33,8 @@ function Cart(props) {
                 cartItems.length > 0 ?
                     <div className="col-12 ">
                         <h3 className="bold">Giỏ Hàng của bạn </h3> <span>({totalNumCartItems} sản phẩm ) </span>
-                        <table class="table table-responsive">
+                        <div className="table-responsive">
+                        <table class="table">
                             <thead>
                                 <tr>
                                     <th scope="col">hình ảnh</th>
@@ -52,10 +53,12 @@ function Cart(props) {
                             </tbody> : <p>Bạn không có sản phẩm nào trong giỏ hàng</p>}
 
                         </table>
-                        <table className="table table-sm-responsive"></table>
+                        </div>
+                        
+                        {/* <table className="table table-sm-responsive"></table>
                         <table className="table table-md-responsive"></table>
                         <table className="table table-lg-responsive"></table>
-                        <table className="table table-xl-responsive"></table>
+                        <table className="table table-xl-responsive"></table> */}
 
                         <table>
                             <tr>

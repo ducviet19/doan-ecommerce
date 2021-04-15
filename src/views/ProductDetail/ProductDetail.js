@@ -100,18 +100,20 @@ function ProductDetail({ match }) {
                         </div>
                     </div>
                     <div className="col-md-6">
-                        <h5>{product.name}</h5>
+                        <h5 className="font-weight-bold">{product.name}</h5>
                         <p className="mb-2 text-muted text-uppercase small">{product.category}</p>
 
                         <Start id={id} />
                         <p><span className="mr-1 "><strong>   {formatter.format(product.price)}</strong></span></p>
+                        <button className="btn btn-secondary mr-3 mt-3 mb-3 w-100 p-2" onClick={() => { handleAddToCart(product) }}>THÊM VÀO GIỎ</button>
                         <strong>Mô tả</strong>
+                        <div>
                         <p className="pt-1">{product.description}</p>
+                        </div>
+                      
 
                         <hr />
-                        <div>
-                            <button className="btn btn-secondary mr-3" onClick={() => { handleAddToCart(product) }}><i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng</button>
-                        </div>
+                       
                     </div>
                 </div>
             </Suspense>

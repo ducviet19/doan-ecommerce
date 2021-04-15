@@ -6,7 +6,8 @@ import Search from '../../../component/Search/Search';
 import useScrollTop from '../../../hook/useScrollTop';
 import { deleteProduct, fetchProducts } from '../../../redux/Product/products.action';
 import LoadMore from './../../../component/LoadMore/LoadMore'
-
+import swal from 'sweetalert';
+import SearchProductAdmin from '../../ComponentAdmin/SearchProductAdmin';
 const mapState = ({ productsData }) => ({
     products: productsData.products
 })
@@ -33,13 +34,20 @@ function ListProduct(props) {
     const configLoadMore = {
         onLoadMoreEvt: handleLoadMore,
     };
+
+
+    const hanleDelete = (documentID) => {
+        dispatch(deleteProduct(documentID))
+        swal("Xoá sản phẩm thành công!", "", "success");
+    }
     return (
         <div className="list_products">
             <Link to="/admin/newproduct"><button className="btn btn-primary">Thêm mới sản phẩm</button> </Link>
-            <Search />
+            <SearchProductAdmin />
             <h2>Danh sách sản phẩm</h2>
 
-            <table class="table table-light">
+            <div class="table-responsive">
+            <table class="table">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
@@ -60,7 +68,7 @@ function ListProduct(props) {
                                     <td> <img className="img-thumbnail w-25" src={thumbnail} /> </td>
                                     <td>{category}</td>
                                     <td>{formatter.format(price)}</td>
-                                    <td ><button className="btn btn-danger" onClick={() => dispatch(deleteProduct(documentID))}>X</button></td>
+                                    <td ><button className="btn btn-danger" onClick={() => hanleDelete(documentID) }>X</button></td>
                                 </tr>
                             )
                         })
@@ -68,6 +76,8 @@ function ListProduct(props) {
 
                 </tbody>
             </table>
+        </div>
+            
             <div className='d-flex'>
                 <div className='m-auto'>
                     {!isLastPage && (

@@ -65,7 +65,7 @@ function Header(props) {
 
             <div class="dropdown row">
               {currentUser !== null ?
-                <div className="col-lg-8 col-6">
+                <div className="dropdown-show col-lg-8 col-12">
                   <p class="text-nowrap text-name" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <Link > <i class="fas fa-user"></i> {currentUser.displayName} </Link>
                   </p>
@@ -80,7 +80,7 @@ function Header(props) {
                     </div>
                   </div>
                 </div> : <a><Link style={{ textDecoration: 'none' }} to="/login">Đăng nhập</Link> </a>}
-                <div className="shopping-cart col-lg-4 col-6 ">
+                <div className="shopping-cart col-lg-4 col-12 ">
                   <Link to="/cart"><i class="fa fa-shopping-bag" aria-hidden="true"></i> {totalNumCartItems == 0 ? "" : <><span className="numberCart">{totalNumCartItems == 0 ? "" : totalNumCartItems}  </span> </>}     </Link>
                 </div>
             </div>

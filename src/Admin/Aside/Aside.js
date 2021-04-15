@@ -27,11 +27,11 @@ function Aside(props) {
             <div>
                 <div></div>
                 <ul className="list-unstyled">
-                    <li className="m-2"><Link style={{ textDecoration: 'none' }} className="text-white" to="/"><i class="fas fa-home"></i> Website</Link> </li>
-                    <li className="m-2"><Link style={{ textDecoration: 'none' }} className="text-white" to="/admin"><i class="fas fa-tablet-alt"></i> Tổng Quan</Link> </li>
-                    <li className="m-2"><Link style={{ textDecoration: 'none' }} className="text-white" to="/admin/order"><i class="fas fa-truck"></i> Quản Lý Đơn Hàng</Link> </li>
-                    <li className="m-2"> <Link style={{ textDecoration: 'none' }} className="text-white" to="/admin/listproduct"><i class="fas fa-bookmark"></i> Quản lý sản phẩm</Link> </li>
-                    <li className="m-2"> <Link style={{ textDecoration: 'none' }} className="text-white" to="/admin/listuser"><i class="fas fa-users-cog"></i> Quản lý người dùng</Link> </li>
+                    <li className="m-3"><Link style={{ textDecoration: 'none' }} className="text-white" to="/"><i class="fas fa-home"></i> Website</Link> </li>
+                    <li className="m-3"><Link style={{ textDecoration: 'none' }} className="text-white" to="/admin"><i class="fas fa-tablet-alt"></i> Tổng Quan</Link> </li>
+                    <li className="m-3"><Link style={{ textDecoration: 'none' }} className="text-white" to="/admin/order"><i class="fas fa-truck"></i> Quản Lý Đơn Hàng</Link> </li>
+                    <li className="m-3"> <Link style={{ textDecoration: 'none' }} className="text-white" to="/admin/listproduct"><i class="fas fa-bookmark"></i> Quản lý sản phẩm</Link> </li>
+                    <li className="m-3"> <Link style={{ textDecoration: 'none' }} className="text-white" to="/admin/listuser"><i class="fas fa-users-cog"></i> Quản lý người dùng</Link> </li>
                 </ul>
             </div>
         </aside>

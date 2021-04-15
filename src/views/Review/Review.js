@@ -120,7 +120,7 @@ function Review(props) {
                     {formik.touched.comment && formik.errors.comment ? (
                         <div>{formik.errors.comment}</div>) : null}
                 </div>
-                <button type="submit" className="btn btn-primary">Đánh giá</button>
+                <button type="submit" className="btn btn-primary">Gửi đánh giá</button>
 
             </form>
             {/* <div>

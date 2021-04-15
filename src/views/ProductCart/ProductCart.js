@@ -40,8 +40,8 @@ function ProductCart(product) {
     }
     return (
         <>
-            <div to={`/product/${documentID}`} className="card p-1 m-2 mt-5    col-lg-3 col-12 text-decoration-none">
-                <img className="img-fluid m-auto w-75" src={thumbnail} alt="Card image" />
+            <div className="justyfy-content-center card p-1 m-5 col-lg-2 col-md-3 col-sm-3 col-12 text-decoration-none">
+                <img className="img-fluid m-auto" src={thumbnail} alt="Card image" />
                 <Link to={`/product/${documentID}`} className="">
                     <div className="detail">
                         <p className="card-text text-center bold  ">{name}</p>
@@ -49,7 +49,7 @@ function ProductCart(product) {
                 </Link>
                 <p className="text-center"><strong> {formatter.format(price)}</strong></p>
                 <div className="d-flex justify-content-center">
-                    {number == 0 ? <button className="btn btn-primary" disabled >Sold Out</button> : <button className="btn btn-secondary" onClick={() => { handleAddToCart(product) }}><i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng</button>}
+                    {number == 0 ? <button className="btn btn-primary" disabled >Sold Out</button> : <button className="btn btn-secondary w-100" onClick={() => { handleAddToCart(product) }}><i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng</button>}
                 </div>
                 <div className="rating text-center p-3">
                     <span>

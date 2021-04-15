@@ -91,7 +91,7 @@ export function* deleteProduct({ payload }) {
     try {
         yield handleDeleteProduct(payload);
         yield put(
-            fetchProducts()
+            fetchProducts({})
         )
 
     } catch (error) {

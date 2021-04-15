@@ -58,8 +58,8 @@ function Order(props) {
                     <label for="status">Trạng thái</label>
                     <select value={status} onChange={(e) => setStatus(e.target.value)}  >
 
-                        <option value="false">Dang xu ly</option>
-                        <option value="true">Da Hoan Thanh</option>
+                        <option value="false">Đang xử lý</option>
+                        <option value="true">Đã hoàn thành</option>
                     </select>
                 </div>
 

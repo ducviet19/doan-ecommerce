@@ -34,6 +34,7 @@ function ListUser(props) {
             <button className='btn btn-primary' onClick={() => { setShowModalAdd(true) }}>Thêm thành viên</button>
 
             <h2>Danh sách tài khoản</h2>
+            <div className="table-responsive">
             <table class="table table-light">
                 <thead>
                     <tr>
@@ -65,6 +66,8 @@ function ListUser(props) {
 
                 </tbody>
             </table>
+            </div>
+       
             {showModalAdd == true ? <AddUser showModalAdd={showModalAdd} toggleModal={toggleModalAdd} /> : ''}
             {/* <EditUser showModal={showModal} toggleModal={toggleModal} id={id} /> */}
 
