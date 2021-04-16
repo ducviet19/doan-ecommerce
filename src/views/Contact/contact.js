@@ -9,7 +9,7 @@ function Contact() {
     }, [])
 
     return (
-        <div className="Contact">
+        <div className="Contact mt-5 mb-5">
             <ContactBody />
             <ContactMess />
         </div>

@@ -204,7 +204,7 @@ function Payment(props) {
             <div className="col-lg-6 col-12">
                 <Cart />
             </div>
-        </div>  : <div className="text-center m-5">
+        </div>  : <div className="text-center m-5 pt-5 ">
                         <h3 >Bạn chưa có sản phẩm nào trong giỏ hàng</h3>
                         <Link to="/"><button className="btn btn-primary">Tiếp tục mua hàng</button></Link>
 

@@ -29,7 +29,8 @@ function ProductDetail({ match }) {
     console.log('loading', loading)
     const src = [
         product.thumbnail,
-        product.imgDetail
+        product.imgDetail,
+        product.imgDetail2
     ];
     const [stt, setStt] = useState(0)
     useEffect(() => {
@@ -52,8 +53,8 @@ function ProductDetail({ match }) {
     }
     return (
 
-        <> 
-        {loading === false ?      <>  <div className="row pt-5">
+        <>
+            {loading === false ? <>  <div className="row px-1 pt-5 mt-2">
                 <div className="col-md-6 mb-4 mb-md-0">
                     <div id="mdb-lightbox-ui" />
                     <div className="mdb-lightbox">
@@ -61,7 +62,7 @@ function ProductDetail({ match }) {
                             <div className="col-12 mb-0">
                                 <figure className="view overlay rounded z-depth-1 main-img">
                                     <a data-size="710x823">
-                                        <img src={src[stt]} className="img-fluid w-75 z-depth-1" />
+                                        <img src={src[stt]} className="img-fluid w-75 h-75 z-depth-1" />
                                     </a>
                                 </figure>
 
@@ -73,7 +74,7 @@ function ProductDetail({ match }) {
                                             return (
                                                 <div className="col-3">
                                                     <div className="view overlay rounded z-depth-1 gallery-item">
-                                                        <img src={img} className="img-fluid border " onClick={() => { handletab(index) }} />
+                                                        <img src={img} className="img-fluid border w-75 h-75 " onClick={() => { handletab(index) }} />
 
                                                         <div className="mask rgba-white-slight" />
                                                     </div>
@@ -105,8 +106,8 @@ function ProductDetail({ match }) {
                 </div>
             </div>
                 <Review product={product} />
-                <Rate id={id} /> </> : <LoadingBox /> }
-        
+                <Rate id={id} /> </> : <LoadingBox />}
+
         </>
 
     )

@@ -44,12 +44,12 @@ const ContactMess = () => {
         },
     });
     return (
-        <div className="GetInTouch flex">
-            <div className="getintouch-container">
-                <div className="map">
+        <div className="">
+            <div className=" row">
+                <div className="map col-lg-6 col-12">
                     <GoogleMap />
                 </div>
-                <form onSubmit={formik.handleSubmit} className="getintouch-form">
+                <form onSubmit={formik.handleSubmit} className="getintouch-form col-lg-6 col-12">
                     <label>Contact Us</label>
                     <input
                         id='name'

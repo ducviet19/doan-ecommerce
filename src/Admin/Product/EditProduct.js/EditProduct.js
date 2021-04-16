@@ -65,6 +65,7 @@ function EditProduct({ props }) {
             price: product?.price,
             thumbnail: product?.thumbnail,
             imgDetail:product?.imgDetail,
+            imgDetail2:product?.imgDetail2,
             number: product?.number
         },
         validationSchema,
@@ -160,7 +161,7 @@ function EditProduct({ props }) {
                         {/* <input value={thumbnail} onChange={(e) => setThumbnail(e.target.value)} type="text" className="form-control" id="price" placeholder="Nhập ảnh sản phẩm" /> */}
                     </div>
                     <div className="form-group">
-                        <label for="price">Ảnh chi tiết</label>
+                        <label for="imgDetail">Ảnh chi tiết</label>
                         <input className="form-control"
                         id='imgDetail'
                         type='text'
@@ -170,6 +171,19 @@ function EditProduct({ props }) {
                         onBlur={formik.handleBlur} />
                     {formik.touched.imgDetail && formik.errors.imgDetail ? (
                         <div>{formik.errors.imgDetail}</div>) : null}
+                        {/* <input value={imgDetail} onChange={(e) => SetImgDetail(e.target.value)} type="text" className="form-control" id="price" placeholder="Nhập ảnh sản phẩm" /> */}
+                    </div>
+                    <div className="form-group">
+                        <label for="imgDetail2">Ảnh chi tiết 2</label>
+                        <input className="form-control"
+                        id='imgDetail2'
+                        type='text'
+                        placeholder="Hình ảnh chi tiết"
+                        value={formik.values.imgDetail2}
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur} />
+                    {formik.touched.imgDetail2 && formik.errors.imgDetail2 ? (
+                        <div>{formik.errors.imgDetail2}</div>) : null}
                         {/* <input value={imgDetail} onChange={(e) => SetImgDetail(e.target.value)} type="text" className="form-control" id="price" placeholder="Nhập ảnh sản phẩm" /> */}
                     </div>
                     <div className="form-group">

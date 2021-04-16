@@ -3,7 +3,8 @@ import './style.css';
 function Footer() {
 
   return (
-    <footer className="row">
+    
+    <footer className="row ">
       <div className="col-lg col-12">
         <h4 className="text-light">Công Ty</h4>
         <ul className="list-unstyled">

@@ -74,7 +74,7 @@ function FormProduct(props) {
             thumbnail: '',
             number: '',
             imgDetail: '',
-            imgDetail2: ''
+            // imgDetail2: ''
         },
         validationSchema,
         onSubmit: values => {
@@ -217,7 +217,6 @@ function FormProduct(props) {
                         onBlur={formik.handleBlur} />
                     {formik.touched.imgDetail2 && formik.errors.imgDetail2 ? (
                         <div>{formik.errors.imgDetail2}</div>) : null}
-                    {/* <input value={imgDetail} onChange={e => SetImgDetail(e.target.value)} type="text" className="form-control" id="imgDetail" placeholder="Nhập tên sản phẩm" /> */}
                 </div>
 
                 <button classNameName="btn btn-primary" type="submit">

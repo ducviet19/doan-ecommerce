@@ -31,7 +31,7 @@ function ListUser(props) {
     return (
         <div>
 
-            <button className='btn btn-primary' onClick={() => { setShowModalAdd(true) }}>Thêm thành viên</button>
+         
 
             <h2>Danh sách tài khoản</h2>
             <div className="table-responsive">
@@ -57,7 +57,7 @@ function ListUser(props) {
                                     <td className='text-center'>{email}</td>
                                     <td className='text-center'>{userRoles}</td>
                                     <td ><button className='btn btn-danger' onClick={() => handleDelete(documentID)}>X</button></td>
-                                    <td ><button className='btn btn-success' ><Link className='' to={`/admin/edituser/${documentID}`} >Edit</Link> </button></td>
+
                                 </tr>
                             )
                         })
