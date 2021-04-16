@@ -3,7 +3,9 @@ import productsTypes from './products.types'
 const INITIAL_STATE = {
     products: [],
     product: {},
-    productsHome: []
+    productsHome: [],
+    loading: true,
+    loadingDetail: true
 };
 
 const productsReducer = (state = INITIAL_STATE, action) => {
@@ -22,6 +24,16 @@ const productsReducer = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 product: action.payload
+            }
+        case productsTypes.PRODUCT_LIST_SUCCESS:
+            return{
+                ...state,
+                loading: false
+            }
+        case productsTypes.PRODUCT_DETAIL_SUCCESS:
+            return{
+                ...state,
+                loadingDetail: false
             }
         default:
             return state;

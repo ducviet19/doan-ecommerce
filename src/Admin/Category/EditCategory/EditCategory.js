@@ -5,7 +5,6 @@ import { useHistory, useParams } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchCategory ,editCategoryDetail } from '../../../redux/Category/category.action';
 import swal from 'sweetalert';
-import { editProduct } from '../../../redux/Product/products.action';
 
 
 const mapCategory = ({ category }) => ({

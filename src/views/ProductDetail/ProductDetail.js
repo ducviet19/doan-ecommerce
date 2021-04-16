@@ -11,9 +11,11 @@ import Review from '../Review/Review';
 import Rate from '../Rate/Rate';
 import Start from '../Start/Start';
 import { formatter } from '../../App';
+import LoadingBox from '../../component/LoadingBox/LoadingBox';
 
 const mapState = state => ({
-    product: state.productsData.product
+    product: state.productsData.product,
+    loading: state.productsData.loadingDetail
 });
 
 
@@ -21,9 +23,10 @@ function ProductDetail({ match }) {
     useScrollTop();
     const history = useHistory()
     const dispatch = useDispatch();
-    const { product } = useSelector(mapState)
+    const { product, loading } = useSelector(mapState)
     let { id } = useParams();
     console.log(product)
+    console.log('loading', loading)
     const src = [
         product.thumbnail,
         product.imgDetail
@@ -31,11 +34,7 @@ function ProductDetail({ match }) {
     const [stt, setStt] = useState(0)
     useEffect(() => {
         dispatch(fetchProductStart(id))
-        return () => {
-            dispatch(
-                setProduct({})
-            )
-        }
+
     }, [])
 
     const handleAddToCart = (product) => {
@@ -47,72 +46,67 @@ function ProductDetail({ match }) {
             icon: "success",
             timer: 1000
         });
-
-        // history.push('/cart')
     }
     const handletab = index => {
         setStt(index)
     }
     return (
 
-        <>
-            <Suspense fallback={<div>Loading...</div>}>
-                <div className="row pt-5">
-                    <div className="col-md-6 mb-4 mb-md-0">
-                        <div id="mdb-lightbox-ui" />
-                        <div className="mdb-lightbox">
-                            <div className="row product-gallery mx-1">
-                                <div className="col-12 mb-0">
-                                    <figure className="view overlay rounded z-depth-1 main-img">
-                                        <a data-size="710x823">
-                                            <img src={src[stt]} className="img-fluid w-75 z-depth-1" />
-                                        </a>
-                                    </figure>
+        <> 
+        {loading === false ?      <>  <div className="row pt-5">
+                <div className="col-md-6 mb-4 mb-md-0">
+                    <div id="mdb-lightbox-ui" />
+                    <div className="mdb-lightbox">
+                        <div className="row product-gallery mx-1">
+                            <div className="col-12 mb-0">
+                                <figure className="view overlay rounded z-depth-1 main-img">
+                                    <a data-size="710x823">
+                                        <img src={src[stt]} className="img-fluid w-75 z-depth-1" />
+                                    </a>
+                                </figure>
 
-                                </div>
-                                <div className="col-12">
-                                    <div className="row">
-                                        {
-                                            src.map((img, index) => {
-                                                return (
-                                                    <div className="col-3">
-                                                        <div className="view overlay rounded z-depth-1 gallery-item">
-                                                            <img src={img} className="img-fluid border " onClick={() => { handletab(index) }} />
+                            </div>
+                            <div className="col-12">
+                                <div className="row">
+                                    {
+                                        src.map((img, index) => {
+                                            return (
+                                                <div className="col-3">
+                                                    <div className="view overlay rounded z-depth-1 gallery-item">
+                                                        <img src={img} className="img-fluid border " onClick={() => { handletab(index) }} />
 
-                                                            <div className="mask rgba-white-slight" />
-                                                        </div>
+                                                        <div className="mask rgba-white-slight" />
                                                     </div>
-                                                )
-                                            })
-                                        }
+                                                </div>
+                                            )
+                                        })
+                                    }
 
-                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div className="col-md-6">
-                        <h5 className="font-weight-bold">{product.name}</h5>
-                        <p className="mb-2 text-muted text-uppercase small">{product.category}</p>
-
-                        <Start id={id} />
-                        <p><span className="mr-1 "><strong>   {formatter.format(product.price)}</strong></span></p>
-                        <button className="btn btn-secondary mr-3 mt-3 mb-3 w-100 p-2" onClick={() => { handleAddToCart(product) }}>THÊM VÀO GIỎ</button>
-                        <strong>Mô tả</strong>
-                        <div>
-                            <p className="pt-1">{product.description}</p>
-                        </div>
-
-
-                        <hr />
-
-                    </div>
                 </div>
-            </Suspense>
-            <Review product={product} />
-            <Rate id={id} />
+                <div className="col-md-6">
+                    <h5 className="font-weight-bold">{product.name}</h5>
+                    <p className="mb-2 text-muted text-uppercase small">{product.category}</p>
+
+                    <Start id={id} />
+                    <p><span className="mr-1 "><strong>   {formatter.format(product.price)}</strong></span></p>
+                    <button className="btn btn-secondary mr-3 mt-3 mb-3 w-100 p-2" onClick={() => { handleAddToCart(product) }}>THÊM VÀO GIỎ</button>
+                    <strong>Mô tả</strong>
+                    <div>
+                        <p className="pt-1">{product.description}</p>
+                    </div>
 
 
+                    <hr />
+
+                </div>
+            </div>
+                <Review product={product} />
+                <Rate id={id} /> </> : <LoadingBox /> }
+        
         </>
 
     )

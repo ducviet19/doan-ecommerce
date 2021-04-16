@@ -2,7 +2,7 @@ import { all, call, put, takeLatest } from "@redux-saga/core/effects";
 import { useHistory } from "react-router";
 import { auth, getCurrentUser, GoogleProvider, handleUserProfile, } from "../../firebase/ultils";
 import { clearCart, removeCart } from "../Cart/cart.action";
-import { fetchUserAdmin, fetchUserId, setUser, setUserAdmin, signInSuccess, userError } from "./user.action";
+import { fetchUserAdmin, fetchUserId, loginSucces, setUser, setUserAdmin, signInSuccess, userError } from "./user.action";
 import { signOutUserSuccess } from "./user.action";
 import { fetchUser, setUsers } from './user.action'
 import { handleDeleteUser, handleEditUser, handleFetchDetailUser, handleFetchUser, handleAddUser } from "./user.helpers";
@@ -24,6 +24,10 @@ export function* getSnapshotFromUserAuth(user, additionalData = {}) {
       })
     );
 
+    yield put(
+      loginSucces()
+    )
+
   } catch (err) {
     // console.log(err);
   }
@@ -34,6 +38,8 @@ export function* emailSignIn({ payload: { email, password } }) {
     console.log("emailSignIn")
     const { user } = yield auth.signInWithEmailAndPassword(email, password)
     yield getSnapshotFromUserAuth(user);
+
+    
 
   } catch (err) {
     swal( `${err}`,"", "error")

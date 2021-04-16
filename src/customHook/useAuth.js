@@ -3,11 +3,12 @@ import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import swal from 'sweetalert';
 const mapState = ({ user }) => ({
-  currentUser: user.currentUser
+  currentUser: user.currentUser,
+  loading: user.loadingDetail
 });
 
 const useAuth = props => {
-  const { currentUser } = useSelector(mapState);
+  const { currentUser ,loading } = useSelector(mapState);
   const history = useHistory();
 
   useEffect(() => {
@@ -18,6 +19,8 @@ const useAuth = props => {
   }, [currentUser]);
 
   return currentUser;
+
+
 };
 
 

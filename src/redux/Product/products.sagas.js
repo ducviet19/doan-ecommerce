@@ -2,7 +2,7 @@ import { takeLatest, put, all, call } from 'redux-saga/effects';
 import { handleAddProduct, handleDeleteProduct, handleEditProduct, handleFetchDetailProduct, handleFetchProducts ,handleFetchProductsHome } from './products.helpers'
 import productsTypes from './products.types';
 import { auth } from './../../firebase/ultils'
-import { setProducts, fetchProducts, setProduct, fetchProductStart, setProductsHome } from './products.action'
+import { setProducts, fetchProducts, setProduct, fetchProductStart, setProductsHome, productSucces, productDetailSucces } from './products.action'
 
 // add product
 
@@ -40,6 +40,9 @@ export function* fetchProduct({ payload }) {
         yield put(
             setProducts(product)
         );
+        yield put(
+            productSucces()
+        );
 
     } catch (err) {
         // console.log(err);
@@ -76,6 +79,9 @@ export function* fetchProductId({ payload }) {
         const productEdit = yield handleFetchDetailProduct(payload);
         yield put(
             setProduct(productEdit)
+        );
+        yield put(
+            productDetailSucces()
         );
     } catch (error) {
 

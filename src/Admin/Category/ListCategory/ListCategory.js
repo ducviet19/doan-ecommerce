@@ -45,8 +45,8 @@ function ListCategory(props) {
                             return (
                                 <tr key={index}>
                                     <th scope="row">{documentID}</th>
-                                    <td><Link to={`/admin/editcategory/${documentID}`} >{name}</Link> </td>
-                                    <td> <img className="img-thumbnail w-25" src={imgCategory} /> </td>
+                                    <td>{name}</td>
+                                    {/* <td> <img className="img-thumbnail w-25" src={imgCategory} /> </td> */}
                                     <td ><button className="btn btn-danger" onClick={() => {handleDeleteCategory(documentID)} }>X</button></td>
                                 </tr>
                             )

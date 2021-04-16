@@ -16,9 +16,9 @@ const validationSchema = Yup.object({
         .required('Vui lòng nhập miêu tả danh mục'),
 
 
-    imgCategory: Yup
-        .string()
-        .required('Vui lòng nhập địa chỉ liên kết ảnh danh mục'),
+    // imgCategory: Yup
+    //     .string()
+    //     .required('Vui lòng nhập địa chỉ liên kết ảnh danh mục'),
 
 })
 
@@ -37,7 +37,7 @@ function AddCategory(props) {
         initialValues: {
             name: '',
             description: '',
-            imgCategory: ''
+            // imgCategory: ''
         },
         validationSchema,
         onSubmit: values => {
@@ -45,7 +45,7 @@ function AddCategory(props) {
                 addCategory({
                     name: values.name,
                     description: values.description,
-                    imgCategory: values.imgCategory
+                    // imgCategory: values.imgCategory
                 })
             );
             formik.resetForm();
@@ -84,7 +84,7 @@ function AddCategory(props) {
                         <div>{formik.errors.description}</div>) : null}
                 </div>
 
-                <div className="form-group">
+                {/* <div className="form-group">
                     <label for="imgCategory">Hình ảnh danh mục</label>
                     <input className="form-control"
                         id='imgCategory'
@@ -95,7 +95,7 @@ function AddCategory(props) {
                         onBlur={formik.handleBlur} />
                     {formik.touched.imgCategory && formik.errors.imgCategory ? (
                         <div>{formik.errors.imgCategory}</div>) : null}
-                </div>
+                </div> */}
 
                 <button classNameName="btn btn-primary" type="submit">
                     Thêm Danh mục

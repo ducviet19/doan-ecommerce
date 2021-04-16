@@ -7,6 +7,10 @@ export const emailSignInStart = userCredentials => ({
     payload: userCredentials
 });
 
+export const loginSucces = () => ({
+    type: userTypes.LOGIN_SUCCESS
+})
+
 
 
 

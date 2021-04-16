@@ -66,3 +66,11 @@ export const updateNumber = (product, cartItem) => ({
 
 // loading 
 
+export const productSucces = () => ({
+    type: productsTypes.PRODUCT_LIST_SUCCESS
+})
+
+
+export const productDetailSucces = () => ({
+    type: productsTypes.PRODUCT_DETAIL_SUCCESS
+})

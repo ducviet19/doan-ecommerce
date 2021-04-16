@@ -4,7 +4,8 @@ const INITIAL_STATE = {
     currentUser: null,
     userErr: [],
     users: [],
-    user: {}
+    user: {},
+    loadingLogin: true
 };
 
 const userReducer = (state = INITIAL_STATE, action) => {
@@ -15,6 +16,11 @@ const userReducer = (state = INITIAL_STATE, action) => {
                 ...state,
                 currentUser: action.payload,
                 userErr: []
+            }
+        case userTypes.LOGIN_SUCCESS:
+            return {
+                ...state,
+                loadingLogin: false
             }
 
         case userTypes.SIGN_OUT_USER_SUCCESS:
@@ -46,6 +52,7 @@ const userReducer = (state = INITIAL_STATE, action) => {
                     ...state,
                     user: action.payload
                 }
+            
         default:
             return state;
     }

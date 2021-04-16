@@ -94,7 +94,7 @@ function Header(props) {
                   </div>
                 </div> : <a><Link style={{ textDecoration: 'none' }} to="/login">Đăng nhập</Link> </a>}
                 <div className="shopping-cart col-lg-4 col-12 ">
-                  <Link to="/cart"><i class="fa fa-shopping-bag" aria-hidden="true"></i> {totalNumCartItems == 0 ? "" : <><span className="numberCart">{totalNumCartItems == 0 ? "" : totalNumCartItems}  </span> </>}     </Link>
+                  <Link to="/cart"><i class="fa fa-shopping-bag" aria-hidden="true"></i> {totalNumCartItems == 0 ? "" : <><span className="badge badge-warning" id='lblCartCount'>{totalNumCartItems == 0 ? "" : totalNumCartItems}  </span> </>}   </Link>
                 </div>
             </div>
           </div>

@@ -7,10 +7,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { emailSignInStart, signInSuccess, signInWithGoogle, googleSignInStart } from '../../redux/User/user.action';
 import useScrollTop from '../../hook/useScrollTop';
 import swal from 'sweetalert';
-
+import LoadingBox from '../../component/LoadingBox/LoadingBox';
 
 const mapState = ({ user }) => ({
-    currentUser: user.currentUser
+    currentUser: user.currentUser,
+    loading: user.loadingLogin
 });
 
 
@@ -32,11 +33,11 @@ function Login(props) {
     useScrollTop();
 
     const history = useHistory()
-    const { currentUser } = useSelector(mapState);
+    const { currentUser ,loading } = useSelector(mapState);
     const dispatch = useDispatch();
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
-
+    const [isLoading, setIsLoading] = useState(false);
     console.log(currentUser)
 
 
@@ -68,8 +69,8 @@ function Login(props) {
         },
         validationSchema,
         onSubmit: values => {
-            // values.preventDefault();
             dispatch(emailSignInStart(values));
+            setIsLoading(true)
             formik.resetForm();
             // history.goBack()
         },
@@ -77,11 +78,14 @@ function Login(props) {
 
 
     return (
-        <div className="login row d-flex flex-column align-items-center">
-            <div className="col-lg-6">
+        <div className="login row justify-content-center">
+          
+            <div className="col-lg-6 col-12">
                 <h1 className="text-center">Đăng nhập</h1>
             </div>
-            <div className="col-lg-6 m-1">
+           
+            <div className="col-lg-6 col-12 m-1">
+            {isLoading === false ?  "" : <LoadingBox /> }
                 <form className='login' onSubmit={formik.handleSubmit}>
                   
                         <div className="form-group">
