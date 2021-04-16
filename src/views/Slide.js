@@ -16,6 +16,7 @@ function Slide () {
               <div className="carousel-item">
                 <img className="d-block w-100 h-100" src="https://theme.hstatic.net/1000340570/1000610409/14/slideshow_1.jpg?v=1546" data-src="holder.js/900x400?theme=industrial" alt="Second slide" />
               </div>
+              
             </div>
             <a className="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
               <span className="carousel-control-prev-icon" aria-hidden="true" />

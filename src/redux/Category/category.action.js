@@ -37,7 +37,7 @@ export const deleteCategory = cateID => ({
     type: categoryTypes.DELETE_CATEGORY,
     payload: cateID
 })
-export const editProduct = (cateData, id) => ({
+export const editCategoryDetail = (cateData, id) => ({
     type: categoryTypes.EDIT_CATEGORY,
     payload: cateData,
     id: id

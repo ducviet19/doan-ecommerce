@@ -47,7 +47,7 @@ function SearchProductAdmin(props) {
                 }).map((product, index) => {
                     console.log()
                     return (
-                        <div className="search_bar  border-top-0 border">
+                        <div className="search_bar border-top-0 border">
                             <Link style={{ textDecoration: 'none' }} to={`/admin/editproduct/${product.documentID}`}>
                                 <div className="search row p-2  d-flex">
                                     <div className="search-main text-nowrap col-8">

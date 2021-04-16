@@ -24,11 +24,11 @@ function ProductDetail({ match }) {
     const { product } = useSelector(mapState)
     let { id } = useParams();
     console.log(product)
-
-
-
-
-
+    const src = [
+        product.thumbnail,
+        product.imgDetail
+    ];
+    const [stt, setStt] = useState(0)
     useEffect(() => {
         dispatch(fetchProductStart(id))
         return () => {
@@ -49,13 +49,15 @@ function ProductDetail({ match }) {
         });
 
         // history.push('/cart')
-
+    }
+    const handletab = index => {
+        setStt(index)
     }
     return (
 
         <>
             <Suspense fallback={<div>Loading...</div>}>
-                <div className="row pt-5 mt-5">
+                <div className="row pt-5">
                     <div className="col-md-6 mb-4 mb-md-0">
                         <div id="mdb-lightbox-ui" />
                         <div className="mdb-lightbox">
@@ -63,37 +65,27 @@ function ProductDetail({ match }) {
                                 <div className="col-12 mb-0">
                                     <figure className="view overlay rounded z-depth-1 main-img">
                                         <a data-size="710x823">
-                                            <img src={product.thumbnail} className="img-fluid z-depth-1" />
+                                            <img src={src[stt]} className="img-fluid w-75 z-depth-1" />
                                         </a>
                                     </figure>
 
                                 </div>
                                 <div className="col-12">
                                     <div className="row">
-                                        <div className="col-3">
-                                            <div className="view overlay rounded z-depth-1 gallery-item">
-                                                <img src={product.imgDetail} className="img-fluid" />
-                                                <div className="mask rgba-white-slight" />
-                                            </div>
-                                        </div>
-                                        <div className="col-3">
-                                            <div className="view overlay rounded z-depth-1 gallery-item">
-                                                <img src={product.imgDetail} className="img-fluid" />
-                                                <div className="mask rgba-white-slight" />
-                                            </div>
-                                        </div>
-                                        <div className="col-3">
-                                            <div className="view overlay rounded z-depth-1 gallery-item">
-                                                <img src={product.imgDetail} className="img-fluid" />
-                                                <div className="mask rgba-white-slight" />
-                                            </div>
-                                        </div>
-                                        <div className="col-3">
-                                            <div className="view overlay rounded z-depth-1 gallery-item">
-                                                <img src={product.imgDetail} className="img-fluid" />
-                                                <div className="mask rgba-white-slight" />
-                                            </div>
-                                        </div>
+                                        {
+                                            src.map((img, index) => {
+                                                return (
+                                                    <div className="col-3">
+                                                        <div className="view overlay rounded z-depth-1 gallery-item">
+                                                            <img src={img} className="img-fluid border " onClick={() => { handletab(index) }} />
+
+                                                            <div className="mask rgba-white-slight" />
+                                                        </div>
+                                                    </div>
+                                                )
+                                            })
+                                        }
+
                                     </div>
                                 </div>
                             </div>
@@ -108,12 +100,12 @@ function ProductDetail({ match }) {
                         <button className="btn btn-secondary mr-3 mt-3 mb-3 w-100 p-2" onClick={() => { handleAddToCart(product) }}>THÊM VÀO GIỎ</button>
                         <strong>Mô tả</strong>
                         <div>
-                        <p className="pt-1">{product.description}</p>
+                            <p className="pt-1">{product.description}</p>
                         </div>
-                      
+
 
                         <hr />
-                       
+
                     </div>
                 </div>
             </Suspense>

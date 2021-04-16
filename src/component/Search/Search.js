@@ -39,7 +39,7 @@ function Search(props) {
                     if (searchItem == "") {
                         return;
                     }
-                    else if (item.name.toLowerCase().includes(searchItem.toLowerCase())) {
+                    else if ((item.name.toLowerCase().includes(searchItem.toLowerCase())) || (item.category.toLowerCase().includes(searchItem.toLowerCase()))  ) {
                         return item
                     }
                 }).map((product, index) => {

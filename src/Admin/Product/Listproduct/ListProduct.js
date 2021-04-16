@@ -22,6 +22,7 @@ function ListProduct(props) {
             fetchProducts({})
         )
     }, [])
+    
     const handleLoadMore = () => {
         dispatch(
             fetchProducts({

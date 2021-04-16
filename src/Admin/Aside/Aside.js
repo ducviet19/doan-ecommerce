@@ -15,7 +15,7 @@ function Aside(props) {
     })
 
     return (
-
+ 
         <aside className=" bg-dark">
             <div className="avatar d-flex flex-column align-items-center">
                 <img className="img-thumbnail w-50 rounded-circle " src={currentUser.photoUrl} alt="Thumbnail image" />

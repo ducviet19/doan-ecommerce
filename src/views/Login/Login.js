@@ -81,10 +81,9 @@ function Login(props) {
             <div className="col-lg-6">
                 <h1 className="text-center">Đăng nhập</h1>
             </div>
-            <div className="col-lg-6 m-3">
+            <div className="col-lg-6 m-1">
                 <form className='login' onSubmit={formik.handleSubmit}>
                   
-                        {/* <input type="email" value={email} onChange={(e) => { setEmail(e.target.value) }} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email" /> */}
                         <div className="form-group">
                             <input className="form-control"
                                 id='email'

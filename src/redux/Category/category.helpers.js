@@ -3,7 +3,7 @@ import { firestore } from './../../firebase/ultils'
 export const handleAddCategory = product => {
     return new Promise((resolve, reject) => {
         firestore
-            .collection('products')
+            .collection('categories')
             .doc()
             .set(product)
             .then(() => {

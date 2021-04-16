@@ -15,6 +15,7 @@ import { fetchUser, fetchUserId, signOutUserStart, signOutUserSuccess } from '..
 import { checkUserIsAdmin } from '../../Utils';
 import { selectCartItemsCount } from '../../redux/Cart/cart.selectors';
 import Search from '../../component/Search/Search';
+import { fetchCategories } from '../../redux/Category/category.action';
 
 const mapState = (state) => ({
   currentUser: state.user.currentUser,
@@ -23,15 +24,27 @@ const mapState = (state) => ({
   products: state.products
 })
 
+
+const mapCategory = ({ category }) => ({
+  categories: category.categories
+})
+
 function Header(props) {
 
   const dispatch = useDispatch();
   const history = useHistory();
   const { filterType } = useParams();
   const { currentUser, totalNumCartItems, products } = useSelector(mapState);
+  const { categories } = useSelector(mapCategory);
   console.log(currentUser)
 
   const isAdmin = checkUserIsAdmin(currentUser);
+
+  useEffect(() => {
+    dispatch(
+      fetchCategories()
+    )
+  },[] )
 
   useEffect(() => {
     dispatch(
@@ -95,11 +108,11 @@ function Header(props) {
               <li className="nav-item dropdown col-lg col-12">
                 <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Sản phẩm</a>
                 <div className="dropdown-menu">
-
-                  <li><Link className="text-dark" style={{ textDecoration: 'none' }}  to='/shop/Sữa rửa mặt'>Sữa rửa mặt</Link></li>
-                  <li><Link className="text-dark" style={{ textDecoration: 'none' }} to='/shop/Kem chống nắng'>Kem chống nắng</Link></li>
-                  <li><Link className="text-dark" style={{ textDecoration: 'none' }}  to='/shop/Mặt nạ'>Mặt nạ</Link></li>
-                  <li><Link className="text-dark"  style={{ textDecoration: 'none' }} to='/shop/Nước Hoa'>Nước Hoa</Link></li>
+                  { categories.map((cate) => {
+                    return(
+                      <li><Link className="text-dark" style={{ textDecoration: 'none' }}  to={`/shop/${cate.name}`}>{cate.name}</Link></li>
+                    )
+                  }) }
                 </div>
               </li>
               <li className="nav-item col-lg col-12 ">

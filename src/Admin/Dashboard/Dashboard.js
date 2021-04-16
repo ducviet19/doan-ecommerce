@@ -24,7 +24,7 @@ function Dashboard(props) {
     )
   },[] )
   return (
-    <div className="container-fluid">
+  
       <div className="row">
         <div className="col-lg-2 col-4">
         <Aside />
@@ -34,7 +34,7 @@ function Dashboard(props) {
           {props.children}
         </div>    
         <FooterAdmin />
-      </div>
+
     </div>
   )
 

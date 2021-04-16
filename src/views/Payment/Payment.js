@@ -111,7 +111,6 @@ function Payment(props) {
 
 
     return (
-
         <> 
            {
             cartItems.length > 0 ?      <div className="row mt-5">
@@ -130,7 +129,6 @@ function Payment(props) {
                         {formik.touched.name && formik.errors.name ? (
                             <div>{formik.errors.name}</div>) : null}
                     </div>
-               
                         <div className="form-group">
                             <label htmlFor="email">Email</label>
                             <input class="form-control" id="email"

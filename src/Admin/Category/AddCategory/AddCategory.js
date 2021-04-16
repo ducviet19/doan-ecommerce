@@ -5,28 +5,24 @@ import { useFormik } from "formik";
 import swal from 'sweetalert';
 import { useHistory } from 'react-router-dom';
 import { addCategory, fetchCategories } from '../../../redux/Category/category.action';
-const mapState = ({ categoryData }) => ({
-    categories: categoryData.category
-})
 
 const validationSchema = Yup.object({
     name: Yup
         .string()
-        .required('Vui lòng nhập tên sản phẩm'),
+        .required('Vui lòng nhập tên danh mục'),
 
     description: Yup
         .string()
-        .required('Vui lòng nhập miêu tả sản phẩm'),
+        .required('Vui lòng nhập miêu tả danh mục'),
 
 
     imgCategory: Yup
         .string()
-        .required('Vui lòng nhập địa chỉ liên kết ảnh chi tiết sản phẩm'),
+        .required('Vui lòng nhập địa chỉ liên kết ảnh danh mục'),
 
 })
 
 function AddCategory(props) {
-    const { categories } = useSelector(mapState);
     const dispatch = useDispatch();
     const history = useHistory()
 
@@ -66,7 +62,7 @@ function AddCategory(props) {
                     <input className="form-control"
                         id='name'
                         type='text'
-                        placeholder="Nhập tên sản phẩm"
+                        placeholder="Tên Danh mục"
                         value={formik.values.name}
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur} />
@@ -76,11 +72,11 @@ function AddCategory(props) {
 
 
                 <div className="form-group">
-                    <label for="description">Miêu tả sản phẩm</label>
+                    <label for="description">Miêu tả Danh mục</label>
                     <textarea className="form-control"
                         id='description'
                         type='text'
-                        placeholder="Miêu tả sản phẩm"
+                        placeholder="Miêu tả Danh mục"
                         value={formik.values.description}
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur} />
@@ -89,11 +85,11 @@ function AddCategory(props) {
                 </div>
 
                 <div className="form-group">
-                    <label for="imgCategory">Hình ảnh sản phẩm</label>
+                    <label for="imgCategory">Hình ảnh danh mục</label>
                     <input className="form-control"
                         id='imgCategory'
                         type='text'
-                        placeholder="Hình ảnh sản phẩm"
+                        placeholder="Hình ảnh danh mục"
                         value={formik.values.thumbnail}
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur} />

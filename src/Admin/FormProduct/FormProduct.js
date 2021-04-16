@@ -5,8 +5,13 @@ import { useFormik } from "formik";
 import { addProduct, fetchProducts } from './../../redux/Product/products.action'
 import swal from 'sweetalert';
 import { useHistory } from 'react-router-dom';
+import { fetchCategories } from '../../redux/Category/category.action';
 const mapState = ({ productsData }) => ({
     products: productsData.products
+})
+
+const mapCategory = ({ category }) => ({
+    categories: category.categories
 })
 
 const validationSchema = Yup.object({
@@ -26,6 +31,9 @@ const validationSchema = Yup.object({
     imgDetail: Yup
         .string()
         .required('Vui lòng nhập địa chỉ liên kết ảnh chi tiết sản phẩm'),
+        imgDetail2: Yup
+        .string()
+        .required('Vui lòng nhập địa chỉ liên kết ảnh chi tiết sản phẩm'),
     number: Yup
         .string()
         .required('Vui lòng nhập số lượng sản phẩm'),
@@ -34,16 +42,10 @@ const validationSchema = Yup.object({
 
 function FormProduct(props) {
     const { products } = useSelector(mapState);
+    const { categories } = useSelector(mapCategory);
     const dispatch = useDispatch();
     const history = useHistory()
-    const [name, setName] = useState('');
-    const [category, setCategory] = useState('');
-    const [description, setDescription] = useState('');
-    const [thumbnail, setThumbnail] = useState('');
-    const [price, setPrice] = useState(0);
-    const [imgDetail, SetImgDetail] = useState('');
-    const [number, setNumber] = useState('');
-    // const [number, setNumber] = useState('');
+   
 
 
     useEffect(() => {
@@ -52,6 +54,14 @@ function FormProduct(props) {
         );
     }, []);
 
+
+    useEffect(() => {
+        dispatch(
+            fetchCategories()
+        );
+    }, []);
+
+    console.log(categories)
 
 
     const formik = useFormik({
@@ -63,7 +73,8 @@ function FormProduct(props) {
             price: '',
             thumbnail: '',
             number: '',
-            imgDetail: ''
+            imgDetail: '',
+            imgDetail2: ''
         },
         validationSchema,
         onSubmit: values => {
@@ -75,7 +86,8 @@ function FormProduct(props) {
                     price: values.price,
                     thumbnail: values.thumbnail,
                     number: values.number,
-                    imgDetail: values.imgDetail
+                    imgDetail: values.imgDetail,
+                    imgDetail2: values.imgDetail2
                 })
             );
             formik.resetForm();
@@ -111,11 +123,11 @@ function FormProduct(props) {
                         onBlur={formik.handleBlur}
                         style={{ display: 'block' }}
                     >
-                        <option>Chọn</option>
-                        <option>Kem chống nắng</option>
-                        <option>Sữa rửa mặt</option>
-                        <option>Mặt nạ</option>
-                        <option>Nước Hoa</option>
+                        <option value="">Chọn</option>
+                         {categories.map((option) => (
+                
+              <option value={option.name}>{option.name}</option>
+            ))}
 
                     </select>
                     {formik.touched.category && formik.errors.category ? (
@@ -182,7 +194,7 @@ function FormProduct(props) {
                     {/* <input value={thumbnail} onChange={e => setThumbnail(e.target.value)} type="text" className="form-control" id="image" placeholder="Nhập tên sản phẩm" /> */}
                 </div>
                 <div className="form-group">
-                    <label for="imgDetail">Hình ảnh chi tiết</label>
+                    <label for="imgDetail">Hình ảnh chi tiết 1</label>
                     <input className="form-control"
                         id='imgDetail'
                         type='text'
@@ -192,6 +204,19 @@ function FormProduct(props) {
                         onBlur={formik.handleBlur} />
                     {formik.touched.imgDetail && formik.errors.imgDetail ? (
                         <div>{formik.errors.imgDetail}</div>) : null}
+                    {/* <input value={imgDetail} onChange={e => SetImgDetail(e.target.value)} type="text" className="form-control" id="imgDetail" placeholder="Nhập tên sản phẩm" /> */}
+                </div>
+                <div className="form-group">
+                    <label for="imgDetail2">Hình ảnh chi tiết 2</label>
+                    <input className="form-control"
+                        id='imgDetail2'
+                        type='text'
+                        placeholder="Hình ảnh chi tiết"
+                        value={formik.values.imgDetail2}
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur} />
+                    {formik.touched.imgDetail2 && formik.errors.imgDetail2 ? (
+                        <div>{formik.errors.imgDetail2}</div>) : null}
                     {/* <input value={imgDetail} onChange={e => SetImgDetail(e.target.value)} type="text" className="form-control" id="imgDetail" placeholder="Nhập tên sản phẩm" /> */}
                 </div>
 

@@ -13,7 +13,7 @@ export function* addCategory({ payload }) {
         const timestamp = new Date();
         yield handleAddCategory({
             ...payload,
-            productAdminUserUID: auth.currentUser.uid,
+            CategoryAdminUserUID: auth.currentUser.uid,
             createdDate: timestamp
         });
         yield put(

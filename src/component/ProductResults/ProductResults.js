@@ -6,9 +6,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import Product from '../Product/Product';
 import ProductCart from '../../views/ProductCart/ProductCart'
 import LoadMore from '../../component/LoadMore/LoadMore'
+import { fetchCategories } from '../../redux/Category/category.action';
 
 const mapState = ({ productsData }) => ({
     products: productsData.products
+})
+
+const mapCategory = ({ category }) => ({
+    categories: category.categories
 })
 const ProductResults = ({ }) => {
 
@@ -16,12 +21,22 @@ const ProductResults = ({ }) => {
     const history = useHistory();
     const { filterType } = useParams();
     const { products } = useSelector(mapState);
+    const { categories } = useSelector(mapCategory);
     const { data, queryDoc, isLastPage } = products;
+    console.log(isLastPage)
+
+    console.log('categories',categories)
     useEffect(() => {
         dispatch(
             fetchProducts({ filterType })
         )
     }, [filterType]);
+
+    useEffect(() => {
+        dispatch(
+            fetchCategories()
+        )
+    }, []);
     const handleFilter = (e) => {
         const nextFilter = e.target.value;
         history.push(`/shop/${nextFilter}`);
@@ -38,10 +53,13 @@ const ProductResults = ({ }) => {
                     <div className="col-md-3 order-md-0 mt-2 mt-md-0 mb-3">
                         <select className="form-control form-control-sm" value={filterType} onChange={handleFilter}>
                             <option value="">Tất cả</option>
-                            <option value="Sữa rửa mặt">Sữa rửa mặt</option>
+                            {categories.map((option) => (
+              <option value={option.name}>{option.name}</option>
+            ))}
+                            {/* <option value="Sữa rửa mặt">Sữa rửa mặt</option>
                             <option value="Kem chống nắng">Kem chống nắng</option>
                             <option value="Mặt nạ">Mặt nạ</option>
-                            <option value="Nước Hoa">Nước Hoa</option>
+                            <option value="Nước Hoa">Nước Hoa</option> */}
                         </select>
                     </div>
 
@@ -73,14 +91,17 @@ const ProductResults = ({ }) => {
             <div className="col-md-3 order-md-0 mt-2 mt-md-0 mb-3">
                 <select className="form-control form-control-sm" value={filterType} onChange={handleFilter}>
                     <option value="">Tất cả</option>
-                    <option value="Sữa rửa mặt">Sữa rửa mặt</option>
+                    {categories.map((option) => (
+              <option value={option.name}>{option.name}</option>
+            ))}
+                    {/* <option value="Sữa rửa mặt">Sữa rửa mặt</option>
                     <option value="Kem chống nắng">Kem chống nắng</option>
                     <option value="Mặt nạ">Mặt nạ</option>
-                    <option value="Nước Hoa">Nước Hoa</option>
+                    <option value="Nước Hoa">Nước Hoa</option> */}
                 </select>
             </div>
 
-            <div className='row'>
+            <div className='row justify-content-center'>
                 {data.map((product, pos) => {
                     console.log(product.name)
                     const { documentID, thumbnail, name, price, number } = product;

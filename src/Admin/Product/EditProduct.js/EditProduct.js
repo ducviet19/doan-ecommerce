@@ -12,6 +12,10 @@ const mapState = state => ({
     product: state.productsData.product
 });
 
+const mapCategory = ({ category }) => ({
+    categories: category.categories
+})
+
 const validationSchema = Yup.object({
     name: Yup
         .string()
@@ -44,56 +48,13 @@ function EditProduct({ props }) {
 
     const dispatch = useDispatch();
     const { product } = useSelector(mapState)
+    const { categories } = useSelector(mapCategory)
 
     let { id } = useParams();
     useEffect(() => {
         dispatch(fetchProductStart(id))
     }, [])
 
-    // const [name, setName] = useState('');
-    // const [category, setCategory] = useState('');
-    // const [description, setDescription] = useState('');
-    // const [thumbnail, setThumbnail] = useState('');
-    // const [price, setPrice] = useState('');
-    // const [imgDetail, SetImgDetail] = useState('');
-    // const [number, setNumber] = useState('');
-    // const [sizes, setSize] = useState('');
-
-
-
-
-    // useEffect(() => {
-    //     setName(product?.name);
-    //     setCategory(product?.category);
-    //     setDescription(product?.description);
-    //     setPrice(product?.price);
-    //     setThumbnail(product?.thumbnail);
-    //     setNumber(product?.number);
-    //     SetImgDetail(product?.imgDetail);
-    //     setSize(product?.sizes);
-    // }, [product])
-
-    // console.log(name)
-
-
-
-
-
-    // const handleSubmit = (e) => {
-    //     e.preventDefault();
-    //     dispatch(editProduct({
-    //         name  :product?.name,
-    //         category: product?.category,
-    //         description: product?.description,
-    //         price: product?.price,
-    //         thumbnail: product?.thumbnail,
-    //         imgDetail:product?.imgDetail,
-    //         number: product?.number
-    //     }, id))
-
-    //     swal("Cập nhật thành công!", "", "success");
-    //     history.goBack()
-    // }
 
     const formik = useFormik({
         enableReinitialize: true,
@@ -153,11 +114,9 @@ function EditProduct({ props }) {
                         onBlur={formik.handleBlur}
                         style={{ display: 'block' }}
                     >
-                        <option>Chọn</option>
-                        <option>Kem chống nắng</option>
-                        <option>Sữa rửa mặt</option>
-                        <option>Mặt nạ</option>
-                        <option>Nước Hoa</option>
+                       {categories.map((option) => (
+              <option value={option.name}>{option.name}</option>
+            ))}
 
                     </select>
                     </div>

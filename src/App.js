@@ -39,6 +39,7 @@ import InfoUser from './views/InfoUser/InfoUser'
 import Shop from './views/Shop/Shop';
 import AddCategory from './Admin/Category/AddCategory/AddCategory';
 import ListCategory from './Admin/Category/ListCategory/ListCategory';
+import EditCategory from './Admin/Category/EditCategory/EditCategory';
 
 
 const mapState = ({ user }) => ({
@@ -210,13 +211,13 @@ function App(props) {
               )} />
 
 
-              {/* <Route exact path="/admin/editcategory/:id" render={() => (
+              <Route exact path="/admin/editcategory/:id" render={() => (
                 <WithAdminAuth>
                   <Dashboard>
-                    <EditProduct />
+                    <EditCategory />
                   </Dashboard>
                 </WithAdminAuth>
-              )} /> */}
+              )} />
 
 
 
