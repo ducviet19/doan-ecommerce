@@ -84,7 +84,7 @@ function ListReview(props) {
                                                 }} >Xoá</button>
 
 
-                                               <ButtonComment review={e} index={index} id={props.id} />
+                                               {/* <ButtonComment review={e} index={index} id={props.id} /> */}
 
                                             </div>
                                            

@@ -41,7 +41,7 @@ export const handleFetchProducts = ({ filterType, startAfterDoc, persistProducts
     return new Promise((resolve, reject) => {
         const pageSize = 4;
 
-        let ref = firestore.collection('products').limit(pageSize);
+        let ref = firestore.collection('products').orderBy("createdDate").limit(pageSize);
         if (filterType) ref = ref.where('category', '==', filterType);
         if (startAfterDoc) ref = ref.startAfter(startAfterDoc);
         ref

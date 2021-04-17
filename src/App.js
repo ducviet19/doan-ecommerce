@@ -40,6 +40,7 @@ import Shop from './views/Shop/Shop';
 import AddCategory from './Admin/Category/AddCategory/AddCategory';
 import ListCategory from './Admin/Category/ListCategory/ListCategory';
 import EditCategory from './Admin/Category/EditCategory/EditCategory';
+import ListFeedback from './Admin/FeedBack/ListFeedback';
 
 
 const mapState = ({ user }) => ({
@@ -215,6 +216,14 @@ function App(props) {
                 <WithAdminAuth>
                   <Dashboard>
                     <EditCategory />
+                  </Dashboard>
+                </WithAdminAuth>
+              )} />
+
+              <Route exact path="/admin/feedback" render={() => (
+                <WithAdminAuth>
+                  <Dashboard>
+                    <ListFeedback />
                   </Dashboard>
                 </WithAdminAuth>
               )} />

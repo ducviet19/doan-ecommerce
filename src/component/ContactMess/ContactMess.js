@@ -6,7 +6,7 @@ import './style.css';
 import * as Yup from 'yup';
 import { useFormik } from "formik";
 import GoogleMap from './GoogleMap';
-
+import swal from 'sweetalert';
 const validationSchema = Yup.object({
     name: Yup
         .string()
@@ -41,6 +41,7 @@ const ContactMess = () => {
         onSubmit: values => {
             dispatch(addMessage(values))
             formik.resetForm();
+            swal("Cảm ơn bạn đã phản hồi, ,success")
         },
     });
     return (
