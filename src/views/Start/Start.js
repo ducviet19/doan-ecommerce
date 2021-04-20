@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchReviews } from '../../redux/Review/Review.action';
+
 
 
 function Start(props) {
+    console.log(props.product)
 
     const producStart = () => {
         let numArr = []
@@ -56,7 +56,7 @@ function Start(props) {
     return (
         <>
 
-            { props.product?.review.length == 0 ? <p>
+            { props.product.review?.length == 0  ? <p>
                 sản phẩm chưa được đánh giá
             </p> : producStart()}
         </>

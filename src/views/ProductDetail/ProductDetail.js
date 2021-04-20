@@ -36,7 +36,7 @@ function ProductDetail({ match }) {
     useEffect(() => {
         dispatch(fetchProductStart(id))
 
-    }, [])
+    }, [product])
 
     const handleAddToCart = (product) => {
         if (!product) return;

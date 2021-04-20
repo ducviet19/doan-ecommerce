@@ -39,8 +39,6 @@ function Review(props) {
     const { user } = useSelector(mapState);
     const history = useHistory()
 
-    const [start, setStart] = useState('');
-    const [comment, setComment] = useState('')
     const [hover, setHover] = useState(null);
     const [rating, setRating] = useState(null);
 
