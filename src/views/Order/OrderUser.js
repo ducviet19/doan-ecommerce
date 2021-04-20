@@ -42,7 +42,7 @@ function OrderUser(props) {
                                 console.log(datePlaced.split("T")[0])
                                 return (
                                     <tr key={index}>
-                                        <td> <Link to={`/order/${documentID}`}> {documentID}</Link>   </td>
+                                        <td> <Link to={`/order/${documentID}`}> {index}</Link>   </td>
                                         <td>{datePlaced.split("T")[0]}</td>
                                         <td>{finish == "true" ? <p>Hoàn thành</p> : <p> Đang Xử lý </p>}</td>
                                         <td > <Link to={`/order/${documentID}`}> <button className="btn btn-success">Xem</button></Link>   </td>

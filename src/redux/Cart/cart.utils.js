@@ -41,6 +41,9 @@ export const handleAddToCart = ({
 }) => {
     const quantityIncrement = 1;
 
+    console.log(prevCartItems)
+    console.log(nextCartItem)
+
     const cartItemExits = existingCartItem({ prevCartItems, nextCartItem });
 
     if (cartItemExits) {

@@ -7,12 +7,13 @@ import AddUser from '../AddUser/AddUser'
 import swal from 'sweetalert';
 
 const mapState = ({ user }) => ({
-    users: user.users
+    users: user.users,
+    currentUser: user.currentUser
 })
 function ListUser(props) {
 
     const dispatch = useDispatch()
-    const { users } = useSelector(mapState)
+    const { users ,currentUser } = useSelector(mapState)
     const [showModal, setShowModal] = useState(false);
     const [showModalAdd, setShowModalAdd] = useState(false);
     const toggleModal = () => setShowModal(false);
@@ -28,6 +29,9 @@ function ListUser(props) {
         dispatch(deleteUser(documentID))
         swal("Xoá user thành công!","", "success");
     }
+
+
+    console.log(currentUser )
     return (
         <div>
 
@@ -55,9 +59,8 @@ function ListUser(props) {
                                     <td className='text-center'> <img className="img-thumbnail w-25" src={photoUrl} alt='Không có ảnh' /> </td>
                                     <td ><Link to={`/admin/edituser/${documentID}`} >{displayName}</Link> </td>
                                     <td className='text-center'>{email}</td>
-                                    <td className='text-center'>{userRoles}</td>
-                                    <td ><button className='btn btn-danger' onClick={() => handleDelete(documentID)}>X</button></td>
-
+                                    <td className='text-center'>{userRoles}</td>                                   
+                                    <td >{ currentUser.displayName  == displayName   ? ''  : <button className='btn btn-danger' onClick={() => handleDelete(documentID)}>X</button> }  </td>
                                 </tr>
                             )
                         })

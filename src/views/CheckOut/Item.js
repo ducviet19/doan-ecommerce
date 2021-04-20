@@ -44,9 +44,8 @@ function Item(props) {
             <tr>
                 <th scope="row"><img className="img-thumbnail w-25" src={thumbnail} /></th>
                 <td>{name}</td>
-                <td>Size</td>
                 <td> <div className="d-flex "> <button className="btn" onClick={ () => reduceCart(props) } ><i class="fas fa-minus"></i></button>  <p className="m-2">{quantity}</p>  <button className="btn  rounded-circle" onClick={ () => addProduct(props) }><i class="fas fa-plus"></i></button> </div> </td>
-                <td>{formatter.format(price)}</td>
+                <td>{formatter.format(price*quantity)}</td>
                 <td > <button className="btn btn-danger" onClick={ () => removeCart(props.documentID)  }><i class="fas fa-trash-alt"></i></button> </td>
             </tr> 
 

@@ -11,7 +11,8 @@ import { useFormik } from "formik";
 import swal from 'sweetalert';
 
 const mapState = state => ({
-    userEdit: state.user.user
+    userEdit: state.user.user,
+    currentUser: state.user.currentUser
 });
 const validationSchema = Yup.object({
     displayName: Yup
@@ -32,7 +33,7 @@ function EditUser(props) {
     const history = useHistory();
     useScrollTop();
     const dispatch = useDispatch();
-    const { userEdit } = useSelector(mapState);
+    const { userEdit ,currentUser } = useSelector(mapState);
     let { id } = useParams();
     useEffect(() => {
         dispatch(fetchUserAdmin(id))
@@ -109,7 +110,7 @@ function EditUser(props) {
                 </div>
                 <div className="form-group">
                     <label htmlFor="roles">Vai Trò</label>
-                    <select
+                    { currentUser.id == userEdit.id ? <div> {formik.values.userRoles}  </div>  :  <>   <select
                         name='userRoles'
                         value={formik.values.userRoles}
                         onChange={formik.handleChange} >
@@ -117,7 +118,8 @@ function EditUser(props) {
                         <option value='user'>user</option>
                     </select>
                     {formik.touched.userRoles && formik.errors.userRoles ? (
-                        <div>{formik.errors.userRoles}</div>) : null}
+                        <div>{formik.errors.userRoles}</div>) : null} </>    }
+                  
                 </div>
 
                 <button className="btn btn-primary" type="submit">
