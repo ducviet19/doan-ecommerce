@@ -7,6 +7,7 @@ import { selectCartItems } from '../../redux/Cart/cart.selectors';
 import './style.css';
 import swal from 'sweetalert';
 import { formatter } from '../../App';
+import Start from '../Start/Start';
 const mapState = createStructuredSelector({
     cartItems: selectCartItems
 });
@@ -48,7 +49,7 @@ function ProductCart(product) {
                 </div>
                 <div className="rating text-center p-3">
                     <span>
-                       
+                       <Start product={product}  />
                     </span>
                 </div>
             </div>

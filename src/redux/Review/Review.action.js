@@ -46,3 +46,14 @@ export const setReply = review => ({
     payload: review
 })
 
+
+
+
+
+
+export const totalReview = (data) => ({
+    type: reviewTypes.TOTAL_REVIEW,
+    payload : data
+})
+
+

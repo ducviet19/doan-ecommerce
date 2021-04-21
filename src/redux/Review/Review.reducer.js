@@ -3,11 +3,17 @@ import reviewTypes from './Review.type';
 
 const INITIAL_STATE = {
     listReview: [],
-    listReply : []
+    listReply : [],
+    dataTotal : []
 };
 
 const reviewReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
+        case reviewTypes.TOTAL_REVIEW: 
+            return {
+                ...state,
+                dataTotal : state.dataTotal
+            }
         case reviewTypes.FETCH_REVIEW:
             return {
                 ...state

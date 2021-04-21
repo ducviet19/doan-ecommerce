@@ -36,7 +36,7 @@ function ProductDetail({ match }) {
     useEffect(() => {
         dispatch(fetchProductStart(id))
 
-    }, [product])
+    }, [])
 
     const handleAddToCart = (product) => {
         if (!product) return;
@@ -92,7 +92,7 @@ function ProductDetail({ match }) {
                     <h5 className="font-weight-bold">{product.name}</h5>
                     <p className="mb-2 text-muted text-uppercase small">{product.category}</p>
 
-                    <Start product={product} />
+                    <Start product={product} id={id} />
                     <p><span className="mr-1 "><strong>   {formatter.format(product.price)}</strong></span></p>
                     <button className="btn btn-secondary mr-3 mt-3 mb-3 w-100 p-2" onClick={() => { handleAddToCart(product) }}>THÊM VÀO GIỎ</button>
                     <strong>Mô tả</strong>

@@ -13,6 +13,8 @@ const reviewTypes = {
     ADD_REPLY: 'ADD_REPLY',
     SET_REPLY: 'SET_REPLY',
     FETCH_REPLY: 'FETCH_REPLY',
+
+    TOTAL_REVIEW: 'TOTAL_REVIEW'
    
     
 
