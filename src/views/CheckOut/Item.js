@@ -1,21 +1,39 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addQtyItem, addToCart, reduceCartItem, removeCart, removeCartItem } from '../../redux/Cart/cart.action';
 import { selectCartTotal } from '../../redux/Cart/cart.selectors';
 import swal from 'sweetalert';
 import { formatter } from '../../App';
+import { editProduct, fetchProductStart } from '../../redux/Product/products.action';
 
 
 const mapState = ({ productsData }) => ({
-    products: productsData.products
+    products: productsData.products,
+    productDetail : productsData.product
 })
 function Item(props) {
-    const { products } = useSelector(mapState)
+    const { products , productDetail } = useSelector(mapState)
     const dispatch = useDispatch();
 
+    useEffect(() => {
+        dispatch(fetchProductStart(props.id))
+    }, [])
+    const [numberProduct , setNumberProduct] = useState(productDetail.number)
+    console.log('numberProduct',numberProduct)
+
+    console.log(productDetail)
+
     const addProduct = (product) => {
+        
+        console.log('product quantity' , product.quantity)
+        const value = {
+            number : numberProduct - 1
+        }
         dispatch(addToCart(product))
+        dispatch(editProduct(value , product.documentID))
+        setNumberProduct(value.number)
     }
+    console.log('propsssss' , props)
 
     const reduceCart = (product) => {
         dispatch(reduceCartItem(product))

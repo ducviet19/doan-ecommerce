@@ -148,7 +148,7 @@ function FormProduct(props) {
                     <label for="number">Số lượng sản phẩm</label>
                     <input className="form-control"
                         id='number'
-                        type='text'
+                        type='number'
                         placeholder="Nhập Số lượng sản phẩm"
                         value={formik.values.number}
                         onChange={formik.handleChange}

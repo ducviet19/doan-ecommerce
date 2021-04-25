@@ -1,4 +1,8 @@
+import { useDispatch } from "react-redux";
 import Item from "../../views/CheckOut/Item";
+import { editProduct } from "../Product/products.action";
+
+
 
 
 
@@ -7,6 +11,7 @@ export const existingCartItem = ({
     nextCartItem
 }) => {
     return prevCartItems.find(
+        // check if id of next item == id prev item ==> exits item
         cartItem => cartItem.documentID === nextCartItem.documentID
     )
 }
@@ -39,23 +44,30 @@ export const handleAddToCart = ({
     prevCartItems,
     nextCartItem
 }) => {
+
+    
     const quantityIncrement = 1;
+    console.log('nextCartItem',nextCartItem)
 
     const cartItemExits = existingCartItem({ prevCartItems, nextCartItem });
 
     if (cartItemExits) {
+        
         return prevCartItems.map(cartItem =>
             cartItem.documentID == nextCartItem.documentID ? { ...cartItem, quantity: cartItem.quantity + quantityIncrement } : cartItem
-        )
+        );
     }
 
     return [
         ...prevCartItems,
         {
             ...nextCartItem,
-            quantity: quantityIncrement
+            quantity: quantityIncrement,
+           
         }
     ]
+
+   
 
 }
 export const handleReduceCartItem = ({

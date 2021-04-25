@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
@@ -8,6 +8,7 @@ import './style.css';
 import swal from 'sweetalert';
 import { formatter } from '../../App';
 import Start from '../Start/Start';
+import { editProduct, fetchProductStart } from '../../redux/Product/products.action';
 const mapState = createStructuredSelector({
     cartItems: selectCartItems
 });
@@ -16,15 +17,22 @@ function ProductCart(product) {
     const { cartItems } = useSelector(mapState)
     const dispatch = useDispatch()
     const history = useHistory()
+    const quantity = 1;
+    const [numberProduct , setNumberProduct] = useState(product.number)
 
     const { documentID, thumbnail, name, price, number } = product;
 
-
-    console.log(product)
-
     const handleAddToCart = (product) => {
+        
+      
+        console.log('numberProduct',numberProduct)
         if (!product) return;
-        dispatch(addToCart(product));
+        const value = {
+            number : numberProduct - 1
+        }
+        dispatch(addToCart(product))
+        dispatch(editProduct(value , product.documentID))
+        setNumberProduct(value.number)
         swal({
             button: false,
             text: "Sản phẩm đã được thêm vào giỏ hàng",

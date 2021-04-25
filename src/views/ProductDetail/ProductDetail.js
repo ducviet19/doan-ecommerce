@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router';
 import useScrollTop from '../../hook/useScrollTop';
 import { addToCart } from '../../redux/Cart/cart.action';
-import { fetchProductStart, setProduct } from '../../redux/Product/products.action';
+import { editProduct, fetchProductStart, setProduct } from '../../redux/Product/products.action';
 import LazyLoad from 'react-lazyload';
 import swal from 'sweetalert';
 import Review from '../Review/Review';
@@ -24,9 +24,15 @@ function ProductDetail({ match }) {
     const history = useHistory()
     const dispatch = useDispatch();
     const { product, loading } = useSelector(mapState)
+
+    const [productChange , setProductChange] = useState(
+        product.number
+    )
     let { id } = useParams();
     console.log(product)
     console.log('loading', loading)
+
+
     const src = [
         product.thumbnail,
         product.imgDetail,
@@ -36,11 +42,16 @@ function ProductDetail({ match }) {
     useEffect(() => {
         dispatch(fetchProductStart(id))
 
-    }, [])
+    }, [productChange])
 
     const handleAddToCart = (product) => {
         if (!product) return;
-        dispatch(addToCart(product));
+        const value = {
+            number : product.number - 1
+        }
+        dispatch(addToCart(product))
+        dispatch(editProduct(value , product.documentID))
+        setProductChange(value.number)
         swal({
             button: false,
             text: "Sản phẩm đã được thêm vào giỏ hàng",
@@ -51,6 +62,8 @@ function ProductDetail({ match }) {
     const handletab = index => {
         setStt(index)
     }
+
+    console.log('product.number change', product.number)
     return (
 
         <>
@@ -94,7 +107,8 @@ function ProductDetail({ match }) {
 
                     <Start product={product} id={id} />
                     <p><span className="mr-1 "><strong>   {formatter.format(product.price)}</strong></span></p>
-                    <button className="btn btn-secondary mr-3 mt-3 mb-3 w-100 p-2" onClick={() => { handleAddToCart(product) }}>THÊM VÀO GIỎ</button>
+                    { product.number > 0 ? <button className="btn btn-secondary mr-3 mt-3 mb-3 w-100 p-2" onClick={() => { handleAddToCart(product) }}>THÊM VÀO GIỎ</button> : <button disabled className="btn btn-secondary mr-3 mt-3 mb-3 w-100 p-2" >HẾT HÀNG</button>  }
+                    
                     <strong>Mô tả</strong>
                     <div>
                         <p className="pt-1">{product.description}</p>

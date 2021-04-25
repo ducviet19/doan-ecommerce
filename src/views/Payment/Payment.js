@@ -13,6 +13,7 @@ import swal from 'sweetalert';
 import { useHistory } from 'react-router';
 import { fetchUserId } from '../../redux/User/user.saga';
 import { Link } from 'react-router-dom';
+import { editProduct } from '../../redux/Product/products.action';
 
 const validate = values => {
 
@@ -57,23 +58,23 @@ const mapProduct = ({ productsData }) => ({
 })
 
 const mapUser = ({ user }) => ({
-    user: user.currentUser
+    user: user.currentUser,
 })
 function Payment(props) {
     useScrollTop();
     const { user } = useSelector(mapUser)
-    const history = useHistory()
-    console.log(user)
-
     const { cartItems, total } = useSelector(mapState)
     const { products } = useSelector(mapProduct)
-
     const dispatch = useDispatch()
+
+
     const [isOpen, setIsOpen] = useState(false);
+    const history = useHistory()
 
 
 
-    cartItems.map((e) => { console.log(e.documentID) })
+
+
 
 
 
@@ -99,6 +100,8 @@ function Payment(props) {
             dispatch(
                 addToOrder(data)
             )
+
+            
             dispatch(
                 clearCart()
             )

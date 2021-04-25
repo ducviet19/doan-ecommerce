@@ -26,15 +26,19 @@ function Home() {
     const history = useHistory()
     const { products ,loading } = useSelector(mapState)
     const { data, queryDoc, isLastPage } = products;
+
+    const [change , setChange] = useState(
+        products.data
+    )
     // const [loading,setLoading] = useState(false)
-    console.log(products)
+    console.log(products.data)
     useEffect(() => {
-        // setLoading(true);
+        
         dispatch(
             fetchProducts({})
            
         )
-    }, [])
+    }, [change])
 
     const handleLoadMore = () => {
         dispatch(
