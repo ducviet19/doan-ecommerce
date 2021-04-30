@@ -46,11 +46,8 @@ function ProductDetail({ match }) {
 
     const handleAddToCart = (product) => {
         if (!product) return;
-        const value = {
-            number : product.number - 1
-        }
+
         dispatch(addToCart(product))
-        // dispatch(editProduct(value , product.documentID))
         handleUpdateNumber(product , product.documentID)
         setProductChange(true)
         swal({

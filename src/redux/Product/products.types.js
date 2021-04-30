@@ -13,6 +13,7 @@ const productsTypes = {
 
 
     UPDATE_NUMBER: 'UPDATE_NUMBER',
+    REDUCER_NUMBER: 'REDUCER_NUMBER',
 
 
 

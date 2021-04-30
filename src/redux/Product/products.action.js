@@ -59,6 +59,12 @@ export const updateNumber = (number, id) => ({
     id
 })
 
+export const reducerNumber = (number, id) => ({
+    type: productsTypes.REDUCER_NUMBER,
+    payload: number,
+    id
+})
+
 
 
 

@@ -163,6 +163,34 @@ export function* onUpdateNumber() {
 }
 
 
+export function* reducerNumber({ payload, id }) {
+    try {
+
+        console.log('payload update product', payload)
+        console.log('id update product', id)
+        let value = {
+           ...payload,
+           number : payload.number + 1
+        }
+        yield handleEditProduct(value, id);
+        yield put(
+            fetchProductStart(id)
+        )
+        yield put(
+            fetchProducts({})
+        )
+    }
+    catch (err) {
+
+    }
+}
+
+
+export function* onReducerNumber() {
+    yield takeLatest(productsTypes.REDUCER_NUMBER, reducerNumber)
+}
+
+
 
 
 
@@ -174,6 +202,7 @@ export default function* productsSagas() {
         call(onFetchProductId),
         call(onEditProduct),
         call(onUpdateNumber),
-        call(onFetchProductHome)
+        call(onFetchProductHome),
+        call(onReducerNumber)
     ])
 }

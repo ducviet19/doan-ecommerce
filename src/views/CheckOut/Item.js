@@ -4,7 +4,7 @@ import { addQtyItem, addToCart, reduceCartItem, removeCart, removeCartItem } fro
 import { selectCartTotal } from '../../redux/Cart/cart.selectors';
 import swal from 'sweetalert';
 import { formatter } from '../../App';
-import { editProduct, fetchProductStart, updateNumber } from '../../redux/Product/products.action';
+import { editProduct, fetchProductStart, reducerNumber, updateNumber } from '../../redux/Product/products.action';
 
 
 const mapState = ({ productsData }) => ({
@@ -23,21 +23,25 @@ function Item(props) {
     
     console.log(productDetail)
 
-    const addProduct = (product) => {
-        // const value = {
-        //     number : numberProduct - 1
-        // }
-        dispatch(addToCart(product))
-        // dispatch(editProduct(value , product.documentID));
-        handleUpdateNumber(productDetail , product.documentID)
-        setChange(true)
-        // setNumberProduct(value.number)
-    }
-    const handleUpdateNumber = (data, id) => {
+
+    const handleAddNumber = (data, id) => {
         dispatch(updateNumber(data,id))
+    }
+    const handleReduceNumber = (data, id) => {
+        dispatch(reducerNumber(data,id))
+    }
+
+
+    const addProduct = (product) => {
+        dispatch(addToCart(product))
+        handleAddNumber(productDetail , product.documentID)
+        setChange(true)
+       
     }
     const reduceCart = (product) => {
         dispatch(reduceCartItem(product))
+        handleReduceNumber(productDetail , product.documentID)
+        setChange(true)
     }
     const removeCart = (documentID) => {
 
