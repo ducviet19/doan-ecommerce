@@ -53,10 +53,10 @@ export const editProduct = (productData, id) => ({
     payload: productData,
     id: id
 })
-export const updateNumber = (product, cartItem) => ({
+export const updateNumber = (number, id) => ({
     type: productsTypes.UPDATE_NUMBER,
-    product,
-    cartItem
+    payload: number,
+    id
 })
 
 

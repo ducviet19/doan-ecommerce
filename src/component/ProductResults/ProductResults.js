@@ -56,10 +56,6 @@ const ProductResults = ({ }) => {
                             {categories.map((option) => (
                                 <option value={option.name}>{option.name}</option>
                             ))}
-                            {/* <option value="Sữa rửa mặt">Sữa rửa mặt</option>
-                            <option value="Kem chống nắng">Kem chống nắng</option>
-                            <option value="Mặt nạ">Mặt nạ</option>
-                            <option value="Nước Hoa">Nước Hoa</option> */}
                         </select>
                     </div>
 
@@ -94,10 +90,6 @@ const ProductResults = ({ }) => {
                     {categories.map((option) => (
                         <option value={option.name}>{option.name}</option>
                     ))}
-                    {/* <option value="Sữa rửa mặt">Sữa rửa mặt</option>
-                    <option value="Kem chống nắng">Kem chống nắng</option>
-                    <option value="Mặt nạ">Mặt nạ</option>
-                    <option value="Nước Hoa">Nước Hoa</option> */}
                 </select>
             </div>
 
@@ -105,7 +97,6 @@ const ProductResults = ({ }) => {
                 {data.map((product, pos) => {
                     console.log(product.name)
                     const { documentID, thumbnail, name, price, number } = product;
-                    // if (!thumbnail || !name || typeof price === 'undefined') return null;
                     const configProduct = {
                         documentID, thumbnail, name, price, number
                     };

@@ -4,7 +4,7 @@ import { addQtyItem, addToCart, reduceCartItem, removeCart, removeCartItem } fro
 import { selectCartTotal } from '../../redux/Cart/cart.selectors';
 import swal from 'sweetalert';
 import { formatter } from '../../App';
-import { editProduct, fetchProductStart } from '../../redux/Product/products.action';
+import { editProduct, fetchProductStart, updateNumber } from '../../redux/Product/products.action';
 
 
 const mapState = ({ productsData }) => ({
@@ -12,33 +12,33 @@ const mapState = ({ productsData }) => ({
     productDetail : productsData.product
 })
 function Item(props) {
-    const { products , productDetail } = useSelector(mapState)
+    const { products , productDetail } = useSelector(mapState);
+    const [numberProduct , setNumberProduct] = useState(productDetail.number)
+    const [change, setChange] = useState(false)
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(fetchProductStart(props.id))
-    }, [])
-    const [numberProduct , setNumberProduct] = useState(productDetail.number)
-    console.log('numberProduct',numberProduct)
-
+        dispatch(fetchProductStart(props.documentID))
+    }, [change])
+    
     console.log(productDetail)
 
     const addProduct = (product) => {
-        
-        console.log('product quantity' , product.quantity)
-        const value = {
-            number : numberProduct - 1
-        }
+        // const value = {
+        //     number : numberProduct - 1
+        // }
         dispatch(addToCart(product))
-        dispatch(editProduct(value , product.documentID))
-        setNumberProduct(value.number)
+        // dispatch(editProduct(value , product.documentID));
+        handleUpdateNumber(productDetail , product.documentID)
+        setChange(true)
+        // setNumberProduct(value.number)
     }
-    console.log('propsssss' , props)
-
+    const handleUpdateNumber = (data, id) => {
+        dispatch(updateNumber(data,id))
+    }
     const reduceCart = (product) => {
         dispatch(reduceCartItem(product))
     }
-
     const removeCart = (documentID) => {
 
         swal({

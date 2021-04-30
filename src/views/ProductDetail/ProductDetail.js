@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router';
 import useScrollTop from '../../hook/useScrollTop';
 import { addToCart } from '../../redux/Cart/cart.action';
-import { editProduct, fetchProductStart, setProduct } from '../../redux/Product/products.action';
+import { editProduct, fetchProductStart, setProduct, updateNumber } from '../../redux/Product/products.action';
 import LazyLoad from 'react-lazyload';
 import swal from 'sweetalert';
 import Review from '../Review/Review';
@@ -26,7 +26,7 @@ function ProductDetail({ match }) {
     const { product, loading } = useSelector(mapState)
 
     const [productChange , setProductChange] = useState(
-        product.number
+        false
     )
     let { id } = useParams();
     console.log(product)
@@ -50,14 +50,19 @@ function ProductDetail({ match }) {
             number : product.number - 1
         }
         dispatch(addToCart(product))
-        dispatch(editProduct(value , product.documentID))
-        setProductChange(value.number)
+        // dispatch(editProduct(value , product.documentID))
+        handleUpdateNumber(product , product.documentID)
+        setProductChange(true)
         swal({
             button: false,
             text: "Sản phẩm đã được thêm vào giỏ hàng",
             icon: "success",
             timer: 1000
         });
+    }
+
+    const handleUpdateNumber = (data, id) => {
+        dispatch(updateNumber(data,id))
     }
     const handletab = index => {
         setStt(index)
