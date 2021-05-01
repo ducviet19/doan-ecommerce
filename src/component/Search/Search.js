@@ -15,15 +15,13 @@ function Search(props) {
         currency: 'vnd'
     })
     const { products } = useSelector(mapState);
-    console.log(products)
-
+  
     useEffect(() => {
         dispatch(
             fetchProductsHome()
         )
     }, [])
 
-    console.log(products)
 
     const [searchItem, setSearchItem] = useState("")
     return (

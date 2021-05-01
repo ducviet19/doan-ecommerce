@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router';
 import useScrollTop from '../../hook/useScrollTop';
 import { addToCart } from '../../redux/Cart/cart.action';
-import { fetchProductStart, setProduct } from '../../redux/Product/products.action';
+import { editProduct, fetchProductStart, setProduct, updateNumber } from '../../redux/Product/products.action';
 import LazyLoad from 'react-lazyload';
 import swal from 'sweetalert';
 import Review from '../Review/Review';
@@ -24,9 +24,12 @@ function ProductDetail({ match }) {
     const history = useHistory()
     const dispatch = useDispatch();
     const { product, loading } = useSelector(mapState)
+
+    const [productChange , setProductChange] = useState(
+        false
+    )
     let { id } = useParams();
-    console.log(product)
-    console.log('loading', loading)
+
     const src = [
         product.thumbnail,
         product.imgDetail,
@@ -36,11 +39,14 @@ function ProductDetail({ match }) {
     useEffect(() => {
         dispatch(fetchProductStart(id))
 
-    }, [product])
+    }, [productChange])
 
     const handleAddToCart = (product) => {
         if (!product) return;
-        dispatch(addToCart(product));
+
+        dispatch(addToCart(product))
+        handleUpdateNumber(product , product.documentID)
+        setProductChange(true)
         swal({
             button: false,
             text: "Sản phẩm đã được thêm vào giỏ hàng",
@@ -48,21 +54,26 @@ function ProductDetail({ match }) {
             timer: 1000
         });
     }
+
+    const handleUpdateNumber = (data, id) => {
+        dispatch(updateNumber(data,id))
+    }
     const handletab = index => {
         setStt(index)
     }
+
     return (
 
         <>
-            {loading === false ? <>  <div className="row px-1 mt-3">
+            {loading === false ? <>  <div className="row px-1 pt-5 mt-2">
                 <div className="col-md-6 mb-4 mb-md-0">
                     <div id="mdb-lightbox-ui" />
                     <div className="mdb-lightbox">
                         <div className="row product-gallery mx-1">
                             <div className="col-12 mb-0">
-                                <figure className="d-flex view overlay rounded z-depth-1 main-img">
-                                    <a className='m-auto ' data-size="710x823">
-                                        <img src={src[stt]} className="img-fluid w-50 h-50 z-depth-1 border" />
+                                <figure className="view overlay rounded z-depth-1 main-img">
+                                    <a data-size="710x823">
+                                        <img src={src[stt]} className="img-fluid w-75 h-75 z-depth-1" />
                                     </a>
                                 </figure>
 
@@ -89,12 +100,13 @@ function ProductDetail({ match }) {
                     </div>
                 </div>
                 <div className="col-md-6">
-                    <h5 className="font-weight-bold text-info">{product.name}</h5>
+                    <h5 className="font-weight-bold">{product.name}</h5>
                     <p className="mb-2 text-muted text-uppercase small">{product.category}</p>
 
                     <Start product={product} id={id} />
-                    <p><span className="mr-1 "><strong className='text-warning'>   {formatter.format(product.price)}</strong></span></p>
-                    <button className="btn btn-secondary btn_cart mr-3 mt-3 mb-3 w-100 p-2" onClick={() => { handleAddToCart(product) }}>THÊM VÀO GIỎ</button>
+                    <p><span className="mr-1 "><strong>   {formatter.format(product.price)}</strong></span></p>
+                    { product.number > 0 ? <button className="btn btn-secondary mr-3 mt-3 mb-3 w-100 p-2" onClick={() => { handleAddToCart(product) }}>THÊM VÀO GIỎ</button> : <button disabled className="btn btn-secondary mr-3 mt-3 mb-3 w-100 p-2" >HẾT HÀNG</button>  }
+                    
                     <strong>Mô tả</strong>
                     <div>
                         <p className="pt-1">{product.description}</p>

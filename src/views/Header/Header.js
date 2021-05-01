@@ -36,7 +36,6 @@ function Header(props) {
   const { filterType } = useParams();
   const { currentUser, totalNumCartItems, products } = useSelector(mapState);
   const { categories } = useSelector(mapCategory);
-  console.log(currentUser)
 
   const isAdmin = checkUserIsAdmin(currentUser);
 
@@ -51,10 +50,6 @@ function Header(props) {
       fetchUserId(currentUser?.id)
     )
   }, [])
-
-  console.log(currentUser)
-  console.log(isAdmin)
-
   const signOut = () => {
     dispatch(signOutUserStart())
   }

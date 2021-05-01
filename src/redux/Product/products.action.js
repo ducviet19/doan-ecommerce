@@ -52,12 +52,17 @@ export const editProduct = (productData, id) => ({
     type: productsTypes.EDIT_PRODUCT,
     payload: productData,
     id: id
-
 })
-export const updateNumber = (product, cartItem) => ({
+export const updateNumber = (number, id) => ({
     type: productsTypes.UPDATE_NUMBER,
-    product,
-    cartItem
+    payload: number,
+    id
+})
+
+export const reducerNumber = (number, id) => ({
+    type: productsTypes.REDUCER_NUMBER,
+    payload: number,
+    id
 })
 
 

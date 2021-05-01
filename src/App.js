@@ -59,7 +59,6 @@ function App(props) {
 
   const dispatch = useDispatch();
   const { user } = useSelector(mapState);
-  console.log(user)
 
   useEffect(() => {
     dispatch(checkUserSession());
