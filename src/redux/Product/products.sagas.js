@@ -3,13 +3,13 @@ import { handleAddProduct, handleDeleteProduct, handleEditProduct, handleFetchDe
 import productsTypes from './products.types';
 import { auth } from './../../firebase/ultils'
 import { setProducts, fetchProducts, setProduct, fetchProductStart, setProductsHome, productSucces, productDetailSucces } from './products.action'
+import { cartDefault } from '../Cart/cart.action';
 
 // add product
 
 export function* addProduct({ payload }) {
 
     try {
-        console.log('payload add product', payload)
         const timestamp = new Date();
         yield handleAddProduct({
             ...payload,
@@ -43,6 +43,9 @@ export function* fetchProduct({ payload }) {
         yield put(
             productSucces()
         );
+        yield put(
+            cartDefault()
+        )
 
     } catch (err) {
         // console.log(err);
@@ -113,8 +116,6 @@ export function* onDeleteProductct() {
 export function* editProduct({ payload, id }) {
     try {
 
-        console.log('payload edit product', payload)
-        console.log('id edit product', id)
         yield handleEditProduct(payload, id);
 
         yield put(
@@ -138,8 +139,8 @@ export function* onEditProduct() {
 export function* updateNumber({ payload, id }) {
     try {
 
-        console.log('payload update product', payload)
-        console.log('id update product', id)
+        
+     
         let value = {
            ...payload,
            number : payload.number - 1
@@ -166,8 +167,7 @@ export function* onUpdateNumber() {
 export function* reducerNumber({ payload, id }) {
     try {
 
-        console.log('payload update product', payload)
-        console.log('id update product', id)
+    
         let value = {
            ...payload,
            number : payload.number + 1

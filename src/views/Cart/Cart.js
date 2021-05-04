@@ -23,8 +23,6 @@ const mapCart = (state) => ({
 function Cart(props) {
     const { cartItems, total } = useSelector(mapState);
     const { totalNumCartItems } = useSelector(mapCart);
-    console.log(cartItems)
-    console.log('tong gia', total)
 
 
     return (
@@ -34,7 +32,7 @@ function Cart(props) {
                     <div className="col-12 ">
                         <h3 className="bold">Giỏ Hàng của bạn </h3> <span>({totalNumCartItems} sản phẩm ) </span>
                         <div className="table-responsive container-fluid">
-                            <table class="table">
+                            <table className="table">
                                 <thead>
                                     <tr>
                                         <th scope="col">Hình ảnh</th>

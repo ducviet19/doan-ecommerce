@@ -20,7 +20,6 @@ GoogleProvider.setCustomParameters({ prompt: 'select_account' });
 export const handleUserProfile = async ({ userAuth, additionalData }) => {
     if (!userAuth) return;
     const { uid } = userAuth;
-    console.log(userAuth);
     const useRef = firestore.doc(`users/${uid}`);
 
     const snapshot = await useRef.get();

@@ -62,7 +62,6 @@ export const handleDeleteCategory = documentID => {
     return new Promise((resolve, reject) => {
         firestore.collection('categories').doc(documentID).delete()
             .then(() => {
-                console.log(documentID)
                 resolve();
             })
             .catch(err => {

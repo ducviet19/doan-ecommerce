@@ -40,8 +40,6 @@ function ListReview(props) {
                 {listReview.review.length == 0 ? "Sản phẩm chưa có đánh giá" : <>
                     {
                         listReview.review.map((e, index) => {
-                            console.log(e.timeDate.split("T")[0])
-                            console.log(e)
                             return (
                                 <>
                                     <div className="card m-5">
@@ -55,7 +53,7 @@ function ListReview(props) {
                                                 </div>
                                                 <div className="col-md-10">
                                                     <p>
-                                                        <a className="float-left"><strong>{e.user.displayName}</strong></a>
+                                                        <p className="float-left"><strong>{e.user.displayName}</strong></p>
                                                         <p className="float-right">{e.start == "5" ? "Rất tốt" : e.start == "4" ? "  tốt" : e.start == "3" ? "Trung bình" : e.start == "2" ? "Tệ" : "Rất Tệ"}</p>
                                                         {/* <span className="float-right"><i className="text-warning fa fa-star" /></span>
                                                         <span className="float-right"><i className="text-warning fa fa-star" /></span>

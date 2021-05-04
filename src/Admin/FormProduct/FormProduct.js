@@ -7,6 +7,8 @@ import swal from 'sweetalert';
 import { useHistory } from 'react-router-dom';
 import { fetchCategories } from '../../redux/Category/category.action';
 import axios from 'axios'
+import CurrencyInput from 'react-currency-input-field';
+
 const mapState = ({ productsData }) => ({
     products: productsData.products
 })
@@ -109,6 +111,9 @@ function FormProduct(props) {
         },
         validationSchema,
         onSubmit: values => {
+            console.log(  values.price)
+            console.log(typeof (values.price));
+            console.log(parseInt(values.price));
             validateImg();
             dispatch(
                 addProduct({
@@ -127,6 +132,7 @@ function FormProduct(props) {
             history.goBack()
         },
     });
+    
 
     return (
         <div className="m-2">
@@ -203,14 +209,24 @@ function FormProduct(props) {
                         <div>{formik.errors.price}</div>) : null}
 
                 </div>
+                <CurrencyInput
+                   id='price'
+                    name="price"
+                    placeholder="Nhập Giá sản phẩm"
+                    defaultValue={0}
+                    decimalsLimit={2}
+                    onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                />
                 <div className="form-group w-50">
                     <label for="thumbnail">Ảnh sản phẩm</label><br></br>
                     <input type='file'
                         id='thumbnail'
                         name='file'
                         placeholder='upload image'
-                        onChange={uploadImage2}></input><br></br>
-                    <img className='img-thumbnail w-25' src={image2}></img>
+
+                        onChange={uploadImage}></input><br></br>
+                    <img className='img-thumbnail w-25' src={image}></img>
                     <div value={imgvalid} className="error">{imgvalid}</div>
 
                 </div>
@@ -229,48 +245,11 @@ function FormProduct(props) {
                         id='imgDetail2'
                         name='file'
                         placeholder='upload image'
-                        onChange={uploadImage}></input><br></br>
-                    <img className='img-thumbnail w-25' src={image}></img>
+                        onChange={uploadImage2}></input><br></br>
+                    <img className='img-thumbnail w-25' src={image2}></img>
 
                 </div>
-                {/* <div className="form-group">
-                    <label for="thumbnail">Hình ảnh sản phẩm</label>
-                    <input className="form-control"
-                        id='thumbnail'
-                        type='text'
-                        placeholder="Hình ảnh sản phẩm"
-                        value={formik.values.thumbnail}
-                        onChange={formik.handleChange}
-                        onBlur={formik.handleBlur} />
-                    {formik.touched.thumbnail && formik.errors.thumbnail ? (
-                        <div>{formik.errors.thumbnail}</div>) : null}
-                   
-                </div>
-                <div className="form-group">
-                    <label for="imgDetail">Hình ảnh chi tiết 1</label>
-                    <input className="form-control"
-                        id='imgDetail'
-                        type='text'
-                        placeholder="Hình ảnh chi tiết"
-                        value={formik.values.imgDetail}
-                        onChange={formik.handleChange}
-                        onBlur={formik.handleBlur} />
-                    {formik.touched.imgDetail && formik.errors.imgDetail ? (
-                        <div>{formik.errors.imgDetail}</div>) : null}
-                   
-                </div>
-                <div className="form-group">
-                    <label for="imgDetail2">Hình ảnh chi tiết 2</label>
-                    <input className="form-control"
-                        id='imgDetail2'
-                        type='text'
-                        placeholder="Hình ảnh chi tiết"
-                        value={formik.values.imgDetail2}
-                        onChange={formik.handleChange}
-                        onBlur={formik.handleBlur} />
-                    {formik.touched.imgDetail2 && formik.errors.imgDetail2 ? (
-                        <div>{formik.errors.imgDetail2}</div>) : null}
-                </div> */}
+
 
                 <button className="btn btn-primary" disabled={!image || !image1 || !image2} type="submit">
                     Thêm sản phẩm

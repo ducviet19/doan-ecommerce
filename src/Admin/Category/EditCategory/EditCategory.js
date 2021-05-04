@@ -33,10 +33,6 @@ function EditCategory(props) {
     const dispatch = useDispatch();
     const { category } = useSelector(mapCategory)
     let { id } = useParams();
-
-    console.log(category)
-    console.log(id)
-
     useEffect(() => {
         dispatch(fetchCategory(id))
     }, [])

@@ -93,7 +93,7 @@ export const handleDeleteProduct = documentID => {
     return new Promise((resolve, reject) => {
         firestore.collection('products').doc(documentID).delete()
             .then(() => {
-                console.log(documentID)
+            
                 resolve();
             })
             .catch(err => {

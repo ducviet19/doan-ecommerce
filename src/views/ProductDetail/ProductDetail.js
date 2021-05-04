@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router';
 import useScrollTop from '../../hook/useScrollTop';
-import { addToCart } from '../../redux/Cart/cart.action';
+import { addToCart, cartDefault, cartLoading } from '../../redux/Cart/cart.action';
 import { editProduct, fetchProductStart, setProduct, updateNumber } from '../../redux/Product/products.action';
 import LazyLoad from 'react-lazyload';
 import swal from 'sweetalert';
@@ -18,17 +18,25 @@ const mapState = state => ({
     loading: state.productsData.loadingDetail
 });
 
+const mapLoading = state => ({
+    loadingCart: state.cartData.loadingCart,
+    success: state.cartData.success
+});
+
 
 function ProductDetail({ match }) {
     useScrollTop();
     const history = useHistory()
     const dispatch = useDispatch();
     const { product, loading } = useSelector(mapState)
+    const { loadingCart, success } = useSelector(mapLoading)
 
-    const [productChange , setProductChange] = useState(
+    const [productChange, setProductChange] = useState(
         false
     )
     let { id } = useParams();
+    console.log('success', success)
+    console.log('loading', success)
 
     const src = [
         product.thumbnail,
@@ -38,28 +46,47 @@ function ProductDetail({ match }) {
     const [stt, setStt] = useState(0)
     useEffect(() => {
         dispatch(fetchProductStart(id))
-
     }, [productChange])
 
-    const handleAddToCart = (product) => {
+     const  handleAddToCart = async (product) => {
         if (!product) return;
 
+        console.log('cart' ,product)
+
         dispatch(addToCart(product))
-        handleUpdateNumber(product , product.documentID)
+        handleUpdateNumber(product, product.documentID)
         setProductChange(true)
-        swal({
-            button: false,
-            text: "Sản phẩm đã được thêm vào giỏ hàng",
-            icon: "success",
-            timer: 1000
-        });
+        dispatch(cartLoading(product.documentID))
+        // loadingButton(loadingCart)
+        
     }
 
+    // if(loadingCart == true) {
+    //     swal({
+    //         button: false,
+    //         text: "Sản phẩm đã được thêm vào giỏ hàng",
+    //         icon: "success",
+    //         timer: 1000
+    // })
+    // }
+
+
+
+ 
+
+
+
+
+
+
     const handleUpdateNumber = (data, id) => {
-        dispatch(updateNumber(data,id))
+        dispatch(updateNumber(data, id))
     }
     const handletab = index => {
         setStt(index)
+    }
+    const handleChangeReview = (value) => {
+        setProductChange(value)
     }
 
     return (
@@ -105,8 +132,12 @@ function ProductDetail({ match }) {
 
                     <Start product={product} id={id} />
                     <p><span className="mr-1 "><strong>   {formatter.format(product.price)}</strong></span></p>
-                    { product.number > 0 ? <button className="btn btn-secondary mr-3 mt-3 mb-3 w-100 p-2" onClick={() => { handleAddToCart(product) }}>THÊM VÀO GIỎ</button> : <button disabled className="btn btn-secondary mr-3 mt-3 mb-3 w-100 p-2" >HẾT HÀNG</button>  }
-                    
+                    {product.number > 0
+                        ?
+                        <> {loadingCart == false ? <LoadingBox /> : <button className="btn btn-secondary mr-3 mt-3 mb-3 w-100 p-2" onClick={() => { handleAddToCart(product) }}>THÊM VÀO GIỎ</button>} </>
+                        :
+                        <button disabled className="btn btn-secondary mr-3 mt-3 mb-3 w-100 p-2" >HẾT HÀNG</button>}
+
                     <strong>Mô tả</strong>
                     <div>
                         <p className="pt-1">{product.description}</p>
@@ -117,7 +148,7 @@ function ProductDetail({ match }) {
 
                 </div>
             </div>
-                <Review product={product} />
+                <Review handleChangeReview={handleChangeReview} product={product} />
                 <Rate id={id} /> </> : <LoadingBox />}
 
         </>

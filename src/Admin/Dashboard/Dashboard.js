@@ -16,7 +16,6 @@ function Dashboard(props) {
   useScrollTop();
   const dispatch = useDispatch();
   const { user } = useSelector(mapState)
-  console.log(user)
 
   useEffect(( ) => {
     dispatch(

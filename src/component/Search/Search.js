@@ -28,9 +28,9 @@ function Search(props) {
         <>
             <div className="search_box p-2 input-group">
                 <input className="search_bar form-control" type="text" placeholder="Tìm kiếm sản phẩm" value={searchItem} onChange={(e) => { setSearchItem(e.target.value) }} />
-                <span class="input-group-append">
-                    <button class="btn btn-outline-secondary bg-white border-start-0 border rounded-pill ms-n3" type="button">
-                        <i class="fa fa-search "></i>
+                <span className="input-group-append">
+                    <button className="btn btn-outline-secondary bg-white border-start-0 border rounded-pill ms-n3" type="button">
+                        <i className="fa fa-search "></i>
                     </button>
                 </span>
             </div>
@@ -43,10 +43,9 @@ function Search(props) {
                         return item
                     }
                 }).map((product, index) => {
-                    console.log()
                     return (
                         <div className="search_bar  border-top-0 border">
-                            <Link style={{ textDecoration: 'none' }} to={`/product/${product.documentID}`}>
+                            <Link key={index} style={{ textDecoration: 'none' }} to={`/product/${product.documentID}`}>
                                 <div className="search row p-2  d-flex">
                                     <div className="search-main text-nowrap col-8">
                                         <div className="name font-weight-bold text-center "> {product.name}    </div>

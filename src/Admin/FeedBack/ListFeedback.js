@@ -11,7 +11,6 @@ function ListFeedback(props) {
 
     const dispatch = useDispatch()
     const { messages } = useSelector(mapState)
-    console.log(messages)
     useEffect(() => {
         dispatch(
             fetchMessage()
@@ -26,7 +25,7 @@ function ListFeedback(props) {
         <div>
             <h2>Danh sách phản hồi</h2>
             <div className="table-responsive">
-                <table class="table table-light">
+                <table className="table table-light">
                     <thead>
                         <tr>
                             <th className='text-center' scope="col">STT</th>

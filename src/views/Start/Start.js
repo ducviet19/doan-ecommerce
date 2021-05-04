@@ -3,7 +3,6 @@ import React, { useEffect } from 'react';
 
 
 function Start(props) {
-    console.log(props.product)
 
     const producStart = () => {
         let numArr = []

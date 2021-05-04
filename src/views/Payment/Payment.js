@@ -63,19 +63,12 @@ function Payment(props) {
     useScrollTop();
     const { user } = useSelector(mapUser)
     const history = useHistory()
-    console.log(user)
 
     const { cartItems, total } = useSelector(mapState)
     const { products } = useSelector(mapProduct)
 
     const dispatch = useDispatch()
     const [isOpen, setIsOpen] = useState(false);
-
-
-
-    cartItems.map((e) => { console.log(e.documentID) })
-
-
 
     const formik = useFormik({
         initialValues: {

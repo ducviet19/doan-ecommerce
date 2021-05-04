@@ -55,7 +55,7 @@ function EditUser(props) {
 
     }
 
-    console.log('userEdit', userEdit)
+ 
 
 
     const formik = useFormik({

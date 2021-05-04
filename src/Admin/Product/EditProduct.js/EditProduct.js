@@ -40,6 +40,8 @@ function EditProduct({ props }) {
 
     const history = useHistory()
 
+    
+
 
 
 
@@ -106,16 +108,19 @@ function EditProduct({ props }) {
             category: product?.category,
             description: product?.description,
             price: product?.price,
-            number: product?.number
+            number: product?.number,
+            thumbnail : product?.thumbnail,
+            imgDetail: product?.imgDetail,
+            imgDetail2: product?.imgDetail2
         },
         validationSchema,
         onSubmit: values => {
             validateImg();
             dispatch(
                 editProduct({
-                    thumbnail: image2,
+                    thumbnail: image,
                     imgDetail: image1,
-                    imgDetail2: image,
+                    imgDetail2: image2,
                     name: values.name,
                     category: values.category,
                     description: values.description,
@@ -194,71 +199,36 @@ function EditProduct({ props }) {
                     </div>
                     <div className="form-group w-50">
                         <label for="thumbnail">Ảnh sản phẩm</label><br></br>
-                        {/* <input className="form-control"
-                            id='thumbnail'
-                            type='text'
-                            placeholder="Hình ảnh sản phẩm"
-                            value={formik.values.thumbnail}
-                            onChange={formik.handleChange}
-                            onBlur={formik.handleBlur} />
-                        {formik.touched.thumbnail && formik.errors.thumbnail ? (
-                            <div className='err'>{formik.errors.thumbnail}</div>) : null} */}
                         <input type='file'
                             id='thumbnail'
                             name='file'
                             placeholder='upload image'
-                            onChange={uploadImage2}></input><br></br>
-                        <img className='img-thumbnail w-25' src={image2}></img>
+                            onChange={uploadImage}></input><br></br>
+                        <img className='img-thumbnail w-25' src={formik.values.thumbnail}></img>
                         <div value={imgvalid} className="error">{imgvalid}</div>
 
                     </div>
                     <div className="form-group w-50">
                         <label for="imgDetail">Ảnh chi tiết 1</label><br></br>
-                        {/* <input className="form-control"
-                            id='imgDetail'
-                            type='text'
-                            placeholder="Hình ảnh chi tiết"
-                            value={formik.values.imgDetail}
-                            onChange={formik.handleChange}
-                            onBlur={formik.handleBlur} />
-                        {formik.touched.imgDetail && formik.errors.imgDetail ? (
-                            <div className='err'>{formik.errors.imgDetail}</div>) : null} */}
                         <input type='file'
                             id='imgDetail'
                             name='file'
                             placeholder='upload image'
                             onChange={uploadImage1}></input><br></br>
-                        <img className='img-thumbnail w-25' src={image1}></img>
+                        <img className='img-thumbnail w-25' src={formik.values.imgDetail}></img>
                     </div>
                     <div className="form-group w-50">
                         <label for="imgDetail2">Ảnh chi tiết 2</label><br></br>
-                        {/* <input className="form-control"
-                            id='imgDetail2'
-                            type='text'
-                            placeholder="Hình ảnh chi tiết"
-                            value={formik.values.imgDetail2}
-                            onChange={formik.handleChange}
-                            onBlur={formik.handleBlur} />
-                        {formik.touched.imgDetail2 && formik.errors.imgDetail2 ? (
-                            <div className='err'>{formik.errors.imgDetail2}</div>) : null} */}
+                      
                         <input type='file'
                             id='imgDetail2'
                             name='file'
                             placeholder='upload image'
-                            onChange={uploadImage}></input><br></br>
-                        <img className='img-thumbnail w-25' src={image}></img>
-
+                            onChange={uploadImage2}></input><br></br>
+                        <img className='img-thumbnail w-25' src={formik.values.imgDetail2}></img>
                     </div>
                     <div className="form-group">
                         <label for="price">Giá sản phẩm</label>
-                        {/* <NumberFormat className="form-control"
-                            id='price'
-                            value={formik.values.price}
-                            placeholder="Nhập Giá sản phẩm"
-                            isNumericString={true}
-                            onChange={formik.handleChange}
-                            onBlur={formik.handleBlur}
-                            thousandSeparator={true} /> */}
                         <input className="form-control"
                             id='price'
                             type='text'

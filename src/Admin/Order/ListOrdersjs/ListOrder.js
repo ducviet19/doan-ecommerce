@@ -18,7 +18,6 @@ function ListOrder(props) {
             fetchOrders()
         )
     }, [])
-    console.log(listOrder)
     return (
         <>
             <OrderHistory user={user} orders={listOrder} />

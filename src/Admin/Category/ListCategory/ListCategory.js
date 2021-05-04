@@ -14,7 +14,6 @@ function ListCategory(props) {
             fetchCategories()
         )
     }, [])
-    console.log(categories)
 
 
     const handleDeleteCategory = (documentID) => {
@@ -29,8 +28,8 @@ function ListCategory(props) {
 
                 <h2>Danh sách danh mục</h2>
 
-                <div class="table-responsive">
-                    <table class="table">
+                <div className="table-responsive">
+                    <table className="table">
                         <thead>
                             <tr>
                                 <th scope="col">STT</th>

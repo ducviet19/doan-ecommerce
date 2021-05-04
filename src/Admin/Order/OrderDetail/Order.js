@@ -18,7 +18,6 @@ function Order(props) {
     const { orderDetail } = useSelector(mapState)
     const [status, setStatus] = useState()
 
-    console.log(orderDetail)
 
     useEffect(() => {
         setStatus(orderDetail.finish);

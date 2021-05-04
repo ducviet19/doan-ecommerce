@@ -27,3 +27,17 @@ export const reduceCartItem = (cartItem) => ({
     payload: cartItem
 })
 
+export const fetchCart = () => ({
+    type: cartTypes.FETCH_CART
+})
+
+
+// loading 
+export const cartLoading = (id) => ({
+    type: cartTypes.CART_LOADING,
+    payload : id
+})
+export const cartDefault = () => ({
+    type: cartTypes.CART_DEFAULT
+})
+

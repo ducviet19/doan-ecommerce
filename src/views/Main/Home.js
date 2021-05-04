@@ -65,12 +65,12 @@ function Home() {
                     <div className="row d-flex justify-content-center">
 
                         {
-                            (Array.isArray(data) && data.length > 0) && data.map((product) => {
+                            (Array.isArray(data) && data.length > 0) && data.map((product,index) => {
                                 const configProduct = {
                                     ...product
                                 }
                                 return (
-                                    <ProductCart data={product} handleChange={handleChange} handleUpdateNumber={handleUpdateNumber} loading={loading} {...configProduct} />
+                                    <ProductCart key={index} data={product} handleChange={handleChange} handleUpdateNumber={handleUpdateNumber} loading={loading} {...configProduct} />
                                 )
                             })
                         }

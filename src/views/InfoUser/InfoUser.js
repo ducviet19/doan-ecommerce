@@ -34,7 +34,6 @@ function InfoUser(props) {
         dispatch(fetchUserId(user.id))
     }, [])
 
-    console.log('user', user)
     const uploadImage = async (e) => {
         const files = e.target.files[0];
         const data = new FormData()

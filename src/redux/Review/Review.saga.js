@@ -6,7 +6,6 @@ import reviewTypes from "./Review.type";
 export function* addReview({ payload ,id }) {
 
     try {
-        console.log('payload add product' , payload)
         yield handleAddReview(payload ,id );
         yield put(
             fetchReviews(id)
@@ -24,7 +23,6 @@ export function* onAddReview() {
 
 export function* fetchListReview({payload}) {
     try {
-        console.log(payload)
         const reviews = yield handleFetchReviews(payload);
         
         yield put(
@@ -44,7 +42,7 @@ export function* onFetchReview() {
 
 export function* deleteReviewUser({payload}) {
     try {
-        console.log(payload)
+     
         
     } catch (error) {
         
@@ -65,9 +63,7 @@ export function* onDeleteReview() {
 
 export function* replyComment({ payload ,id  }) {
     try {
-        console.log('payload add product')
-        console.log('payload add product' , payload)
-        console.log('payload add product' , id)
+  
         yield handleAddReply(payload ,id );
         yield put(
             fetchReply(id)
@@ -85,9 +81,7 @@ export function* onAddReply() {
 
 export function* fetchListReply({payload}) {
     try {
-        console.log(payload)
         const reply = yield handleFetchReviews(payload);
-        console.log(reply)
         yield put(
             setReply(reply)
         );

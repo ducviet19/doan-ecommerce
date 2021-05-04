@@ -37,9 +37,12 @@ export const handleUpdateToCart = ({
 
 export const handleAddToCart = ({
     prevCartItems,
-    nextCartItem
+    nextCartItem,
 }) => {
+    console.log('prevCartItems',prevCartItems)
+    console.log('nextCartItem',nextCartItem)
     const quantityIncrement = 1;
+    const numberUpdate = 1;
 
     const cartItemExits = existingCartItem({ prevCartItems, nextCartItem });
 
@@ -54,7 +57,7 @@ export const handleAddToCart = ({
         {
             ...nextCartItem,
             quantity: quantityIncrement
-        }
+        },
     ]
 
 }

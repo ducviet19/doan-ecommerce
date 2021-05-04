@@ -41,15 +41,14 @@ function ListProduct(props) {
         dispatch(deleteProduct(documentID))
         swal("Xoá sản phẩm thành công!", "", "success");
     }
-    console.log(typeof (data.price))
     return (
         <div className="list_products mt-2">
             <Link to="/admin/newproduct"><button className="btn btn-primary">Thêm mới sản phẩm</button> </Link>
             <SearchProductAdmin />
             <h2>Danh sách sản phẩm</h2>
 
-            <div class="table-responsive">
-                <table class="table">
+            <div className="table-responsive">
+                <table className="table">
                     <thead>
                         <tr>
                             <th scope="col">STT</th>

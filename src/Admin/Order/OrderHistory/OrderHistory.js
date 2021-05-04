@@ -8,7 +8,6 @@ import swal from 'sweetalert';
 import useScrollTop from '../../../hook/useScrollTop';
 function OrderHistory({ orders, user }) {
     useScrollTop()
-    console.log(orders)
     const history = useHistory()
     const dispatch = useDispatch();
 
@@ -18,7 +17,6 @@ function OrderHistory({ orders, user }) {
     //     )
     // },[] )
 
-    console.log(orders)
 
 
     const handleDelete = (documentID) => {
@@ -30,9 +28,9 @@ function OrderHistory({ orders, user }) {
 
         <div className="">
             <h2>Danh sách đơn hàng </h2>
-            <div class="table-responsive">
-                <div class="table-responsive">
-                    <table class="table">
+            <div className="table-responsive">
+                <div className="table-responsive">
+                    <table className="table">
                         <thead>
                             <tr>
                                 <th scope="col">STT</th>
@@ -47,7 +45,7 @@ function OrderHistory({ orders, user }) {
                             {
                                 orders.map((order, index) => {
                                     const { total, shipping, documentID, datePlaced, finish } = order
-                                    console.log(datePlaced)
+                               
                                     return (
                                         <tr key={index}>
                                             <td> {index + 1} </td>

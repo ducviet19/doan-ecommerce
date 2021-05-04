@@ -237,7 +237,6 @@ export function* AddUser({ payload: {
   userRoles
 } }) {
   try {
-    console.log(auth.createUser(email, password));
     const { user } = yield auth.createUser(email, password);
     // const additionData = { displayName };
     // const role = [userRoles];
@@ -262,7 +261,6 @@ export function* AddUser({ payload: {
 
 
 export function* fetchUserDetailAdmin({ payload }) {
-  console.log("🚀 ~ file: user.saga.js ~ line 163 ~ function*fetchUserId ~ payload", payload)
   try {
     const userEdit = yield handleFetchDetailUser(payload);
     yield put(
@@ -279,7 +277,6 @@ export function* onFetchUserAdmin() {
 export function* editUserAdmin({ payload, id }) {
 
   try {
-    console.log('payload')
     yield handleEditUser(payload, id);
     yield put(
       fetchUserAdmin(id)

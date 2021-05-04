@@ -24,7 +24,7 @@ export function* onFetchMessage() {
 export function* addMessageSaga({ payload }) {
 
     try {
-        console.log('payload add product', payload)
+      
         const timestamp = new Date();
         yield handleAddMessage({
             ...payload,

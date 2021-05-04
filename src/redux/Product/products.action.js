@@ -79,3 +79,9 @@ export const productSucces = () => ({
 export const productDetailSucces = () => ({
     type: productsTypes.PRODUCT_DETAIL_SUCCESS
 })
+
+
+export const getProductID = (id) => ({
+    type: productsTypes.GET_PRODUCT_ID,
+    payload: id
+})

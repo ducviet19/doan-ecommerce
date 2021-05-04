@@ -21,8 +21,6 @@ function OrderUser(props) {
         )
     }, [])
 
-    console.log(user)
-    console.log(orderHistory)
     return (
         <div>
             <div className="mt-5">
@@ -43,7 +41,6 @@ function OrderUser(props) {
                             {
                                 orderHistory?.map((order, index) => {
                                     const { name, price, thumbnail, quantity, userID, total, shipping, documentID, datePlaced, finish } = order
-                                    console.log(datePlaced.split("T")[0])
                                     return (
                                         <tr key={index}>
                                             <td> {index + 1}</td>

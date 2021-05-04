@@ -66,25 +66,25 @@ function Header(props) {
           </div>
           <div className="col-lg-3 col-6 mt-3 d-flex justify-content-center">
 
-            <div class="dropdown row w-75 justify-content-end">
+            <div className="dropdown row w-75 justify-content-end">
               {currentUser !== null ?
                 <div className="dropdown-show col-lg-8 col-12 text-center">
-                  <p class="text-nowrap text-name " type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <Link > <i class="fas fa-user"></i> {currentUser.displayName} </Link>
+                  <p className="text-nowrap text-name " type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <Link to="/infouser" > <i className="fas fa-user"></i> {currentUser.displayName} </Link>
                   </p>
-                  <div class="" aria-labelledby="dropdownMenuButton">
+                  <div className="" aria-labelledby="dropdownMenuButton">
                     <div className="show_menu">
-                      <div className="p-2 item"><Link to="/order" style={{ textDecoration: 'none' }} className="m-2" > <i class="fa fa-shopping-bag" aria-hidden="true"></i> <span>Đơn Hàng</span>  </Link></div>
-                      <div className="p-2 item"><Link to="/infouser" style={{ textDecoration: 'none' }} className="m-2"> <i class="far fa-user"></i>  <span>Tài khoản</span>  </Link></div>
-                      <div className="p-2 item"><Link style={{ textDecoration: 'none' }} className="m-2"> {currentUser !== null ? <a>{isAdmin ? <Link to="/admin"><i class="fas fa-users-cog"></i> <span>Quản trị</span> </Link> : ''} </a> : <></>}  </Link></div>
+                      <div className="p-2 item"><Link to="/order" style={{ textDecoration: 'none' }} className="m-2" > <i className="fa fa-shopping-bag" aria-hidden="true"></i> <span>Đơn Hàng</span>  </Link></div>
+                      <div className="p-2 item"><Link to="/infouser" style={{ textDecoration: 'none' }} className="m-2"> <i className="far fa-user"></i>  <span>Tài khoản</span>  </Link></div>
+                      <div className="p-2 item"><Link style={{ textDecoration: 'none' }} className="m-2"> {currentUser !== null ? <a>{isAdmin ? <Link to="/admin"><i className="fas fa-users-cog"></i> <span>Quản trị</span> </Link> : ''} </a> : <></>}  </Link></div>
                       <div className="ml-2 p-2">
-                        {currentUser ? <button className="btn btn-danger text-uppercase" onClick={() => signOut()} ><i class="fas fa-sign-out-alt"></i> Đăng Xuất</button> : ''}
+                        {currentUser ? <button className="btn btn-danger text-uppercase" onClick={() => signOut()} ><i className="fas fa-sign-out-alt"></i> Đăng Xuất</button> : ''}
                       </div>
                     </div>
                   </div>
-                </div> : <a><Link className='text-dark font-weight-bold text-uppercase' style={{ textDecoration: 'none' }} to="/login">Đăng nhập</Link> </a>}
+                </div> : <Link className='text-dark font-weight-bold text-uppercase' style={{ textDecoration: 'none' }} to="/login">Đăng nhập</Link> }
               <div className="shopping-cart col-lg-4 col-12 text-right">
-                <Link to="/cart"><i class="fas fa-shopping-cart fa-2x" aria-hidden="true"></i> {totalNumCartItems == 0 ? "" : <><span className="badge badge-warning" id='lblCartCount'>{totalNumCartItems == 0 ? "" : totalNumCartItems}  </span> </>}   </Link>
+                <Link to="/cart"><i className="fas fa-shopping-cart fa-x" aria-hidden="true"></i> {totalNumCartItems == 0 ? "" : <><span className="badge badge-warning" id='lblCartCount'>{totalNumCartItems == 0 ? "" : totalNumCartItems}  </span> </>}   </Link>
               </div>
             </div>
           </div>
@@ -98,9 +98,9 @@ function Header(props) {
               <li className="nav-item dropdown col-lg col-12">
                 <a className="nav-link text-uppercase font-weight-bold dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Sản phẩm</a>
                 <div className="dropdown-menu">
-                  {categories.map((cate) => {
+                  {categories.map((cate,index) => {
                     return (
-                      <li><Link className="nav-link" style={{ textDecoration: 'none' }} to={`/shop/${cate.name}`}>{cate.name}</Link></li>
+                      <li key={index}><Link className="nav-link" style={{ textDecoration: 'none' }} to={`/shop/${cate.name}`}>{cate.name}</Link></li>
                     )
                   })}
                 </div>

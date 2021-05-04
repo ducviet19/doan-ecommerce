@@ -4,7 +4,6 @@ import { formatter } from '../../../App';
 
 function OrderDetail(props) {
 
-    console.log(props)
 
     return (
         <div>

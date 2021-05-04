@@ -66,7 +66,7 @@ function App(props) {
   }, []);
   return (
     <div className="App">
-      <div class="container-fluid">
+      <div className="container-fluid">
         <Router>
 
           <Switch>
@@ -251,6 +251,9 @@ function App(props) {
                   </Dashboard>
                 </WithAdminAuth>
               )} />
+
+
+              
             </div>
 
           </Switch>

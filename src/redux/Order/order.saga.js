@@ -9,7 +9,7 @@ import orderTypes from './order.types';
 export function* addOrder( {payload} ) {
 
     try {
-        console.log(payload)
+     
         yield handleAddOrder(
             payload
         );
@@ -50,10 +50,9 @@ export function* onFetchOrder() {
 
 export function* getUserOrder({payload}) {
     try {
-        console.log("get order" , payload)
-        console.log(payload)
+     
         const history = yield handleGetUserOrderHistory(payload);
-        console.log(history)
+      
         yield put(
             setUserOrderHistory(history)
         )

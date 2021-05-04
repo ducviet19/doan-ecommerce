@@ -3,7 +3,6 @@ import ReplyComment from './ReplyComment';
 
 function ButtonComment(props) {
 
-    console.log(props)
     const [reply, setReply] = useState(false)
     return (
         <>

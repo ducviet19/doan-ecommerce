@@ -17,9 +17,6 @@ function Main(props) {
     }, 0)
 
 
-
-    console.log('listOrder', total)
-    console.log('listProduct', listProduct.length)
     return (
 
         <main className="col-10">

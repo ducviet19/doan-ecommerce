@@ -13,14 +13,12 @@ function OrderDetailUser(props) {
     const { orderDetail } = useSelector(mapState)
     const { id } = useParams()
     const dispatch = useDispatch()
-    console.log(id)
 
     useEffect(() => {
         dispatch(
             getOrderDetail(id)
         )
     }, [])
-    console.log(orderDetail)
     return (
 
         <div className="mt-5">

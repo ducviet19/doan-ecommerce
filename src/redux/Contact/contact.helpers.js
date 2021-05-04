@@ -37,7 +37,7 @@ export const handleDeleteMessage = documentID => {
     return new Promise((resolve, reject) => {
         firestore.collection('feedback').doc(documentID).delete()
             .then(() => {
-                console.log(documentID)
+              
                 resolve();
             })
             .catch(err => {

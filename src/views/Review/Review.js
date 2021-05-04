@@ -42,7 +42,6 @@ function Review(props) {
     const [hover, setHover] = useState(null);
     const [rating, setRating] = useState(null);
 
-    console.log(props.product)
 
 
     const formik = useFormik({
@@ -63,6 +62,7 @@ function Review(props) {
                         review: firebase.firestore.FieldValue.arrayUnion(data)
                     }, props.product.documentID)
                 )
+                props.handleChangeReview(true)
 
                 formik.resetForm();
                 setRating(null)
@@ -127,29 +127,7 @@ function Review(props) {
                 <button type="submit" className="btn btn-primary" disabled={!rating} >Đánh giá</button>
 
             </form>
-            {/* <div>
-                <h2 className="text-center pt-5">Đánh giá sản phẩm</h2>
-            </div>
-            <form onSubmit={handleSubmit}>
 
-                <div className="form-group">
-                    <label htmlFor="start">Chọn mức độ hài lòng</label>
-                    <select value={start} onChange={ (e) => setStart(e.target.value) }  className="form-control" id="start">
-                        <option>Chọn</option>
-                        <option value={1} >Rất tệ</option>
-                        <option value={2}>Tệ</option>
-                        <option value={3}>Trung bình</option>
-                        <option value={4}>Tốt</option>
-                        <option value={5}>Rất Tốt</option>
-                    </select>
-                </div>
-              
-                <div className="form-group">
-                    <label htmlFor="comment">Để lại bình luận</label>
-                    <textarea value={comment} onChange={(e) => setComment(e.target.value)} className="form-control" id="comment" rows={3} defaultValue={""} />
-                </div>
-                <button class="btn btn-success btn-lg" type="submit">Đánh giá</button>
-            </form> */}
 
         </div>
     );

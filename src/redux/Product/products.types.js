@@ -21,7 +21,14 @@ const productsTypes = {
     PRODUCT_LIST_FAIL: 'PRODUCT_LIST_FAIL',
 
 
-    PRODUCT_DETAIL_SUCCESS: 'PRODUCT_DETAIL_SUCCESS'
+    PRODUCT_DETAIL_SUCCESS: 'PRODUCT_DETAIL_SUCCESS',
+
+
+
+
+
+    GET_PRODUCT_ID: 'GET_PRODUCT_ID',
+    
 }
 
 export default productsTypes;

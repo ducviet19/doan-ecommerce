@@ -9,7 +9,7 @@ import categoryTypes from './category.types';
 export function* addCategory({ payload }) {
 
     try {
-        console.log('payload add category', payload)
+  
         const timestamp = new Date();
         yield handleAddCategory({
             ...payload,
@@ -91,11 +91,7 @@ export function* onDeleteCategory() {
 
 export function* editCategory({ payload, id }) {
     try {
-
-        console.log('payload edit product', payload)
-        console.log('id edit product', id)
         yield handleEditCategory(payload, id);
-
         yield put(
             fetchCategory(id)
         )

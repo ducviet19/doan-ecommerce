@@ -14,13 +14,6 @@ function ReplyComment(props) {
     const [reply, setReply] = useState("");
     const dispatch = useDispatch();
 
-    // console.log(props.id)
-    // listReview.review[0].reply = [
-    //     { user: "abc" , reply : "hay lam ban" ,
-    
-    //     user: "sa" , reply : "hay lam ban"}
-    // ]
-    console.log(props)
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -43,21 +36,21 @@ function ReplyComment(props) {
     return (
 
         <div>
-            <div class="card card-inner">
-                <div class="card-body">
-                    <div class="row">
+            <div className="card card-inner">
+                <div className="card-body">
+                    <div className="row">
 
-                        <div class="col-md-2">
-                            <img src={user.imageUser} class="img img-rounded img-fluid" />
+                        <div className="col-md-2">
+                            <img src={user.imageUser} className="img img-rounded img-fluid" />
                         </div>
-                        <div class="col-md-10">
-                            <p><a href="https://maniruzzaman-akash.blogspot.com/p/contact.html"><strong>{user.displayName}(Quản trị viên)</strong></a></p>
+                        <div className="col-md-10">
+                            <p><p ><strong>{user.displayName}(Quản trị viên)</strong></p></p>
                             <form onSubmit={handleSubmit}>
                                 <input value={reply} onChange={(e) => {
                                     setReply(e.target.value)
                                 }} type="textarea" placeholder="Trả lời bình luận" />
                                 <p>
-                                    <a class="float-right btn btn-outline-primary ml-2"> <input type="submit" value="Trả lời"  /><i class="fa fa-reply"></i> </a>
+                                    <p className="float-right btn btn-outline-primary ml-2"> <input type="submit" value="Trả lời"  /><i class="fa fa-reply"></i> </p>
                                 </p>
                             </form>
                         </div>

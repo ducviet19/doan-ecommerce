@@ -29,8 +29,6 @@ function Rate(props) {
 
     }, [])
 
-    console.log(props.id)
-    console.log(listReview)
 
 
     const reviewProduct = () => {
@@ -39,8 +37,6 @@ function Rate(props) {
                 {listReview.review.length == 0 ? "Sản phẩm chưa có đánh giá" : <>
                     {
                         listReview.review.map((e) => {
-                            console.log(e.timeDate.split("T")[0])
-                            console.log(e)
 
                             return (
                                 <>

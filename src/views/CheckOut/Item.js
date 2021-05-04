@@ -5,43 +5,72 @@ import { selectCartTotal } from '../../redux/Cart/cart.selectors';
 import swal from 'sweetalert';
 import { formatter } from '../../App';
 import { editProduct, fetchProductStart, reducerNumber, updateNumber } from '../../redux/Product/products.action';
+import ButtonCart from './ButtonCart';
+import { useHistory } from 'react-router';
+import { firestore } from '../../firebase/ultils';
+import LoadingBox from '../../component/LoadingBox/LoadingBox';
 
 
 const mapState = ({ productsData }) => ({
-    products: productsData.products,
-    productDetail : productsData.product
+    productDetail: productsData.product
 })
+
+
+const mapLoading = state => ({
+    loadingCart: state.cartData.loadingCart,
+    success: state.cartData.success
+});
 function Item(props) {
-    const { products , productDetail } = useSelector(mapState);
-    const [numberProduct , setNumberProduct] = useState(productDetail.number)
+    const { productDetail } = useSelector(mapState);
+    const { loadingCart } = useSelector(mapLoading);
+
     const [change, setChange] = useState(false)
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        dispatch(fetchProductStart(props.documentID))
-    }, [change])
-    
-    console.log(productDetail)
-
+    // useEffect(() => {
+    //     dispatch(fetchProductStart(id))
+    // },[change])
 
     const handleAddNumber = (data, id) => {
-        dispatch(updateNumber(data,id))
+        dispatch(updateNumber(data, id))
     }
     const handleReduceNumber = (data, id) => {
-        dispatch(reducerNumber(data,id))
+        dispatch(reducerNumber(data, id))
     }
 
 
-    const addProduct = (product) => {
-        dispatch(addToCart(product))
-        handleAddNumber(productDetail , product.documentID)
-        setChange(true)
-       
+
+    const handleFetchDetailProduct = (documentID) => {
+        return new Promise((resolve, reject) => {
+            firestore.collection('products').doc(documentID)
+                .get()
+                .then(snapshot => {
+                    if (snapshot.exists) {
+                        resolve({
+                            ...snapshot.data(),
+                            documentID: documentID
+                        });
+
+                    }
+
+
+                })
+                .catch(err => {
+                    reject(err);
+                })
+        })
     }
-    const reduceCart = (product) => {
+
+    const addProduct = async (product) => {
+        dispatch(addToCart(product));
+        let detail = await handleFetchDetailProduct(product.documentID)
+        handleAddNumber(detail, product.documentID)
+
+    }
+    const reduceCart = async (product) => {
         dispatch(reduceCartItem(product))
-        handleReduceNumber(productDetail , product.documentID)
-        setChange(true)
+        let detail = await handleFetchDetailProduct(product.documentID)
+        handleReduceNumber(detail, product.documentID)
     }
     const removeCart = (documentID) => {
 
@@ -58,17 +87,27 @@ function Item(props) {
             });
     }
 
-    const { thumbnail, name, quantity, price } = props
-    console.log(props)
+    const { thumbnail, name, quantity, price, number } = props
     return (
         <>
             {  quantity == 0 ? "" :
                 <tr>
                     <th scope="row"><img className="img-thumbnail w-25" src={thumbnail} /></th>
                     <td>{name}</td>
-                    <td> <div className="d-flex "> <button className="btn" onClick={() => reduceCart(props)} ><i class="fas fa-minus"></i></button>  <p className="m-2">{quantity}</p>  <button className="btn  " onClick={() => addProduct(props)}><i class="fas fa-plus"></i></button> </div> </td>
-                    <td>{formatter.format(price)}</td>
-                    <td > <button className="btn btn-danger" onClick={() => removeCart(props.documentID)}><i class="fas fa-trash-alt"></i></button> </td>
+                    <td>
+                        <div className="d-flex pt-2 ">
+                            {loadingCart == false ? <LoadingBox /> : <button className="btn" onClick={() => reduceCart(props)} ><i className="fas fa-minus"></i></button>}
+                            <p className="m-2">{quantity}</p>
+                            <> {quantity == number ? <button disabled className="btn  " onClick={() => addProduct(props)}>Hết hàng</button> :
+                                <> {loadingCart == false ? <LoadingBox /> : <button className="btn  " onClick={() => addProduct(props)}><i className="fas fa-plus"></i></button>
+                                }  </>
+                            } </>
+                        </div>
+
+
+                    </td>
+                    <td>{formatter.format(price * quantity)}</td>
+                    <td > <button className="btn btn-danger" onClick={() => removeCart(props.documentID)}><i className="fas fa-trash-alt"></i></button> </td>
                 </tr>
 
 
