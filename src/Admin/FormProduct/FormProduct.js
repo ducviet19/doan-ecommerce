@@ -8,7 +8,7 @@ import { useHistory } from 'react-router-dom';
 import { fetchCategories } from '../../redux/Category/category.action';
 import axios from 'axios'
 import CurrencyInput from 'react-currency-input-field';
-
+import NumberFormat from 'react-number-format';
 const mapState = ({ productsData }) => ({
     products: productsData.products
 })
@@ -113,7 +113,8 @@ function FormProduct(props) {
         onSubmit: values => {
             console.log(  values.price)
             console.log(typeof (values.price));
-            console.log(parseInt(values.price));
+            console.log((values.price).replace(/[^0-9\.]+/g,""));
+            console.log(Number((values.price).replace(/[^0-9\.]+/g,"")))
             validateImg();
             dispatch(
                 addProduct({
@@ -123,7 +124,7 @@ function FormProduct(props) {
                     name: values.name,
                     category: values.category,
                     description: values.description,
-                    price: values.price,
+                    price: Number((values.price).replace(/[^0-9\.]+/g,"")),
                     number: values.number,
                 })
             );
@@ -198,18 +199,24 @@ function FormProduct(props) {
                 </div>
                 <div className="form-group">
                     <label for="price">Giá sản phẩm</label>
-                    <input className="form-control"
+                    <NumberFormat className="form-control"
                         id='price'
                         type='text'
                         placeholder="Nhập Giá sản phẩm"
                         value={formik.values.price}
+                        thousandSeparator={true} prefix={''}
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur} />
                     {formik.touched.price && formik.errors.price ? (
                         <div>{formik.errors.price}</div>) : null}
 
                 </div>
-                <CurrencyInput
+
+                {/* <NumberFormat id='price'
+                    name="price"
+                    placeholder="Nhập Giá sản phẩm" thousandSeparator={true} prefix={'$'} onChange={formik.handleChange}
+                    onBlur={formik.handleBlur} /> */}
+                {/* <CurrencyInput
                    id='price'
                     name="price"
                     placeholder="Nhập Giá sản phẩm"
@@ -217,7 +224,7 @@ function FormProduct(props) {
                     decimalsLimit={2}
                     onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
-                />
+                /> */}
                 <div className="form-group w-50">
                     <label for="thumbnail">Ảnh sản phẩm</label><br></br>
                     <input type='file'
