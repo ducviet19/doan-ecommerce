@@ -167,7 +167,7 @@ export function* onUpdateNumber() {
 export function* reducerNumber({ payload, id }) {
     try {
 
-    
+
         let value = {
            ...payload,
            number : payload.number + 1

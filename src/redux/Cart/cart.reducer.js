@@ -4,7 +4,7 @@ import { handleAddToCart, handleReduceCartItem, handleRemoveCartItem, handleUpda
 const INITIAL_STATE = {
     cartItems: [],
     loadingCart: true,
-    success: false
+    success: false,
 }
 
 const cartReducer = (state = INITIAL_STATE, action) => {
@@ -16,7 +16,7 @@ const cartReducer = (state = INITIAL_STATE, action) => {
                     prevCartItems: state.cartItems,
                     nextCartItem: action.payload,
                 }),
-                loadingCart: false,
+                loadingCart: false
             };
         case cartTypes.REDUCE_CART_ITEM:
             return {
@@ -25,7 +25,7 @@ const cartReducer = (state = INITIAL_STATE, action) => {
                     prevCartItems: state.cartItems,
                     cartItemToReduce: action.payload
                 }),
-                loadingCart: false,
+                loadingCart: false
             }
         case cartTypes.REMOVE_CART_ITEM:
             return {

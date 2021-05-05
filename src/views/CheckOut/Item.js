@@ -96,11 +96,16 @@ function Item(props) {
                     <td>{name}</td>
                     <td>
                         <div className="d-flex pt-2 ">
-                            {loadingCart == false ? <LoadingBox /> : <button className="btn" onClick={() => reduceCart(props)} ><i className="fas fa-minus"></i></button>}
+                            {/* {loadingCart == false ? <LoadingBox /> : <button className="btn" onClick={() => reduceCart(props)} ><i className="fas fa-minus"></i></button>} */}
+                           <button className="btn" onClick={() => reduceCart(props)} ><i className="fas fa-minus"></i></button>
                             <p className="m-2">{quantity}</p>
-                            <> {quantity == number ? <button disabled className="btn  " onClick={() => addProduct(props)}>Hết hàng</button> :
+                            {/* <> {quantity == number ? <button disabled className="btn  " onClick={() => addProduct(props)}>Hết hàng</button> :
                                 <> {loadingCart == false ? <LoadingBox /> : <button className="btn  " onClick={() => addProduct(props)}><i className="fas fa-plus"></i></button>
                                 }  </>
+                            } </> */}
+                            <> {quantity == number ? <button disabled className="btn  " onClick={() => addProduct(props)}>Hết hàng</button> :
+                               <button className="btn  " onClick={() => addProduct(props)}><i className="fas fa-plus"></i></button>
+                               
                             } </>
                         </div>
 

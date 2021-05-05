@@ -16,7 +16,8 @@ import LoadingBox from '../../component/LoadingBox/LoadingBox';
 const mapState = ({ productsData }) => ({
     productsHome: productsData.productsHome,
     products: productsData.products,
-    loading: productsData.loading
+    loading: productsData.loading,
+    loadingDetail : productsData.loadingDetail
 })
 
 const Load = React.lazy(() => import('../ProductCart/ProductCart'));
@@ -35,6 +36,12 @@ function Home() {
             fetchProducts({})
         )
     }, [filter])
+
+    // useEffect(() => {
+    //     dispatch(
+    //         fetchProducts({})
+    //     )
+    // }, [filter])
 
     const handleLoadMore = () => {
         dispatch(

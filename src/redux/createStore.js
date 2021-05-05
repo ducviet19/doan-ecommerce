@@ -9,8 +9,8 @@ import { persistStore } from 'redux-persist'
 const sagaMiddleware = createSagaMiddleware()
 
 
-// export const middleWares = [thunk , sagaMiddleware , logger];
-export const middleWares = [thunk , sagaMiddleware ];
+export const middleWares = [thunk , sagaMiddleware , logger];
+// export const middleWares = [thunk , sagaMiddleware ];
 
 export const store = createStore(rootReducer, applyMiddleware(...middleWares));
 sagaMiddleware.run(rootSaga);

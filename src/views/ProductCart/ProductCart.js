@@ -35,12 +35,12 @@ function ProductCart(product) {
         handleUpdateNumber(data,product.documentID)
         handleChange(true)
         // dispatch(cartLoading(product.documentID))
-        // swal({
-        //     button: false,
-        //     text: "Sản phẩm đã được thêm vào giỏ hàng",
-        //     icon: "success",
-        //     timer: 1000
-        // });
+        swal({
+            button: false,
+            text: "Sản phẩm đã được thêm vào giỏ hàng",
+            icon: "success",
+            timer: 1000
+        });
 
 
     }

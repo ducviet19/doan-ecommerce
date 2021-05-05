@@ -16,7 +16,7 @@ import LoadingBox from '../../component/LoadingBox/LoadingBox';
 const mapState = state => ({
     product: state.productsData.product,
     loading: state.productsData.loadingDetail
-});
+})
 
 const mapLoading = state => ({
     loadingCart: state.cartData.loadingCart,
@@ -45,7 +45,9 @@ function ProductDetail({ match }) {
     ];
     const [stt, setStt] = useState(0)
     useEffect(() => {
-        dispatch(fetchProductStart(id))
+        dispatch(fetchProductStart(id));
+
+
     }, [productChange])
 
      const  handleAddToCart = async (product) => {
@@ -56,19 +58,17 @@ function ProductDetail({ match }) {
         dispatch(addToCart(product))
         handleUpdateNumber(product, product.documentID)
         setProductChange(true)
-        dispatch(cartLoading(product.documentID))
+        // dispatch(cartLoading(product.documentID))
         // loadingButton(loadingCart)
+       
+        swal({
+            button: false,
+            text: "Sản phẩm đã được thêm vào giỏ hàng",
+            icon: "success",
+            timer: 1000
+        })
         
     }
-
-    // if(loadingCart == true) {
-    //     swal({
-    //         button: false,
-    //         text: "Sản phẩm đã được thêm vào giỏ hàng",
-    //         icon: "success",
-    //         timer: 1000
-    // })
-    // }
 
 
 

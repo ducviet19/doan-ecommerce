@@ -1,5 +1,5 @@
 import Item from "../../views/CheckOut/Item";
-
+import swal from 'sweetalert';
 
 
 export const existingCartItem = ({
@@ -39,16 +39,15 @@ export const handleAddToCart = ({
     prevCartItems,
     nextCartItem,
 }) => {
-    console.log('prevCartItems',prevCartItems)
-    console.log('nextCartItem',nextCartItem)
+
+
     const quantityIncrement = 1;
-    const numberUpdate = 1;
 
     const cartItemExits = existingCartItem({ prevCartItems, nextCartItem });
 
     if (cartItemExits) {
-        return prevCartItems.map(cartItem =>
-            cartItem.documentID == nextCartItem.documentID ? { ...cartItem, quantity: cartItem.quantity + quantityIncrement } : cartItem
+        return prevCartItems.map(cartItem => 
+            cartItem.documentID == nextCartItem.documentID ? { ...cartItem, quantity: cartItem.quantity + quantityIncrement  } : cartItem
         )
     }
 
@@ -59,6 +58,8 @@ export const handleAddToCart = ({
             quantity: quantityIncrement
         },
     ]
+
+    
 
 }
 export const handleReduceCartItem = ({
