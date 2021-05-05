@@ -108,13 +108,11 @@ function FormProduct(props) {
             description: '',
             price: '',
             number: '',
+            sizes: []
         },
         validationSchema,
         onSubmit: values => {
-            console.log(  values.price)
-            console.log(typeof (values.price));
-            console.log((values.price).replace(/[^0-9\.]+/g,""));
-            console.log(Number((values.price).replace(/[^0-9\.]+/g,"")))
+            console.log(values.sizes.split(', '))
             validateImg();
             dispatch(
                 addProduct({
@@ -126,6 +124,8 @@ function FormProduct(props) {
                     description: values.description,
                     price: Number((values.price).replace(/[^0-9\.]+/g,"")),
                     number: values.number,
+                    sizes: values.sizes.split(','),
+                    featureProduct: false
                 })
             );
             formik.resetForm();
@@ -184,6 +184,18 @@ function FormProduct(props) {
                         onBlur={formik.handleBlur} />
                     {formik.touched.number && formik.errors.number ? (
                         <div>{formik.errors.number}</div>) : null}
+                </div>
+                <div className="form-group">
+                    <label for="sizes">Size</label>
+                    <input className="form-control"
+                        id='sizes'
+                        type='text'
+                        placeholder="Nhập size "
+                        value={formik.values.sizes}
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur} />
+                    {/* {formik.touched.size && formik.errors.size ? (
+                        <div>{formik.errors.size}</div>) : null} */}
                 </div>
                 <div className="form-group">
                     <label for="description">Miêu tả sản phẩm</label>

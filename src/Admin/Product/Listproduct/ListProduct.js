@@ -56,6 +56,7 @@ function ListProduct(props) {
                             <th scope="col">Hình ảnh</th>
                             <th scope="col">Loại sản phẩm</th>
                             <th scope="col">Giá sản phẩm</th>
+                            <th scope="col">Sản phẩm nổi bật</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -69,6 +70,7 @@ function ListProduct(props) {
                                         <td className='w-25'> <img className="img-thumbnail w-25" src={thumbnail} /> </td>
                                         <td>{category}</td>
                                         <td>{formatter.format(price)}</td>
+                                        <td>{product.featureProduct == false ? "yes" : "no"}</td>
                                         <td ><button className="btn btn-danger" onClick={() => hanleDelete(documentID)}>X</button></td>
                                     </tr>
                                 )

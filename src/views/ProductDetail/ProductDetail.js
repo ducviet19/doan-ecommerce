@@ -34,6 +34,8 @@ function ProductDetail({ match }) {
     const [productChange, setProductChange] = useState(
         false
     )
+    const [size, setSize] = useState(
+    )
     let { id } = useParams();
     console.log('success', success)
     console.log('loading', success)
@@ -46,39 +48,26 @@ function ProductDetail({ match }) {
     const [stt, setStt] = useState(0)
     useEffect(() => {
         dispatch(fetchProductStart(id));
-
-
     }, [productChange])
 
-     const  handleAddToCart = async (product) => {
+    console.log('size',product.sizes)
+
+    const handleAddToCart = async (product) => {
         if (!product) return;
-
-        console.log('cart' ,product)
-
         dispatch(addToCart(product))
         handleUpdateNumber(product, product.documentID)
         setProductChange(true)
         // dispatch(cartLoading(product.documentID))
         // loadingButton(loadingCart)
-       
         swal({
             button: false,
             text: "Sản phẩm đã được thêm vào giỏ hàng",
             icon: "success",
             timer: 1000
         })
-        
+
     }
-
-
-
- 
-
-
-
-
-
-
+    console.log('product',product)
     const handleUpdateNumber = (data, id) => {
         dispatch(updateNumber(data, id))
     }
@@ -87,6 +76,9 @@ function ProductDetail({ match }) {
     }
     const handleChangeReview = (value) => {
         setProductChange(value)
+    }
+    const handleSize = (e) => {
+        console.log(e)
     }
 
     return (
@@ -129,12 +121,21 @@ function ProductDetail({ match }) {
                 <div className="col-md-6">
                     <h5 className="font-weight-bold">{product.name}</h5>
                     <p className="mb-2 text-muted text-uppercase small">{product.category}</p>
+                    <select 
+                        className="form-control w-25"
+                        name="size" onChange={(e) => { setSize(e.target.value) } }
+                    >
+                        {product.sizes.map((option) => (
+                            <option  value={option}>{option}</option>
+                        ))}
+
+                    </select>
 
                     <Start product={product} id={id} />
                     <p><span className="mr-1 "><strong>   {formatter.format(product.price)}</strong></span></p>
                     {product.number > 0
                         ?
-                        <> {loadingCart == false ? <LoadingBox /> : <button className="btn btn-secondary mr-3 mt-3 mb-3 w-100 p-2" onClick={() => { handleAddToCart(product) }}>THÊM VÀO GIỎ</button>} </>
+                        <> {loadingCart == false ? <LoadingBox /> : <button className="btn btn-secondary mr-3 mt-3 mb-3 w-100 p-2" onClick={() => { handleAddToCart({...product , size}) }}>THÊM VÀO GIỎ</button>} </>
                         :
                         <button disabled className="btn btn-secondary mr-3 mt-3 mb-3 w-100 p-2" >HẾT HÀNG</button>}
 
