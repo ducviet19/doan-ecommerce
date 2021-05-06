@@ -12,12 +12,13 @@ import ProductCart from '../ProductCart/ProductCart';
 import useScrollTop from '../../hook/useScrollTop';
 import LoadMore from '../../component/LoadMore/LoadMore';
 import LoadingBox from '../../component/LoadingBox/LoadingBox';
+import ProductFuture from '../ProductFuture/ProductFuture';
 
 const mapState = ({ productsData }) => ({
     productsHome: productsData.productsHome,
     products: productsData.products,
     loading: productsData.loading,
-    loadingDetail : productsData.loadingDetail
+    loadingDetail: productsData.loadingDetail
 })
 
 const Load = React.lazy(() => import('../ProductCart/ProductCart'));
@@ -27,9 +28,9 @@ function Home() {
     const history = useHistory()
     const { products, loading } = useSelector(mapState)
     const { data, queryDoc, isLastPage } = products;
-    const [filter,setFilter] = useState(false);
+    const [filter, setFilter] = useState(false);
 
-    const [number , setNumber] = useState()
+    const [number, setNumber] = useState()
 
     useEffect(() => {
         dispatch(
@@ -59,11 +60,11 @@ function Home() {
     const handleChange = (e) => {
         setFilter(e)
     }
-    const handleUpdateNumber = (product , id) => {
-        dispatch(updateNumber(product,id))
-    } 
+    const handleUpdateNumber = (product, id) => {
+        dispatch(updateNumber(product, id))
+    }
     return (
-        <>{loading === true ?  <LoadingBox /> :
+        <>{loading === true ? <LoadingBox /> :
             <main className="main">
                 <div className="new-product m-5 ">
                     <div>
@@ -72,7 +73,7 @@ function Home() {
                     <div className="row d-flex justify-content-center">
 
                         {
-                            (Array.isArray(data) && data.length > 0) && data.map((product,index) => {
+                            (Array.isArray(data) && data.length > 0) && data.map((product, index) => {
                                 const configProduct = {
                                     ...product
                                 }
@@ -82,6 +83,9 @@ function Home() {
                             })
                         }
                     </div>
+                                  
+                   
+         
                     <div className='d-flex'>
                         <div className='m-auto'>
                             {!isLastPage && (
@@ -91,7 +95,7 @@ function Home() {
 
                     </div>
                 </div>
-
+                <ProductFuture />
                 <div className="form_info row  m-3 p-5 border">
                     <div className="input-group w-75 m-auto">
                         <input type="text" className="form-control p-2x" placeholder="Đăng kí để nhận thông tin khuyến mãi" aria-label aria-describedby="basic-addon1" />
@@ -102,6 +106,8 @@ function Home() {
                 </div>
             </main>
         }
+
+
 
         </>
     )

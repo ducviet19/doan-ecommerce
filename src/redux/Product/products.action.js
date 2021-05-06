@@ -28,7 +28,14 @@ export const setProductsHome = products => ({
 })
 
 
-
+// product future 
+export const fetchProductFuture = () => ({
+    type: productsTypes.FETCH_PRODUCTS_FEATURE
+})
+export const setProductFuture = productFuture => ({
+    type: productsTypes.SET_PRODUCTS_FEATURE,
+    payload: productFuture
+})
 
 // productDetail {}
 

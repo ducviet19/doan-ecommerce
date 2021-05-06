@@ -125,7 +125,7 @@ function ProductDetail({ match }) {
                         className="form-control w-25"
                         name="size" onChange={(e) => { setSize(e.target.value) } }
                     >
-                        {product.sizes.map((option) => (
+                        {product?.sizes?.map((option) => (
                             <option  value={option}>{option}</option>
                         ))}
 

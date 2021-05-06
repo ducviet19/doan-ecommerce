@@ -70,7 +70,7 @@ function ListProduct(props) {
                                         <td className='w-25'> <img className="img-thumbnail w-25" src={thumbnail} /> </td>
                                         <td>{category}</td>
                                         <td>{formatter.format(price)}</td>
-                                        <td>{product.featureProduct == false ? "yes" : "no"}</td>
+                                        <td>{product.featureProduct == true ? "yes" : "no"}</td>
                                         <td ><button className="btn btn-danger" onClick={() => hanleDelete(documentID)}>X</button></td>
                                     </tr>
                                 )

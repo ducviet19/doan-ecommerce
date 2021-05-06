@@ -36,6 +36,27 @@ export const handleFetchProductsHome = () => {
     })
 }
 
+
+export const handleFetchProductFuture = () => {
+    return new Promise((resolve, reject) => {
+        firestore
+            .collection('products').where("featureProduct" , "==" , true)
+            .get()
+            .then(snapshot => {
+                const productsArray = snapshot.docs.map(doc => {
+                    return {
+                        ...doc.data(),
+                        documentID: doc.id
+                    }
+                });
+                resolve(productsArray);
+            })
+            .catch(err => {
+                reject(err);
+            })
+    })
+}
+
 export const handleFetchProducts = ({ filterType, startAfterDoc, persistProducts = [] }) => {
 
     return new Promise((resolve, reject) => {

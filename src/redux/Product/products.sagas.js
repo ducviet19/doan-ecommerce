@@ -1,8 +1,8 @@
 import { takeLatest, put, all, call } from 'redux-saga/effects';
-import { handleAddProduct, handleDeleteProduct, handleEditProduct, handleFetchDetailProduct, handleFetchProducts ,handleFetchProductsHome } from './products.helpers'
+import { handleAddProduct, handleDeleteProduct, handleEditProduct, handleFetchDetailProduct, handleFetchProductFuture, handleFetchProducts ,handleFetchProductsHome } from './products.helpers'
 import productsTypes from './products.types';
 import { auth } from './../../firebase/ultils'
-import { setProducts, fetchProducts, setProduct, fetchProductStart, setProductsHome, productSucces, productDetailSucces } from './products.action'
+import { setProducts, fetchProducts, setProduct, fetchProductStart, setProductsHome, productSucces, productDetailSucces, setProductFuture } from './products.action'
 import { cartDefault } from '../Cart/cart.action';
 
 // add product
@@ -56,6 +56,23 @@ export function* onFetchProduct() {
     yield takeLatest(productsTypes.FETCH_PRODUCTS, fetchProduct);
 }
 
+
+// fetch product future 
+export function* fetchProductFuture({ payload }) {
+    try {
+        const product = yield handleFetchProductFuture(payload);
+        yield put(
+            setProductFuture(product)
+        );
+
+    } catch (err) {
+        // console.log(err);
+    }
+}
+
+export function* onFetchProducFuture() {
+    yield takeLatest(productsTypes.FETCH_PRODUCTS_HOME, fetchProductFuture);
+}
 
 
 // fetch product home 
@@ -203,6 +220,7 @@ export default function* productsSagas() {
         call(onEditProduct),
         call(onUpdateNumber),
         call(onFetchProductHome),
-        call(onReducerNumber)
+        call(onReducerNumber),
+        call(onFetchProducFuture)
     ])
 }

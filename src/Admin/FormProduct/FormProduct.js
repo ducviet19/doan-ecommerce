@@ -108,11 +108,12 @@ function FormProduct(props) {
             description: '',
             price: '',
             number: '',
-            sizes: []
+            sizes: [],
+            featureProduct:false
         },
         validationSchema,
         onSubmit: values => {
-            console.log(values.sizes.split(', '))
+            console.log(values.isRecommended)
             validateImg();
             dispatch(
                 addProduct({
@@ -125,7 +126,8 @@ function FormProduct(props) {
                     price: Number((values.price).replace(/[^0-9\.]+/g,"")),
                     number: values.number,
                     sizes: values.sizes.split(','),
-                    featureProduct: false
+                    featureProduct: values.featureProduct
+                    
                 })
             );
             formik.resetForm();
@@ -190,7 +192,7 @@ function FormProduct(props) {
                     <input className="form-control"
                         id='sizes'
                         type='text'
-                        placeholder="Nhập size "
+                        placeholder="Nhập size thêm dấu , sau các size . Ví dụ : X,S,L"
                         value={formik.values.sizes}
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur} />
@@ -222,6 +224,16 @@ function FormProduct(props) {
                     {formik.touched.price && formik.errors.price ? (
                         <div>{formik.errors.price}</div>) : null}
 
+                </div>
+                <div className="form-group">
+                    <label for="featureProduct">Sản phẩm nổi bật</label>
+                    <input className="form-control"
+                        id='featureProduct'
+                        type="checkbox"
+                        value={formik.values.featureProduct}
+                        checked={formik.values.featureProduct}
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur} />
                 </div>
 
                 {/* <NumberFormat id='price'

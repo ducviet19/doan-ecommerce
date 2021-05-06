@@ -5,7 +5,8 @@ const INITIAL_STATE = {
     product: {},
     productsHome: [],
     loading: true,
-    loadingDetail: true
+    loadingDetail: true,
+    productsFuture : []
 };
 
 const productsReducer = (state = INITIAL_STATE, action) => {
@@ -19,6 +20,11 @@ const productsReducer = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 productsHome: action.payload
+            }
+        case productsTypes.SET_PRODUCTS_FEATURE:
+            return {
+                ...state,
+                productsFuture: action.payload
             }
         case productsTypes.SET_PRODUCT:
             return {
