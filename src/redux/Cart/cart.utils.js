@@ -7,7 +7,7 @@ export const existingCartItem = ({
     nextCartItem
 }) => {
     return prevCartItems.find(
-        cartItem => cartItem.documentID === nextCartItem.documentID
+        cartItem => ((cartItem.documentID === nextCartItem.documentID) && (cartItem.size === nextCartItem.size) )
     )
 }
 
@@ -47,7 +47,8 @@ export const handleAddToCart = ({
 
     if (cartItemExits) {
         return prevCartItems.map(cartItem => 
-            (cartItem.documentID == nextCartItem.documentID && cartItem.size == nextCartItem.size ) ? { ...cartItem, quantity: cartItem.quantity + quantityIncrement  } : cartItem
+            ((cartItem.documentID == nextCartItem.documentID) && (cartItem.size == nextCartItem.size) ) ? { ...cartItem, quantity: cartItem.quantity + quantityIncrement  } 
+            : cartItem
         )
     }
 
@@ -84,5 +85,10 @@ export const handleRemoveCartItem = ({
     prevCartItems,
     CartItemToRemove
 }) => {
-    return prevCartItems.filter(item => item.documentID !== CartItemToRemove.documentID);
+    console.log('CartItemToRemove',CartItemToRemove);
+    console.log('prevCartItems',prevCartItems)
+    return prevCartItems.filter(item => 
+        // ((item.documentID !== CartItemToRemove.documentID) && (item.size !== CartItemToRemove.size) )
+        (item.size !== CartItemToRemove.size   &&  item.documentID !== CartItemToRemove.documentID ) 
+        );
 }

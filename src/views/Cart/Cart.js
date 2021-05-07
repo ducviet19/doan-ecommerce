@@ -38,6 +38,7 @@ function Cart(props) {
                                         <th scope="col">Hình ảnh</th>
                                         <th scope="col">Tên sản phẩm</th>
                                         <th scope="col">Số lượng</th>
+                                        <th scope="col">Size</th>
                                         <th scope="col">Đơn giá</th>
                                         <th scope="col"></th>
                                     </tr>

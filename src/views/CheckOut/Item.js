@@ -72,7 +72,7 @@ function Item(props) {
         let detail = await handleFetchDetailProduct(product.documentID)
         handleReduceNumber(detail, product.documentID)
     }
-    const removeCart = (documentID) => {
+    const removeCart = (documentID ,size) => {
 
         swal({
             title: "Xóa sản phẩm khỏi giỏ hàng?",
@@ -82,7 +82,7 @@ function Item(props) {
         })
             .then((willDelete) => {
                 if (willDelete) {
-                    dispatch(removeCartItem({ documentID }))
+                    dispatch(removeCartItem({ documentID ,size }))
                 }
             });
     }
@@ -111,14 +111,12 @@ function Item(props) {
 
 
                     </td>
+                    <td>{props.size}</td>
                     <td>{formatter.format(price * quantity)}</td>
-                    <td > <button className="btn btn-danger" onClick={() => removeCart(props.documentID)}><i className="fas fa-trash-alt"></i></button> </td>
+                  
+                    <td > <button className="btn btn-danger" onClick={() => removeCart(props.documentID ,props.size)}><i className="fas fa-trash-alt"></i></button> </td>
                 </tr>
-
-
             }
-
-
         </>
     );
 }
