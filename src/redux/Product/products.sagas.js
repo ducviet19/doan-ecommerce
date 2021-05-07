@@ -160,7 +160,8 @@ export function* updateNumber({ payload, id }) {
      
         let value = {
            ...payload,
-           number : payload.number - 1
+           number : payload.number - 1,
+           numOrder: payload.numOrder + 1
         }
         yield handleEditProduct(value, id);
         yield put(

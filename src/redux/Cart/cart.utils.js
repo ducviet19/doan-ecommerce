@@ -47,7 +47,7 @@ export const handleAddToCart = ({
 
     if (cartItemExits) {
         return prevCartItems.map(cartItem => 
-            cartItem.documentID == nextCartItem.documentID ? { ...cartItem, quantity: cartItem.quantity + quantityIncrement  } : cartItem
+            (cartItem.documentID == nextCartItem.documentID && cartItem.size == nextCartItem.size ) ? { ...cartItem, quantity: cartItem.quantity + quantityIncrement  } : cartItem
         )
     }
 

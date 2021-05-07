@@ -109,7 +109,8 @@ function FormProduct(props) {
             price: '',
             number: '',
             sizes: [],
-            featureProduct:false
+            featureProduct:false,
+            
         },
         validationSchema,
         onSubmit: values => {
@@ -126,7 +127,8 @@ function FormProduct(props) {
                     price: Number((values.price).replace(/[^0-9\.]+/g,"")),
                     number: values.number,
                     sizes: values.sizes.split(','),
-                    featureProduct: values.featureProduct
+                    featureProduct: values.featureProduct,
+                    numOrder : 0
                     
                 })
             );

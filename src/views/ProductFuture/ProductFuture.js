@@ -14,7 +14,7 @@ function ProductFuture(props) {
         <div>
                        <div className="row d-flex justify-content-center">       
                        <h2 className="text-center">Sản phẩm nổi bật</h2>
-            { productsFuture?.productsFuture.map((product, index) => {
+            { productsFuture?.productsFuture?.map((product, index) => {
                 const configProduct = {
                     ...product
                 }

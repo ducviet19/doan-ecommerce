@@ -50,10 +50,10 @@ function ProductDetail({ match }) {
         dispatch(fetchProductStart(id));
     }, [productChange])
 
-    console.log('size',product.sizes)
 
     const handleAddToCart = async (product) => {
         if (!product) return;
+        
         dispatch(addToCart(product))
         handleUpdateNumber(product, product.documentID)
         setProductChange(true)
@@ -67,7 +67,6 @@ function ProductDetail({ match }) {
         })
 
     }
-    console.log('product',product)
     const handleUpdateNumber = (data, id) => {
         dispatch(updateNumber(data, id))
     }
@@ -77,9 +76,7 @@ function ProductDetail({ match }) {
     const handleChangeReview = (value) => {
         setProductChange(value)
     }
-    const handleSize = (e) => {
-        console.log(e)
-    }
+
 
     return (
 
