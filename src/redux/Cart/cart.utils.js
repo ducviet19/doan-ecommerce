@@ -67,12 +67,16 @@ export const handleReduceCartItem = ({
     prevCartItems,
     cartItemToReduce
 }) => {
-    const existingCartItem = prevCartItems.find(cartItem => cartItem.documentID === cartItemToReduce.documentID);
+    console.log(cartItemToReduce)
+    const existingCartItem = prevCartItems.find(cartItem => ((cartItem.documentID === cartItemToReduce.documentID) && (cartItem.size === cartItemToReduce.size) ));
 
     if (existingCartItem.quantity === 1) {
-        return prevCartItems.filter(
-            cartItem => cartItem.documentID !== existingCartItem.documentID
-        );
+
+        prevCartItems.splice(cartItemToReduce.index , 1)
+        return prevCartItems
+        // return prevCartItems.filter(
+        //     cartItem => cartItem.documentID !== existingCartItem.documentID
+        // );
     }
 
     return prevCartItems.map(cartItem =>
@@ -85,10 +89,13 @@ export const handleRemoveCartItem = ({
     prevCartItems,
     CartItemToRemove
 }) => {
-    console.log('CartItemToRemove',CartItemToRemove);
+    console.log('CartItemToRemove',CartItemToRemove.index);
     console.log('prevCartItems',prevCartItems)
-    return prevCartItems.filter(item => 
-        // ((item.documentID !== CartItemToRemove.documentID) && (item.size !== CartItemToRemove.size) )
-        (item.size !== CartItemToRemove.size   &&  item.documentID !== CartItemToRemove.documentID ) 
-        );
+    // return prevCartItems.filter(item => 
+    //     ((item.documentID !== CartItemToRemove.documentID && item.size !== CartItemToRemove.size) )
+    //     );
+   
+           prevCartItems.splice(CartItemToRemove.index , 1)
+           return prevCartItems
+            
 }

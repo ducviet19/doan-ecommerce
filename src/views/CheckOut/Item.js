@@ -38,6 +38,7 @@ function Item(props) {
         dispatch(reducerNumber(data, id))
     }
 
+    console.log('props.index',props.index)
 
 
     const handleFetchDetailProduct = (documentID) => {
@@ -68,12 +69,14 @@ function Item(props) {
 
     }
     const reduceCart = async (product) => {
+        console.log('product',product)
         dispatch(reduceCartItem(product))
         let detail = await handleFetchDetailProduct(product.documentID)
         handleReduceNumber(detail, product.documentID)
     }
-    const removeCart = (documentID ,size) => {
-
+  
+        const removeCart = (index) => {
+            console.log(index)
         swal({
             title: "Xóa sản phẩm khỏi giỏ hàng?",
             icon: "warning",
@@ -82,7 +85,8 @@ function Item(props) {
         })
             .then((willDelete) => {
                 if (willDelete) {
-                    dispatch(removeCartItem({ documentID ,size }))
+                    // dispatch(removeCartItem({ documentID ,size }))
+                    dispatch(removeCartItem({ index }))
                 }
             });
     }
@@ -97,7 +101,7 @@ function Item(props) {
                     <td>
                         <div className="d-flex pt-2 ">
                             {/* {loadingCart == false ? <LoadingBox /> : <button className="btn" onClick={() => reduceCart(props)} ><i className="fas fa-minus"></i></button>} */}
-                           <button className="btn" onClick={() => reduceCart(props)} ><i className="fas fa-minus"></i></button>
+                           <button className="btn" onClick={() => reduceCart(props) } ><i className="fas fa-minus"></i></button>
                             <p className="m-2">{quantity}</p>
                             {/* <> {quantity == number ? <button disabled className="btn  " onClick={() => addProduct(props)}>Hết hàng</button> :
                                 <> {loadingCart == false ? <LoadingBox /> : <button className="btn  " onClick={() => addProduct(props)}><i className="fas fa-plus"></i></button>
@@ -114,7 +118,10 @@ function Item(props) {
                     <td>{props.size}</td>
                     <td>{formatter.format(price * quantity)}</td>
                   
-                    <td > <button className="btn btn-danger" onClick={() => removeCart(props.documentID ,props.size)}><i className="fas fa-trash-alt"></i></button> </td>
+                    <td > <button className="btn btn-danger" onClick={() => 
+                        //  removeCart(props.documentID ,props.size
+                          removeCart(props.index
+                         )}><i className="fas fa-trash-alt"></i></button> </td>
                 </tr>
             }
         </>

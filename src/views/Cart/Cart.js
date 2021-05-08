@@ -44,8 +44,8 @@ function Cart(props) {
                                     </tr>
                                 </thead>
                                 {cartItems.length > 0 ? <tbody>
-                                    {cartItems.map((item) => (
-                                        <Item {...item} />
+                                    {cartItems.map((item ,index) => (
+                                        <Item {...item} index={index} key={index} />
                                     ))}
 
                                 </tbody> : <p>Bạn không có sản phẩm nào trong giỏ hàng</p>}

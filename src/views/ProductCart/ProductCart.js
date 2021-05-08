@@ -57,7 +57,7 @@ function ProductCart(product) {
                 </Link>
                 <p className="text-center"><strong> {formatter.format(price)}</strong></p>
                 <div className="d-flex justify-content-center">
-                    <ButtonAddtoCart number={number} loadingCart={loadingCart} product={product} handleAddToCart={handleAddToCart} />
+                    {/* <ButtonAddtoCart number={number} loadingCart={loadingCart} product={product} handleAddToCart={handleAddToCart} /> */}
 
                     {/* {number == 0 
                     ? 
