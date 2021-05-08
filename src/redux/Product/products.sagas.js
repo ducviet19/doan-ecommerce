@@ -1,8 +1,8 @@
 import { takeLatest, put, all, call } from 'redux-saga/effects';
-import { handleAddProduct, handleDeleteProduct, handleEditProduct, handleFetchDetailProduct, handleFetchProductFuture, handleFetchProducts ,handleFetchProductsHome } from './products.helpers'
+import { handleAddProduct, handleDeleteProduct, handleEditProduct, handleFetchBestSeller, handleFetchDetailProduct, handleFetchProductFuture, handleFetchProducts ,handleFetchProductsHome } from './products.helpers'
 import productsTypes from './products.types';
 import { auth } from './../../firebase/ultils'
-import { setProducts, fetchProducts, setProduct, fetchProductStart, setProductsHome, productSucces, productDetailSucces, setProductFuture } from './products.action'
+import { setProducts, fetchProducts, setProduct, fetchProductStart, setProductsHome, productSucces, productDetailSucces, setProductFuture, setBestSeller } from './products.action'
 import { cartDefault } from '../Cart/cart.action';
 
 // add product
@@ -71,7 +71,26 @@ export function* fetchProductFuture({ payload }) {
 }
 
 export function* onFetchProducFuture() {
-    yield takeLatest(productsTypes.FETCH_PRODUCTS_HOME, fetchProductFuture);
+    yield takeLatest(productsTypes.FETCH_PRODUCTS_FEATURE, fetchProductFuture);
+}
+
+
+
+// fetch product best seller 
+export function* fetchProductSeller({ payload }) {
+    try {
+        const product = yield handleFetchBestSeller(payload);
+        yield put(
+            setBestSeller(product)
+        );
+
+    } catch (err) {
+        // console.log(err);
+    }
+}
+
+export function* onFetchProducSeller() {
+    yield takeLatest(productsTypes.FETCH_PRODUCT_SELLER, fetchProductSeller);
 }
 
 
@@ -222,6 +241,7 @@ export default function* productsSagas() {
         call(onUpdateNumber),
         call(onFetchProductHome),
         call(onReducerNumber),
-        call(onFetchProducFuture)
+        call(onFetchProducFuture),
+        call(onFetchProducSeller)
     ])
 }

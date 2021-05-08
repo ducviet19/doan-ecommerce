@@ -1,3 +1,4 @@
+import { fetchCart } from "./cart.action";
 import cartTypes from "./cart.types"
 import { handleAddToCart, handleReduceCartItem, handleRemoveCartItem, handleUpdateToCart } from './cart.utils'
 
@@ -43,9 +44,10 @@ const cartReducer = (state = INITIAL_STATE, action) => {
                 cartItems: []
             }
         case cartTypes.FETCH_CART:
-            return {
-                ...state
-            }
+            // return {
+            //     ...state
+            // }
+            console.log('fetchCart',{...state})
 
         // case cartTypes.CART_LOADING:
         //     return {

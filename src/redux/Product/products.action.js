@@ -28,6 +28,16 @@ export const setProductsHome = products => ({
 })
 
 
+// best seller 
+export const fetchBestSeller = () => ({
+    type: productsTypes.FETCH_PRODUCT_SELLER
+})
+export const setBestSeller = productFuture => ({
+    type: productsTypes.SET_PRODUCT_SELLER,
+    payload: productFuture
+})
+
+
 // product future 
 export const fetchProductFuture = () => ({
     type: productsTypes.FETCH_PRODUCTS_FEATURE

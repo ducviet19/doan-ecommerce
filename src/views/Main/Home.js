@@ -13,6 +13,7 @@ import useScrollTop from '../../hook/useScrollTop';
 import LoadMore from '../../component/LoadMore/LoadMore';
 import LoadingBox from '../../component/LoadingBox/LoadingBox';
 import ProductFuture from '../ProductFuture/ProductFuture';
+import ProductSeller from '../ProductSeller/ProductSeller';
 
 const mapState = ({ productsData }) => ({
     productsHome: productsData.productsHome,
@@ -95,6 +96,7 @@ function Home() {
 
                     </div>
                 </div>
+                <ProductSeller />
                 <ProductFuture />
                 <div className="form_info row  m-3 p-5 border">
                     <div className="input-group w-75 m-auto">
@@ -105,6 +107,8 @@ function Home() {
                     </div>
                 </div>
             </main>
+
+
         }
 
 

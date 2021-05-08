@@ -6,7 +6,8 @@ const INITIAL_STATE = {
     productsHome: [],
     loading: true,
     loadingDetail: true,
-    productsFuture : []
+    productsFuture: [],
+    productBestSeller: []
 };
 
 const productsReducer = (state = INITIAL_STATE, action) => {
@@ -26,18 +27,23 @@ const productsReducer = (state = INITIAL_STATE, action) => {
                 ...state,
                 productsFuture: action.payload
             }
+        case productsTypes.SET_PRODUCT_SELLER:
+            return {
+                ...state,
+                productBestSeller: action.payload
+            }
         case productsTypes.SET_PRODUCT:
             return {
                 ...state,
                 product: action.payload
             }
         case productsTypes.PRODUCT_LIST_SUCCESS:
-            return{
+            return {
                 ...state,
                 loading: false
             }
         case productsTypes.PRODUCT_DETAIL_SUCCESS:
-            return{
+            return {
                 ...state,
                 loadingDetail: false
             }

@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
 import { formatter } from '../../App';
 import { firestore } from '../../firebase/ultils';
+import { fetchCart } from '../../redux/Cart/cart.action';
 import { selectCartItems, selectCartItemsCount, selectCartTotal } from '../../redux/Cart/cart.selectors';
 import ButtonCheckOut from '../CheckOut/ButtonCheckOut';
 import Item from '../CheckOut/Item';
@@ -23,6 +24,16 @@ const mapCart = (state) => ({
 function Cart(props) {
     const { cartItems, total } = useSelector(mapState);
     const { totalNumCartItems } = useSelector(mapCart);
+    // const dispatch = useDispatch();
+    // const [change , setChange] = useState(false)
+
+    // useEffect(() => {
+    //     dispatch(fetchCart())
+    // },[])
+
+    // const handleChange = (value) => {
+    //     setChange(value)
+    // }
 
 
     return (
@@ -45,7 +56,7 @@ function Cart(props) {
                                 </thead>
                                 {cartItems.length > 0 ? <tbody>
                                     {cartItems.map((item ,index) => (
-                                        <Item {...item} index={index} key={index} />
+                                        <Item {...item} index={index} key={index}  />
                                     ))}
 
                                 </tbody> : <p>Bạn không có sản phẩm nào trong giỏ hàng</p>}
