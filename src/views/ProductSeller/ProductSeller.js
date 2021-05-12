@@ -1,5 +1,7 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchBestSeller } from '../../redux/Product/products.action';
+import ProductCart from '../ProductCart/ProductCart';
 
 
 const mapState = ({ productsData }) => ({
@@ -8,10 +10,31 @@ const mapState = ({ productsData }) => ({
 function ProductSeller(props) {
 
     const productBestSeller = useSelector(mapState);
-    console.log('productBestSeller',productBestSeller)
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(
+            fetchBestSeller()
+        )
+    }, [])
+    console.log('productBestSeller', productBestSeller)
     return (
         <div>
-            
+             <h2 className="text-center">Sản phẩm bán chạy</h2>
+            <div className="row d-flex justify-content-center">
+               
+                {productBestSeller?.productBestSeller?.map((product, index) => {
+                    const configProduct = {
+                        ...product
+                    }
+                    return (<ProductCart key={index} data={product} {...configProduct} />
+                    )
+
+                }
+
+
+                )}
+            </div>
+
         </div>
     );
 }

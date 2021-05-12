@@ -96,8 +96,10 @@ function Home() {
 
                     </div>
                 </div>
-                <ProductSeller />
+            
                 <ProductFuture />
+
+                <ProductSeller />
                 <div className="form_info row  m-3 p-5 border">
                     <div className="input-group w-75 m-auto">
                         <input type="text" className="form-control p-2x" placeholder="Đăng kí để nhận thông tin khuyến mãi" aria-label aria-describedby="basic-addon1" />

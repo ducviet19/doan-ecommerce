@@ -1,5 +1,6 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchProductFuture } from '../../redux/Product/products.action';
 import ProductCart from '../ProductCart/ProductCart';
 
 const mapState = ({ productsData }) => ({
@@ -7,26 +8,34 @@ const mapState = ({ productsData }) => ({
 })
 function ProductFuture(props) {
 
-    const productsFuture = useSelector(mapState)
+    const productsFuture = useSelector(mapState);
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(
+            fetchProductFuture()
+        )
+    }, [])
 
     console.log('productsFuture', productsFuture)
     return (
         <div>
-                       <div className="row d-flex justify-content-center">       
-                       <h2 className="text-center">Sản phẩm nổi bật</h2>
-            { productsFuture?.productsFuture?.map((product, index) => {
-                const configProduct = {
-                    ...product
+              <h2 className="text-center">Sản phẩm nổi bật</h2>
+            <div className="row d-flex justify-content-center">
+              
+                {productsFuture?.productsFuture?.map((product, index) => {
+                    const configProduct = {
+                        ...product
+                    }
+                    return (<ProductCart key={index} data={product} {...configProduct} />
+                    )
+
                 }
-                return (<ProductCart key={index} data={product} {...configProduct} />
-                )
-
-            }
 
 
-            )}
-                    </div>
-          
+                )}
+            </div>
+
         </div>
     );
 }

@@ -40,7 +40,8 @@ export const handleFetchProductsHome = () => {
 export const handleFetchProductFuture = () => {
     return new Promise((resolve, reject) => {
         firestore
-            .collection('products').where("featureProduct" , "==" , true)
+            .collection('products')
+            .where("featureProduct" , "==" , true)
             .get()
             .then(snapshot => {
                 const productsArray = snapshot.docs.map(doc => {
@@ -62,7 +63,7 @@ export const handleFetchProductFuture = () => {
 export const handleFetchBestSeller = () => {
     return new Promise((resolve, reject) => {
         firestore
-            .collection('products').where("numOrder" , ">20" , true)
+            .collection('products').where("numOrder" , ">=" , 20)
             .get()
             .then(snapshot => {
                 const productsArray = snapshot.docs.map(doc => {

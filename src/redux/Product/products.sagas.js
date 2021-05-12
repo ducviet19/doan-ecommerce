@@ -58,9 +58,9 @@ export function* onFetchProduct() {
 
 
 // fetch product future 
-export function* fetchProductFuture({ payload }) {
+export function* fetchProductFuture() {
     try {
-        const product = yield handleFetchProductFuture(payload);
+        const product = yield handleFetchProductFuture();
         yield put(
             setProductFuture(product)
         );
@@ -77,9 +77,9 @@ export function* onFetchProducFuture() {
 
 
 // fetch product best seller 
-export function* fetchProductSeller({ payload }) {
+export function* fetchProductSeller() {
     try {
-        const product = yield handleFetchBestSeller(payload);
+        const product = yield handleFetchBestSeller();
         yield put(
             setBestSeller(product)
         );
