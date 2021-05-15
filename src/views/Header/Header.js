@@ -96,7 +96,7 @@ function Header(props) {
           <div className="collapse navbar-collapse w-100" id="navbarTogglerDemo02">
             <ul className="navbar-nav mr-auto mt-2 mt-md-0 m-auto">
               <li className="nav-item dropdown col-lg col-12">
-                <a className="nav-link text-uppercase font-weight-bold dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Sản phẩm</a>
+                <Link className="nav-link text-uppercase font-weight-bold dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Sản phẩm</Link>
                 <div className="dropdown-menu">
                   {categories.map((cate,index) => {
                     return (

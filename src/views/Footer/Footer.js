@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import './style.css';
 function Footer() {
 
@@ -8,20 +9,20 @@ function Footer() {
       <div className="col-lg col-12">
         <h4 className="text-light">Công Ty</h4>
         <ul className="list-unstyled">
-          <li><a className="text-light" href>Giới Thiệu Về Routine</a> </li>
-          <li><a className="text-light" href>Tuyển Dụng</a> </li>
-          <li><a className="text-light" href>Hệ Thống Cửa Hàng</a> </li>
-          <li><a className="text-light" href>Chăm Sóc Khách Hàng</a></li>
-          <li><a className="text-light" href>Chính Sách Bảo Mật</a></li>
+          <li><Link className="text-light" href>Giới Thiệu Về Routine</Link> </li>
+          <li><Link className="text-light" href>Tuyển Dụng</Link> </li>
+          <li><Link className="text-light" href>Hệ Thống Cửa Hàng</Link> </li>
+          <li><Link className="text-light" href>Chăm Sóc Khách Hàng</Link></li>
+          <li><Link className="text-light" href>Chính Sách Bảo Mật</Link></li>
         </ul>
       </div>
       <div className="col-lg col-12">
         <h4 className="text-light">Chính Sách Khách Hàng</h4>
         <ul className="list-unstyled">
-          <li ><a className="text-light" href>Chính Sách Khách Hàng Thân Thiết</a></li>
-          <li><a className="text-light" href>Chính Sách Đổi Trả</a></li>
-          <li><a className="text-light" href>Chính Sách Bảo Hành</a></li>
-          <li><a className="text-light" href>Câu Hỏi Thường Gặp</a></li>
+          <li ><Link className="text-light" href>Chính Sách Khách Hàng Thân Thiết</Link></li>
+          <li><Link className="text-light" href>Chính Sách Đổi Trả</Link></li>
+          <li><Link className="text-light" href>Chính Sách Bảo Hành</Link></li>
+          <li><Link className="text-light" href>Câu Hỏi Thường Gặp</Link></li>
         </ul>
       </div>
       <div className="col-lg col-12">

@@ -75,7 +75,7 @@ function Item(props) {
     }
 
     const removeCart = (index) => {
-        console.log(index)
+    
         swal({
             title: "Xóa sản phẩm khỏi giỏ hàng?",
             icon: "warning",

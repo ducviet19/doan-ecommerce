@@ -114,13 +114,13 @@ function FormProduct(props) {
         },
         validationSchema,
         onSubmit: values => {
-            console.log(values.isRecommended)
+         
             validateImg();
             dispatch(
                 addProduct({
-                    thumbnail: image2,
+                    thumbnail: image,
                     imgDetail: image1,
-                    imgDetail2: image,
+                    imgDetail2: image2,
                     name: values.name,
                     category: values.category,
                     description: values.description,

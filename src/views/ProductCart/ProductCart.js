@@ -28,7 +28,7 @@ function ProductCart(product) {
 
     const { documentID, thumbnail, name, price, number ,handleChange ,handleUpdateNumber ,data } = product;
     const handleAddToCart = (product) => {
-        console.log('check' , product)
+    
         if (!product) return;
 
         dispatch(addToCart(product))
@@ -45,7 +45,7 @@ function ProductCart(product) {
 
     }
 
-    console.log('product Cart',product)
+ 
     return (
         <>
             <div className="justyfy-content-center card p-1 m-5 col-lg-2 col-md-3 col-sm-3 col-12 text-decoration-none">

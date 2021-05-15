@@ -2,7 +2,7 @@ import React from 'react';
 import LoadingBox from '../LoadingBox/LoadingBox';
 
 function ButtonAddtoCart(props) {
-    console.log('btn props' , props)
+
     return (
         <>
               {props.number == 0 

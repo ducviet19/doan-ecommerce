@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import ReplyComment from '../../Admin/ReviewAdmin/ReplyComment';
 import { fetchReply, fetchReviews } from '../../redux/Review/Review.action';
 import Start from '../Start/Start';
@@ -51,7 +52,7 @@ function Rate(props) {
                                                 </div>
                                                 <div className="col-md-10">
                                                     <p>
-                                                        <a className="float-left"><strong>{e.user.displayName}</strong></a>
+                                                        <Link className="float-left"><strong>{e.user.displayName}</strong></Link>
                                                         {/* <p className="float-right">{e.start == "5" ? "Rất tốt" : e.start == "4" ? "  tốt" : e.start == "3" ? "Trung bình" : e.start == "2" ? "Tệ" : "Rất Tệ"}</p> */}
                                                         <p className="float-right">
 

@@ -68,7 +68,7 @@ export const handleReduceCartItem = ({
     cartItemToReduce
 }) => {
     const quantityIncrement = 1;
-    console.log(cartItemToReduce)
+ 
     // const existingCartItem = prevCartItems.find(cartItem => ((cartItem.documentID === cartItemToReduce.documentID)));
 
     const existingCartItem = prevCartItems.find(cartItem => ((cartItem.documentID === cartItemToReduce.documentID) && (cartItem.size === cartItemToReduce.size)));
@@ -76,7 +76,7 @@ export const handleReduceCartItem = ({
     if (existingCartItem.quantity === 1) {
 
         return prevCartItems.filter(item =>
-            ((item.size !== cartItemToReduce.size && item !== cartItemToReduce))
+            ((item.size !== cartItemToReduce.size || item !== cartItemToReduce))
         );
 
         // prevCartItems.splice(cartItemToReduce.index, 1)
@@ -87,7 +87,7 @@ export const handleReduceCartItem = ({
     }
 
     return prevCartItems.map(cartItem =>
-        ((cartItem.documentID == cartItemToReduce.documentID) && (cartItem.size == cartItemToReduce.size)) ? { ...cartItem, quantity: cartItem.quantity - quantityIncrement }
+        ((cartItem.documentID == cartItemToReduce.documentID) || (cartItem.size == cartItemToReduce.size)) ? { ...cartItem, quantity: cartItem.quantity - quantityIncrement }
             : cartItem
     )
     // cartItem.documentID === existingCartItem.documentID ? { ...cartItem, quantity: cartItem.quantity - 1 }
@@ -99,10 +99,10 @@ export const handleRemoveCartItem = ({
     prevCartItems,
     CartItemToRemove
 }) => {
-    console.log('CartItemToRemove', CartItemToRemove);
-    console.log('prevCartItems', prevCartItems)
+    console.log('prevCartItems',prevCartItems)
+ 
     return prevCartItems.filter(item =>
-        ((item.size !== CartItemToRemove.size && item !== CartItemToRemove))
+        ((item.size !== CartItemToRemove.size || item.documentID !== CartItemToRemove.documentID))
     );
 
 

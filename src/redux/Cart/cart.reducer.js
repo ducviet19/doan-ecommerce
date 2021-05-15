@@ -47,7 +47,7 @@ const cartReducer = (state = INITIAL_STATE, action) => {
             // return {
             //     ...state
             // }
-            console.log('fetchCart',{...state})
+          
 
         // case cartTypes.CART_LOADING:
         //     return {

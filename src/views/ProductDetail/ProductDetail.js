@@ -12,6 +12,7 @@ import Rate from '../Rate/Rate';
 import Start from '../Start/Start';
 import { formatter } from '../../App';
 import LoadingBox from '../../component/LoadingBox/LoadingBox';
+import { Link } from 'react-router-dom';
 
 const mapState = state => ({
     product: state.productsData.product,
@@ -37,8 +38,7 @@ function ProductDetail({ match }) {
     const [size, setSize] = useState(
     )
     let { id } = useParams();
-    console.log('success', success)
-    console.log('loading', success)
+ 
 
     const src = [
         product.thumbnail,
@@ -88,9 +88,9 @@ function ProductDetail({ match }) {
                         <div className="row product-gallery mx-1">
                             <div className="col-12 mb-0">
                                 <figure className="view overlay rounded z-depth-1 main-img">
-                                    <a data-size="710x823">
+                                    <Link data-size="710x823">
                                         <img src={src[stt]} className="img-fluid w-75 h-75 z-depth-1" />
-                                    </a>
+                                    </Link>
                                 </figure>
 
                             </div>

@@ -17,7 +17,7 @@ function ProductFuture(props) {
         )
     }, [])
 
-    console.log('productsFuture', productsFuture)
+   
     return (
         <div>
               <h2 className="text-center">Sản phẩm nổi bật</h2>

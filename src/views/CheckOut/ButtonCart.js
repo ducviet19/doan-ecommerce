@@ -3,7 +3,7 @@ import LoadingBox from '../../component/LoadingBox/LoadingBox';
 
 function ButtonCart(props) {
     const { data, reduceCart, addProduct, product, loadingCart } = props;
-    console.log(data)
+   
     return (
         <>
             <div className="d-flex pt-2 ">

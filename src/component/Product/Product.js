@@ -11,9 +11,9 @@ const Product = ({ thumbnail, name, price }) => {
                         <p className="h4 text-primary">{price} Đ</p>
                     </div>
                     <div>
-                        <a href="#" className="text-secondary lead" data-toggle="tooltip" data-placement="left" title="Compare">
+                        <Link href="#" className="text-secondary lead" data-toggle="tooltip" data-placement="left" title="Compare">
                             <i className="fa fa-line-chart" aria-hidden="true"></i>
-                        </a>
+                        </Link>
                     </div>
                 </div>
                 <p className="text-warning d-flex align-items-center mb-2">
@@ -25,12 +25,12 @@ const Product = ({ thumbnail, name, price }) => {
                 </p>
                 <p className="mb-0">
                     <strong>
-                        <a href="#" className="text-secondary">{name}</a>
+                        <Link href="#" className="text-secondary">{name}</Link>
                     </strong>
                 </p>
                 <p className="mb-1">
                     <small>
-                        <a href="#" className="text-secondary">Brands</a>
+                        <Link href="#" className="text-secondary">Brands</Link>
                     </small>
                 </p>
                 <div className="d-flex mb-3 justify-content-between">

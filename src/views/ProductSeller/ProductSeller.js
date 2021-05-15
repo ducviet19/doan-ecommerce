@@ -16,7 +16,7 @@ function ProductSeller(props) {
             fetchBestSeller()
         )
     }, [])
-    console.log('productBestSeller', productBestSeller)
+   
     return (
         <div>
              <h2 className="text-center">Sản phẩm bán chạy</h2>
