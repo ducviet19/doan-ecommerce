@@ -1,6 +1,6 @@
 import firebase from 'firebase';
 import React, { useEffect, useState } from 'react';
- import { useFormik } from 'formik';
+import { useFormik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router';
 import { firestore } from '../../../firebase/ultils';
@@ -51,16 +51,39 @@ function EditProduct({ props }) {
     const [image2, setImage2] = useState('');
     const [imgvalid, setImgvalid] = useState('');
 
+
+
+    const [test, setTest] = useState('');
+
+    console.log(image)
+    console.log(image1)
+    console.log(image2)
+
+
     const validateImg = (e) => {
         image || image1 || image2 == '' ? setImgvalid('Vui lòng chọn tệp ảnh đính kèm') : setImgvalid('');
     }
+
+    const getImage = async () => {
+        await axios.get('https://api.cloudinary.com/v1_1/ducviet')
+            .then(
+                res => console.log(res)
+            )
+            .catch(err => console.log(err))
+
+    }
+
+    getImage()
+
+
+
 
     const uploadImage = async (e) => {
         const files = e.target.files[0];
         const data = new FormData()
         data.append('file', files)
-        data.append('upload_preset', 'geekyimages')
-        await axios.get('https://api.cloudinary.com/v1_1/ngochuan/image/upload', data)
+        data.append('upload_preset', 'imagesDucviet')
+        await axios.post('https://api.cloudinary.com/v1_1/ducviet/image/upload', data)
             .then(
                 res => setImage(res.data.secure_url)
             )
@@ -72,8 +95,8 @@ function EditProduct({ props }) {
         const files = e.target.files[0];
         const data = new FormData()
         data.append('file', files)
-        data.append('upload_preset', 'geekyimages')
-        await axios.post('https://api.cloudinary.com/v1_1/ngochuan/image/upload', data)
+        data.append('upload_preset', 'imagesDucviet')
+        await axios.post('https://api.cloudinary.com/v1_1/ducviet/image/upload', data)
             .then(
                 res => setImage1(res.data.secure_url)
             )
@@ -84,8 +107,8 @@ function EditProduct({ props }) {
         const files = e.target.files[0];
         const data = new FormData()
         data.append('file', files)
-        data.append('upload_preset', 'geekyimages')
-        await axios.post('https://api.cloudinary.com/v1_1/ngochuan/image/upload', data)
+        data.append('upload_preset', 'imagesDucviet')
+        await axios.post('https://api.cloudinary.com/v1_1/ducviet/image/upload', data)
             .then(
                 res => setImage2(res.data.secure_url)
             )
@@ -104,10 +127,10 @@ function EditProduct({ props }) {
             description: product?.description,
             price: product?.price,
             number: product?.number,
-            featureProduct : product?.featureProduct,
-            // thumbnail : product?.thumbnail,
-            // imgDetail: product?.imgDetail,
-            // imgDetail2: product?.imgDetail2
+            featureProduct: product?.featureProduct,
+            thumbnail: product?.thumbnail,
+            imgDetail: product?.imgDetail,
+            imgDetail2: product?.imgDetail2
         },
         validationSchema,
         onSubmit: values => {
@@ -122,7 +145,7 @@ function EditProduct({ props }) {
                     description: values.description,
                     price: values.price,
                     number: values.number,
-                    featureProduct : values.featureProduct 
+                    featureProduct: values.featureProduct
 
                 }, id)
             );
@@ -195,42 +218,57 @@ function EditProduct({ props }) {
                         {/* <textarea value={description} onChange={(e) => setDescription(e.target.value)} type="text" className="form-control" id="description" placeholder="Nhập tên sản phẩm" /> */}
                     </div>
                     <div className="form-group">
-                    <label for="featureProduct">Sản phẩm nổi bật</label>
-                    <input className="form-control"
-                        id='featureProduct'
-                        type="checkbox"
-                        value={formik.values.featureProduct}
-                        checked={formik.values.featureProduct}
-                        onChange={formik.handleChange}
-                        onBlur={formik.handleBlur} />
-                </div>
-                <div className="form-group w-50">
-                    <label for="thumbnail">Ảnh sản phẩm</label><br></br>
-                    <input type='file'
-                        id='thumbnail'
-                        name='file'
-                        placeholder='upload image'
-                        onChange={uploadImage}></input><br></br>
-                    <img className='img-thumbnail w-25' src={image}></img>
-                </div>
-                <div className="form-group w-50">
-                    <label for="imgDetail">Ảnh chi tiết 1</label><br></br>
-                    <input type='file'
-                        id='imgDetail'
-                        name='file'
-                        placeholder='upload image'
-                        onChange={uploadImage1}></input><br></br>
-                    <img className='img-thumbnail w-25' src={image1}></img>
-                </div>
-                     <div className="form-group w-50">
-                    <label for="imgDetail2">Ảnh chi tiết 2</label><br></br>
-                    <input type='file'
-                        id='imgDetail2'
-                        name='file'
-                        placeholder='upload image'
-                        onChange={uploadImage2}></input><br></br>
-                    <img className='img-thumbnail w-25' src={image2}></img>
-                </div>
+                        <label for="featureProduct">Sản phẩm nổi bật</label>
+                        <input className="form-control"
+                            id='featureProduct'
+                            type="checkbox"
+                            value={formik.values.featureProduct}
+                            checked={formik.values.featureProduct}
+                            onChange={formik.handleChange}
+                            onBlur={formik.handleBlur} />
+                    </div>
+                    <div className="form-group w-50">
+                        <label for="thumbnail">Ảnh sản phẩm</label><br></br>
+                        <input type='file'
+                            id='thumbnail'
+                            name='thumbnail'
+                            placeholder='upload image'
+                            onChange={uploadImage}></input><br></br>
+                        <img className='img-thumbnail w-25' src={image}></img>
+                        <div value={imgvalid} className="error">{imgvalid}</div>
+                    </div>
+                    <div className="form-group w-50">
+                        <label for="imgDetail">Ảnh chi tiết 1</label><br></br>
+                        <input type='file'
+                            id='imgDetail'
+                            name='imgDetail'
+                            placeholder='upload image'
+                            onChange={uploadImage1}></input><br></br>
+                        <img className='img-thumbnail w-25' src={image1}></img>
+                        <div value={imgvalid} className="error">{imgvalid}</div>
+                    </div>
+                    <div className="form-group w-50">
+                        <label for="imgDetail2">Ảnh chi tiết 2</label><br></br>
+                        <input type='file'
+                            id='imgDetail2'
+                            name='imgDetail2'
+                            placeholder='upload image'
+                            onChange={uploadImage2}></input><br></br>
+                        <img className='img-thumbnail w-25' src={image2}></img>
+                        <div value={imgvalid} className="error">{imgvalid}</div>
+                    </div>
+
+                    {/* <div className="form-group w-50">
+                        <label for="test">get Images</label><br></br>
+                        <input type='text'
+                            id='test'
+                            name='test'
+                            value={test}
+                            placeholder='upload image'
+                            onChange={getImage}></input><br></br>
+                     
+                    </div> */}
+
                     <div className="form-group">
                         <label for="price">Giá sản phẩm</label>
                         <input className="form-control"
@@ -244,6 +282,8 @@ function EditProduct({ props }) {
                             <div className='err'>{formik.errors.price}</div>) : null}
                         {/* <input value={price} onChange={(e) => setPrice(e.target.value)} type="text" className="form-control" id="price" placeholder="Nhập tên sản phẩm" /> */}
                     </div>
+
+
                     <button className="btn btn-success" disabled={!image || !image1 || !image2} type="submit">
                         Cập nhật sản phẩm
                     </button>

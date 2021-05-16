@@ -66,8 +66,8 @@ function FormProduct(props) {
         const files = e.target.files[0];
         const data = new FormData()
         data.append('file', files)
-        data.append('upload_preset', 'geekyimages')
-        await axios.post('https://api.cloudinary.com/v1_1/ngochuan/image/upload', data)
+        data.append('upload_preset', 'imagesDucviet')
+        await axios.post('https://api.cloudinary.com/v1_1/ducviet/image/upload', data)
             .then(
                 res => setImage(res.data.secure_url)
             )
@@ -78,8 +78,8 @@ function FormProduct(props) {
         const files = e.target.files[0];
         const data = new FormData()
         data.append('file', files)
-        data.append('upload_preset', 'geekyimages')
-        await axios.post('https://api.cloudinary.com/v1_1/ngochuan/image/upload', data)
+        data.append('upload_preset', 'imagesDucviet')
+        await axios.post('https://api.cloudinary.com/v1_1/ducviet/image/upload', data)
             .then(
                 res => setImage1(res.data.secure_url)
             )
@@ -90,8 +90,8 @@ function FormProduct(props) {
         const files = e.target.files[0];
         const data = new FormData()
         data.append('file', files)
-        data.append('upload_preset', 'geekyimages')
-        await axios.post('https://api.cloudinary.com/v1_1/ngochuan/image/upload', data)
+        data.append('upload_preset', 'imagesDucviet')
+        await axios.post('https://api.cloudinary.com/v1_1/ducviet/image/upload', data)
             .then(
                 res => setImage2(res.data.secure_url)
             )
@@ -270,6 +270,7 @@ function FormProduct(props) {
                         placeholder='upload image'
                         onChange={uploadImage1}></input><br></br>
                     <img className='img-thumbnail w-25' src={image1}></img>
+                    <div value={imgvalid} className="error">{imgvalid}</div>
                 </div>
                 <div className="form-group w-50">
                     <label for="imgDetail2">Ảnh chi tiết 2</label><br></br>
@@ -279,7 +280,7 @@ function FormProduct(props) {
                         placeholder='upload image'
                         onChange={uploadImage2}></input><br></br>
                     <img className='img-thumbnail w-25' src={image2}></img>
-
+                    <div value={imgvalid} className="error">{imgvalid}</div>
                 </div>
 
 
