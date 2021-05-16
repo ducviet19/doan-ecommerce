@@ -37,46 +37,61 @@ export const handleFetchProductsHome = () => {
 }
 
 
-export const handleFetchProductFuture = () => {
+export const handleFetchProductFuture = ({startAfterDoc, persistProducts = [] }) => {
     return new Promise((resolve, reject) => {
-        firestore
-            .collection('products')
-            .where("featureProduct" , "==" , true)
-            .get()
-            .then(snapshot => {
-                const productsArray = snapshot.docs.map(doc => {
+        let ref = firestore.collection('products').where("featureProduct" , "==" , true).limit(4)
+        if (startAfterDoc) ref = ref.startAfter(startAfterDoc);
+        ref.get()
+        .then(snapshot => {
+            const totalCount = snapshot.size;
+            const data = [
+                ...persistProducts,
+                ...snapshot.docs.map(doc => {
                     return {
                         ...doc.data(),
                         documentID: doc.id
                     }
-                });
-                resolve(productsArray);
-            })
-            .catch(err => {
-                reject(err);
-            })
+                })
+            ];
+            resolve({
+                data,
+                queryDoc: snapshot.docs[totalCount - 1],
+                isLastPage: totalCount < 1
+            });
+        })
+        .catch(err => {
+            reject(err);
+        })
     })
 }
 
 
 
-export const handleFetchBestSeller = () => {
+export const handleFetchBestSeller = ({startAfterDoc, persistProducts = [] }) => {
     return new Promise((resolve, reject) => {
-        firestore
-            .collection('products').where("numOrder" , ">=" , 20)
-            .get()
-            .then(snapshot => {
-                const productsArray = snapshot.docs.map(doc => {
+        let ref = firestore.collection('products').where("numOrder" , ">=" , 20).limit(4)
+        if (startAfterDoc) ref = ref.startAfter(startAfterDoc);
+        ref.get()
+        .then(snapshot => {
+            const totalCount = snapshot.size;
+            const data = [
+                ...persistProducts,
+                ...snapshot.docs.map(doc => {
                     return {
                         ...doc.data(),
                         documentID: doc.id
                     }
-                });
-                resolve(productsArray);
-            })
-            .catch(err => {
-                reject(err);
-            })
+                })
+            ];
+            resolve({
+                data,
+                queryDoc: snapshot.docs[totalCount - 1],
+                isLastPage: totalCount < 1
+            });
+        })
+        .catch(err => {
+            reject(err);
+        })
     })
 }
 

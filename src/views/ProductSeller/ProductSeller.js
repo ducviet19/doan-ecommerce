@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import LoadMore from '../../component/LoadMore/LoadMore';
 import { fetchBestSeller } from '../../redux/Product/products.action';
 import ProductCart from '../ProductCart/ProductCart';
 
@@ -10,19 +11,35 @@ const mapState = ({ productsData }) => ({
 function ProductSeller(props) {
 
     const productBestSeller = useSelector(mapState);
+    const { data, queryDoc, isLastPage } = productBestSeller.productBestSeller;
+
+
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(
-            fetchBestSeller()
+            fetchBestSeller({})
         )
     }, [])
-   
+
+    const handleLoadMore = () => {
+        dispatch(
+            fetchBestSeller({
+                startAfterDoc: queryDoc,
+                persistProducts: data
+            })
+        );
+    };
+
+    const configLoadMore = {
+        onLoadMoreEvt: handleLoadMore,
+    };
+
     return (
         <div>
-             <h2 className="text-center">Sản phẩm bán chạy</h2>
+            <h2 className="text-center">Sản phẩm bán chạy</h2>
             <div className="row d-flex justify-content-center">
-               
-                {productBestSeller?.productBestSeller?.map((product, index) => {
+
+                {data?.map((product, index) => {
                     const configProduct = {
                         ...product
                     }
@@ -33,6 +50,14 @@ function ProductSeller(props) {
 
 
                 )}
+            </div>
+            <div className='d-flex'>
+                <div className='m-auto'>
+                    {!isLastPage && (
+                        <LoadMore {...configLoadMore} />
+                    )}
+                </div>
+
             </div>
 
         </div>

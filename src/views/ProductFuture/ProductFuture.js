@@ -2,28 +2,45 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchProductFuture } from '../../redux/Product/products.action';
 import ProductCart from '../ProductCart/ProductCart';
-
+import LoadMore from '../../component/LoadMore/LoadMore';
 const mapState = ({ productsData }) => ({
     productsFuture: productsData.productsFuture,
 })
 function ProductFuture(props) {
 
     const productsFuture = useSelector(mapState);
+    const { data, queryDoc, isLastPage } = productsFuture.productsFuture;
+
+
+    console.log('productsFuture',productsFuture)
+
+
     const dispatch = useDispatch()
 
     useEffect(() => {
         dispatch(
-            fetchProductFuture()
+            fetchProductFuture({})
         )
     }, [])
+    const handleLoadMore = () => {
+        dispatch(
+            fetchProductFuture({
+                startAfterDoc: queryDoc,
+                persistProducts: data
+            })
+        );
+    };
 
-   
+    const configLoadMore = {
+        onLoadMoreEvt: handleLoadMore,
+    };
+
     return (
         <div>
-              <h2 className="text-center">Sản phẩm nổi bật</h2>
+            <h2 className="text-center">Sản phẩm nổi bật</h2>
             <div className="row d-flex justify-content-center">
-              
-                {productsFuture?.productsFuture?.map((product, index) => {
+
+                {data?.map((product, index) => {
                     const configProduct = {
                         ...product
                     }
@@ -34,6 +51,17 @@ function ProductFuture(props) {
 
 
                 )}
+            </div>
+            <div className='d-flex'>
+                <div className='m-auto'>
+                    {
+                        isLastPage === false ? <LoadMore {...configLoadMore} /> : ""
+                    }
+                    {/* {!isLastPage && (
+                        <LoadMore {...configLoadMore} />
+                    )} */}
+                </div>
+
             </div>
 
         </div>

@@ -51,32 +51,9 @@ function EditProduct({ props }) {
     const [image2, setImage2] = useState('');
     const [imgvalid, setImgvalid] = useState('');
 
-
-
-    const [test, setTest] = useState('');
-
-    console.log(image)
-    console.log(image1)
-    console.log(image2)
-
-
     const validateImg = (e) => {
         image || image1 || image2 == '' ? setImgvalid('Vui lòng chọn tệp ảnh đính kèm') : setImgvalid('');
     }
-
-    const getImage = async () => {
-        await axios.get('https://api.cloudinary.com/v1_1/ducviet')
-            .then(
-                res => console.log(res)
-            )
-            .catch(err => console.log(err))
-
-    }
-
-    getImage()
-
-
-
 
     const uploadImage = async (e) => {
         const files = e.target.files[0];
@@ -115,9 +92,6 @@ function EditProduct({ props }) {
             .catch(err => console.log(err))
 
     }
-    // if (image == '') setImage(product?.imgDetail2)
-    // if (image1 == '') setImage1(product?.imgDetail)
-    // if (image2 == '') setImage2(product?.thumbnail)
 
     const formik = useFormik({
         enableReinitialize: true,
@@ -130,7 +104,8 @@ function EditProduct({ props }) {
             featureProduct: product?.featureProduct,
             thumbnail: product?.thumbnail,
             imgDetail: product?.imgDetail,
-            imgDetail2: product?.imgDetail2
+            imgDetail2: product?.imgDetail2,
+            sizes: product?.sizes
         },
         validationSchema,
         onSubmit: values => {
@@ -145,8 +120,8 @@ function EditProduct({ props }) {
                     description: values.description,
                     price: values.price,
                     number: values.number,
-                    featureProduct: values.featureProduct
-
+                    featureProduct: values.featureProduct,
+                    sizes: values.sizes
                 }, id)
             );
             formik.resetForm();
@@ -217,6 +192,20 @@ function EditProduct({ props }) {
                             <div className='err'>{formik.errors.description}</div>) : null}
                         {/* <textarea value={description} onChange={(e) => setDescription(e.target.value)} type="text" className="form-control" id="description" placeholder="Nhập tên sản phẩm" /> */}
                     </div>
+
+                    <div className="form-group">
+                        <label for="sizes">size sản phẩm</label>
+                        <textarea className="form-control"
+                            id='sizes'
+                            type='text'
+                            placeholder="Miêu tả sản phẩm"
+                            value={formik.values.sizes}
+                            onChange={formik.handleChange}
+                            onBlur={formik.handleBlur} />
+                        {formik.touched.sizes && formik.errors.sizes ? (
+                            <div className='err'>{formik.errors.sizes}</div>) : null}
+                        {/* <textarea value={description} onChange={(e) => setDescription(e.target.value)} type="text" className="form-control" id="description" placeholder="Nhập tên sản phẩm" /> */}
+                    </div>
                     <div className="form-group">
                         <label for="featureProduct">Sản phẩm nổi bật</label>
                         <input className="form-control"
@@ -257,18 +246,6 @@ function EditProduct({ props }) {
                         <img className='img-thumbnail w-25' src={image2}></img>
                         <div value={imgvalid} className="error">{imgvalid}</div>
                     </div>
-
-                    {/* <div className="form-group w-50">
-                        <label for="test">get Images</label><br></br>
-                        <input type='text'
-                            id='test'
-                            name='test'
-                            value={test}
-                            placeholder='upload image'
-                            onChange={getImage}></input><br></br>
-                     
-                    </div> */}
-
                     <div className="form-group">
                         <label for="price">Giá sản phẩm</label>
                         <input className="form-control"

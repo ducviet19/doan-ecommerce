@@ -29,8 +29,9 @@ export const setProductsHome = products => ({
 
 
 // best seller 
-export const fetchBestSeller = () => ({
-    type: productsTypes.FETCH_PRODUCT_SELLER
+export const fetchBestSeller = (data) => ({
+    type: productsTypes.FETCH_PRODUCT_SELLER,
+    payload: data || undefined
 })
 export const setBestSeller = productFuture => ({
     type: productsTypes.SET_PRODUCT_SELLER,
@@ -39,8 +40,9 @@ export const setBestSeller = productFuture => ({
 
 
 // product future 
-export const fetchProductFuture = () => ({
-    type: productsTypes.FETCH_PRODUCTS_FEATURE
+export const fetchProductFuture = (data) => ({
+    type: productsTypes.FETCH_PRODUCTS_FEATURE,
+    payload: data || undefined
 })
 export const setProductFuture = productFuture => ({
     type: productsTypes.SET_PRODUCTS_FEATURE,

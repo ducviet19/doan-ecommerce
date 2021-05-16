@@ -39,11 +39,6 @@ function Home() {
         )
     }, [filter])
 
-    // useEffect(() => {
-    //     dispatch(
-    //         fetchProducts({})
-    //     )
-    // }, [filter])
 
     const handleLoadMore = () => {
         dispatch(
