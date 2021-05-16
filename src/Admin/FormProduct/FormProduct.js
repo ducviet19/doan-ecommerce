@@ -257,7 +257,6 @@ function FormProduct(props) {
                         id='thumbnail'
                         name='file'
                         placeholder='upload image'
-
                         onChange={uploadImage}></input><br></br>
                     <img className='img-thumbnail w-25' src={image}></img>
                     <div value={imgvalid} className="error">{imgvalid}</div>

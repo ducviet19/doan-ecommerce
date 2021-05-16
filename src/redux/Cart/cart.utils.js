@@ -76,7 +76,7 @@ export const handleReduceCartItem = ({
     if (existingCartItem.quantity === 1) {
 
         return prevCartItems.filter(item =>
-            ((item.size !== cartItemToReduce.size || item !== cartItemToReduce))
+            ((item.size !== cartItemToReduce.size || item.documentID !== cartItemToReduce.documentID))
         );
 
         // prevCartItems.splice(cartItemToReduce.index, 1)
@@ -87,7 +87,7 @@ export const handleReduceCartItem = ({
     }
 
     return prevCartItems.map(cartItem =>
-        ((cartItem.documentID == cartItemToReduce.documentID) || (cartItem.size == cartItemToReduce.size)) ? { ...cartItem, quantity: cartItem.quantity - quantityIncrement }
+        ((cartItem.documentID == cartItemToReduce.documentID) && (cartItem.size == cartItemToReduce.size)) ? { ...cartItem, quantity: cartItem.quantity - quantityIncrement }
             : cartItem
     )
     // cartItem.documentID === existingCartItem.documentID ? { ...cartItem, quantity: cartItem.quantity - 1 }
