@@ -1,8 +1,8 @@
 import { takeLatest, put, all, call } from 'redux-saga/effects';
-import { handleAddProduct, handleDeleteProduct, handleEditProduct, handleFetchBestSeller, handleFetchDetailProduct, handleFetchProductFuture, handleFetchProducts ,handleFetchProductsHome } from './products.helpers'
+import { handleAddProduct, handleDeleteProduct, handleEditProduct, handleFetchBestSeller, handleFetchDetailProduct, handleFetchProductFuture, handleFetchProducts ,handleFetchProductsHome, handleFetchProductsRelative } from './products.helpers'
 import productsTypes from './products.types';
 import { auth } from './../../firebase/ultils'
-import { setProducts, fetchProducts, setProduct, fetchProductStart, setProductsHome, productSucces, productDetailSucces, setProductFuture, setBestSeller } from './products.action'
+import { setProducts, fetchProducts, setProduct, fetchProductStart, setProductsHome, productSucces, productDetailSucces, setProductFuture, setBestSeller, setProductRelative } from './products.action'
 import { cartDefault } from '../Cart/cart.action';
 
 // add product
@@ -74,6 +74,27 @@ export function* fetchProductFuture({ payload }) {
 export function* onFetchProducFuture() {
     yield takeLatest(productsTypes.FETCH_PRODUCTS_FEATURE, fetchProductFuture);
 }
+
+
+
+// fetch product relative 
+export function* fetchRelativeProduct( payload ) {
+    try {
+        console.log('payload relative',payload.payload)
+        const product = yield handleFetchProductsRelative(payload.payload);
+        yield put(
+            setProductRelative(product)
+        );
+
+    } catch (err) {
+        // console.log(err);
+    }
+}
+
+export function* onFetchProductRelative() {
+    yield takeLatest(productsTypes.FETCH_PRODUCTS_RELATIVE, fetchRelativeProduct);
+}
+
 
 
 
@@ -243,6 +264,7 @@ export default function* productsSagas() {
         call(onFetchProductHome),
         call(onReducerNumber),
         call(onFetchProducFuture),
-        call(onFetchProducSeller)
+        call(onFetchProducSeller),
+        call(onFetchProductRelative)
     ])
 }

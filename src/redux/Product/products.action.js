@@ -49,6 +49,18 @@ export const setProductFuture = productFuture => ({
     payload: productFuture
 })
 
+
+
+// product relative 
+export const fetchProductRelative = (data) => ({
+    type: productsTypes.FETCH_PRODUCTS_RELATIVE,
+    payload: data
+})
+export const setProductRelative= productRelative => ({
+    type: productsTypes.SET_PRODUCTS_RELATIVE,
+    payload: productRelative
+})
+
 // productDetail {}
 
 export const fetchProductStart = productID => ({

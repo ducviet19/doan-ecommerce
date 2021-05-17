@@ -27,23 +27,6 @@ function ProductCart(product) {
    
 
     const { documentID, thumbnail, name, price, number ,handleChange ,handleUpdateNumber ,data } = product;
-    const handleAddToCart = (product) => {
-    
-        if (!product) return;
-
-        dispatch(addToCart(product))
-        handleUpdateNumber(data,product.documentID)
-        handleChange(true)
-        // dispatch(cartLoading(product.documentID))
-        swal({
-            button: false,
-            text: "Sản phẩm đã được thêm vào giỏ hàng",
-            icon: "success",
-            timer: 1000
-        });
-
-
-    }
 
  
     return (
@@ -57,17 +40,6 @@ function ProductCart(product) {
                 </Link>
                 <p className="text-center"><strong> {formatter.format(price)}</strong></p>
                 <div className="d-flex justify-content-center">
-                    {/* <ButtonAddtoCart number={number} loadingCart={loadingCart} product={product} handleAddToCart={handleAddToCart} /> */}
-
-                    {/* {number == 0 
-                    ? 
-                    <button className="btn btn-danger" disabled >Hết Hàng</button> 
-                    : 
-                    <>
-                     {loadingCart === false ? <LoadingBox /> : <button className="btn btn-secondary w-100" onClick={() => { handleAddToCart(product) }}><i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng</button>}  
-                    </>
-                  
-                    } */}
                 </div>
                 <div className="rating text-center p-3">
                     <span>

@@ -16,6 +16,30 @@ export const handleAddProduct = product => {
 }
 
 
+
+export const handleFetchProductsRelative = (category) => {
+
+    console.log('category',category)
+    return new Promise((resolve, reject) => {
+        firestore
+            .collection('products').where("category","==",category)
+            .get()
+            .then(snapshot => {
+                const productsArray = snapshot.docs.map(doc => {
+                    return {
+                        ...doc.data(),
+                        documentID: doc.id
+                    }
+                });
+                resolve(productsArray);
+            })
+            .catch(err => {
+                reject(err);
+            })
+    })
+}
+
+
 export const handleFetchProductsHome = () => {
     return new Promise((resolve, reject) => {
         firestore

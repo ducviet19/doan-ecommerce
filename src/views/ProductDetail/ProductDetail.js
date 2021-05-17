@@ -13,6 +13,7 @@ import Start from '../Start/Start';
 import { formatter } from '../../App';
 import LoadingBox from '../../component/LoadingBox/LoadingBox';
 import { Link } from 'react-router-dom';
+import ProductRelative from '../ProductRelative/ProductRelative';
 
 const mapState = state => ({
     product: state.productsData.product,
@@ -32,9 +33,8 @@ function ProductDetail({ match }) {
     const { product, loading } = useSelector(mapState)
     const { loadingCart, success } = useSelector(mapLoading)
 
-    const [productChange, setProductChange] = useState(
-        false
-    )
+    const [productChange, setProductChange] = useState(false)
+    const [idProduct, setIdProduct] = useState(product.documentID)
     const [size, setSize] = useState(
     )
     let { id } = useParams();
@@ -49,6 +49,10 @@ function ProductDetail({ match }) {
     useEffect(() => {
         dispatch(fetchProductStart(id));
     }, [productChange])
+
+    useEffect(() => {
+        dispatch(fetchProductStart(id));
+    }, [idProduct])
 
 
     const handleAddToCart = async (product) => {
@@ -77,11 +81,16 @@ function ProductDetail({ match }) {
         setProductChange(value)
     }
 
+    const handleChangeRelative = (value) => {
+        setIdProduct(value)
+    }
+
 
     return (
 
         <>
-            {loading === false ? <>  <div className="row px-1 pt-5 mt-2">
+            {loading === false ? <>  
+            <div className="row px-1 pt-5 mt-2">
                 <div className="col-md-6 mb-4 mb-md-0">
                     <div id="mdb-lightbox-ui" />
                     <div className="mdb-lightbox">
@@ -146,8 +155,9 @@ function ProductDetail({ match }) {
 
                 </div>
             </div>
-                <Review handleChangeReview={handleChangeReview} product={product} />
-                <Rate id={id} /> </> : <LoadingBox />}
+            <ProductRelative category={product.category} handleChangeRelative={handleChangeRelative} />
+            <Review handleChangeReview={handleChangeReview} product={product} />
+            <Rate id={id} /> </> : <LoadingBox />}
 
         </>
 
