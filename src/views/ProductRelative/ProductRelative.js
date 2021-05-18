@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { formatter } from '../../App';
@@ -13,28 +13,32 @@ const mapState = ({ productsData }) => ({
 })
 function ProductRelative(props) {
 
-    const productRelative = useSelector(mapState);
-    
 
-  
+    console.log('data',props.data)
 
-    const dispatch = useDispatch();
-    useEffect(() => {
-        dispatch(
-            fetchProductRelative(props.category)
-        )
-    }, [])
+    // const productRelative = useSelector(mapState);
 
-    console.log('productRelative',productRelative)
-    
 
+   
+
+    // const dispatch = useDispatch();
+
+    // useEffect(() => {
+    //     dispatch(
+    //         fetchProductRelative(props.category)
+    //     )
+
+    // }, [])
+
+    // console.log('productRelative',productRelative)
     
 
     return (
-        <div>
+        <div> 
             <div className="row mt-5">
+               
                 <h2 className="">Sản phẩm liên quan</h2>
-                {productRelative.productRelative?.map((product, index) => {
+                {props.data.productRelative?.map((product, index) => {
                     console.log('product.documentID',product.documentID)
                     return (
 

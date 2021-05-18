@@ -9,6 +9,7 @@ import { createStructuredSelector } from 'reselect';
 import { selectCartItems, selectCartTotal } from '../../redux/Cart/cart.selectors';
 import { clearCart } from '../../redux/Cart/cart.action';
 import useScrollTop from '../../hook/useScrollTop';
+import emailjs from 'emailjs-com';
 import swal from 'sweetalert';
 import { useHistory } from 'react-router';
 import { fetchUserId } from '../../redux/User/user.saga';
@@ -69,6 +70,28 @@ function Payment(props) {
 
     const dispatch = useDispatch()
     const [isOpen, setIsOpen] = useState(false);
+    const [email, setEmail] = useState('');
+
+    function sendEmail(email,data) {
+        let templateParams = {
+            from_name: 'Routine Store',
+            to_name: email,
+            message: data
+        }
+        try {
+            emailjs.send('service_ag5s9pa', 'template_drtx4me', templateParams, 'user_xIM0XRWJlXjbCTUs0eRDH')
+            resetForm();
+            swal("Kiếm tra mail để xem thông tin khuyến mãi!", "", "success")
+        } catch (err) {
+            swal(`${err}`, "", "error")
+        }
+
+
+
+    }
+    const resetForm = () => {
+        setEmail('');
+    }
 
     const formik = useFormik({
         initialValues: {
@@ -89,6 +112,11 @@ function Payment(props) {
                 finish: "false",
                 total: total
             }
+
+            const payment = {
+                info: values,
+                total: total
+            }
             dispatch(
                 addToOrder(data)
             )
@@ -96,8 +124,8 @@ function Payment(props) {
                 clearCart()
             )
             formik.resetForm();
-            swal("Đặt Hàng Thành Công");
-            // history.push('/');
+            swal("Đặt Hàng Thành Công! Kiểm tra email của bạn để xem thông tin đơn hàng");
+            sendEmail(values.email , JSON.stringify(payment))
 
         },
     });

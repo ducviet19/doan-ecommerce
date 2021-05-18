@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router';
 import useScrollTop from '../../hook/useScrollTop';
 import { addToCart, cartDefault, cartLoading } from '../../redux/Cart/cart.action';
-import { editProduct, fetchProductStart, setProduct, updateNumber } from '../../redux/Product/products.action';
+import { editProduct, fetchProductRelative, fetchProductStart, setProduct, updateNumber } from '../../redux/Product/products.action';
 import LazyLoad from 'react-lazyload';
 import swal from 'sweetalert';
 import Review from '../Review/Review';
@@ -17,21 +17,24 @@ import ProductRelative from '../ProductRelative/ProductRelative';
 
 const mapState = state => ({
     product: state.productsData.product,
-    loading: state.productsData.loadingDetail
+    loading: state.productsData.loadingDetail,
+    loadingCart: state.cartData.loadingCart
 })
 
-const mapLoading = state => ({
-    loadingCart: state.cartData.loadingCart,
-    success: state.cartData.success
-});
+const mapRelative = ({ productsData }) => ({
+    productRelative: productsData.productRelative,
+})
+
+
 
 
 function ProductDetail({ match }) {
     useScrollTop();
     const history = useHistory()
     const dispatch = useDispatch();
-    const { product, loading } = useSelector(mapState)
-    const { loadingCart, success } = useSelector(mapLoading)
+    const { product, loading ,loadingCart } = useSelector(mapState);
+    const productRelative = useSelector(mapRelative);
+    // const { loadingCart } = useSelector(mapLoading)
 
     const [productChange, setProductChange] = useState(false)
     const [idProduct, setIdProduct] = useState(product.documentID)
@@ -53,6 +56,12 @@ function ProductDetail({ match }) {
     useEffect(() => {
         dispatch(fetchProductStart(id));
     }, [idProduct])
+
+    useEffect(() => {
+        dispatch(
+            fetchProductRelative(product.category)
+        )
+    }, [product])
 
 
     const handleAddToCart = async (product) => {
@@ -155,7 +164,7 @@ function ProductDetail({ match }) {
 
                 </div>
             </div>
-            <ProductRelative category={product.category} handleChangeRelative={handleChangeRelative} />
+            <ProductRelative id={id} handleChangeReview={handleChangeReview} data={productRelative}  category={product.category} handleChangeRelative={handleChangeRelative} />
             <Review handleChangeReview={handleChangeReview} product={product} />
             <Rate id={id} /> </> : <LoadingBox />}
 

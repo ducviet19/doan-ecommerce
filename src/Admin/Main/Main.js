@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { formatter } from '../../App';
+import { fetchOrders } from '../../redux/Order/order.action';
+import { fetchProductsHome } from '../../redux/Product/products.action';
 
 const mapState = ({ orderData, productsData, message }) => ({
     listOrder: orderData.listOrder,
@@ -10,6 +12,14 @@ const mapState = ({ orderData, productsData, message }) => ({
 function Main(props) {
 
     const { listOrder, listProduct, listmessage } = useSelector(mapState)
+
+    useEffect(() => {
+        fetchProductsHome()
+    },[])
+
+    useEffect(() => {
+        fetchOrders()
+    },[])
 
     const total = listOrder.reduce((a, b) => {
         return a + b.total
