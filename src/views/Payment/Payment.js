@@ -132,14 +132,16 @@ function Payment(props) {
 
 
     return (
-        <>
+        <div className="container">
             {
                 cartItems.length > 0 ? <div className="row mt-5">
-                    <div className="col-lg-6 col-12">
+                    <div className="cl-3 form-payment">
                         <h2 className="text-center">Thông tin giao hàng</h2>
+                        
                         <form onSubmit={formik.handleSubmit}>
                             <div className="form-group">
                                 <label htmlFor="name">Họ và Tên</label>
+                                <br />
                                 <input class="form-control" id="name"
                                     name="name"
                                     type="text"
@@ -152,6 +154,7 @@ function Payment(props) {
                             </div>
                             <div className="form-group">
                                 <label htmlFor="email">Email</label>
+                                <br />
                                 <input class="form-control" id="email"
                                     name="email"
                                     type="text"
@@ -164,6 +167,7 @@ function Payment(props) {
                             </div>
                             <div className="form-group">
                                 <label htmlFor="phone">Số điện thoại</label>
+                                <br />
                                 <input class="form-control" id="phone"
                                     name="phone"
                                     type="text"
@@ -177,6 +181,7 @@ function Payment(props) {
 
                             <div className="form-group">
                                 <label htmlFor="address">Địa Chỉ</label>
+                                <br />
                                 <input class="form-control" id="address"
                                     name="address"
                                     type="text"
@@ -225,7 +230,7 @@ function Payment(props) {
 
                         </form>
                     </div>
-                    <div className="col-lg-6 col-12">
+                    <div className="cl-7 col-12">
                         <Cart />
                     </div>
                 </div> : <div className="text-center m-5 pt-5 ">
@@ -234,7 +239,7 @@ function Payment(props) {
 
                 </div>
             }
-        </>
+        </div>
 
 
 

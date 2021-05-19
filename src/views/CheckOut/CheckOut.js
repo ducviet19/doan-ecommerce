@@ -33,7 +33,7 @@ function CheckOut(props) {
     },[loadingCart])
     useScrollTop();
     return (
-        <div className="row mt-5 pt-5 mb-5">
+        <div className="container cart-page">
             <Cart />
             { cartItems.length > 0 ? <ButtonCheckOut /> : ""  }
             

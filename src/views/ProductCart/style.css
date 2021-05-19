@@ -1,22 +1,16 @@
-.detail:hover {
-    color: #337ab7;
-    text-decoration: none !important;
+.product-item img {
+    width: 100%;
 }
-.detail p {
-    color: black;
-    white-space: nowrap !important;
-    width: 100% !important;
-    overflow: hidden !important;
-    text-overflow: ellipsis !important;
+
+.product-item {
+    width: 100%;
+    transition: transform 0.5s;
 }
-.btn_cart:hover{
-    background-color:#ffab00;
-    border-color: #bfc7c7;
-    overflow: hidden;
+
+.product-item:hover{
+    transform: translateY(-2%);
 }
-.card > .detail_product >.detail :hover {
-    color:#337ab7 !important;
+
+.product__item--category p {
+    color: gray;
 }
-.card{
-    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
-};

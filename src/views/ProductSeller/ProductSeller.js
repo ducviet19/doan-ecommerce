@@ -36,7 +36,7 @@ function ProductSeller(props) {
 
     return (
         <div>
-            <h2 className="text-center">Sản phẩm bán chạy</h2>
+            <h2 className="title">Sản phẩm bán chạy</h2>
             <div className="row d-flex justify-content-center">
 
                 {data?.map((product, index) => {
@@ -51,7 +51,7 @@ function ProductSeller(props) {
 
                 )}
             </div>
-            <div className='d-flex'>
+            <div className='page-nation'>
                 <div className='m-auto'>
                     {!isLastPage && (
                         <LoadMore {...configLoadMore} />

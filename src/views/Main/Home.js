@@ -89,15 +89,54 @@ function Home() {
         dispatch(updateNumber(product, id))
     }
     return (
-        <>{loading === true ? <LoadingBox /> :
-            <main className="main">
-                <div className="new-product m-5 ">
-                    <div>
-                        <h3 className="text-center text-nowrap m-5"><a href>SẢN PHẨM MỚI</a> </h3>
-                    </div>
-                    <div className="row d-flex justify-content-center">
+        <>
+        {
+            loading === true ? <LoadingBox /> :
 
-                        {
+                <div className="small-container">
+                <h2 className="title">Sản phẩm mới</h2>
+                <div className="row">
+                    {
+                        (Array.isArray(data) && data.length > 0) && data.map((product, index) => {
+                            const configProduct = {
+                                ...product
+                            }
+                            return (
+                                <ProductCart key={index} data={product} handleChange={handleChange} handleUpdateNumber={handleUpdateNumber} loading={loading} {...configProduct} />
+                            )
+                        })
+                    }
+
+
+
+                </div>
+                <div className='page-nation'>
+                        <div className='m-auto'>
+                            {!isLastPage && (
+                                <LoadMore {...configLoadMore} />
+                            )}
+                        </div>
+                    </div>
+                <ProductFuture />
+                <ProductSeller />
+            </div>
+        }
+
+       
+
+
+
+
+
+
+
+            {/* {loading === true ? <LoadingBox /> :
+            <main className="container">
+                <div className="main__title">
+                    <h3>SẢN PHẨM MỚI</h3>
+                </div>
+                <div className="product row">
+                    {
                             (Array.isArray(data) && data.length > 0) && data.map((product, index) => {
                                 const configProduct = {
                                     ...product
@@ -106,50 +145,20 @@ function Home() {
                                     <ProductCart key={index} data={product} handleChange={handleChange} handleUpdateNumber={handleUpdateNumber} loading={loading} {...configProduct} />
                                 )
                             })
-                        }
-                    </div>
-                                  
-                   
-         
-                    <div className='d-flex'>
+                        }   
+                </div>
+                <div className='d-flex'>
                         <div className='m-auto'>
                             {!isLastPage && (
                                 <LoadMore {...configLoadMore} />
                             )}
                         </div>
-
                     </div>
-                </div>
-            
                 <ProductFuture />
 
                 <ProductSeller />
-
-
-
-               
-                <div className="form_info row  m-3 p-5 border">
-                <form onSubmit={sendEmail} className="input-group w-75 m-auto">
-                    <input type="email"
-                        name='email'
-                        value={email}
-                        onChange={(e) => {
-                            setEmail(e.target.value)
-                        }}
-                        className="form-control p-2x text-primary"
-                        placeholder="Đăng kí để nhận thông tin khuyến mãi"
-                        aria-label aria-describedby="basic-addon1" />
-                    <div className="input-group-append">
-                        <button className="btn btn-secondary" type="submit">Đăng ký</button>
-                    </div>
-                </form>
-            </div>
             </main>
-
-
-        }
-
-
+        } */}
 
         </>
     )

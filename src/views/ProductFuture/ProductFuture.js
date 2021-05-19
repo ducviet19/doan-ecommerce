@@ -12,7 +12,7 @@ function ProductFuture(props) {
     const { data, queryDoc, isLastPage } = productsFuture.productsFuture;
 
 
-    console.log('productsFuture',productsFuture)
+    console.log('productsFuture', productsFuture)
 
 
     const dispatch = useDispatch()
@@ -37,7 +37,7 @@ function ProductFuture(props) {
 
     return (
         <div>
-            <h2 className="text-center">Sản phẩm nổi bật</h2>
+            <h2 className="title">Sản phẩm nổi bật</h2>
             <div className="row d-flex justify-content-center">
 
                 {data?.map((product, index) => {
@@ -46,25 +46,55 @@ function ProductFuture(props) {
                     }
                     return (<ProductCart key={index} data={product} {...configProduct} />
                     )
-
                 }
-
-
                 )}
             </div>
-            <div className='d-flex'>
+            <div className='page-nation'>
                 <div className='m-auto'>
-                    {
-                        isLastPage === false ? <LoadMore {...configLoadMore} /> : ""
-                    }
-                    {/* {!isLastPage && (
+                    {!isLastPage && (
                         <LoadMore {...configLoadMore} />
-                    )} */}
+                    )}
                 </div>
+
 
             </div>
 
         </div>
+
+
+
+
+
+
+
+
+
+        // <div>
+        //     <h2 className="text-center">Sản phẩm nổi bật</h2>
+        //     <div className="row d-flex justify-content-center">
+
+        //         {data?.map((product, index) => {
+        //             const configProduct = {
+        //                 ...product
+        //             }
+        //             return (<ProductCart key={index} data={product} {...configProduct} />
+        //             )
+
+        //         }
+
+
+        //         )}
+        //     </div>
+        //     <div className='d-flex'>
+        //         <div className='m-auto'>
+        //             {
+        //                 isLastPage === false ? <LoadMore {...configLoadMore} /> : ""
+        //             }
+        //         </div>
+
+        //     </div>
+
+        // </div>
     );
 }
 

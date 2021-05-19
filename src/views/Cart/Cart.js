@@ -40,16 +40,16 @@ function Cart(props) {
         <>
             {
                 cartItems.length > 0 ?
-                    <div className="col-12 ">
+                    <div>
                         <h3 className="bold">Giỏ Hàng của bạn </h3> <span>({totalNumCartItems} sản phẩm ) </span>
-                        <div className="table-responsive container-fluid">
-                            <table className="table">
+                        <div className="">
+                            <table>
                                 <thead>
                                     <tr>
                                         <th scope="col">Hình ảnh</th>
                                         <th scope="col">Tên sản phẩm</th>
                                         <th scope="col">Số lượng</th>
-                                        <th scope="col">Size</th>
+                                        <th scope="col">Phân loại hàng</th>
                                         <th scope="col">Đơn giá</th>
                                         <th scope="col"></th>
                                     </tr>

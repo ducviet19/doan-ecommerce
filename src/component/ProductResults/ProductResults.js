@@ -87,7 +87,7 @@ const ProductResults = ({ }) => {
         onLoadMoreEvt: handleLoadMore,
     };
     return (
-        <div className='products'>
+        <div className='container products'>
             <div className="col-md-3 order-md-0 mt-2 mt-md-0 mb-3">
                 <select className="form-control form-control-sm" value={filterType} onChange={handleFilter}>
                     <option value="">Tất cả</option>

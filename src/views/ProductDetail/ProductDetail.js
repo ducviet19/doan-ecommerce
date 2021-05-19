@@ -32,7 +32,7 @@ function ProductDetail({ match }) {
     useScrollTop();
     const history = useHistory()
     const dispatch = useDispatch();
-    const { product, loading ,loadingCart } = useSelector(mapState);
+    const { product, loading, loadingCart } = useSelector(mapState);
     const productRelative = useSelector(mapRelative);
     // const { loadingCart } = useSelector(mapLoading)
 
@@ -41,7 +41,7 @@ function ProductDetail({ match }) {
     const [size, setSize] = useState(
     )
     let { id } = useParams();
- 
+
 
     const src = [
         product.thumbnail,
@@ -66,7 +66,7 @@ function ProductDetail({ match }) {
 
     const handleAddToCart = async (product) => {
         if (!product) return;
-        
+
         dispatch(addToCart(product))
         handleUpdateNumber(product, product.documentID)
         setProductChange(true)
@@ -96,79 +96,148 @@ function ProductDetail({ match }) {
 
 
     return (
-
         <>
-            {loading === false ? <>  
-            <div className="row px-1 pt-5 mt-2">
-                <div className="col-md-6 mb-4 mb-md-0">
-                    <div id="mdb-lightbox-ui" />
-                    <div className="mdb-lightbox">
-                        <div className="row product-gallery mx-1">
-                            <div className="col-12 mb-0">
-                                <figure className="view overlay rounded z-depth-1 main-img">
-                                    <Link data-size="710x823">
-                                        <img src={src[stt]} className="img-fluid w-75 h-75 z-depth-1" />
-                                    </Link>
-                                </figure>
+            { loading === false ?
 
-                            </div>
-                            <div className="col-12">
-                                <div className="row">
-                                    {
-                                        src.map((img, index) => {
-                                            return (
-                                                <div className="col-3">
-                                                    <div className="view overlay rounded z-depth-1 gallery-item">
-                                                        <img src={img} className="img-fluid border w-75 h-75 " onClick={() => { handletab(index) }} />
+                <div className="small-container product-detail">
+                    <div className="row">
+                        <div className="col-2">
+                            <img src={src[stt]} alt="" id="productImg" />
 
-                                                        <div className="mask rgba-white-slight" />
-                                                    </div>
-                                                </div>
-                                            )
-                                        })
-                                    }
+                            <div className="small-img-row">
 
-                                </div>
+                                {
+                                    src.map((img, index) => {
+                                        return (
+                                            <div className="small-img-col">
+                                                <img src={img} class="small-img" width="95px" height="95px" onClick={() => { handletab(index) }} />
+                                            </div>
+                                        )
+                                    })
+                                }
+
+
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div className="col-md-6">
-                    <h5 className="font-weight-bold">{product.name}</h5>
-                    <p className="mb-2 text-muted text-uppercase small">{product.category}</p>
-                    <select 
-                        className="form-control w-25"
-                        name="size" onChange={(e) => { setSize(e.target.value) } }
-                    >
-                        {product?.sizes?.map((option) => (
-                            <option  value={option}>{option}</option>
-                        ))}
+                        <div className="col-2">
+                            <h3>{product.name}</h3>
+                            <p>{product.category}</p>
+                            <h4>{formatter.format(product.price)}</h4>
+                            
+                            <Start product={product} id={id} />
 
-                    </select>
+                            <select name="size" onChange={(e) => { setSize(e.target.value) } }>
+                                {product?.sizes?.map((option) => (
+                                    <option value={option}>{option}</option>
+                                ))}
 
-                    <Start product={product} id={id} />
-                    <p><span className="mr-1 "><strong>   {formatter.format(product.price)}</strong></span></p>
-                    {product.number > 0
-                        ?
-                        <> {loadingCart == false ? <LoadingBox /> : <button className="btn btn-secondary mr-3 mt-3 mb-3 w-100 p-2" onClick={() => { handleAddToCart({...product , size}) }}>THÊM VÀO GIỎ</button>} </>
-                        :
-                        <button disabled className="btn btn-secondary mr-3 mt-3 mb-3 w-100 p-2" >HẾT HÀNG</button>}
-
-                    <strong>Mô tả</strong>
-                    <div>
-                        <p className="pt-1">{product.description}</p>
+                            </select>
+                            {product.number > 0
+                                ?
+                                <> {loadingCart == false ? <LoadingBox /> : <button className="btn btn-secondary mr-3 mt-3 mb-3 w-100 p-2" onClick={() => { handleAddToCart({ ...product, size }) }}>THÊM VÀO GIỎ</button>} </>
+                                :
+                                <button disabled className="btn btn-secondary mr-3 mt-3 mb-3 w-100 p-2" >HẾT HÀNG</button>}
+                            <h3>Product Detail</h3>
+                            <p>
+                                <br />
+                                {product.description}
+                            </p>
+                        </div>
                     </div>
 
+                    <div className="small-container">
+                        <div className="row row-2">
+                            <h2>Sản phẩm liên quan</h2>
 
-                    <hr />
-
+                        </div>
+                    </div>
+                    <ProductRelative id={id} handleChangeReview={handleChangeReview} data={productRelative} category={product.category} handleChangeRelative={handleChangeRelative} />
+                    <Review handleChangeReview={handleChangeReview} product={product} />
+                    <Rate id={id} />
                 </div>
-            </div>
-            <ProductRelative id={id} handleChangeReview={handleChangeReview} data={productRelative}  category={product.category} handleChangeRelative={handleChangeRelative} />
-            <Review handleChangeReview={handleChangeReview} product={product} />
-            <Rate id={id} /> </> : <LoadingBox />}
-
+                :
+                <LoadingBox />
+            }
         </>
+
+
+
+
+        // <>
+        //     {loading === false ? 
+        //     <>
+        //         <div className="row px-1 pt-5 mt-2">
+        //             <div className="col-md-6 mb-4 mb-md-0">
+        //                 <div id="mdb-lightbox-ui" />
+        //                 <div className="mdb-lightbox">
+        //                     <div className="row product-gallery mx-1">
+        //                         <div className="col-12 mb-0">
+        //                             <figure className="view overlay rounded z-depth-1 main-img">
+        //                                 <Link data-size="710x823">
+        //                                     <img src={src[stt]} className="img-fluid w-75 h-75 z-depth-1" />
+        //                                 </Link>
+        //                             </figure>
+
+        //                         </div>
+        //                         <div className="col-12">
+        //                             <div className="row">
+        //                                 {
+        //                                     src.map((img, index) => {
+        //                                         return (
+        //                                             <div className="col-3">
+        //                                                 <div className="view overlay rounded z-depth-1 gallery-item">
+        //                                                     <img src={img} className="img-fluid border w-75 h-75 " onClick={() => { handletab(index) }} />
+
+        //                                                     <div className="mask rgba-white-slight" />
+        //                                                 </div>
+        //                                             </div>
+        //                                         )
+        //                                     })
+        //                                 }
+
+        //                             </div>
+        //                         </div>
+        //                     </div>
+        //                 </div>
+        //             </div>
+        //             <div className="col-md-6">
+        //                 <h5 className="font-weight-bold">{product.name}</h5>
+        //                 <p className="mb-2 text-muted text-uppercase small">{product.category}</p>
+        //                 <h4>Chọn sản phẩm</h4>
+        //                 <select
+        //                     className="form-control w-25"
+        //                     name="size" onChange={(e) => { setSize(e.target.value) }}
+        //                 >
+        //                     {product?.sizes?.map((option) => (
+        //                         <option value={option}>{option}</option>
+        //                     ))}
+
+        //                 </select>
+
+        //                 <Start product={product} id={id} />
+        //                 <p><span className="mr-1 "><strong>   {formatter.format(product.price)}</strong></span></p>
+        //                 {product.number > 0
+        //                     ?
+        //                     <> {loadingCart == false ? <LoadingBox /> : <button className="btn btn-secondary mr-3 mt-3 mb-3 w-100 p-2" onClick={() => { handleAddToCart({ ...product, size }) }}>THÊM VÀO GIỎ</button>} </>
+        //                     :
+        //                     <button disabled className="btn btn-secondary mr-3 mt-3 mb-3 w-100 p-2" >HẾT HÀNG</button>}
+
+        //                 <strong>Mô tả</strong>
+        //                 <div>
+        //                     <p className="pt-1">{product.description}</p>
+        //                 </div>
+
+
+        //                 <hr />
+
+        //             </div>
+        //         </div>
+        //         <ProductRelative id={id} handleChangeReview={handleChangeReview} data={productRelative} category={product.category} handleChangeRelative={handleChangeRelative} />
+        //         <Review handleChangeReview={handleChangeReview} product={product} />
+        //         <Rate id={id} /> </> 
+        //         : <LoadingBox />}
+
+        // </>
 
     )
 

@@ -63,7 +63,7 @@ export const handleFetchProductsHome = () => {
 
 export const handleFetchProductFuture = ({startAfterDoc, persistProducts = [] }) => {
     return new Promise((resolve, reject) => {
-        let ref = firestore.collection('products').where("featureProduct" , "==" , true).limit(4)
+        let ref = firestore.collection('products').where("featureProduct" , "==" , true).limit(3)
         if (startAfterDoc) ref = ref.startAfter(startAfterDoc);
         ref.get()
         .then(snapshot => {
@@ -93,7 +93,7 @@ export const handleFetchProductFuture = ({startAfterDoc, persistProducts = [] })
 
 export const handleFetchBestSeller = ({startAfterDoc, persistProducts = [] }) => {
     return new Promise((resolve, reject) => {
-        let ref = firestore.collection('products').where("numOrder" , ">=" , 20).limit(4)
+        let ref = firestore.collection('products').where("numOrder" , ">=" , 20).limit(3)
         if (startAfterDoc) ref = ref.startAfter(startAfterDoc);
         ref.get()
         .then(snapshot => {
@@ -122,7 +122,7 @@ export const handleFetchBestSeller = ({startAfterDoc, persistProducts = [] }) =>
 export const handleFetchProducts = ({ filterType, startAfterDoc, persistProducts = [] }) => {
 
     return new Promise((resolve, reject) => {
-        const pageSize = 4;
+        const pageSize = 3;
 
         let ref = firestore.collection('products').orderBy("createdDate").limit(pageSize);
         if (filterType) ref = ref.where('category', '==', filterType);

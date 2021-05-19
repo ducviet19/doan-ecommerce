@@ -44,13 +44,13 @@ function Rate(props) {
                                     <div className="card m-2">
                                         <div className="card-body">
                                             <div className="row">
-                                                <div className="col-md-2">
-                                                    <img src={e.user.photoUrl} className="img img-rounded img-fluid rounded-circle w-50" />
+                                                <div className="col-2">
+                                                    <img src={e.user.photoUrl} className="avatar-user" />
                                                     <div>
                                                         <p className="text-secondary">{e.timeDate.split("T")[0]}</p>
                                                     </div>
                                                 </div>
-                                                <div className="col-md-10">
+                                                <div className="col-2">
                                                     <p>
                                                         <Link className="float-left"><strong>{e.user.displayName}</strong></Link>
                                                         {/* <p className="float-right">{e.start == "5" ? "Rất tốt" : e.start == "4" ? "  tốt" : e.start == "3" ? "Trung bình" : e.start == "2" ? "Tệ" : "Rất Tệ"}</p> */}
@@ -92,11 +92,6 @@ function Rate(props) {
                                                                 </h2>
                                                             </>
                                                         </p>
-
-                                                        {/* <span className="float-right"><i className="text-warning fa fa-star" /></span>
-                                                        <span className="float-right"><i className="text-warning fa fa-star" /></span>
-                                                        <span className="float-right"><i className="text-warning fa fa-star" /></span>
-                                                        <span className="float-right"><i className="text-warning fa fa-star" /></span> */}
                                                     </p>
                                                     <div className="clearfix" />
                                                     <p>{e.comment}</p>

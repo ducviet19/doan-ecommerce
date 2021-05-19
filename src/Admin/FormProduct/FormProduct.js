@@ -190,11 +190,11 @@ function FormProduct(props) {
                         <div>{formik.errors.number}</div>) : null}
                 </div>
                 <div className="form-group">
-                    <label for="sizes">Size</label>
+                    <label for="sizes">Phân loại sản phẩm</label>
                     <input className="form-control"
                         id='sizes'
                         type='text'
-                        placeholder="Nhập size thêm dấu , sau các size . Ví dụ : X,S,L"
+                        placeholder="Thêm dấu  ' , ' sau các thuộc tính . Ví dụ : X,S,L"
                         value={formik.values.sizes}
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur} />

@@ -8,7 +8,6 @@ function MainLayout(props) {
     return (
         <div className="content">
             <Header {...props} />
-            {/* <Slide /> */}
             <body className='body'>
                 {props.children}
             </body>

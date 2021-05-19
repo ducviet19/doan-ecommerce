@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { formatter } from '../../App';
 import { fetchOrders } from '../../redux/Order/order.action';
 import { fetchProductsHome } from '../../redux/Product/products.action';
@@ -11,14 +11,17 @@ const mapState = ({ orderData, productsData, message }) => ({
 })
 function Main(props) {
 
-    const { listOrder, listProduct, listmessage } = useSelector(mapState)
+    const dispatch = useDispatch()
+
+    const { listOrder, listProduct, listmessage } = useSelector(mapState);
+
 
     useEffect(() => {
-        fetchProductsHome()
+        dispatch(fetchProductsHome()) 
     },[])
 
     useEffect(() => {
-        fetchOrders()
+        dispatch(fetchOrders())
     },[])
 
     const total = listOrder.reduce((a, b) => {
@@ -33,12 +36,9 @@ function Main(props) {
             <div className="row">
                 <div className="col d-sm-flex align-items-center justify-content-center mb-4">
                     <h1 className="h3 mb-0 text-gray-800">Thống kê</h1>
-
                 </div>
             </div>
             <div className="row">
-
-
                 <div className="col-xl-3 col-md-6 mb-4">
                     <div className="card border-left-success shadow h-100 py-2">
                         <div className="card-body">

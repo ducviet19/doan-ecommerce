@@ -194,11 +194,11 @@ function EditProduct({ props }) {
                     </div>
 
                     <div className="form-group">
-                        <label for="sizes">size sản phẩm</label>
+                        <label for="sizes">Phân loại sản phẩm</label>
                         <textarea className="form-control"
                             id='sizes'
                             type='text'
-                            placeholder="Miêu tả sản phẩm"
+                            placeholder="Phân loại sản phẩm"
                             value={formik.values.sizes}
                             onChange={formik.handleChange}
                             onBlur={formik.handleBlur} />

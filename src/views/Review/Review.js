@@ -113,11 +113,13 @@ function Review(props) {
 
                     </div>
                 </div>
-                <div className="form-group w-50">
-                    <label htmlFor="comment">Viết bình luận</label>
+                <div className="form-group">
+                    <label className="title__form" htmlFor="comment">Viết bình luận</label>
+                    <br />
+                    <br />
                     <textarea class="form-control" id="comment" rows={3}
                         name="comment"
-                        placeholder="Đánh giá sản phẩm"
+                        placeholder="Viết đánh giá sản phẩm ...."
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
                         value={formik.values.comment} />

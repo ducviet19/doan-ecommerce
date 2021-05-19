@@ -76,61 +76,63 @@ function Login(props) {
 
 
     return (
-        <div className="login row justify-content-center">
+        <div className="container">
+            <div className="login row">
 
-            <div className="col-lg-6 col-12">
-                <h1 className="text-center">Đăng Nhập</h1>
-            </div>
+                <div className="col-2 ">
+                    <h1 className="text-center">Đăng Nhập</h1>
+                </div>
 
-            <div className="col-lg-6 col-12 m-1">
-                {isLoading === false ? "" : <LoadingBox />}
-                <form className='login' onSubmit={formik.handleSubmit}>
+                <div className="col-2 ">
+                    {isLoading === false ? "" : <LoadingBox />}
+                    <form className='login' onSubmit={formik.handleSubmit}>
 
-                    <div className="form-group">
-                        <input className="form-control"
-                            id='email'
-                            type='text'
-                            placeholder="Nhập email"
-                            value={formik.values.email}
-                            onChange={formik.handleChange}
-                            onBlur={formik.handleBlur} />
-                        {formik.touched.email && formik.errors.email ? (
-                            <div className='err'>{formik.errors.email}</div>) : null}
-                    </div>
+                        <div className="form-group">
+                            <input className="form-control"
+                                id='email'
+                                type='text'
+                                placeholder="Nhập email"
+                                value={formik.values.email}
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur} />
+                            {formik.touched.email && formik.errors.email ? (
+                                <div className='err'>{formik.errors.email}</div>) : null}
+                        </div>
+                        <br />
+                        <div className="form-group">
+                            <input className="form-control"
+                                id='password'
+                                type='password'
+                                placeholder="Nhập mật khẩu"
+                                value={formik.values.password}
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur} />
+                            {formik.touched.password && formik.errors.password ? (
+                                <div className='err'>{formik.errors.password}</div>) : null}
+                            {/* <input type="password" value={password} onChange={(e) => setPassword(e.target.value) } className="form-control" id="exampleInputPassword1" placeholder="Mật khẩu" /> */}
+                        </div >
+                        <div className=''>
+                            <button className="btn" type='submit' >
+                                Đăng Nhập
+                            </button>
+                            <Link to="/register"><button className='btn btn-outline-info mb-2'>Đăng Ký</button></Link>
+                        </div>
+                        <div className='d-flex'>
+                            <Link className='ml-auto ' style={{ textDecoration: 'none' }} to='/forgot'>Quên mật khẩu</Link>
+                        </div>
+                        <div>
+                            
 
-                    <div className="form-group">
-                        <input className="form-control"
-                            id='password'
-                            type='password'
-                            placeholder="Nhập mật khẩu"
-                            value={formik.values.password}
-                            onChange={formik.handleChange}
-                            onBlur={formik.handleBlur} />
-                        {formik.touched.password && formik.errors.password ? (
-                            <div className='err'>{formik.errors.password}</div>) : null}
-                        {/* <input type="password" value={password} onChange={(e) => setPassword(e.target.value) } className="form-control" id="exampleInputPassword1" placeholder="Mật khẩu" /> */}
-                    </div >
-                    <div className='d-flex'>
-                        <button className="btn btn-secondary m-auto" type='submit' >
-                            Đăng Nhập
-                        </button>
-                    </div>
-                    <div className='d-flex'>
-                        <Link className='ml-auto ' style={{ textDecoration: 'none' }} to='/forgot'>Quên mật khẩu</Link>
-                    </div>
+                        </div>
+                        <div>
+                            <button onClick={loginWithGoogle} className="btn btn-outline-warning" href>Login With Google</button>
+                        </div>
 
-
-                    <div>
-                        <Link to="/register"><button className='btn btn-outline-info mb-2'>Đăng Ký</button></Link>
-
-                    </div>
-                    <div>
-                        <button onClick={loginWithGoogle} className="btn btn-outline-warning" href>Login With Google</button>
-                    </div>
-
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
+
     )
 
 }
