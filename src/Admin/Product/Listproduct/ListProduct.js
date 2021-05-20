@@ -42,7 +42,7 @@ function ListProduct(props) {
         swal("Xoá sản phẩm thành công!", "", "success");
     }
     return (
-        <div className="list_products mt-2">
+        <div className="main-content">
             <Link to="/admin/newproduct"><button className="btn btn-primary">Thêm mới sản phẩm</button> </Link>
             <SearchProductAdmin />
             <h2>Danh sách sản phẩm</h2>
@@ -57,6 +57,7 @@ function ListProduct(props) {
                             <th scope="col">Loại sản phẩm</th>
                             <th scope="col">Giá sản phẩm</th>
                             <th scope="col">Sản phẩm nổi bật</th>
+                            <th scope="col"></th>
                         </tr>
                     </thead>
                     <tbody>

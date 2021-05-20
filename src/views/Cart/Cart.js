@@ -74,9 +74,12 @@ function Cart(props) {
                         </table>
                     </div>
 
-                    : <div className="text-center pt-5 mt-5 col-lg-12 col-12">
-                        <h3 >Bạn chưa có sản phẩm nào trong giỏ hàng</h3>
-                        <Link to="/"><button className="btn btn-primary">Tiếp tục mua hàng</button></Link>
+                    : <div className="row">
+                        <div className="cart-none">
+                            <h3 >Bạn chưa có sản phẩm nào trong giỏ hàng</h3>
+                            <Link to="/"><button className="btn btn-primary">Tiếp tục mua hàng</button></Link>
+                        </div>
+                        
 
                     </div>
             }

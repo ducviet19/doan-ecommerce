@@ -65,11 +65,12 @@ function InfoUser(props) {
     });
 
     return (
-        <div className="m-2 mt-5">
-            <h1 className='text-center'>Thông tin tài khoản</h1>
+        <div className="container">
+            <h1 className=' info-user'>Thông tin tài khoản</h1>
             <form className='from_info_user' onSubmit={formik.handleSubmit}>
                 <div className="form-group">
                     <label htmlFor="name">Họ và tên</label>
+                    <br />
                     <input className="form-control"
                         id='displayName'
                         type='text'
@@ -82,6 +83,7 @@ function InfoUser(props) {
                 </div>
                 <div className="form-group">
                     <label htmlFor="email">Địa Chỉ Email</label>
+                    <br />
                     <input disabled='true' className="form-control"
                         id='email'
                         type="email"
@@ -94,6 +96,7 @@ function InfoUser(props) {
                 </div>
                 <div className="form-group">
                     <label htmlFor="avata">Avata:  <img className="img-thumbnail avata" src={user.photoUrl} alt='Không có ảnh' /></label><br></br>
+                    <br />
                     <input type='file'
                         id='photoUrl'
                         name='file'

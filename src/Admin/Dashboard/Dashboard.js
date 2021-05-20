@@ -9,32 +9,33 @@ import './style.css'
 
 
 
-const mapState = ({user , orderData }) => ({
-  user : user.currentUser,
+const mapState = ({ user, orderData }) => ({
+  user: user.currentUser,
 })
 function Dashboard(props) {
   useScrollTop();
   const dispatch = useDispatch();
   const { user } = useSelector(mapState)
 
-  useEffect(( ) => {
+  useEffect(() => {
     dispatch(
       getUserOrderHistory(user.id)
     )
-  },[] )
+  }, [])
   return (
-  
-      <div className="row">
-        <div className="col-lg-2 col-4">
+    < >
+      <>
+        <>
+        <input type="checkbox" id="sidebar-toggle" />
         <Aside />
-        </div>
-       
-        <div className="col-lg-10 col-8">
+        </>
+        <>
           {props.children}
-        </div>    
-        <FooterAdmin />
+        </>
+      </>
+    </>
 
-    </div>
+
   )
 
 }

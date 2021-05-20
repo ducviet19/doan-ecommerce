@@ -35,7 +35,7 @@ function ReplyComment(props) {
 
     return (
 
-        <div>
+        <div className="main-content">
             <div className="card card-inner">
                 <div className="card-body">
                     <div className="row">

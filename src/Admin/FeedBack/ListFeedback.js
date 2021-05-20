@@ -22,7 +22,7 @@ function ListFeedback(props) {
         swal("Xoá feedback thành công!", "", "success");
     }
     return (
-        <div>
+        <div className="main-content">
             <h2>Danh sách phản hồi</h2>
             <div className="table-responsive">
                 <table className="table table-light">
@@ -33,6 +33,7 @@ function ListFeedback(props) {
                             <th className='text-center' scope="col">Email</th>
                             <th className='text-center' scope="col">Chủ đề</th>
                             <th className='text-center' scope='col'>Nội dung</th>
+                            <th className='text-center' scope='col'></th>
                         </tr>
                     </thead>
                     <tbody>

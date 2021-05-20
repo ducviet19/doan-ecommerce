@@ -36,7 +36,7 @@ function ListReview(props) {
 
     const reviewProduct = () => {
         return (
-            <div>
+            <div className="main-content">
                 {listReview.review.length == 0 ? "Sản phẩm chưa có đánh giá" : <>
                     {
                         listReview.review.map((e, index) => {

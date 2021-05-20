@@ -11,22 +11,14 @@ function OrderHistory({ orders, user }) {
     const history = useHistory()
     const dispatch = useDispatch();
 
-    // useEffect(() => {
-    //     dispatch(
-    //         getUserOrderHistory(user.id)
-    //     )
-    // },[] )
 
 
 
-    const handleDelete = (documentID) => {
 
-
-
-    }
     return (
 
-        <div className="">
+
+        <div className="main-content">
             <h2>Danh sách đơn hàng </h2>
             <div className="table-responsive">
                 <div className="table-responsive">

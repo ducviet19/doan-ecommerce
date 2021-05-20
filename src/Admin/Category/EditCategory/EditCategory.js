@@ -63,7 +63,7 @@ function EditCategory(props) {
 
 
     return (
-        <div>
+        <div className="main-content">
             <div className="m-2">
                 <form onSubmit={formik.handleSubmit}>
                     <div className="form-group">

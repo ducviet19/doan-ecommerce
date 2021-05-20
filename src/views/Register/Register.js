@@ -84,25 +84,29 @@ function Register() {
     }
 
     return (
-        <div className="login row m-5">
-            <div className="col-lg m-5 pt-5">
+        <div className="container">
+             <div className="login row m-5">
+            <div className="col-2 m-5 pt-5">
                 <h1 className="text-center">Tạo Tài Khoản</h1>
             </div>
-            <div className="col-lg m-5">
+            <div className="col-2 m-5">
                 {isLoading === false ? "" : <LoadingBox />}
                 <form onSubmit={handleSubmit} className="login">
                     <div className="form-group">
                         <label >Họ và Tên</label>
+                        <br />
                         <input value={displayName} onChange={(e) => { setDisplayName(e.target.value) }} type="text" className="form-control" id="fullName" placeholder="Nhập Tên của bạn" />
                         <div className='err' value={error_fullName} >{error_fullName}</div>
                     </div>
                     <div className="form-group">
                         <label >Email</label>
+                        <br />
                         <input value={email} onChange={(e) => { setEmail(e.target.value) }} type="email" className="form-control" id="email" placeholder="Email" />
                         <div className='err' value={error_email} >{error_email}</div>
                     </div>
                     <div className="form-group">
                         <label >Mật Khẩu</label>
+                        <br />
                         <input value={password} onChange={(e) => { setPassword(e.target.value) }} type="password" className="form-control" id="password" placeholder="Mật Khẩu" />
                         <div className='err' value={error_password} >{error_password}</div>
                     </div>
@@ -116,6 +120,8 @@ function Register() {
                 </form>
             </div>
         </div>
+        </div>
+       
     )
 
 }

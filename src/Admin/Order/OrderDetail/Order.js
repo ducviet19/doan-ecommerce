@@ -39,7 +39,7 @@ function Order(props) {
         history.push('/admin/order')
     }
     return (
-        <div className="text-center">
+        <div className="main-content">
             <h2>Sản phẩm</h2>
             <OrderDetail item={orderDetail.item} />
             <h1> TỔNG TIỀN: {formatter.format(orderDetail.total)} đ</h1>

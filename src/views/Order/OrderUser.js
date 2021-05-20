@@ -21,9 +21,19 @@ function OrderUser(props) {
         )
     }, [])
 
+    console.log('orderHistory',orderHistory)
+
+
     return (
-        <div>
-            <div className="mt-5">
+        <div className="order-user">
+
+            {
+                orderHistory?.length <= 0 ? 
+                <div>
+                    <h2>Bạn chưa có đơn hàng nào </h2>
+                    <button className="btn"> <Link to="/">Mua hàng ngay </Link> </button>
+                </div>
+                :             <div className="mt-5">
                 <h2>Danh sách đơn hàng </h2>
                 <div className="table-responsive">
                     <table class="table">
@@ -58,6 +68,8 @@ function OrderUser(props) {
                 </div>
 
             </div>
+            }
+
         </div>
     );
 }

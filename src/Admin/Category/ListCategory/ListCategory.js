@@ -22,8 +22,8 @@ function ListCategory(props) {
         )
     }
     return (
-        <div>
-            <div className="list_products">
+        
+            <div className="main-content">
                 <Link to="/admin/addcategory" > <button className="btn btn-primary">Thêm danh mục</button></Link>
 
                 <h2>Danh sách danh mục</h2>
@@ -34,6 +34,7 @@ function ListCategory(props) {
                             <tr>
                                 <th scope="col">STT</th>
                                 <th scope="col">Tên danh mục</th>
+                                <th scope="col"></th>
 
                             </tr>
                         </thead>
@@ -58,7 +59,7 @@ function ListCategory(props) {
 
 
             </div>
-        </div>
+        
     );
 }
 

@@ -30,7 +30,7 @@ function ListUser(props) {
         swal("Xoá user thành công!", "", "success");
     }
     return (
-        <div>
+        <div className="main-content">
 
 
 
@@ -44,6 +44,7 @@ function ListUser(props) {
                             <th scope="col">Tên</th>
                             <th scope="col">Email</th>
                             <th scope="col">Vai Trò</th>
+                            <th scope="col"></th>
                         </tr>
                     </thead>
                     <tbody>

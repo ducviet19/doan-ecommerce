@@ -84,7 +84,7 @@ function EditUser(props) {
     });
 
     return (
-        <div className="m-2">
+        <div className="main-content">
             <form onSubmit={formik.handleSubmit}>
                 <div className="form-group">
                     <label htmlFor="name">Họ và tên</label>

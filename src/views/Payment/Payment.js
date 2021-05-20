@@ -81,7 +81,7 @@ function Payment(props) {
         try {
             emailjs.send('service_ag5s9pa', 'template_drtx4me', templateParams, 'user_xIM0XRWJlXjbCTUs0eRDH')
             resetForm();
-            swal("Kiếm tra mail để xem thông tin khuyến mãi!", "", "success")
+            swal("Đặt Hàng Thành Công! Kiểm tra email của bạn để xem thông tin đơn hàng", "", "success")
         } catch (err) {
             swal(`${err}`, "", "error")
         }
@@ -132,7 +132,7 @@ function Payment(props) {
 
 
     return (
-        <div className="container">
+        <div className="container payment">
             {
                 cartItems.length > 0 ? <div className="row mt-5">
                     <div className="cl-3 form-payment">

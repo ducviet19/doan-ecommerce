@@ -22,7 +22,8 @@ function ProductRelative(props) {
                     return (
                         <div className="col-4">
                             <img src={product.thumbnail} alt="" />
-                            <h4>{product.name}</h4>
+                            <Link  to={`/product/${product.documentID}`} onClick={() => props.handleChangeRelative(product.documentID)} className=""> <h4>{product.name}</h4></Link>
+                           
                             <Start product={product} />
                             <p>{formatter.format(product.price)}</p>
                         </div>

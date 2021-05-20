@@ -140,7 +140,7 @@ function FormProduct(props) {
     
 
     return (
-        <div className="m-2">
+        <div className="main-content">
             <form onSubmit={formik.handleSubmit}>
                 <div className="form-group">
                     <label for="name">Tên sản phẩm</label>
