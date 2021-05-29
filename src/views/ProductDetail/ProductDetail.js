@@ -38,8 +38,7 @@ function ProductDetail({ match }) {
 
     const [productChange, setProductChange] = useState(false)
     const [idProduct, setIdProduct] = useState(product.documentID)
-    const [size, setSize] = useState(
-    )
+    const [size, setSize] = useState()
     let { id } = useParams();
 
 
@@ -94,6 +93,9 @@ function ProductDetail({ match }) {
         setIdProduct(value)
     }
 
+    console.log('size',product?.sizes )
+
+
 
     return (
         <>
@@ -126,7 +128,7 @@ function ProductDetail({ match }) {
                             
                             <Start product={product} id={id} />
 
-                            <select name="size" onChange={(e) => { setSize(e.target.value) } }>
+                            <select name="sizes" onChange={(e) => { setSize(e.target.value) } }>
                                 {product?.sizes?.map((option) => (
                                     <option value={option}>{option}</option>
                                 ))}

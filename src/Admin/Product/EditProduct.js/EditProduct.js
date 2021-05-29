@@ -9,6 +9,7 @@ import swal from 'sweetalert';
 import ListReview from '../../ReviewAdmin/ListReview';
 import * as Yup from 'yup';
 import axios from 'axios'
+import NumberFormat from 'react-number-format';
 const mapState = state => ({
     product: state.productsData.product
 });
@@ -118,7 +119,7 @@ function EditProduct({ props }) {
                     name: values.name,
                     category: values.category,
                     description: values.description,
-                    price: values.price,
+                    price:  Number((values.price).replace(/[^0-9\.]+/g,"")),
                     number: values.number,
                     featureProduct: values.featureProduct,
                     sizes: values.sizes
@@ -198,9 +199,10 @@ function EditProduct({ props }) {
 
                     <div className="form-group">
                         <label for="price">Giá sản phẩm</label> <br /><br />
-                        <input className="form-control"
+                        <NumberFormat className="form-control"
                             id='price'
                             type='text'
+                            thousandSeparator={true} prefix={''}
                             placeholder="Nhập Giá sản phẩm"
                             value={formik.values.price}
                             onChange={formik.handleChange}
@@ -233,18 +235,7 @@ function EditProduct({ props }) {
                             onBlur={formik.handleBlur} />
                     </div>
                     <br /> <br />
-                    <div className="form-group">
-                        <label for="price">Giá sản phẩm</label> <br /> <br />
-                        <input className="form-control"
-                            id='price'
-                            type='text'
-                            placeholder="Nhập Giá sản phẩm"
-                            value={formik.values.price}
-                            onChange={formik.handleChange}
-                            onBlur={formik.handleBlur} />
-                        {formik.touched.price && formik.errors.price ? (
-                            <div className='err'>{formik.errors.price}</div>) : null}
-                    </div>
+                    
                     <div className="form-group w-50">
                         <label for="thumbnail">Ảnh sản phẩm</label><br></br>
                         <input type='file'
