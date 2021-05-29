@@ -71,7 +71,7 @@ export function* fetchProductFuture({ payload }) {
     }
 }
 
-export function* onFetchProducFuture() {
+export function* onFetchProductFuture() {
     yield takeLatest(productsTypes.FETCH_PRODUCTS_FEATURE, fetchProductFuture);
 }
 
@@ -111,7 +111,7 @@ export function* fetchProductSeller({ payload }) {
     }
 }
 
-export function* onFetchProducSeller() {
+export function* onFetchProductSeller() {
     yield takeLatest(productsTypes.FETCH_PRODUCT_SELLER, fetchProductSeller);
 }
 
@@ -166,7 +166,7 @@ export function* deleteProduct({ payload }) {
     }
 }
 
-export function* onDeleteProductct() {
+export function* onDeleteProduct() {
     yield takeLatest(productsTypes.DELETE_PRODUCT, deleteProduct)
 }
 
@@ -257,14 +257,14 @@ export default function* productsSagas() {
     yield all([
         call(onAddProduct),
         call(onFetchProduct),
-        call(onDeleteProductct),
+        call(onDeleteProduct),
         call(onFetchProductId),
         call(onEditProduct),
         call(onUpdateNumber),
         call(onFetchProductHome),
         call(onReducerNumber),
-        call(onFetchProducFuture),
-        call(onFetchProducSeller),
+        call(onFetchProductFuture),
+        call(onFetchProductSeller),
         call(onFetchProductRelative)
     ])
 }

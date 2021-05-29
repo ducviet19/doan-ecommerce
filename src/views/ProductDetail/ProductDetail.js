@@ -38,7 +38,7 @@ function ProductDetail({ match }) {
 
     const [productChange, setProductChange] = useState(false)
     const [idProduct, setIdProduct] = useState(product.documentID)
-    const [size, setSize] = useState()
+    const [size, setSize] = useState('')
     let { id } = useParams();
 
 
@@ -66,17 +66,25 @@ function ProductDetail({ match }) {
     const handleAddToCart = async (product) => {
         if (!product) return;
 
-        dispatch(addToCart(product))
-        handleUpdateNumber(product, product.documentID)
-        setProductChange(true)
-        // dispatch(cartLoading(product.documentID))
-        // loadingButton(loadingCart)
-        swal({
-            button: false,
-            text: "Sản phẩm đã được thêm vào giỏ hàng",
-            icon: "success",
-            timer: 1000
-        })
+        if(size == "") {
+            swal("Hãy chọn loại sản phẩm")
+        }
+
+        else {
+            dispatch(addToCart(product))
+            handleUpdateNumber(product, product.documentID)
+            setProductChange(true)
+            // dispatch(cartLoading(product.documentID))
+            // loadingButton(loadingCart)
+            swal({
+                button: false,
+                text: "Sản phẩm đã được thêm vào giỏ hàng",
+                icon: "success",
+                timer: 1000
+            })
+        }
+
+        
 
     }
     const handleUpdateNumber = (data, id) => {
@@ -128,7 +136,8 @@ function ProductDetail({ match }) {
                             
                             <Start product={product} id={id} />
 
-                            <select name="sizes" onChange={(e) => { setSize(e.target.value) } }>
+                            <select name="sizes" onChange={(e) => { setSize(e.target.value)  ; console.log(e.target.value)} }>
+                                <option value="">Chọn loại sản phẩm</option>
                                 {product?.sizes?.map((option) => (
                                     <option value={option}>{option}</option>
                                 ))}

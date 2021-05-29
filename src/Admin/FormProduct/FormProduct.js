@@ -155,10 +155,11 @@ function FormProduct(props) {
                     {formik.touched.name && formik.errors.name ? (
                         <div>{formik.errors.name}</div>) : null}
                 </div>
+                <br />
                 <div className="form-group">
 
                     <label for="category">Loại sản phẩm</label>
-                    <br /><br /><br />
+                    <br />
                     <select
                         className="form-control w-25"
                         name="category"
@@ -179,7 +180,7 @@ function FormProduct(props) {
                 </div>
                 <div className="form-group">
                     <label for="number">Số lượng sản phẩm</label>
-                    <br /><br /><br />
+                    <br />
                     <input className="form-control"
                         id='number'
                         type='number'
@@ -191,9 +192,10 @@ function FormProduct(props) {
                     {formik.touched.number && formik.errors.number ? (
                         <div>{formik.errors.number}</div>) : null}
                 </div>
+                <br /><br />
                 <div className="form-group">
                     <label for="sizes">Phân loại sản phẩm</label>
-                    <br /><br /><br />
+                    <br />
                     <input className="form-control"
                         id='sizes'
                         type='text'
@@ -204,9 +206,10 @@ function FormProduct(props) {
                     {formik.touched.size && formik.errors.size ? (
                         <div>{formik.errors.size}</div>) : null}
                 </div>
+                <br /><br />
                 <div className="form-group">
                     <label for="description">Miêu tả sản phẩm</label>
-                    <br /><br /><br />
+                    <br />
                     <textarea className="form-control"
                         id='description'
                         type='text'
@@ -217,9 +220,10 @@ function FormProduct(props) {
                     {formik.touched.description && formik.errors.description ? (
                         <div>{formik.errors.description}</div>) : null}
                 </div>
+                <br /><br />
                 <div className="form-group">
                     <label for="price">Giá sản phẩm</label>
-                    <br /><br /><br />
+                    <br />
                     <NumberFormat className="form-control"
                         id='price'
                         type='text'
@@ -232,6 +236,7 @@ function FormProduct(props) {
                         <div>{formik.errors.price}</div>) : null}
 
                 </div>
+                <br /><br />
                 <div className="form-group">
                     <label for="featureProduct">Sản phẩm nổi bật</label>
                     <br /> 
