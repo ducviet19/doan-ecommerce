@@ -42,32 +42,35 @@ function Order(props) {
         <div className="main-content">
             <h2>Sản phẩm</h2>
             <OrderDetail item={orderDetail.item} />
-            <h1> TỔNG TIỀN: {formatter.format(orderDetail.total)} đ</h1>
-            <h2>Thông tin đơn hàng</h2>
-            <ul className="list-unstyled">
-                <li>Địa Chỉ :  {orderDetail.shipping?.address}</li>
-                <li>Email :  {orderDetail.shipping?.email}</li>
-                <li>Tên :  {orderDetail.shipping?.name}</li>
-                <li>SĐT : {orderDetail.shipping?.phone}</li>
-                <li>Hình thức thanh toán :  {orderDetail.shipping?.payment == "cod" ? "Thanh toán khi nhận hàng" : "Chuyển khoản"}</li>
-            </ul>
-            <form className='mb-3' onSubmit={handleSubmit}>
+            <div className="order-text">
+                <h1> TỔNG TIỀN: {formatter.format(orderDetail.total)} đ</h1>
+                <h2>Thông tin đơn hàng</h2>
+                <ul className="list-unstyled">
+                    <li>Địa Chỉ :  {orderDetail.shipping?.address}</li>
+                    <li>Email :  {orderDetail.shipping?.email}</li>
+                    <li>Tên :  {orderDetail.shipping?.name}</li>
+                    <li>SĐT : {orderDetail.shipping?.phone}</li>
+                    <li>Hình thức thanh toán :  {orderDetail.shipping?.payment == "cod" ? "Thanh toán khi nhận hàng" : "Chuyển khoản"}</li>
+                </ul>
+                <form className='mb-3' onSubmit={handleSubmit}>
 
 
-                <div className="form-group">
-                    <label for="status">Trạng thái</label> <i></i>
-                    <select className='' value={status} onChange={(e) => setStatus(e.target.value)}  >
+                    <div className="form-group">
+                        <label for="status">Trạng thái</label> <i></i>
+                        <select className='' value={status} onChange={(e) => setStatus(e.target.value)}  >
 
-                        <option className='text-warning' value="false">Đang xử lý</option>
-                        <option className='text-success' value="true">Đã hoàn thành</option>
-                    </select>
-                </div>
+                            <option className='text-warning' value="false">Đang xử lý</option>
+                            <option className='text-success' value="true">Đã hoàn thành</option>
+                        </select>
+                    </div>
 
-                <button className="btn btn-success" type="submit">
-                    Cập nhật đơn hàng
+                    <button className="btn btn-success" type="submit">
+                        Cập nhật đơn hàng
                     </button>
 
-            </form>
+                </form>
+            </div>
+
 
 
         </div>

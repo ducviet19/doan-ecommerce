@@ -7,6 +7,7 @@ import Product from '../Product/Product';
 import ProductCart from '../../views/ProductCart/ProductCart'
 import LoadMore from '../../component/LoadMore/LoadMore'
 import { fetchCategories } from '../../redux/Category/category.action';
+import Search from '../Search/Search';
 
 const mapState = ({ productsData }) => ({
     products: productsData.products
@@ -88,7 +89,8 @@ const ProductResults = ({ }) => {
     };
     return (
         <div className='container products'>
-            <div className="col-md-3 order-md-0 mt-2 mt-md-0 mb-3">
+            <div className="row">
+            <div className="col-2">
                 <select className="form-control form-control-sm" value={filterType} onChange={handleFilter}>
                     <option value="">Tất cả</option>
                     {categories.map((option) => (
@@ -96,7 +98,9 @@ const ProductResults = ({ }) => {
                     ))}
                 </select>
             </div>
-
+            <Search />
+            </div>
+           
             <div className='row justify-content-center'>
                 {data.map((product, pos) => {
                     const { documentID, thumbnail, name, price, number } = product;

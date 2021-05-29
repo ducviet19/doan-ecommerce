@@ -43,8 +43,11 @@ function ListProduct(props) {
     }
     return (
         <div className="main-content">
-            <Link to="/admin/newproduct"><button className="btn btn-primary">Thêm mới sản phẩm</button> </Link>
-            <SearchProductAdmin />
+            <div className="list-product__header">
+                <Link to="/admin/newproduct"><button className="btn btn-primary">Thêm mới sản phẩm</button> </Link>
+                <SearchProductAdmin />
+            </div>
+            
             <h2>Danh sách sản phẩm</h2>
 
             <div className="table-responsive">

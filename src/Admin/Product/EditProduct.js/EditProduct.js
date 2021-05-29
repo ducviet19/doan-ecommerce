@@ -132,11 +132,12 @@ function EditProduct({ props }) {
 
     return (
 
-        <div className="main-content">
+        <div className="main-content ">
             <div className="m-2">
-                <form onSubmit={formik.handleSubmit}>
+                <form className="form-product" onSubmit={formik.handleSubmit}>
                     <div className="form-group">
                         <label for="name">Tên sản phẩm</label>
+                        <br /><br />
                         <input className="form-control"
                             id='name'
                             type='text'
@@ -148,8 +149,9 @@ function EditProduct({ props }) {
                             <div className='err'>{formik.errors.name}</div>) : null}
                         {/* <input value={name} onChange={(e) => setName(e.target.value)} type="text" className="form-control" id="name" placeholder="Nhập tên sản phẩm" /> */}
                     </div>
+                    <br />
                     <div className="form-group">
-                        <label for="category">Loại sản phẩm</label>
+                        <label for="category">Loại sản phẩm</label><br /><br />
                         <select
                             className="form-control w-25"
                             name="category"
@@ -164,8 +166,9 @@ function EditProduct({ props }) {
 
                         </select>
                     </div>
+                    <br /> <br />
                     <div className="form-group">
-                        <label for="number">Số lượng tả sản phẩm</label>
+                        <label for="number">Số lượng tả sản phẩm</label><br /><br />
                         <input className="form-control"
                             id='number'
                             name='number'
@@ -180,7 +183,7 @@ function EditProduct({ props }) {
                         {/* <input value={number} onChange={(e) => setNumber(e.target.value)} type="text" className="form-control" id="number" placeholder="Nhập tên sản phẩm" /> */}
                     </div>
                     <div className="form-group">
-                        <label for="description">Miêu tả sản phẩm</label>
+                        <label for="description">Miêu tả sản phẩm</label><br /><br />
                         <textarea className="form-control"
                             id='description'
                             type='text'
@@ -194,8 +197,21 @@ function EditProduct({ props }) {
                     </div>
 
                     <div className="form-group">
-                        <label for="sizes">Phân loại sản phẩm</label>
-                        <textarea className="form-control"
+                        <label for="price">Giá sản phẩm</label> <br /><br />
+                        <input className="form-control"
+                            id='price'
+                            type='text'
+                            placeholder="Nhập Giá sản phẩm"
+                            value={formik.values.price}
+                            onChange={formik.handleChange}
+                            onBlur={formik.handleBlur} />
+                        {formik.touched.price && formik.errors.price ? (
+                            <div className='err'>{formik.errors.price}</div>) : null}
+                    </div>
+
+                    <div className="form-group">
+                        <label for="sizes">Phân loại sản phẩm</label><br /><br />
+                        <input className="form-control"
                             id='sizes'
                             type='text'
                             placeholder="Phân loại sản phẩm"
@@ -207,7 +223,7 @@ function EditProduct({ props }) {
                         {/* <textarea value={description} onChange={(e) => setDescription(e.target.value)} type="text" className="form-control" id="description" placeholder="Nhập tên sản phẩm" /> */}
                     </div>
                     <div className="form-group">
-                        <label for="featureProduct">Sản phẩm nổi bật</label>
+                        <label for="featureProduct">Sản phẩm nổi bật</label><br />
                         <input className="form-control"
                             id='featureProduct'
                             type="checkbox"
@@ -215,6 +231,19 @@ function EditProduct({ props }) {
                             checked={formik.values.featureProduct}
                             onChange={formik.handleChange}
                             onBlur={formik.handleBlur} />
+                    </div>
+                    <br /> <br />
+                    <div className="form-group">
+                        <label for="price">Giá sản phẩm</label> <br /> <br />
+                        <input className="form-control"
+                            id='price'
+                            type='text'
+                            placeholder="Nhập Giá sản phẩm"
+                            value={formik.values.price}
+                            onChange={formik.handleChange}
+                            onBlur={formik.handleBlur} />
+                        {formik.touched.price && formik.errors.price ? (
+                            <div className='err'>{formik.errors.price}</div>) : null}
                     </div>
                     <div className="form-group w-50">
                         <label for="thumbnail">Ảnh sản phẩm</label><br></br>
@@ -246,19 +275,7 @@ function EditProduct({ props }) {
                         <img className='img-thumbnail w-25' src={image2}></img>
                         <div value={imgvalid} className="error">{imgvalid}</div>
                     </div>
-                    <div className="form-group">
-                        <label for="price">Giá sản phẩm</label>
-                        <input className="form-control"
-                            id='price'
-                            type='text'
-                            placeholder="Nhập Giá sản phẩm"
-                            value={formik.values.price}
-                            onChange={formik.handleChange}
-                            onBlur={formik.handleBlur} />
-                        {formik.touched.price && formik.errors.price ? (
-                            <div className='err'>{formik.errors.price}</div>) : null}
-                        {/* <input value={price} onChange={(e) => setPrice(e.target.value)} type="text" className="form-control" id="price" placeholder="Nhập tên sản phẩm" /> */}
-                    </div>
+                    
 
 
                     <button className="btn btn-success" disabled={!image || !image1 || !image2} type="submit">
@@ -267,9 +284,13 @@ function EditProduct({ props }) {
 
                 </form>
             </div>
+            <div className="form-product">
             <h2>Đánh giá của người dùng</h2>
 
             <ListReview id={id} />
+            </div>
+            
+            
         </div>
     );
 }

@@ -13,26 +13,21 @@ function SearchProductAdmin(props) {
     const formatter = new Intl.NumberFormat('en-US', {
         style: 'currency',
         currency: 'vnd'
-      })
+    })
     const { products } = useSelector(mapState);
 
     useEffect(() => {
         dispatch(
             fetchProductsHome()
         )
-    },[])
+    }, [])
 
 
     const [searchItem, setSearchItem] = useState("")
     return (
-        <>
-            <div className="search_box p-2 input-group">
-                <input className="search_bar form-control" type="text" placeholder="Tìm kiếm sản phẩm" value={searchItem} onChange={(e) => { setSearchItem(e.target.value) }} />
-                <span className="input-group-append">
-                    <button className="btn btn-outline-secondary bg-white border-start-0 border rounded-pill ms-n3" type="button">
-                        <i className="fa fa-search"></i>
-                    </button>
-                </span>
+        <div className="search_admin">
+            <div className="search_box  input-group">
+                <input className="search_bar" type="text" placeholder="Tìm kiếm sản phẩm" value={searchItem} onChange={(e) => { setSearchItem(e.target.value) }} />
             </div>
             <div className="box-admin">
                 {products?.filter((item) => {
@@ -44,16 +39,16 @@ function SearchProductAdmin(props) {
                     }
                 }).map((product, index) => {
                     return (
-                        <div className="search_bar border-top-0 border">
+                        <div className="search_bar">
                             <Link key={index} style={{ textDecoration: 'none' }} to={`/admin/editproduct/${product.documentID}`}>
-                                <div className="search row p-2  d-flex">
-                                    <div className="search-main text-nowrap col-8">
-                                        <div className="name font-weight-bold text-center "> {product.name}    </div>
-                                        <div className="text-center "> {product.category}    </div>
-                                        <div className="text-center ">{formatter.format(product.price)}</div>
+                                <div className="search_bar__main">
+                                    <div className="search_bar__content">
+                                        <div className="search_bar__main--name"> {product.name}</div>
+                                        <div className="search_bar__main--texr">{formatter.format(product.price)}</div>
                                     </div>
-                                    <div className="col-3">
-                                        <img className="img-thumbnail" src={product.thumbnail} alt="Thumbnail image" />
+
+                                    <div className="search_bar__img">
+                                        <img  src={product.thumbnail} alt="Thumbnail image" />
                                     </div>
                                 </div>
                             </Link>
@@ -67,7 +62,7 @@ function SearchProductAdmin(props) {
             </div>
 
 
-        </>
+        </div>
     );
 }
 

@@ -6,9 +6,8 @@ function OrderDetail(props) {
 
 
     return (
-        <div className="main-content">
+        <div className="">
             <div className="">
-
                 <table class="table table-light">
                     <thead>
                         <tr>

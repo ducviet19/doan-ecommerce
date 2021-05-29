@@ -9,16 +9,19 @@
     -webkit-transition: width 0.4s ease-in-out;
     transition: width 0.4s ease-in-out;
   }
+  .search_admin {
+    position: relative;
+  }
 
   
   .box-admin {
-    /* position: absolute; */
-    top: 10%;
-    left: 5%;
+    position: absolute;
+    top: 70px;
+    left: 0;
     z-index: 1000;
     float: left;
-    width: 30%;
-    padding: 0.5rem 0;
+    width: 100%;
+    padding: 10px;
     box-sizing: border-box;
     font-size: 1rem;
     text-align: left;
@@ -27,10 +30,20 @@
     padding: 0.5rem 0;
     margin: 0.125rem 0 0;
   }
-  
+  .search_box {
+    margin-top: 35px;
+  }
   .search div {
     color : black
   }
   .search-main div:hover {
     color : blue
+  }
+
+  .search_bar__img img {
+    width: 60px;
+  }
+  .search_bar__main {
+    display: flex;
+    justify-content: space-between;
   }

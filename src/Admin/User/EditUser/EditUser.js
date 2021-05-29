@@ -88,6 +88,7 @@ function EditUser(props) {
             <form onSubmit={formik.handleSubmit}>
                 <div className="form-group">
                     <label htmlFor="name">Họ và tên</label>
+                    <br /><br />
                     <input className="form-control"
                         id='displayName'
                         type='text'
@@ -99,7 +100,7 @@ function EditUser(props) {
                         <div>{formik.errors.displayName}</div>) : null}
                 </div>
                 <div className="form-group">
-                    <label htmlFor="email">Địa Chỉ Email</label>
+                    <label htmlFor="email">Địa Chỉ Email</label><br /><br />
                     <input className="form-control"
                         id='email'
                         type="email"
@@ -111,8 +112,8 @@ function EditUser(props) {
                         <div>{formik.errors.email}</div>) : null}
                 </div>
                 <div className="form-group">
-                    <label htmlFor="avata">Avata:  <img className="img-thumbnail avata" src={image} alt='Không có ảnh' /></label><br></br>
-
+                    <label htmlFor="avata">Ảnh đại diện:  <br /><br /> <img className="img-thumbnail avata" src={image} alt='Không có ảnh' /></label><br></br>
+                    
                     <input type='file'
                         id='photoUrl'
                         name='file'
@@ -122,7 +123,7 @@ function EditUser(props) {
                 {
                     currentUser.id == userEdit.documentID ? '' :
                         <div className="form-group">
-                            <label htmlFor="roles">Vai Trò</label>
+                            <label htmlFor="roles">Vai Trò</label><br /><br />
                             <select
                                 name='userRoles'
                                 value={formik.values.userRoles}

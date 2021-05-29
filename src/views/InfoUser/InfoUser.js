@@ -95,7 +95,7 @@ function InfoUser(props) {
                         <div>{formik.errors.email}</div>) : null}
                 </div>
                 <div className="form-group">
-                    <label htmlFor="avata">Avata:  <img className="img-thumbnail avata" src={user.photoUrl} alt='Không có ảnh' /></label><br></br>
+                    <label htmlFor="avata">Ảnh đại diện: <br />   <img className="img-thumbnail avata" src={user.photoUrl} alt='Không có ảnh' /></label><br></br>
                     <br />
                     <input type='file'
                         id='photoUrl'

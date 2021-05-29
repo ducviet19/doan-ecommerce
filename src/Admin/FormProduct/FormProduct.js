@@ -140,10 +140,11 @@ function FormProduct(props) {
     
 
     return (
-        <div className="main-content">
-            <form onSubmit={formik.handleSubmit}>
+        <div className="main-content ">
+            <form className="form-product" onSubmit={formik.handleSubmit}>
                 <div className="form-group">
                     <label for="name">Tên sản phẩm</label>
+                    <br /> 
                     <input className="form-control"
                         id='name'
                         type='text'
@@ -153,11 +154,11 @@ function FormProduct(props) {
                         onBlur={formik.handleBlur} />
                     {formik.touched.name && formik.errors.name ? (
                         <div>{formik.errors.name}</div>) : null}
-                    {/* <input value={name} onChange={e => setName(e.target.value)} type="text" className="form-control" id="name" placeholder="Nhập tên sản phẩm" /> */}
                 </div>
                 <div className="form-group">
 
                     <label for="category">Loại sản phẩm</label>
+                    <br /><br /><br />
                     <select
                         className="form-control w-25"
                         name="category"
@@ -178,6 +179,7 @@ function FormProduct(props) {
                 </div>
                 <div className="form-group">
                     <label for="number">Số lượng sản phẩm</label>
+                    <br /><br /><br />
                     <input className="form-control"
                         id='number'
                         type='number'
@@ -191,6 +193,7 @@ function FormProduct(props) {
                 </div>
                 <div className="form-group">
                     <label for="sizes">Phân loại sản phẩm</label>
+                    <br /><br /><br />
                     <input className="form-control"
                         id='sizes'
                         type='text'
@@ -198,11 +201,12 @@ function FormProduct(props) {
                         value={formik.values.sizes}
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur} />
-                    {/* {formik.touched.size && formik.errors.size ? (
-                        <div>{formik.errors.size}</div>) : null} */}
+                    {formik.touched.size && formik.errors.size ? (
+                        <div>{formik.errors.size}</div>) : null}
                 </div>
                 <div className="form-group">
                     <label for="description">Miêu tả sản phẩm</label>
+                    <br /><br /><br />
                     <textarea className="form-control"
                         id='description'
                         type='text'
@@ -215,6 +219,7 @@ function FormProduct(props) {
                 </div>
                 <div className="form-group">
                     <label for="price">Giá sản phẩm</label>
+                    <br /><br /><br />
                     <NumberFormat className="form-control"
                         id='price'
                         type='text'
@@ -229,6 +234,7 @@ function FormProduct(props) {
                 </div>
                 <div className="form-group">
                     <label for="featureProduct">Sản phẩm nổi bật</label>
+                    <br /> 
                     <input className="form-control"
                         id='featureProduct'
                         type="checkbox"
@@ -238,19 +244,7 @@ function FormProduct(props) {
                         onBlur={formik.handleBlur} />
                 </div>
 
-                {/* <NumberFormat id='price'
-                    name="price"
-                    placeholder="Nhập Giá sản phẩm" thousandSeparator={true} prefix={'$'} onChange={formik.handleChange}
-                    onBlur={formik.handleBlur} /> */}
-                {/* <CurrencyInput
-                   id='price'
-                    name="price"
-                    placeholder="Nhập Giá sản phẩm"
-                    defaultValue={0}
-                    decimalsLimit={2}
-                    onChange={formik.handleChange}
-                        onBlur={formik.handleBlur}
-                /> */}
+                
                 <div className="form-group w-50">
                     <label for="thumbnail">Ảnh sản phẩm</label><br></br>
                     <input type='file'
