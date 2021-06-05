@@ -10,14 +10,14 @@ function Advertise(props) {
           <div className="small-container">
             <div className="row">
               <div className="col-2">
-                <img src="./images/exclusive.png" alt="" className="offer-img" />
+                <img src="//www.chanel.com/apac/img/t_one/q_auto:good,fl_lossy,dpr_1.2,f_jpg/w_642/prd-emea/sys-master/content/h4d/h61/9281997570078-HP_CORPO_ONE_PUSH_MOBILE_1920x2550.jpg" alt="" className="offer-img" />
               </div>
               <div className="col-2">
-                <p>Excuasd asasd asdasd</p>
-                <h1>Smart Brand 4</h1>
+                <p>Nước Hoa</p>
+                <h1>BLUE DE CHANEL</h1>
                 <small> The free website templates that are showcased here are open source, creative commons or
                   totally free. These free CSS HTML templates can be freely ... </small>
-                <a href className="btn">Buy Now →</a>
+                <a href className="btn">XEM NGAY →</a>
               </div>
             </div>
           </div>

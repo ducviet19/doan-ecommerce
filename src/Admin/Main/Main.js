@@ -5,10 +5,11 @@ import { formatter } from '../../App';
 import { fetchOrders } from '../../redux/Order/order.action';
 import { fetchProductsHome } from '../../redux/Product/products.action';
 
-const mapState = ({ orderData, productsData, message }) => ({
+const mapState = ({ orderData, productsData, message  , category}) => ({
     listOrder: orderData.listOrder,
     listProduct: productsData.productsHome,
-    listmessage: message.messages
+    listmessage: message.messages,
+    listCategories: category.categories
 })
 
 const mapUser = (state) => ({
@@ -18,7 +19,7 @@ function Main(props) {
 
     const dispatch = useDispatch()
 
-    const { listOrder, listProduct, listmessage } = useSelector(mapState);
+    const { listOrder, listProduct, listmessage ,listCategories } = useSelector(mapState);
     const { currentUser } = useSelector(mapUser)
 
     useEffect(() => {
@@ -85,6 +86,18 @@ function Main(props) {
                             <div>
                                 <h5>Đơn hàng</h5>
                                 <h4>{listOrder.length}</h4>
+                            </div>
+                        </div>
+                        <div className="card-footer">
+                            <Link to="/admin/order">View all</Link>
+                        </div>
+                    </div>
+                    <div className="card-single">
+                        <div className="card-body">
+                            <span className="ti-check-box" />
+                            <div>
+                                <h5>Danh mục sản phẩm</h5>
+                                <h4>{listCategories.length}</h4>
                             </div>
                         </div>
                         <div className="card-footer">

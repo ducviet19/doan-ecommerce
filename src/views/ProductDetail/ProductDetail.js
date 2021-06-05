@@ -133,6 +133,7 @@ function ProductDetail({ match }) {
                             <h3>{product.name}</h3>
                             <p>{product.category}</p>
                             <h4>{formatter.format(product.price)}</h4>
+                            <p> {product.numOrder} Sản phẩm đã được bán  </p>
                             
                             <Start product={product} id={id} />
 

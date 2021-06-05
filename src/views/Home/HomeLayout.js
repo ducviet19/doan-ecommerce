@@ -14,13 +14,13 @@ function HomeLayout() {
                 <div className="small-container">
                     <div className="row">
                         <div className="col-3">
-                            <img src="./images/category-1.jpg" />
+                            <img src="https://images.pexels.com/photos/3680316/pexels-photo-3680316.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" />
                         </div>
                         <div className="col-3">
-                            <img src="./images/category-2.jpg" />
+                            <img src="https://images.pexels.com/photos/3671083/pexels-photo-3671083.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" />
                         </div>
                         <div className="col-3">
-                            <img src="./images/category-3.jpg" />
+                            <img src="https://images.pexels.com/photos/3851294/pexels-photo-3851294.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" />
                         </div>
                     </div>
                 </div>

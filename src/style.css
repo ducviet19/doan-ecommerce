@@ -584,6 +584,10 @@ nav ul li:hover {
   .header .row {
       margin-top: 30px;
   }
+
+  .d-flex.mt-2 {
+    text-align: center;
+}
 }
 
 table {
@@ -1181,7 +1185,7 @@ main {
 
 .dash-cards {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     grid-column-gap: 3rem;
 }
 
@@ -1474,5 +1478,10 @@ tbody tr:nth-child(even) {
 
 .search_bar {
   padding: 8px;
+}
+
+
+.d-flex.mt-2 {
+  text-align: center;
 }
 

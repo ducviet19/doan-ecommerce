@@ -39,7 +39,7 @@ function Slide () {
           <a className="btn">Explore Now →</a>
         </div>
         <div className="col-2">
-          <img src="./images/nike-just-do-it.jpeg" alt="banner" />
+          <img src="//cdn.nrf.com/sites/default/files/styles/crop_1027_547/public/2020-09/mens%20cosmetics.png?itok=7EAMtlgN" alt="banner" />
         </div>
       </div>
 
