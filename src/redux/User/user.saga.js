@@ -152,6 +152,10 @@ export function* onFetchUser() {
 export function* deleteUser({ payload }) {
   try {
     yield handleDeleteUser(payload);
+    const userEdit = yield handleFetchDetailUser(payload);
+    userEdit.delete().then(function() {
+
+    })
     yield put(
       fetchUser()
     )

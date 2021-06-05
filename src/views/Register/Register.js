@@ -4,7 +4,7 @@ import useScrollTop from '../../hook/useScrollTop';
 import { registerUser, resetAllAuthForm, signUpUserStart } from '../../redux/User/user.action';
 import './style.css';
 import LoadingBox from '../../component/LoadingBox/LoadingBox';
-
+import swal from 'sweetalert';
 
 const mapState = ({ user }) => ({
     currentUser: user.currentUser,
@@ -71,6 +71,7 @@ function Register() {
             password,
             confirmPassword
         }))
+        swal("Đăng ký thành công!", "", "success");
         reset();
 
     }
