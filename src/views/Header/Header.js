@@ -123,7 +123,7 @@ function Header(props) {
               {cartItems.map((item, index) => (
                 <div className="cart-item__main">
                   <img className="cart-item-img" src={item.thumbnail}  alt="" />
-                  <span className="cart-item-name" ><Link to={`/product/${item.documentID}`} >{item.name}</Link> </span>
+                  <span className="cart-item-name"><Link to={`/product/${item.documentID}`} >{item.name}</Link> </span>
                   <div className="cart-item-desc">
                   <p>{formatter.format(item.price)} </p>
                   <p>SL :{item.quantity}</p>

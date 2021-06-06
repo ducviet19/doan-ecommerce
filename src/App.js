@@ -82,7 +82,7 @@ function App(props) {
               </Route>
               <Route path="/register" render={() => user ? <Redirect to="/" /> : (<MainLayout><Register></Register> </MainLayout>)}    >
               </Route>
-              <Route path="/product/:id">
+              <Route exact path="/product/:id">
                 <MainLayout>
                   <ProductDetail />
                 </MainLayout>

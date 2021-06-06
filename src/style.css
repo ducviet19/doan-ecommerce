@@ -734,7 +734,7 @@ table th {
   left: -200px;
   background-color: #f1f1f1;
   width: 300px;
-  height: 270px;
+  height: 275px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
   animation: fadeIn linear 0.5s;
@@ -763,6 +763,7 @@ table th {
 .cart-contain {
   height: 220px;
   overflow: hidden;
+  margin: 0 5px;
 }
 
 .cart-item__main:hover {
@@ -774,7 +775,12 @@ table th {
   margin-top: 5px;
 }
 .cart-item-name {
+
   flex: 1;
+}
+.cart-item-name a {
+  font-size: 80%;
+  line-height: 80%;
 }
 .cart-item-desc {
   display: block;
@@ -834,12 +840,17 @@ table th {
   margin-top: 10px;
   display: flex;
   justify-content: space-around;
+  cursor: pointer;
 }
 .cart-footer button {
   background-color: #000;
   padding: 8px;
   border: none;
   color: white;
+}
+
+.cart-footer button:hover {
+  opacity: 0.5;
 }
 .cart-footer span {
   font-size: 80%;

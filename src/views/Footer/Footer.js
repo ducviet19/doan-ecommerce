@@ -67,12 +67,12 @@ function Footer() {
           </ul>
         </div>
         <div className="footer-col-4">
-          <h3>Follow us</h3>
+          <h3>Công ty</h3>
           <ul>
-            <li>Facebook</li>
-            <li>Email</li>
-            <li>Instagram</li>
-            <li>Twitter</li>
+            <li>Giới Thiệu</li>
+            <li>Liên Hệ</li>
+            <li>Tin Tức </li>
+            <li>Chăm sóc khách hàng</li>
           </ul>
         </div>
       </div>
