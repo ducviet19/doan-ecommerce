@@ -36,7 +36,7 @@ function ProductCart(product) {
                 <Link  to={`/product/${documentID}`} > 
                 <h4>{name}</h4>
                 </Link>
-               
+                <p>Đã bán {product.numOrder}</p>
                 <Start product={product}  />
                 <p>{formatter.format(price)}</p>
             </div>

@@ -20,7 +20,7 @@ p {
 }
 
 body {
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
 .body {
@@ -102,9 +102,10 @@ body {
   position: fixed;
   width: 100%;
   top: 0;
-  background: radial-gradient(#fff, #d8e3e7);
+  /* background: radial-gradient(#fff, #b1c0bd); */
+  background: #fff;
   z-index: 1000;
- 
+  border-bottom: 1px solid #ececec;
 }
 
 .header .row {
@@ -129,6 +130,9 @@ body {
   flex-basis: 60%;
   min-width: 60%;
 }
+/* .col {
+  flex-basis: 100%;
+} */
 
 .col-2 {
   flex-basis: 50%;
@@ -193,7 +197,7 @@ body {
 }
 
 .rating .fa {
-  color: #ff523b;
+  color: #000;
 }
 
 .col-4:hover {
@@ -235,9 +239,10 @@ h4 {
 /* offer */
 
 .offer {
-  background: radial-gradient(#fff, #d8e3e7);
+  /* background: radial-gradient(#fff, #d8e3e7); */
   margin-top: 80px;
   padding: 30px 0;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1);
 }
 
 
@@ -261,7 +266,7 @@ small {
 /* navbar  */
 
 .navbar {
-  background: radial-gradient(#fff, #d8e3e7);
+  /* background: radial-gradient(#fff, #b1c0bd); */
   width: 100%;
   display: flex;
   align-items: center;
@@ -434,7 +439,7 @@ nav ul li:hover {
 
 .fa.fa-quote-left {
   font-size: 30px;
-  color: #ff523b;
+  color: #000;
 }
 
 .col-3 p {
@@ -943,9 +948,48 @@ th:last-child {
 }
 
 .slide {
-  margin: 50px;
+  background-image: url("//www.chanel.com/apac/img/t_one/q_auto:good,fl_lossy,dpr_1.2,f_jpg/w_960/prd-emea/sys-master/content/h13/h6d/9265163599902-CONTENT-PUSH-ONE-ASIA-2@2x(1).jpg");
+  /* margin: 0 50px; */
 }
 
+.slide__content {
+  padding: 0 50px;
+}
+.slide__content--title {
+  color: white;
+  text-shadow: 0 0 6px rgb(0 0 0 / 60%);
+}
+.slide__content--btn {
+  border-color: #fff;
+  color: #000;
+  border: 1px solid #000;
+  border-radius: 2px;
+  padding: 15px;
+
+}
+
+
+.slide__content--btn-wrapper span {
+  font-weight: 700;
+}
+
+
+@keyframes btn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+
+.slide__content--btn:hover {
+  background: rgb(65, 62, 62);
+  color: #fff;
+  animation: btn ease 2s;
+}
 .page-nation {
   text-align: center;
 }

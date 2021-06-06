@@ -10,15 +10,30 @@ function Advertise(props) {
           <div className="small-container">
             <div className="row">
               <div className="col-2">
-                <img src="//www.chanel.com/apac/img/t_one/q_auto:good,fl_lossy,dpr_1.2,f_jpg/w_642/prd-emea/sys-master/content/h4d/h61/9281997570078-HP_CORPO_ONE_PUSH_MOBILE_1920x2550.jpg" alt="" className="offer-img" />
+                <img src="//www.chanel.com/apac/img/t_one/q_auto:good,fl_lossy,dpr_1.2,f_jpg/w_960/prd-emea/sys-master/content/h13/h6d/9265163599902-CONTENT-PUSH-ONE-ASIA-2@2x(1).jpg" alt="" className="offer-img" />
               </div>
               <div className="col-2">
-                <p>Nước Hoa</p>
+                <p>Hòa mình cùng nẵng mùa hạ</p>
                 <h1>BLUE DE CHANEL</h1>
-                <small> The free website templates that are showcased here are open source, creative commons or
-                  totally free. These free CSS HTML templates can be freely ... </small>
+                <small> CHANEL Reasearch kết hợp với chuyên gia nông nghiệp, Giáo sư Johannes Grillari của Đại học BOKU và LBI (Vienna, Áo) để thực hiện sứ mệnh: Trau ... </small>
                 <a href className="btn">XEM NGAY →</a>
               </div>
+            </div>
+          </div>
+        </div>
+        <div className="offer">
+          <div className="small-container">
+            <div className="row">
+            <div className="col-2">
+                <p>NÂNG TẦM VẺ ĐẸP</p>
+                <h1>LE LIFT</h1>
+                <small> CHANEL Reasearch kết hợp với chuyên gia nông nghiệp, Giáo sư Johannes Grillari của Đại học BOKU và LBI (Vienna, Áo) để thực hiện sứ mệnh: Trau ...</small>
+                <a href className="btn">XEM NGAY →</a>
+              </div>
+              <div className="col-2">
+                <img src="//www.chanel.com/apac/img/t_one/q_auto:good,fl_lossy,dpr_1.2,f_jpg/w_960/prd-emea/sys-master/content/h29/hde/9166405697566-DESC_ONE_landing_PUSH-EDITO_974x974(1).jpg" alt="" className="offer-img" />
+              </div>
+              
             </div>
           </div>
         </div>

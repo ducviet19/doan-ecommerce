@@ -24,7 +24,7 @@ const ProductResults = ({ }) => {
     const { products } = useSelector(mapState);
     const { categories } = useSelector(mapCategory);
     const { data, queryDoc, isLastPage } = products;
-    const [filter,setFilter] = useState(false);
+    const [filter, setFilter] = useState(false);
     useEffect(() => {
         dispatch(
             fetchProducts({ filterType })
@@ -44,9 +44,9 @@ const ProductResults = ({ }) => {
     const handleChange = (e) => {
         setFilter(e)
     }
-    const handleUpdateNumber = (product , id) => {
-        dispatch(updateNumber(product,id))
-    } 
+    const handleUpdateNumber = (product, id) => {
+        dispatch(updateNumber(product, id))
+    }
 
     const handleFilter = (e) => {
         const nextFilter = e.target.value;
@@ -57,8 +57,8 @@ const ProductResults = ({ }) => {
     if (data.length < 1) {
         return (
             <>
-                <div className='products'>
-                    <div className="col-md-3 order-md-0 mt-2 mt-md-0 mb-3">
+                <div className='container products'>
+                    <div className="row">
                         <select className="form-control form-control-sm" value={filterType} onChange={handleFilter}>
                             <option value="">Tất cả</option>
                             {categories.map((option) => (
@@ -67,9 +67,9 @@ const ProductResults = ({ }) => {
                         </select>
                     </div>
 
-                    <p>
+                    <div className="row">
                         Không có sản phẩm
-                </p>
+                    </div>
                 </div>
             </>
         )
@@ -90,17 +90,17 @@ const ProductResults = ({ }) => {
     return (
         <div className='container products'>
             <div className="row">
-            <div className="col-2">
-                <select className="form-control form-control-sm" value={filterType} onChange={handleFilter}>
-                    <option value="">Tất cả</option>
-                    {categories.map((option) => (
-                        <option value={option.name}>{option.name}</option>
-                    ))}
-                </select>
+                <div className="col-2">
+                    <select className="form-control form-control-sm" value={filterType} onChange={handleFilter}>
+                        <option value="">Tất cả</option>
+                        {categories.map((option) => (
+                            <option value={option.name}>{option.name}</option>
+                        ))}
+                    </select>
+                </div>
+                <Search />
             </div>
-            <Search />
-            </div>
-           
+
             <div className='row justify-content-center'>
                 {data.map((product, pos) => {
                     const { documentID, thumbnail, name, price, number } = product;
