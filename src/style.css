@@ -727,7 +727,7 @@ table th {
   display: block;
 }
 .cart-item {
-  display: none;
+  display: block;
   position: absolute;
   top: 60px;
   left: -200px;
@@ -739,7 +739,7 @@ table th {
   animation: fadeIn ease-in 0.5s;
 
 }
-.cart-item::before {
+/* .cart-item::before {
   position: absolute;
   top: -10;
   right: 35px;
@@ -747,9 +747,18 @@ table th {
   border-bottom: 15px solid #f1f1f1;
   border-left: 30px solid transparent;
   border-right: 30px solid transparent;   
+} */
+
+
+.cart-item__main span {
+  width:100%;
+    white-space: pre-wrap; 
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+     display: -webkit-box;
 }
-
-
 
 
 /* cart */

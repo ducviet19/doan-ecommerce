@@ -4,7 +4,7 @@ import { addQtyItem, addToCart, fetchCart, reduceCartItem, removeCart, removeCar
 import { selectCartTotal } from '../../redux/Cart/cart.selectors';
 import swal from 'sweetalert';
 import { formatter } from '../../App';
-import { editProduct, fetchProductStart, reducerNumber, updateNumber } from '../../redux/Product/products.action';
+import { editProduct, fetchProductStart, reducerNumber, restoreNumber, updateNumber } from '../../redux/Product/products.action';
 import ButtonCart from './ButtonCart';
 import { useHistory } from 'react-router';
 import { firestore } from '../../firebase/ultils';
@@ -22,20 +22,21 @@ const mapLoading = state => ({
 });
 function Item(props) {
     const { productDetail } = useSelector(mapState);
-    const { loadingCart } = useSelector(mapLoading);
+    // const { loadingCart } = useSelector(mapLoading);
 
-    const [change, setChange] = useState(false)
+    // const [change, setChange] = useState(false)
     const dispatch = useDispatch();
 
-    // useEffect(() => {
-    //     dispatch(fetchProductStart(id))
-    // },[change])
 
     const handleAddNumber = (data, id) => {
         dispatch(updateNumber(data, id))
     }
     const handleReduceNumber = (data, id) => {
         dispatch(reducerNumber(data, id))
+    }
+
+    const handleRestoreNumber = (data, id ,quantity) => {
+        dispatch(restoreNumber(data, id ,quantity))
     }
 
 
@@ -50,10 +51,7 @@ function Item(props) {
                             ...snapshot.data(),
                             documentID: documentID
                         });
-
                     }
-
-
                 })
                 .catch(err => {
                     reject(err);
@@ -65,7 +63,6 @@ function Item(props) {
         dispatch(addToCart(product));
         let detail = await handleFetchDetailProduct(product.documentID)
         handleAddNumber(detail, product.documentID)
-
     }
     const reduceCart = async (product) => {
         dispatch(reduceCartItem(product))
@@ -74,8 +71,8 @@ function Item(props) {
         dispatch(fetchCart())
     }
 
-    const removeCart = (index) => {
-
+    const removeCart = async  (index) => {
+        let detail = await handleFetchDetailProduct(index.documentID);
         swal({
             title: "Xóa sản phẩm khỏi giỏ hàng?",
             icon: "warning",
@@ -84,9 +81,8 @@ function Item(props) {
         })
             .then((willDelete) => {
                 if (willDelete) {
-                    // dispatch(removeCartItem({ documentID ,size }))
-                    // dispatch(removeCartItem({ index }))
-                    dispatch(removeCartItem(index))
+                    dispatch(removeCartItem(index));
+                    dispatch(restoreNumber(detail, index.documentID ,index.quantity))
                 }
             });
     }
@@ -102,7 +98,7 @@ function Item(props) {
                         <div className="action-cart">
                             <button className="btn" onClick={() => reduceCart(props)} ><i className="fas fa-minus"></i></button>
                             <p className="m-2">{quantity}</p>
-                            <> {quantity == number ? <button disabled className="btn  " onClick={() => addProduct(props)}>Hết hàng</button> :
+                            <> { productDetail.number ==  0 ? <button disabled className="btn  " onClick={() => addProduct(props)}>Hết hàng</button> :
                                 <button className="btn  " onClick={() => addProduct(props)}><i className="fas fa-plus"></i></button>
 
                             } </>
@@ -115,9 +111,7 @@ function Item(props) {
 
                     <td > <button className="btn btn-danger" onClick={() =>
 
-                        removeCart(props
-
-                        )}><i className="fas fa-trash-alt"></i></button> </td>
+                        removeCart(props)}><i className="fas fa-trash-alt"></i></button> </td>
                 </tr>
             }
         </>

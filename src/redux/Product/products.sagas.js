@@ -194,11 +194,35 @@ export function* onEditProduct() {
 }
 
 
-export function* updateNumber({ payload, id }) {
+export function* RestoreNumber({ payload, id ,quantity }) {
     try {
 
-        
-     
+        console.log("restoer")
+        let value = {
+           ...payload,
+           number : payload.number + quantity
+        }
+        yield handleEditProduct(value, id);
+        yield put(
+            fetchProductStart(id)
+        )
+        yield put(
+            fetchProducts({})
+        )
+    }
+    catch (err) {
+
+    }
+}
+
+export function* onRestoreNumber() {
+    yield takeLatest(productsTypes.RESTORE_NUMBER, RestoreNumber)
+}
+
+
+
+export function* updateNumber({ payload, id }) {
+    try {
         let value = {
            ...payload,
            number : payload.number - 1,
@@ -265,6 +289,7 @@ export default function* productsSagas() {
         call(onReducerNumber),
         call(onFetchProductFuture),
         call(onFetchProductSeller),
-        call(onFetchProductRelative)
+        call(onFetchProductRelative),
+        call(onRestoreNumber)
     ])
 }

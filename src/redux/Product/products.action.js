@@ -90,6 +90,13 @@ export const updateNumber = (number, id) => ({
     id
 })
 
+export const restoreNumber = (number, id , quantity) => ({
+    type: productsTypes.RESTORE_NUMBER,
+    payload: number,
+    id,
+    quantity
+})
+
 export const reducerNumber = (number, id) => ({
     type: productsTypes.REDUCER_NUMBER,
     payload: number,

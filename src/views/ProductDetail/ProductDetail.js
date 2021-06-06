@@ -71,8 +71,8 @@ function ProductDetail({ match }) {
         }
 
         else {
-            dispatch(addToCart(product))
-            handleUpdateNumber(product, product.documentID)
+            await dispatch(addToCart(product))
+            await handleUpdateNumber(product, product.documentID)
             setProductChange(true)
             // dispatch(cartLoading(product.documentID))
             // loadingButton(loadingCart)
@@ -100,11 +100,6 @@ function ProductDetail({ match }) {
     const handleChangeRelative = (value) => {
         setIdProduct(value)
     }
-
-    console.log('size',product?.sizes )
-
-
-
     return (
         <>
             { loading === false ?

@@ -24,17 +24,6 @@ const mapCart = (state) => ({
 function Cart(props) {
     const { cartItems, total } = useSelector(mapState);
     const { totalNumCartItems } = useSelector(mapCart);
-    // const dispatch = useDispatch();
-    // const [change , setChange] = useState(false)
-
-    // useEffect(() => {
-    //     dispatch(fetchCart())
-    // },[])
-
-    // const handleChange = (value) => {
-    //     setChange(value)
-    // }
-
 
     return (
         <>
