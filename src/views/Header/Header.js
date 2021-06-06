@@ -17,7 +17,7 @@ import { selectCartItems, selectCartItemsCount, selectCartTotal } from '../../re
 import Search from '../../component/Search/Search';
 import { fetchCategories } from '../../redux/Category/category.action';
 import { createStructuredSelector } from 'reselect';
-
+import { formatter } from '../../App';
 const mapState = (state) => ({
   currentUser: state.user.currentUser,
   user: state.user.user,
@@ -119,16 +119,23 @@ function Header(props) {
           <div className="main-cart">
             <Link to="/cart"> <img className="cart" src="../images/cart.png" width="30px" height="30px" /> {totalNumCartItems == 0 ? "" : <><span className="number__cart">{totalNumCartItems == 0 ? "" : totalNumCartItems}  </span> </>}   </Link>
             <div className="cart-item">
+              <div className="cart-contain">
               {cartItems.map((item, index) => (
                 <div className="cart-item__main">
-                  <img src={item.thumbnail} width="10% " alt="" />
-                  <span className="cart-item-name" >{item.name}</span>
-                  <p>{item.price}</p>
+                  <img className="cart-item-img" src={item.thumbnail}  alt="" />
+                  <span className="cart-item-name" ><Link to={`/product/${item.documentID}`} >{item.name}</Link> </span>
+                  <div className="cart-item-desc">
+                  <p>{formatter.format(item.price)} </p>
+                  <p>SL :{item.quantity}</p>
+                  </div>
+                  
                 </div>
               ))}
+              </div>
+              
               <div className="cart-footer">
-                <span>10 sản phẩm trong giỏ hàng</span>
-                <button>Đi đến giỏ hàng</button>
+                <span>{totalNumCartItems} sản phẩm trong giỏ hàng</span>
+                <Link to="/cart"> <button>Đi đến giỏ hàng</button> </Link>   
               </div>
             </div>
           </div>

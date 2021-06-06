@@ -709,10 +709,10 @@ table th {
   top: 10px;
   right: -15px;
   /* border: 1px solid; */
-  padding: 3px;
+  padding: 4px;
   border-radius: 50%;
-  font-size: 70%;
-  background-color: #f35b42;
+  font-size: 80%;
+  background-color: #000;
   color: white;
   border: none;
 }
@@ -727,37 +727,79 @@ table th {
   display: block;
 }
 .cart-item {
-  display: block;
+  cursor: pointer;
+  display: none;
   position: absolute;
   top: 60px;
   left: -200px;
   background-color: #f1f1f1;
   width: 300px;
-  height: 300px;
+  height: 270px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
-  animation: fadeIn ease-in 0.5s;
+  animation: fadeIn linear 0.5s;
+  padding: 5px 0;
 
 }
-/* .cart-item::before {
+
+.cart-item::after {
   position: absolute;
-  top: -10;
-  right: 35px;
+  top: -10px;
+  right: 25px;
+  content: "";
+  width: 100px;
+  height: 50px;
+}
+.cart-item::before {
+  position: absolute;
+  top: -10px;
+  right: 25px;
   content: "";
   border-bottom: 15px solid #f1f1f1;
   border-left: 30px solid transparent;
   border-right: 30px solid transparent;   
-} */
+  z-index: 1;
+}
+.cart-contain {
+  height: 220px;
+  overflow: hidden;
+}
 
+.cart-item__main:hover {
+  background-color: #f7f7f7;
+}
+.cart-item__main {
+  justify-content: space-around;
+  display: flex;
+  margin-top: 5px;
+}
+.cart-item-name {
+  flex: 1;
+}
+.cart-item-desc {
+  display: block;
+  flex: 1;
+}
+.cart-item-desc p {
+  text-align: center;
+}
+
+.cart-item-img {
+  flex: 1;
+  max-width: 50px;
+  height: 50px;
+}
 
 .cart-item__main span {
-  width:100%;
-    white-space: pre-wrap; 
-    overflow: hidden; 
-    text-overflow: ellipsis; 
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-     display: -webkit-box;
+  max-width:150px;
+  white-space: nowrap; 
+  margin: 0 5px;
+  font-size: 16px;
+  line-height: 1.3;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 
@@ -789,13 +831,13 @@ table th {
 }
 
 .cart-footer {
- 
+  margin-top: 10px;
   display: flex;
   justify-content: space-around;
 }
 .cart-footer button {
-  background-color: #ee4d2d;
-  padding: 10px;
+  background-color: #000;
+  padding: 8px;
   border: none;
   color: white;
 }
