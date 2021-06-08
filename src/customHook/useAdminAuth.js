@@ -4,7 +4,6 @@ import { useHistory } from "react-router-dom";
 import { checkUserIsAdmin } from "../Utils";
 
 
-
 const mapState = ({user}) => ({
     currentUser: user.currentUser
 })

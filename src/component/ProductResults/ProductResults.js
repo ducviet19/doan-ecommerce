@@ -30,6 +30,7 @@ const ProductResults = ({ }) => {
             fetchProducts({ filterType })
         )
     }, [filterType]);
+
     useEffect(() => {
         dispatch(
             fetchProducts({ filterType })
@@ -87,6 +88,7 @@ const ProductResults = ({ }) => {
     const configLoadMore = {
         onLoadMoreEvt: handleLoadMore,
     };
+    console.log('product shop' , data)
     return (
         <div className='container products'>
             <div className="row">
@@ -102,14 +104,16 @@ const ProductResults = ({ }) => {
             </div>
 
             <div className='row justify-content-center'>
-                {data.map((product, pos) => {
-                    const { documentID, thumbnail, name, price, number } = product;
+                
+            {
+                    (Array.isArray(data) && data.length > 0) && data.map((product, index) => {
+                    // const { documentID, thumbnail, name, price, number } = product;
                     // if (!thumbnail || !name || typeof price === 'undefined') return null;
                     const configProduct = {
-                        documentID, thumbnail, name, price, number
+                        ...product
                     };
                     return (
-                        <ProductCart data={product} handleChange={handleChange} handleUpdateNumber={handleUpdateNumber}  {...configProduct} />
+                        <ProductCart  data={product} handleChange={handleChange} handleUpdateNumber={handleUpdateNumber}  {...configProduct} />
                     )
                 })}
 

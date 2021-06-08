@@ -16,6 +16,8 @@ export function* addProduct({ payload }) {
             productAdminUserUID: auth.currentUser.uid,
             createdDate: timestamp
         });
+
+        // put use dispatch action
         yield put(
             fetchProducts()
         );

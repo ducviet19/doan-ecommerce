@@ -12,9 +12,6 @@ function ProductFuture(props) {
     const { data, queryDoc, isLastPage } = productsFuture.productsFuture;
 
 
-    console.log('productsFuture', productsFuture)
-
-
     const dispatch = useDispatch()
 
     useEffect(() => {

@@ -64,27 +64,34 @@ function ProductDetail({ match }) {
 
 
     const handleAddToCart = async (product) => {
-        if (!product) return;
 
-        if(size == "") {
-            swal("Hãy chọn loại sản phẩm")
+        try {
+            if (!product) return;
+
+            if (size == "") {
+                swal("Hãy chọn loại sản phẩm")
+            }
+
+            else {
+                await dispatch(addToCart(product))
+                await handleUpdateNumber(product, product.documentID)
+                await setProductChange(true)
+                // dispatch(cartLoading(product.documentID))
+                // loadingButton(loadingCart)
+                swal({
+                    button: false,
+                    text: "Sản phẩm đã được thêm vào giỏ hàng",
+                    icon: "success",
+                    timer: 1000
+                })
+            }
+
+        } catch (error) {
+
         }
 
-        else {
-            await dispatch(addToCart(product))
-            await handleUpdateNumber(product, product.documentID)
-            setProductChange(true)
-            // dispatch(cartLoading(product.documentID))
-            // loadingButton(loadingCart)
-            swal({
-                button: false,
-                text: "Sản phẩm đã được thêm vào giỏ hàng",
-                icon: "success",
-                timer: 1000
-            })
-        }
 
-        
+
 
     }
     const handleUpdateNumber = (data, id) => {
@@ -129,10 +136,10 @@ function ProductDetail({ match }) {
                             <p>{product.category}</p>
                             <h4>{formatter.format(product.price)}</h4>
                             <p> {product.numOrder} Sản phẩm đã được bán  </p>
-                            
+
                             <Start product={product} id={id} />
 
-                            <select name="sizes" onChange={(e) => { setSize(e.target.value)  ; console.log(e.target.value)} }>
+                            <select name="sizes" onChange={(e) => { setSize(e.target.value); console.log(e.target.value) }}>
                                 <option value="">Chọn loại sản phẩm</option>
                                 {product?.sizes?.map((option) => (
                                     <option value={option}>{option}</option>
@@ -167,84 +174,6 @@ function ProductDetail({ match }) {
             }
         </>
 
-
-
-
-        // <>
-        //     {loading === false ? 
-        //     <>
-        //         <div className="row px-1 pt-5 mt-2">
-        //             <div className="col-md-6 mb-4 mb-md-0">
-        //                 <div id="mdb-lightbox-ui" />
-        //                 <div className="mdb-lightbox">
-        //                     <div className="row product-gallery mx-1">
-        //                         <div className="col-12 mb-0">
-        //                             <figure className="view overlay rounded z-depth-1 main-img">
-        //                                 <Link data-size="710x823">
-        //                                     <img src={src[stt]} className="img-fluid w-75 h-75 z-depth-1" />
-        //                                 </Link>
-        //                             </figure>
-
-        //                         </div>
-        //                         <div className="col-12">
-        //                             <div className="row">
-        //                                 {
-        //                                     src.map((img, index) => {
-        //                                         return (
-        //                                             <div className="col-3">
-        //                                                 <div className="view overlay rounded z-depth-1 gallery-item">
-        //                                                     <img src={img} className="img-fluid border w-75 h-75 " onClick={() => { handletab(index) }} />
-
-        //                                                     <div className="mask rgba-white-slight" />
-        //                                                 </div>
-        //                                             </div>
-        //                                         )
-        //                                     })
-        //                                 }
-
-        //                             </div>
-        //                         </div>
-        //                     </div>
-        //                 </div>
-        //             </div>
-        //             <div className="col-md-6">
-        //                 <h5 className="font-weight-bold">{product.name}</h5>
-        //                 <p className="mb-2 text-muted text-uppercase small">{product.category}</p>
-        //                 <h4>Chọn sản phẩm</h4>
-        //                 <select
-        //                     className="form-control w-25"
-        //                     name="size" onChange={(e) => { setSize(e.target.value) }}
-        //                 >
-        //                     {product?.sizes?.map((option) => (
-        //                         <option value={option}>{option}</option>
-        //                     ))}
-
-        //                 </select>
-
-        //                 <Start product={product} id={id} />
-        //                 <p><span className="mr-1 "><strong>   {formatter.format(product.price)}</strong></span></p>
-        //                 {product.number > 0
-        //                     ?
-        //                     <> {loadingCart == false ? <LoadingBox /> : <button className="btn btn-secondary mr-3 mt-3 mb-3 w-100 p-2" onClick={() => { handleAddToCart({ ...product, size }) }}>THÊM VÀO GIỎ</button>} </>
-        //                     :
-        //                     <button disabled className="btn btn-secondary mr-3 mt-3 mb-3 w-100 p-2" >HẾT HÀNG</button>}
-
-        //                 <strong>Mô tả</strong>
-        //                 <div>
-        //                     <p className="pt-1">{product.description}</p>
-        //                 </div>
-
-
-        //                 <hr />
-
-        //             </div>
-        //         </div>
-        //         <ProductRelative id={id} handleChangeReview={handleChangeReview} data={productRelative} category={product.category} handleChangeRelative={handleChangeRelative} />
-        //         <Review handleChangeReview={handleChangeReview} product={product} />
-        //         <Rate id={id} /> </> 
-        //         : <LoadingBox />}
-
-        // </>
 
     )
 

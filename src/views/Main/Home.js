@@ -49,18 +49,10 @@ function Home() {
             swal(`${err}`, "", "error")
         }
 
-
-
     }
     const resetForm = () => {
         setEmail('');
     }
-
-
-
-
-
-
 
     useEffect(() => {
         dispatch(
@@ -88,6 +80,8 @@ function Home() {
     const handleUpdateNumber = (product, id) => {
         dispatch(updateNumber(product, id))
     }
+
+    console.log('product hone' , data)
     return (
         <>
         {
@@ -121,44 +115,6 @@ function Home() {
                 <ProductSeller />
             </div>
         }
-
-       
-
-
-
-
-
-
-
-            {/* {loading === true ? <LoadingBox /> :
-            <main className="container">
-                <div className="main__title">
-                    <h3>SẢN PHẨM MỚI</h3>
-                </div>
-                <div className="product row">
-                    {
-                            (Array.isArray(data) && data.length > 0) && data.map((product, index) => {
-                                const configProduct = {
-                                    ...product
-                                }
-                                return (
-                                    <ProductCart key={index} data={product} handleChange={handleChange} handleUpdateNumber={handleUpdateNumber} loading={loading} {...configProduct} />
-                                )
-                            })
-                        }   
-                </div>
-                <div className='d-flex'>
-                        <div className='m-auto'>
-                            {!isLastPage && (
-                                <LoadMore {...configLoadMore} />
-                            )}
-                        </div>
-                    </div>
-                <ProductFuture />
-
-                <ProductSeller />
-            </main>
-        } */}
 
         </>
     )

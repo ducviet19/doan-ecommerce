@@ -33,35 +33,23 @@ const cartReducer = (state = INITIAL_STATE, action) => {
                 ...state,
                 cartItems: handleRemoveCartItem({
                     prevCartItems: state.cartItems,
-                    CartItemToRemove : action.payload
+                    CartItemToRemove: action.payload
                 })
             }
 
-       
+
         case cartTypes.CLEAR_CART:
             return {
                 ...state,
                 cartItems: []
             }
-        case cartTypes.FETCH_CART:
-            // return {
-            //     ...state
-            // }
-          
-
-        // case cartTypes.CART_LOADING:
-        //     return {
-        //         ...state,
-        //         loadingCart: false,
-        //         success : true
-        //     }
         case cartTypes.CART_DEFAULT:
             return {
                 ...state,
                 loadingCart: true,
-                success : false
+                success: false
             }
-
+        case cartTypes.FETCH_CART:
         default:
             return state
     }

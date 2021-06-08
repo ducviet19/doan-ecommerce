@@ -12,8 +12,7 @@ import { editProduct, fetchProductStart, updateNumber } from '../../redux/Produc
 import LoadingBox from '../../component/LoadingBox/LoadingBox';
 import ButtonAddtoCart from '../../component/ButtonAddtoCart/ButtonAddtoCart';
 const mapState = createStructuredSelector({
-    cartItems: selectCartItems,
-    loadingCart: selectCartLoading
+    cartItems: selectCartItems
 });
 
 const mapLoading = state => ({
@@ -26,7 +25,10 @@ function ProductCart(product) {
     const dispatch = useDispatch()
 
 
-    const { documentID, thumbnail, name, price, number, handleChange, handleUpdateNumber, data } = product;
+    const { documentID, thumbnail, name, price, number, handleChange, handleUpdateNumber, data ,numOrder } = product;
+
+    console.log('product',product)
+    console.log('numOrder',numOrder)
 
 
     return (
@@ -36,7 +38,7 @@ function ProductCart(product) {
                 <Link  to={`/product/${documentID}`} > 
                 <h4>{name}</h4>
                 </Link>
-                <p>Đã bán {product.numOrder}</p>
+                <p>Đã bán {numOrder}</p>
                 <Start product={product}  />
                 <p>{formatter.format(price)}</p>
             </div>
